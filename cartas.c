@@ -150,15 +150,17 @@ Esta função está a imprimir o estado em quatro colunas: uma para cada naipe
 @param path	o URL correspondente à pasta que contém todas as cartas
 @param ESTADO	O estado atual
 */
+
 void imprime(char *path, long long int ESTADO) {
 	int n, v;
 	int x, y;
+	x=0;
 
 	printf("<svg height = \"800\" width = \"800\">\n");
 	printf("<rect x = \"0\" y = \"0\" height = \"800\" width = \"800\" style = \"fill:#007700\"/>\n");
 
-	for(y = 10, n = 0; n < 4; n++, y += 120) {
-		for(x = 10, v = 0; v < 13; v++)
+	for(y = 670, n = 0; n < 4; n++, x += 20) {
+		for(v = 0; v < 13; v++)
 			if(carta_existe(ESTADO, n, v)) {
 				x += 20;
 				imprime_carta(path, x, y, ESTADO, n, v);
@@ -167,7 +169,31 @@ void imprime(char *path, long long int ESTADO) {
 	printf("</svg>\n");
 }
 
-
+/*
+void imprime(char *path, long long int ESTADO) {
+	int n, v;
+	int x, y;
+	y=410;
+    n=0;
+    v=0;
+    x=10;
+	printf("<svg height = \"800\" width = \"800\">\n");
+	printf("<rect x = \"0\" y = \"0\" height = \"800\" width = \"800\" style = \"fill:#007700\"/>\n");
+   
+	while (n<4){
+		while(v<13){
+			if(carta_existe(ESTADO, n, v)) {
+				x += 20;
+				imprime_carta(path, x, y, ESTADO, n, v);
+                
+            }	
+        v++;
+        }
+	printf("</svg>\n");
+    n++;
+}
+}
+*/
 
 /** \brief Trata os argumentos da CGI
 
