@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 /**
 URL da CGI
@@ -25,7 +26,59 @@ Ordem das cartas
 	Cada carta é representada por um bit que está
 	a 1 caso ela pertença à mão ou 0 caso contrário
 */
-const long long int ESTADO_INICIAL = 0xfffffffffffff;
+
+const long long int ESTADO_INICIAL = 0xb00a00f000f;
+
+
+
+
+
+/*
+int randomizer() {
+   
+   time_t t;
+   int r;
+   srand((unsigned) time(&t));
+
+   r = rand() % 4;
+   
+   return r;
+}
+
+
+long long int baralhar () {
+	int a , i , j , k , l , n , v;
+	long long int res; 
+    a = i = j = k = l = n = v = res = 0;
+	long long int player1[13];
+	long long int player2[13];
+	long long int player3[13];
+	long long int player4[13]; 
+	int jogador;
+	for(a = 0; a <= 12; a++) {
+		player1[a] = 0;
+		player2[a] = 0;
+		player3[a] = 0;
+		player4[a] = 0;
+	}
+	for (n = 0; n <= 3; n++)
+		for (v = 0; v <= 12; v++) {
+			jogador = randomizer();
+			switch (jogador) {
+				case 0: if (i == 13) v--; else add_carta (player1[i], n, v); i++; break;
+				case 1: if (i == 13) v--; else add_carta (player2[j], n, v); j++; break;
+				case 2: if (i == 13) v--; else add_carta (player3[k], n, v); k++; break;
+				case 3: if (i == 13) v--; else add_carta (player4[l], n, v); l++; break;
+		}
+	}
+	for (a = 0; a <= 12; a++) {
+		res += player1[a];
+	}
+	return res;
+}
+*/
+
+
 
 
 /** \brief Devolve o índice da carta
@@ -114,6 +167,8 @@ void imprime(char *path, long long int ESTADO) {
 	printf("</svg>\n");
 }
 
+
+
 /** \brief Trata os argumentos da CGI
 
 Esta função recebe a query que é passada à cgi-bin e trata-a.
@@ -122,6 +177,18 @@ Cada carta corresponde a um bit que está a 1 se essa carta está no conjunto e 
 Caso não seja passado nada à cgi-bin, ela assume que todas as cartas estão presentes.
 @param query A query que é passada à cgi-bin
  */
+
+/*
+void parse(char *query) {
+	long long int ESTADO;
+	if(sscanf(query, "q=%lld", &ESTADO) == 1) {
+		imprime(BARALHO, ESTADO);
+	} else {
+		imprime(BARALHO, baralhar());
+	}
+}
+*/ 
+
 void parse(char *query) {
 	long long int ESTADO;
 	if(sscanf(query, "q=%lld", &ESTADO) == 1) {
@@ -130,6 +197,10 @@ void parse(char *query) {
 		imprime(BARALHO, ESTADO_INICIAL);
 	}
 }
+
+
+
+
 
 /** \brief Função principal
 
@@ -141,10 +212,10 @@ int main() {
  * Cabeçalhos necessários numa CGI
  */
 	printf("Content-Type: text/html; charset=utf-8\n\n");
-	printf("<header><title>Exemplo</title></header>\n");
+	printf("<header><title>Big2wo</title></header>\n");
 	printf("<body>\n");
 
-	printf("<h1>Exemplo de utilização</h1>\n");
+	printf("<h1>Big2wo</h1>\n");
 
 /*
  * Ler os valores passados à cgi que estão na variável ambiente e passá-los ao programa
