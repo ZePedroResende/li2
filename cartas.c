@@ -31,9 +31,9 @@ const long long int ESTADO_INICIAL = 0xb00a00f000f;
 
 
 
+long long int add_carta(long long int ESTADO, int naipe, int valor);
 
 
-/*
 int randomizer() {
    
    time_t t;
@@ -76,7 +76,7 @@ long long int baralhar () {
 	}
 	return res;
 }
-*/
+
 
 
 
@@ -154,7 +154,7 @@ Esta função está a imprimir o estado em quatro colunas: uma para cada naipe
 void imprime(char *path, long long int ESTADO) {
 	int n, v;
 	int x, y;
-	x=0;
+	x = 220;
 
 	printf("<svg height = \"800\" width = \"800\">\n");
 	printf("<rect x = \"0\" y = \"0\" height = \"800\" width = \"800\" style = \"fill:#007700\"/>\n");
@@ -220,7 +220,7 @@ void parse(char *query) {
 	if(sscanf(query, "q=%lld", &ESTADO) == 1) {
 		imprime(BARALHO, ESTADO);
 	} else {
-		imprime(BARALHO, ESTADO_INICIAL);
+		imprime(BARALHO, baralhar());
 	}
 }
 
@@ -233,10 +233,13 @@ void parse(char *query) {
 Função principal do programa que imprime os cabeçalhos necessários e depois disso invoca
 a função que vai imprimir o código html para desenhar as cartas
  */
+
+/*
 int main() {
 /*
  * Cabeçalhos necessários numa CGI
  */
+/*
 	printf("Content-Type: text/html; charset=utf-8\n\n");
 	printf("<header><title>Big2wo</title></header>\n");
 	printf("<body>\n");
@@ -246,8 +249,21 @@ int main() {
 /*
  * Ler os valores passados à cgi que estão na variável ambiente e passá-los ao programa
  */
+
+/*
 	parse(getenv("QUERY_STRING"));
 
 	printf("</body>\n");
+	return 0;
+}
+*/
+int main () {
+
+	int x;
+	
+	x = baralhar();
+
+	printf("%d \n", x);
+
 	return 0;
 }
