@@ -27,27 +27,27 @@ Ordem das cartas
 	a 1 caso ela pertença à mão ou 0 caso contrário
 */
 
-const long long int ESTADO_INICIAL = 0xb00a00f000f;
+const long long int ESTADO_INICIAL = 0x1FFF;
 
 
 
 long long int add_carta(long long int ESTADO, int naipe, int valor);
 
-
+/*
 int randomizer() {
    
    time_t t;
    int r;
-   srand((unsigned) time(&t));
-
+   // srand((unsigned) time(&t));
+   srand (time(NULL));
    r = rand() % 4;
    
    return r;
 }
-
+*/
 
 long long int baralhar () {
-	int a , i , j , k , l , n , v;
+	long long int a , i , j , k , l , n , v;
 	long long int res; 
     a = i = j = k = l = n = v = res = 0;
 	long long int player1[13];
@@ -55,6 +55,7 @@ long long int baralhar () {
 	long long int player3[13];
 	long long int player4[13]; 
 	int jogador;
+	srand (time(NULL));
 	for(a = 0; a <= 12; a++) {
 		player1[a] = 0;
 		player2[a] = 0;
@@ -63,22 +64,19 @@ long long int baralhar () {
 	}
 	for (n = 0; n <= 3; n++)
 		for (v = 0; v <= 12; v++) {
-			jogador = randomizer();
+			jogador = (rand() % 4);
 			switch (jogador) {
-				case 0: if (i == 13) v--; else add_carta (player1[i], n, v); i++; break;
-				case 1: if (i == 13) v--; else add_carta (player2[j], n, v); j++; break;
-				case 2: if (i == 13) v--; else add_carta (player3[k], n, v); k++; break;
-				case 3: if (i == 13) v--; else add_carta (player4[l], n, v); l++; break;
+				case 0: if (i == 13) v--; else { player1[i] = (add_carta (0, n, v)); i++; } break;
+				case 1: if (j == 13) v--; else { player2[j] = (add_carta (0, n, v)); j++; } break;
+				case 2: if (k == 13) v--; else { player3[k] = (add_carta (0, n, v)); k++; } break;
+				case 3: if (l == 13) v--; else { player4[l] = (add_carta (0, n, v)); l++; } break;
+			}
 		}
-	}
 	for (a = 0; a <= 12; a++) {
 		res += player1[a];
 	}
 	return res;
 }
-
-
-
 
 
 /** \brief Devolve o índice da carta
@@ -234,12 +232,12 @@ Função principal do programa que imprime os cabeçalhos necessários e depois 
 a função que vai imprimir o código html para desenhar as cartas
  */
 
-/*
+
 int main() {
 /*
  * Cabeçalhos necessários numa CGI
  */
-/*
+
 	printf("Content-Type: text/html; charset=utf-8\n\n");
 	printf("<header><title>Big2wo</title></header>\n");
 	printf("<body>\n");
@@ -250,13 +248,15 @@ int main() {
  * Ler os valores passados à cgi que estão na variável ambiente e passá-los ao programa
  */
 
-/*
+
 	parse(getenv("QUERY_STRING"));
 
 	printf("</body>\n");
 	return 0;
 }
-*/
+
+
+/*
 int main () {
 
 	int x;
@@ -267,3 +267,5 @@ int main () {
 
 	return 0;
 }
+*/
+
