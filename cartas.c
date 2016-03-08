@@ -62,27 +62,14 @@ char* estado2str (ESTADO e){
 
 
 
-
-
-
 long long int add_carta(long long int ESTADO, int naipe, int valor);
-
-/*
-int randomizer() {
-
-   time_t t;
-   int r;
-   // srand((unsigned) time(&t));
-   srand (time(NULL));
-   r = rand() % 4;
-
-   return r;
-}
-*/
 
 long long int baralhar () {
 	long long int a , i , j , k , l , n , v;
-	long long int res;
+	long long int res1;
+	long long int res2;
+	long long int res3;
+	long long int res4;
     a = i = j = k = l = n = v = res = 0;
 	long long int player1[13];
 	long long int player2[13];
@@ -107,9 +94,25 @@ long long int baralhar () {
 			}
 		}
 	for (a = 0; a <= 12; a++) {
-		res += player1[a];
+		res1 += player1[a];
 	}
-	return res;
+
+	for (a = 0; a <= 12; a++) {
+		res2 += player2[a];
+	}
+
+	for (a = 0; a <= 12; a++) {
+		res3 += player3[a];
+	}
+
+	for (a = 0; a <= 12; a++) {
+		res4 += player4[a];
+	}
+
+	mao[4] = {res1, res2, res3, res4};
+
+	return mao;
+
 }
 
 
@@ -172,7 +175,7 @@ void imprime_carta(char *path, int x, int y, long long int ESTADO, int naipe, in
 	char *suit = NAIPES;
 	char *rank = VALORES;
 	char script[10240];
-	sprintf(script, "%s?%s", SCRIPT,novo_estado());
+	sprintf(script, "%s?%lld", SCRIPT, rem_carta(ESTADO, naipe, valor);
 	printf("<a xlink:href = \"%s\"><image x = \"%d\" y = \"%d\" height = \"110\" width = \"80\" xlink:href = \"%s/%c%c.svg\" /></a>\n", script, x, y, path, rank[valor], suit[naipe]);
 }
 
@@ -183,7 +186,7 @@ Esta função está a imprimir o estado em quatro colunas: uma para cada naipe
 @param ESTADO	O estado atual
 */
 
-void imprime(char *path, long long int ESTADO) {
+void imprime(char *path, long long int ESTADO[]) {
 	int n, v;
 	int x, y;
 	x = 220;
@@ -191,10 +194,29 @@ void imprime(char *path, long long int ESTADO) {
 	printf("<svg height = \"800\" width = \"800\">\n");
 	printf("<rect x = \"0\" y = \"0\" height = \"800\" width = \"800\" style = \"fill:#007700\"/>\n");
 
-	for(y = 670, n = 0; n < 4; n++) {
+	for(y = 0, n = 0; n < 4; n++) {
 		for(v = 0; v < 13; v++)
-			if(carta_existe(ESTADO, n, v)) {
+			if(carta_existe(ESTADO[0], n, v)) {
 				x += 20;
+				y=670;
+				imprime_carta(path, x, y, ESTADO, n, v);
+			}
+
+			if(carta_existe(ESTADO[1], n, v)) {
+				x = 280;
+				y;
+				imprime_carta(path, x, y, ESTADO, n, v);
+			}
+
+			if(carta_existe(ESTADO[2], n, v)) {
+				x += 20;
+				y=670;
+				imprime_carta(path, x, y, ESTADO, n, v);
+			}
+
+			if(carta_existe(ESTADO[3], n, v)) {
+				x += 20;
+				y=670;
 				imprime_carta(path, x, y, ESTADO, n, v);
 			}
 	}
@@ -276,6 +298,7 @@ int main() {
  ESTADO e;
 		int i;
 		char str[10240];
+		
 		for (i=0;i<4;i++) {
 		 e.mao[i]=0;
 		 e.cartas[i]=0;
