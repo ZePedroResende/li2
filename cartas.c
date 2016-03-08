@@ -188,36 +188,41 @@ Esta função está a imprimir o estado em quatro colunas: uma para cada naipe
 
 void imprime(char *path, long long int ESTADO[]) {
 	int n, v;
-	int x, y;
-	x = 220;
+	int x1, y1, x2, y2, x3, y3, x4, y4;
+	x1 = 220;
+  y2 = 490 ;
+    x3 = 480;
+    y4 = 230;
 
 	printf("<svg height = \"800\" width = \"800\">\n");
 	printf("<rect x = \"0\" y = \"0\" height = \"800\" width = \"800\" style = \"fill:#007700\"/>\n");
 
-	for(y = 0, n = 0; n < 4; n++) {
+	for(y1 = 670, x2=480, y3= 230, x4 = 220  , n = 0; n < 4; n++) {
 		for(v = 0; v < 13; v++)
 			if(carta_existe(ESTADO[0], n, v)) {
-				x += 20;
-				y=670;
-				imprime_carta(path, x, y, ESTADO, n, v);
+				x1 += 20;
+				
+        
+
+				imprime_carta(path, x1, y1, ESTADO[0], n, v);
 			}
 
 			if(carta_existe(ESTADO[1], n, v)) {
-				x = 280;
-				y;
-				imprime_carta(path, x, y, ESTADO, n, v);
+				
+				y2 -= 20 ;
+				imprime_carta(path, x2, y2, ESTADO[1], n, v);
 			}
 
 			if(carta_existe(ESTADO[2], n, v)) {
-				x += 20;
-				y=670;
-				imprime_carta(path, x, y, ESTADO, n, v);
+				x3 -= 20;
+				
+				imprime_carta(path, x3, y3, ESTADO[2], n, v);
 			}
 
 			if(carta_existe(ESTADO[3], n, v)) {
-				x += 20;
-				y=670;
-				imprime_carta(path, x, y, ESTADO, n, v);
+				
+				y4 += 670;
+				imprime_carta(path, x4, y4, ESTADO[3], n, v);
 			}
 	}
 	printf("</svg>\n");
