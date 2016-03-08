@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-
+// >> 1 - menos significativo com o boda (n/2) . << 1 mais significativo com o boda (n*2)
 /**
 URL da CGI
 */
@@ -31,29 +31,63 @@ const long long int ESTADO_INICIAL = 0x1FFF;
 
 
 
+
+
+#define FORMATO "%lld_%lld_%lld_%lld_%d_%d_%d_%d_%lld_%d_%d_%d"
+
+typedef long long int MAO;
+//passar p/ codigo isto
+typedef struct  estado
+{
+	MAO mao[4];
+	int cartas[4];
+	MAO selecao;
+
+	int passar, jogar, selecionar; //se 1 exectua funcao
+
+} ESTADO;
+
+ESTADO str2estado (char* str) {
+	ESTADO e;
+	sscanf(str, FORMATO, &e.mao[0], &e.mao[1], &e.mao[2], &e.mao[3], &e.cartas[0], &e.cartas[1], &e.cartas[2],&e.cartas[3], &e.selecao, &e.passar, &e.selecionar, &e.jogar);
+	return e;
+}
+
+char* estado2str (ESTADO e){
+	static char res[10240];
+	sprintf(res, FORMATO, e.mao[0], e.mao[1], e.mao[2], e.mao[3], e.cartas[0],e.cartas[1],e.cartas[2],e.cartas[3], e.selecao, e.passar, e.selecionar, e.jogar);
+	return res;
+}
+
+
+
+
+
+
+
 long long int add_carta(long long int ESTADO, int naipe, int valor);
 
 /*
 int randomizer() {
-   
+
    time_t t;
    int r;
    // srand((unsigned) time(&t));
    srand (time(NULL));
    r = rand() % 4;
-   
+
    return r;
 }
 */
 
 long long int baralhar () {
 	long long int a , i , j , k , l , n , v;
-	long long int res; 
+	long long int res;
     a = i = j = k = l = n = v = res = 0;
 	long long int player1[13];
 	long long int player2[13];
 	long long int player3[13];
-	long long int player4[13]; 
+	long long int player4[13];
 	int jogador;
 	srand (time(NULL));
 	for(a = 0; a <= 12; a++) {
@@ -138,7 +172,7 @@ void imprime_carta(char *path, int x, int y, long long int ESTADO, int naipe, in
 	char *suit = NAIPES;
 	char *rank = VALORES;
 	char script[10240];
-	sprintf(script, "%s?q=%lld", SCRIPT, rem_carta(ESTADO, naipe, valor));
+	sprintf(script, "%s?%s", SCRIPT,novo_estado());
 	printf("<a xlink:href = \"%s\"><image x = \"%d\" y = \"%d\" height = \"110\" width = \"80\" xlink:href = \"%s/%c%c.svg\" /></a>\n", script, x, y, path, rank[valor], suit[naipe]);
 }
 
@@ -177,14 +211,14 @@ void imprime(char *path, long long int ESTADO) {
     x=10;
 	printf("<svg height = \"800\" width = \"800\">\n");
 	printf("<rect x = \"0\" y = \"0\" height = \"800\" width = \"800\" style = \"fill:#007700\"/>\n");
-   
+
 	while (n<4){
 		while(v<13){
 			if(carta_existe(ESTADO, n, v)) {
 				x += 20;
 				imprime_carta(path, x, y, ESTADO, n, v);
-                
-            }	
+
+            }
         v++;
         }
 	printf("</svg>\n");
@@ -211,7 +245,7 @@ void parse(char *query) {
 		imprime(BARALHO, baralhar());
 	}
 }
-*/ 
+*/
 
 void parse(char *query) {
 	long long int ESTADO;
@@ -238,11 +272,29 @@ int main() {
  * Cabeçalhos necessários numa CGI
  */
 
+
+ ESTADO e;
+		int i;
+		char str[10240];
+		for (i=0;i<4;i++) {
+		 e.mao[i]=0;
+		 e.cartas[i]=0;
+		}
+		e.selecao=0;
+		e.passar = e.jogar = e.selecionar = 0;
+
+ scanf("%s", str); //getevcoiso
+		e=str2estado(str);
+
+
+		printf("%s\n",estado2str (e));
+
+
+
 	printf("Content-Type: text/html; charset=utf-8\n\n");
 	printf("<header><title>Big2wo</title></header>\n");
 	printf("<body>\n");
-
-	printf("<h1>Big2wo</h1>\n");
+  printf("<h1>Big2wo</h1>\n");
 
 /*
  * Ler os valores passados à cgi que estão na variável ambiente e passá-los ao programa
@@ -260,7 +312,7 @@ int main() {
 int main () {
 
 	int x;
-	
+
 	x = baralhar();
 
 	printf("%d \n", x);
@@ -268,4 +320,3 @@ int main () {
 	return 0;
 }
 */
-
