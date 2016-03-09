@@ -37,7 +37,7 @@ const long long int ESTADO_INICIAL = 0x1FFF;
 
 typedef long long int MAO;
 //passar p/ codigo isto
-typedef struct  estado
+/*typedef struct  estado
 {
 	MAO mao[4];
 	int cartas[4];
@@ -58,19 +58,19 @@ char* estado2str (ESTADO e){
 	sprintf(res, FORMATO, e.mao[0], e.mao[1], e.mao[2], e.mao[3], e.cartas[0],e.cartas[1],e.cartas[2],e.cartas[3], e.selecao, e.passar, e.selecionar, e.jogar);
 	return res;
 }
-
+*/
 
 
 
 long long int add_carta(long long int ESTADO, int naipe, int valor);
 
-long long int baralhar () {
+void baralhar (MAO *array) {
 	long long int a , i , j , k , l , n , v;
-	long long int res1;
-	long long int res2;
-	long long int res3;
-	long long int res4;
-    a = i = j = k = l = n = v = res = 0;
+	long long int res1 = 0;
+	long long int res2 = 0;
+	long long int res3 = 0;
+	long long int res4 = 0;
+    a = i = j = k = l = n = v = 0;
 	long long int player1[13];
 	long long int player2[13];
 	long long int player3[13];
@@ -109,10 +109,10 @@ long long int baralhar () {
 		res4 += player4[a];
 	}
 
-	mao[4] = {res1, res2, res3, res4};
-
-	return mao;
-
+	array[0] = res1;
+	array[1] = res2;
+	array[2] = res3;
+	array[3] = res4;
 }
 
 
@@ -171,11 +171,11 @@ int carta_existe(long long int ESTADO, int naipe, int valor) {
 @param naipe	O naipe da carta (inteiro entre 0 e 3)
 @param valor	O valor da carta (inteiro entre 0 e 12)
 */
-void imprime_carta(char *path, int x, int y, long long int ESTADO, int naipe, int valor) {
+void imprime_carta(char *path, int x, int y, long long int ESTADO, long long int ESTADO1, long long int ESTADO2, long long int ESTADO3 , int naipe, int valor) {
 	char *suit = NAIPES;
 	char *rank = VALORES;
 	char script[10240];
-	sprintf(script, "%s?%lld", SCRIPT, rem_carta(ESTADO, naipe, valor);
+	sprintf(script, "%s?%lld_%lld_%lld_%lld", SCRIPT, rem_carta(ESTADO, naipe, valor), ESTADO1, ESTADO2, ESTADO3);
 	printf("<a xlink:href = \"%s\"><image x = \"%d\" y = \"%d\" height = \"110\" width = \"80\" xlink:href = \"%s/%c%c.svg\" /></a>\n", script, x, y, path, rank[valor], suit[naipe]);
 }
 
@@ -190,39 +190,35 @@ void imprime(char *path, long long int ESTADO[]) {
 	int n, v;
 	int x1, y1, x2, y2, x3, y3, x4, y4;
 	x1 = 220;
-  y2 = 490 ;
+    y2 = 490;
     x3 = 480;
     y4 = 230;
 
 	printf("<svg height = \"800\" width = \"800\">\n");
 	printf("<rect x = \"0\" y = \"0\" height = \"800\" width = \"800\" style = \"fill:#007700\"/>\n");
 
-	for(y1 = 670, x2=480, y3= 230, x4 = 220  , n = 0; n < 4; n++) {
+	for(y1 = 670, x2=670, y3= 30, x4 = 30  , n = 0; n < 4; n++) {
 		for(v = 0; v < 13; v++)
-			if(carta_existe(ESTADO[0], n, v)) {
+			
+            if(carta_existe(ESTADO[0], n, v)) {
 				x1 += 20;
-				
-        
-
-				imprime_carta(path, x1, y1, ESTADO[0], n, v);
+				imprime_carta(path, x1, y1, ESTADO[0],  ESTADO[1],  ESTADO[2],  ESTADO[3], n, v);
 			}
 
-			if(carta_existe(ESTADO[1], n, v)) {
-				
+            else if(carta_existe(ESTADO[1], n, v)) {
 				y2 -= 20 ;
-				imprime_carta(path, x2, y2, ESTADO[1], n, v);
+				imprime_carta(path, x2, y2,  ESTADO[0], ESTADO[1],  ESTADO[2],  ESTADO[3], n, v);
 			}
+			
 
-			if(carta_existe(ESTADO[2], n, v)) {
+			else if(carta_existe(ESTADO[2], n, v)) {
 				x3 -= 20;
-				
-				imprime_carta(path, x3, y3, ESTADO[2], n, v);
+				imprime_carta(path, x3, y3, ESTADO[0],  ESTADO[1],  ESTADO[2],  ESTADO[3], n, v);
 			}
 
-			if(carta_existe(ESTADO[3], n, v)) {
-				
-				y4 += 670;
-				imprime_carta(path, x4, y4, ESTADO[3], n, v);
+			else if(carta_existe(ESTADO[3], n, v)) {
+				y4 += 20;
+				imprime_carta(path, x4, y4,  ESTADO[0],  ESTADO[1],  ESTADO[2],  ESTADO[3], n, v);
 			}
 	}
 	printf("</svg>\n");
@@ -276,11 +272,13 @@ void parse(char *query) {
 
 void parse(char *query) {
 	long long int ESTADO;
-	if(sscanf(query, "q=%lld", &ESTADO) == 1) {
-		imprime(BARALHO, ESTADO);
+	MAO array [4];
+	baralhar (array);
+	if(sscanf(query, "q=%lld_%lld_%lld_%lld", &array[0], &array[1], &array[2], &array[3]) == 1) {
+		imprime(BARALHO, array);
 	} else {
-		imprime(BARALHO, baralhar());
-	}
+	imprime(BARALHO, array);
+}
 }
 
 
@@ -300,7 +298,7 @@ int main() {
  */
 
 
- ESTADO e;
+/* ESTADO e;
 		int i;
 		char str[10240];
 		
@@ -317,7 +315,7 @@ int main() {
 
 		printf("%s\n",estado2str (e));
 
-
+*/
 
 	printf("Content-Type: text/html; charset=utf-8\n\n");
 	printf("<header><title>Big2wo</title></header>\n");
