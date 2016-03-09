@@ -175,7 +175,7 @@ void imprime_carta(char *path, int x, int y, long long int ESTADO, long long int
 	char *suit = NAIPES;
 	char *rank = VALORES;
 	char script[10240];
-	sprintf(script, "%s?%lld_%lld_%lld_%lld", SCRIPT, rem_carta(ESTADO, naipe, valor), ESTADO1, ESTADO2, ESTADO3);
+	sprintf(script, "%s?%lld_%lld_%lld_%lld", SCRIPT, rem_carta(ESTADO, naipe, valor), rem_carta(ESTADO1, naipe, valor), rem_carta(ESTADO2, naipe, valor),rem_carta(ESTADO3, naipe, valor));
 	printf("<a xlink:href = \"%s\"><image x = \"%d\" y = \"%d\" height = \"110\" width = \"80\" xlink:href = \"%s/%c%c.svg\" /></a>\n", script, x, y, path, rank[valor], suit[naipe]);
 }
 
@@ -272,11 +272,13 @@ void parse(char *query) {
 
 void parse(char *query) {
 	long long int ESTADO;
-	MAO array [4];
+	MAO array [4]={};
 	baralhar (array);
-	if(sscanf(query, "q=%lld_%lld_%lld_%lld", &array[0], &array[1], &array[2], &array[3]) == 1) {
-		imprime(BARALHO, array);
+	if(sscanf(query, "%lld_%lld_%lld_%lld", &array[0], &array[1], &array[2], &array[3]) == 4) {
+    imprime(BARALHO, array);
+
 	} else {
+   
 	imprime(BARALHO, array);
 }
 }
