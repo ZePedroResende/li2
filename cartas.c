@@ -175,7 +175,7 @@ void imprime_carta(char *path, int x, int y, long long int ESTADO, long long int
 	char *suit = NAIPES;
 	char *rank = VALORES;
 	char script[10240];
-	sprintf(script, "%s?%lld_%lld_%lld_%lld", SCRIPT, rem_carta(ESTADO, naipe, valor), rem_carta(ESTADO1, naipe, valor), rem_carta(ESTADO2, naipe, valor),rem_carta(ESTADO3, naipe, valor));
+	sprintf(script, "%s?%lld_%lld_%lld_%lld", SCRIPT, rem_carta(ESTADO, naipe, valor), ESTADO1, ESTADO2, ESTADO3);
 	printf("<a xlink:href = \"%s\"><image x = \"%d\" y = \"%d\" height = \"110\" width = \"80\" xlink:href = \"%s/%c%c.svg\" /></a>\n", script, x, y, path, rank[valor], suit[naipe]);
 }
 
