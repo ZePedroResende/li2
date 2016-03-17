@@ -70,35 +70,10 @@ ESTADO str2estado(char* str){
 
 long long int add_carta(long long int ESTADO, int naipe, int valor);
 
-
-ESTADO distribuir() {
+ESTADO baralhar () {
 	
-	ESTADO e = {{0},0,{0},0,0,0,0,0}; 
-	//quem tem o tres de ouros começa. quando alguem joga e precisa atualizar o ultimo jogar . se passar nao atualiza. primeiro para uma carta e so depois para combinaçoes 
+	ESTADO e = {{0},0,{0},0,0,0,0,0};
 
-	int n,v,s;
-	for (n = 0; n < 4; n++) {
-
-		for(v = 0; v < 13; v++) {
-
-			do {
-				
-				s = random () % 4;
-
-			} while (e.cartas[s] == 13);
-
-			e.mao[s] = add_carta(e.mao[s],n,v);
-			e.cartas[s]++;
-		}
-	}
-	return e;
-}
-
-
-
-
-/*
-void baralhar (MAO *array) {
 	long long int a , i , j , k , l , n , v;
 	long long int res1 = 0;
 	long long int res2 = 0;
@@ -110,7 +85,7 @@ void baralhar (MAO *array) {
 	long long int player3[13];
 	long long int player4[13];
 	int jogador;
-	srand (time(NULL));
+
 	for(a = 0; a <= 12; a++) {
 		player1[a] = 0;
 		player2[a] = 0;
@@ -128,27 +103,25 @@ void baralhar (MAO *array) {
 			}
 		}
 	for (a = 0; a <= 12; a++) {
-		res1 += player1[a];
+		e.mao[0] += player1[a];
 	}
 
 	for (a = 0; a <= 12; a++) {
-		res2 += player2[a];
+		e.mao[1] += player2[a];
 	}
 
 	for (a = 0; a <= 12; a++) {
-		res3 += player3[a];
+		e.mao[2] += player3[a];
 	}
 
 	for (a = 0; a <= 12; a++) {
-		res4 += player4[a];
+		e.mao[3] += player4[a];
 	}
 
-	array[0] = res1;
-	array[1] = res2;
-	array[2] = res3;
-	array[3] = res4;
+	return e;
+
 }
-*/
+
 
 /** \brief Devolve o índice da carta
 @param naipe	O naipe da carta (inteiro entre 0 e 3)
@@ -357,11 +330,11 @@ void imprime_botao_jogar(ESTADO e) {
 	if (posso_jogar(e)) {
 		novo.play = 1;
 		sprintf(script, "%s?%s", SCRIPT, estado2str(novo));
-		printf("<a xlink:href = \"%s\"><image x = \"200\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/SubmitLI2.png\" /></a>\n", script); //IMPRIME BOTAO EM FORMATO PNG (BOTAO ESSE QUE FOI COPIADO PARA A PASTA HTML)
+		printf("<a xlink:href = \"%s\"><image x = \"120\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/SubmitLI2.png\" /></a>\n", script); //IMPRIME BOTAO EM FORMATO PNG (BOTAO ESSE QUE FOI COPIADO PARA A PASTA HTML)
 	}
 
 	else {
-		printf("<image x = \"200\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/SubmitLI2.png\" />\n"); //SE EU CONSEGUIR JOGAR, O BOTAO É CLICAVEL, SENÃO NÃO É
+		printf("<image x = \"120\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/SubmitLI2.png\" />\n"); //SE EU CONSEGUIR JOGAR, O BOTAO É CLICAVEL, SENÃO NÃO É
 	}
 }	
 
@@ -377,14 +350,6 @@ ESTADO jogar (ESTADO e) {
 
 	e.play = 0;
 
-	for(m = 0; m < 4; m++) { 
-
-		int X[m]; 
-		int Y[m];
-
-		x = X[m];
-		y = Y[m];
-
 		for (n = 0; n < 4; n++) {
 			
 			for (v = 0; v < 13; v++) {
@@ -395,8 +360,7 @@ ESTADO jogar (ESTADO e) {
 					imprime_carta(BARALHO, x, y, e, 4, n , v);
 				}
 			}
-		}
-	}	
+		}	
 
 	e.highlight = 0; 
 	return e;
@@ -442,7 +406,7 @@ void parse (char *query) {
 	}	
 
 	else {
-		e = distribuir(); //o nosso baralhar
+		e = baralhar();
 	}
 	
 	imprime(BARALHO, e);
