@@ -74,11 +74,13 @@ ESTADO baralhar () {
 	
 	ESTADO e = {{0},0,{0},0,0,0,0,0};
 
+	e.cartas[0] = 13;
+	e.cartas[1] = 13;
+	e.cartas[2] = 13;
+	e.cartas[3] = 13;
+
+
 	long long int a , i , j , k , l , n , v;
-	long long int res1 = 0;
-	long long int res2 = 0;
-	long long int res3 = 0;
-	long long int res4 = 0;
     a = i = j = k = l = n = v = 0;
 	long long int player1[13];
 	long long int player2[13];
@@ -187,7 +189,7 @@ void imprime_carta(char *path, int x, int y, long long int ESTADO, long long int
 }
 */
 
-/** \brief Imprime o estado
+/** \brief Imprime o estado?5639952667138_4389327735900288_107805827932500_826110870569_4539780431872_13_13_13_13_1_0_0_0_0
 Esta função está a imprimir o estado em quatro colunas: uma para cada naipe
 @param path	o URL correspondente à pasta que contém todas as cartas
 @param ESTADO	O estado atual
@@ -199,7 +201,7 @@ void imprime_carta(char *path, int x, int y, ESTADO e, int mao, int naipe, int v
 	char script[10240];
 	ESTADO novo = e;
 	novo.card = 1; // parte do estado que define uma açao 
-
+   
 	if (mao == 0) {
 		if (carta_existe (novo.highlight, naipe, valor)) {
 			novo.highlight = rem_carta(novo.highlight, naipe, valor); //se ela ja esta subida, ao ser clicada outra vez, desce
@@ -298,27 +300,83 @@ void imprime(char *path, long long int ESTADO[]) {
 	printf("</svg>\n");
 }
 */
-
-int combinacao_valida(MAO m) { //TER 4 FUNÇÕES AUXILIARES PARA 1 CARTA, 2 CARTAS, 3 CARTAS, 4 CARTAS, 5 CARTAS 
+//TER 4 FUNÇÕES AUXILIARES PARA 1 CARTA, 2 CARTAS, 3 CARTAS, 4 CARTAS, 5 CARTAS 
 	//CARTAS QUE ESTÃO DENTRO DE UMA COMBINAÇÃO VALIDA TEM O MESMO VALOR, se nao tiver é nao valida.
-	return 1;
+
+
+
+int numero_de_cartas(MAO m){
+	
+	int n, v, contaCartas=0;
+
+	for (n = 0; n < 4; n++) {
+			
+			for (v = 0; v < 13; v++)
+				
+				if (carta_existe(m, n, v)) contaCartas++;
+	}
+
+	return contaCartas;
 }
 
 
+
+int combinacao_valida(MAO m) { 
+	
+	if ((numero_de_cartas (m)) > 3) {
+	 	return 0;
+	}
+	
+	return 1;
+}
+
 int combinacao_maior (MAO m1, MAO m2) {
+	
+	int n, v, contaCartas=0;
+
+	if (numero_de_cartas(m1) != numero_de_cartas(m2)) {
+		return 0;
+	} 
+	
+	else {
+		if (m1 > m2) {
+			return 0;
+		}
+	}
+
+/*	for (n = 0; n < 4; n++) {
+			
+			for (v = 0; v < 13; v++)
+
+
+
+		}*/
+	
 	return 1;
 }
 
 
 int posso_jogar (ESTADO e) {
-	if (!combinacao_valida (e.highlight)) return 0;
+	
+	if (!combinacao_valida (e.highlight)) { 
+		return 0;
+	}
+	else {
+	 	
+	 	if (e.ultimo_jogador != 0) {
+	 		return 0; 
+	 	}
+		else {
+	 		
+	 		if (!combinacao_maior (e.ultima_jogada, e.highlight)) {
+	 			return 0;
+	 		}
+		}
+	}	
 
-	if (e.ultimo_jogador == 0) return 1;
-
-	if (combinacao_maior (e.highlight, e.ultima_jogada)) return 1;
-
-	return 0;
+	return 1;
 }
+	
 
 
 
@@ -328,6 +386,7 @@ void imprime_botao_jogar(ESTADO e) {
 	ESTADO novo = e;
 	
 	if (posso_jogar(e)) {
+		novo.ultima_jogada = e.highlight;
 		novo.play = 1;
 		sprintf(script, "%s?%s", SCRIPT, estado2str(novo));
 		printf("<a xlink:href = \"%s\"><image x = \"120\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/SubmitLI2.png\" /></a>\n", script); //IMPRIME BOTAO EM FORMATO PNG (BOTAO ESSE QUE FOI COPIADO PARA A PASTA HTML)
