@@ -466,7 +466,8 @@ void imprime_botao_jogar(ESTADO e) {
 	ESTADO novo = e;
 	
 	if (posso_jogar(e)) {
-		novo.ultima_jogada = e.highlight;
+		if(e.highlight == 0 && novo.ultima_jogada == -1) novo.ultima_jogada = -1;  
+		else novo.ultima_jogada = e.highlight;
 
 		novo.play = 1;
 		sprintf(script, "%s?%s", SCRIPT, estado2str(novo));
