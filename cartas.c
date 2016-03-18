@@ -72,7 +72,7 @@ long long int add_carta(long long int ESTADO, int naipe, int valor);
 
 ESTADO baralhar () {
 	
-	ESTADO e = {{0},0,{0},0,0,0,0,0};
+	ESTADO e = {{0},0,{0},0,0,0,-1,0};
 
 	e.cartas[0] = 13;
 	e.cartas[1] = 13;
@@ -360,7 +360,7 @@ int da_valor (MAO m){
     for (v = 0; v < 13 && flag != 1; v++)
 
       if (carta_existe(m, n, v)){
-       primeiraCarta = n ;
+       primeiraCarta = v ;
        flag = 1;
       }
 	}
@@ -370,8 +370,9 @@ int da_valor (MAO m){
     for (v = 0; v < 13 && flag != 1; v++)
 
       if (carta_existe(m, n, v)){
-        if (n != primeiraCarta){
+        if (v != primeiraCarta){
           return -1 ;
+         
         }
 
       }
@@ -399,25 +400,38 @@ int da_maior_naipe (MAO m){
 int combinacao_maior (MAO m1, MAO m2) {
   // m1 == e.ultima.jogada
   // m2 == highlight
-
-  if ((numero_de_cartas (m1)) != (numero_de_cartas (m2))) return 0;
-      else {
         if ((da_valor(m2)) != -1){
             if (da_valor(m1) < da_valor(m2)) return 1;
             if (da_valor(m1) >  da_valor(m2)) return 0 ;
             if (da_valor(m1) == da_valor(m2)) {
-              if (da_maior_naipe(m1) < da_maior_naipe(m2)) return 1;
-              else return 0;
+             if (da_maior_naipe(m1) < da_maior_naipe(m2)) return 1;
+             
             }
           }
-      }
-  return 0;
+      
+ return 0;
 }
 
 
 int posso_jogar (ESTADO e) {
-	
+if (e.ultima_jogada == -1){
 	if (!combinacao_valida (e.highlight)) { 
+		return 0;
+	}
+	else {
+	 	
+	 	if (e.ultimo_jogador != 0) {
+	 		return 0; 
+	 	}
+		else {
+	 		if (da_valor ( e.highlight) != -1) return 1; 
+            else return 0;
+              }
+        }
+
+}
+	
+else {	if (!combinacao_valida (e.highlight)) { 
 		return 0;
 	}
 	else {
@@ -441,6 +455,7 @@ int posso_jogar (ESTADO e) {
 
 	return 1;
 }
+}
 	
 
 
@@ -452,6 +467,7 @@ void imprime_botao_jogar(ESTADO e) {
 	
 	if (posso_jogar(e)) {
 		novo.ultima_jogada = e.highlight;
+
 		novo.play = 1;
 		sprintf(script, "%s?%s", SCRIPT, estado2str(novo));
 		printf("<a xlink:href = \"%s\"><image x = \"120\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/SubmitLI2.png\" /></a>\n", script); //IMPRIME BOTAO EM FORMATO PNG (BOTAO ESSE QUE FOI COPIADO PARA A PASTA HTML)
@@ -521,11 +537,12 @@ void parse (char *query) {
 	
 	ESTADO e;
 
-
+int a;
 	if (query != NULL && strlen(query) != 0) {
 		e = str2estado(query); //função que tinha sido dada pelo professor
 		if (e.card) e.card = 0;
-
+a= 	da_valor(e.highlight);
+printf("%d\n",a );
 		if (e.play) e = jogar(e);
 	}	
 
