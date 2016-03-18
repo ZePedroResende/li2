@@ -359,8 +359,14 @@ int posso_jogar (ESTADO e) {
 	 	}
 		else {
 	 		
-	 		if (!combinacao_maior (e.ultima_jogada, e.highlight)) {
-	 			return 0;
+			if (!compara_tamanho (e.ultima_jogada, e.highlight)) {
+				return 0; 
+			}
+
+	 		else { 
+	 			if (!combinacao_maior (e.ultima_jogada, e.highlight)) {
+	 				return 0;
+	 			}
 	 		}
 		}
 	}	
