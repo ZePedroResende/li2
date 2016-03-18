@@ -382,16 +382,16 @@ int da_valor (MAO m){
 
 
 int da_maior_naipe (MAO m){
- 	int n, v, contaCartas=0;
+ 	int n, v, maior=0;
 
 	for (n = 0; n < 4; n++) {
 
     for (v = 0; v < 13; v++)
 
-      if (carta_existe(m, n, v)) ;
+      if (carta_existe(m, n, v)) { if (n > maior) maior =n;}
 	}
 
-	return contaCartas;
+	return maior;
 }
 
 
