@@ -321,6 +321,18 @@ int numero_de_cartas(MAO m){
 
 
 
+
+/*
+  funçao int conta_cartas Mao
+  2 int da_valor(MAO) que devolve -1 se a mao tem mais do que um valor e o valor caso todas as cartas da mao tenham o mesmo valor
+  3 faz um funçao int da_maior_naipe (MAO) que devolve o maior naipe de uma MAO
+
+
+
+  isto para a combinaçao maior .
+  (1-1/1)
+ */
+
 int combinacao_valida(MAO m) { 
 	
 	if ((numero_de_cartas (m)) > 3) {
@@ -338,12 +350,68 @@ int compara_tamanho(MAO m1, MAO m2){
 	return 0;
 }
 
+int da_valor (MAO m){
+
+ 	int n, v, primeiraCarta, flag = 0;
+  primeiraCarta = 0;
+
+	for (n = 0; n < 4 && flag != 1; n++) {
+
+    for (v = 0; v < 13 && flag != 1; v++)
+
+      if (carta_existe(m, n, v)){
+       primeiraCarta = n ;
+       flag = 1;
+      }
+	}
+
+	for (n = 0; n < 4 && flag != 1; n++) {
+
+    for (v = 0; v < 13 && flag != 1; v++)
+
+      if (carta_existe(m, n, v)){
+        if (n != primeiraCarta){
+          return -1 ;
+        }
+
+      }
+	}
+	return primeiraCarta;
+
+}
+
+
+int da_maior_naipe (MAO m){
+ 	int n, v, contaCartas=0;
+
+	for (n = 0; n < 4; n++) {
+
+    for (v = 0; v < 13; v++)
+
+      if (carta_existe(m, n, v)) ;
+	}
+
+	return contaCartas;
+}
+
+
+
 int combinacao_maior (MAO m1, MAO m2) {
-		if (m1 > m2) {
-			return 0;
-		}
-	
-	return 1;
+  // m1 == e.ultima.jogada
+  // m2 == highlight
+
+  if ((numero_de_cartas (m1)) != (numero_de_cartas (m2))) return 0;
+      else {
+        if ((da_valor(m2)) != -1){
+            if (da_valor(m1) < da_valor(m2)) return 1;
+            if (da_valor(m1) >  da_valor(m2)) return 0 ;
+            if (da_valor(m1) == da_valor(m2)) {
+              if (da_maior_naipe(m1) < da_maior_naipe(m2)) return 1;
+              else return 0;
+            }
+          }
+      }
+  return 0;
 }
 
 
