@@ -330,27 +330,18 @@ int combinacao_valida(MAO m) {
 	return 1;
 }
 
-int combinacao_maior (MAO m1, MAO m2) {
-	
-	int n, v, contaCartas=0;
-
+int compara_tamanho(MAO m1, MAO m2){
 	if (numero_de_cartas(m1) != numero_de_cartas(m2)) {
 		return 0;
 	} 
-	
-	else {
+
+	return 1;
+}
+
+int combinacao_maior (MAO m1, MAO m2) {
 		if (m1 > m2) {
 			return 0;
 		}
-	}
-
-/*	for (n = 0; n < 4; n++) {
-			
-			for (v = 0; v < 13; v++)
-
-
-
-		}*/
 	
 	return 1;
 }
