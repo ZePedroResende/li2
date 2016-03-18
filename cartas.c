@@ -331,11 +331,11 @@ int combinacao_valida(MAO m) {
 }
 
 int compara_tamanho(MAO m1, MAO m2){
-	if (numero_de_cartas(m1) != numero_de_cartas(m2)) {
-		return 0;
+	if (numero_de_cartas(m1) == numero_de_cartas(m2)) {
+		return 1;
 	} 
 
-	return 1;
+	return 0;
 }
 
 int combinacao_maior (MAO m1, MAO m2) {
