@@ -356,23 +356,18 @@ int da_valor (MAO m){
   primeiraCarta = 0;
 
 	for (n = 0; n < 4 && flag != 1; n++) {
-
     for (v = 0; v < 13 && flag != 1; v++)
-
       if (carta_existe(m, n, v)){
        primeiraCarta = v ;
        flag = 1;
       }
 	}
 
-	for (n = 0; n < 4 && flag != 1; n++) {
-
-    for (v = 0; v < 13 && flag != 1; v++)
-
+	for (n = 0; n < 4 ; n++) {
+    for (v = 0; v < 13 ; v++)
       if (carta_existe(m, n, v)){
         if (v != primeiraCarta){
           return -1 ;
-         
         }
 
       }
