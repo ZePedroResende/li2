@@ -372,7 +372,7 @@ int da_valor (MAO m){
       if (carta_existe(m, n, v)){
         if (v != primeiraCarta){
           return -1 ;
-         
+
         }
 
       }
@@ -409,9 +409,9 @@ int combinacao_maior (MAO m1, MAO m2) {
             }
           }
       
- return 0;
-}
 
+else return 0;
+}
 
 int posso_jogar (ESTADO e) {
 if (e.ultima_jogada == -1){
@@ -479,6 +479,17 @@ void imprime_botao_jogar(ESTADO e) {
 	}
 }	
 
+void imprime_botao_passar(ESTADO e) {
+
+	char script[10240];
+	ESTADO novo = e;
+	
+		novo.ultima_jogada = e.ultima_jogada;
+    novo.highlight = 0;
+    novo.pass = 1;
+		sprintf(script, "%s?%s", SCRIPT, estado2str(novo));
+		printf("<a xlink:href = \"%s\"><image x = \"240\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/PassLI2.png\" /></a>\n", script); //IMPRIME BOTAO EM FORMATO PNG (BOTAO ESSE QUE FOI COPIADO PARA A PASTA HTML)
+}
 
 
 
@@ -506,6 +517,20 @@ ESTADO jogar (ESTADO e) {
 	e.highlight = 0; 
 	return e;
 }
+
+
+ESTADO passar (ESTADO e) {
+	
+	int n, v, x, y, m;
+	e.pass = 0;
+
+
+	e.highlight = 0; 
+	return e;
+}
+
+
+
 
 /*
 ESTADO jogar (ESTADO e){
@@ -543,8 +568,9 @@ int a;
 		e = str2estado(query); //função que tinha sido dada pelo professor
 		if (e.card) e.card = 0;
 a= 	da_valor(e.highlight);
-printf("%d\n",a );
+printf("%d\n", a);
 		if (e.play) e = jogar(e);
+    if (e.pass) e = passar(e);
 	}	
 
 	else {
@@ -553,7 +579,7 @@ printf("%d\n",a );
 	
 	imprime(BARALHO, e);
 	imprime_botao_jogar(e);
-
+  imprime_botao_passar(e);
 }
 
 
