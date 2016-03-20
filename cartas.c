@@ -365,9 +365,9 @@ int da_valor (MAO m){
       }
 	}
 
-	for (n = 0; n < 4 && flag != 1; n++) {
+	for (n = 0; n < 4 ; n++) {
 
-    for (v = 0; v < 13 && flag != 1; v++)
+    for (v = 0; v < 13 ; v++)
 
       if (carta_existe(m, n, v)){
         if (v != primeiraCarta){
@@ -520,11 +520,8 @@ ESTADO jogar (ESTADO e) {
 
 
 ESTADO passar (ESTADO e) {
-	
 	int n, v, x, y, m;
 	e.pass = 0;
-
-
 	e.highlight = 0; 
 	return e;
 }
@@ -558,6 +555,21 @@ Cada carta corresponde a um bit que está a 1 se essa carta está no conjunto e 
 Caso não seja passado nada à cgi-bin, ela assume que todas as cartas estão presentes.
 @param query A query que é passada à cgi-bin
  */
+
+void incrementa_jogador (ESTADO e){
+  if (e.estado != 3) ++e.estado;
+  else e.estado = 0;
+}
+
+void primeiro_jogar(Estado e){
+
+  for(m=0 ; m<3 ; m++){
+      if (carta_existe(e.mao[m], 0, 0)){
+        e.ultimo.jogador = m;
+
+      }
+
+}
 
 void parse (char *query) {
 	
