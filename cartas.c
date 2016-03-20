@@ -587,6 +587,7 @@ printf("%d\n", a);
 
 	else {
 		e = baralhar();
+    primeiro_jogar(e);
 	}
 	
 	imprime(BARALHO, e);
