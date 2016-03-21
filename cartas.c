@@ -73,8 +73,8 @@ int primeiro_jogar(ESTADO e){
   
       if (carta_existe(e.mao[0], 0, 0)){
        return  0;
-
-   }
+	 }
+	 
       if (carta_existe(e.mao[1], 0, 0)){
        return  1;
        
@@ -143,7 +143,7 @@ ESTADO baralhar () {
 		e.mao[3] += player4[a];
 	}
 
-e.ultimo_jogador = primeiro_jogar(e);
+	e.ultimo_jogador = primeiro_jogar(e);
 
 	return e;
 
@@ -439,48 +439,58 @@ else return 0;
 }
 
 int posso_jogar (ESTADO e) {
-if (e.ultima_jogada == -1){
-	if (!combinacao_valida (e.highlight)) { 
-		return 0;
-	}
-	else {
-	 	
-	 	if (e.ultimo_jogador != 0) {
-	 		return 0; 
-	 	}
+	
+	if (e.ultima_jogada == -1){
+		if (!combinacao_valida (e.highlight)) { 
+			return 0;
+		}
+		
 		else {
-	 		if (da_valor ( e.highlight) != -1) return 1; 
-            else return 0;
-              }
+	 	
+	 		if (e.ultimo_jogador != 0) {
+	 			return 0; 
+	 		}
+			else {
+	 			if ((da_valor (e.highlight) != -1) && (carta_existe(e.highlight, 0, 0))) {
+	 				return 1;
+	 			}	 
+            	
+            	else return 0;
+            }
         }
 
-}
-	
-else {	if (!combinacao_valida (e.highlight)) { 
-		return 0;
 	}
-	else {
-	 	
-	 	if (e.ultimo_jogador != 0) {
-	 		return 0; 
-	 	}
-		else {
-	 		
-			if (!compara_tamanho (e.ultima_jogada, e.highlight)) {
-				return 0; 
-			}
-
-	 		else { 
-	 			if (!combinacao_maior (e.ultima_jogada, e.highlight)) {
-	 				return 0;
-	 			}
-	 		}
+	
+	else {	
+		if (!combinacao_valida (e.highlight)) { 
+			return 0;
 		}
-	}	
+		
+		else {
+	 	
+	 		if (e.ultimo_jogador != 0) {
+	 			return 0; 
+	 		}
+			
+			else {
+	 		
+				if (!compara_tamanho (e.ultima_jogada, e.highlight)) {
+					return 0; 
+				}
+
+	 			else { 
+	 				if (!combinacao_maior (e.ultima_jogada, e.highlight)) {
+	 					return 0;
+	 				}
+	 			}
+			}
+		}	
 
 	return 1;
+	}
 }
-}
+
+
 	
 int incrementa_jogador (ESTADO e){
   if (e.ultimo_jogador != 3) return (e.ultimo_jogador += 1);
