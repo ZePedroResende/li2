@@ -65,8 +65,19 @@ ESTADO str2estado(char* str){
   return e;
 }
 
+int carta_existe(long long int ESTADO, int naipe, int valor) ;
 
 
+int primeiro_jogar(ESTADO e){
+int m ;
+  for(m=0 ; m<3 ; m++){
+      if (carta_existe(e.mao[m], 0, 0)){
+        e.ultimo_jogador = m;
+
+      }
+}
+return m;
+}
 
 long long int add_carta(long long int ESTADO, int naipe, int valor);
 
@@ -119,6 +130,8 @@ ESTADO baralhar () {
 	for (a = 0; a <= 12; a++) {
 		e.mao[3] += player4[a];
 	}
+
+e.ultimo_jogador = primeiro_jogar(e);
 
 	return e;
 
@@ -557,19 +570,11 @@ Caso não seja passado nada à cgi-bin, ela assume que todas as cartas estão pr
  */
 
 void incrementa_jogador (ESTADO e){
-  if (e.estado != 3) ++e.estado;
-  else e.estado = 0;
+  if (e.ultimo_jogador != 3) ++e.ultimo_jogador;
+  else e.ultimo_jogador = 0;
 }
 
-void primeiro_jogar(Estado e){
 
-  for(m=0 ; m<3 ; m++){
-      if (carta_existe(e.mao[m], 0, 0)){
-        e.ultimo.jogador = m;
-
-      }
-
-}
 
 void parse (char *query) {
 	
