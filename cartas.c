@@ -69,14 +69,14 @@ int carta_existe(long long int ESTADO, int naipe, int valor) ;
 
 
 int primeiro_jogar(ESTADO e){
-int m ;
+int m, p ;
   for(m=0 ; m<3 ; m++){
       if (carta_existe(e.mao[m], 0, 0)){
-        e.ultimo_jogador = m;
+         p = m;
 
       }
 }
-return m;
+return p;
 }
 
 long long int add_carta(long long int ESTADO, int naipe, int valor);
