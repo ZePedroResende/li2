@@ -69,14 +69,26 @@ int carta_existe(long long int ESTADO, int naipe, int valor) ;
 
 
 int primeiro_jogar(ESTADO e){
-int m, p ;
-  for(m=0 ; m<3 ; m++){
-      if (carta_existe(e.mao[m], 0, 0)){
-         p = m;
 
+  
+      if (carta_existe(e.mao[0], 0, 0)){
+       return  0;
+
+   }
+      if (carta_existe(e.mao[1], 0, 0)){
+       return  1;
+       
+   }
+      if (carta_existe(e.mao[2], 0, 0)){
+       return  2;
+       
       }
-}
-return p;
+      if (carta_existe(e.mao[3], 0, 0)){
+       return  3;
+       
+      }
+
+
 }
 
 long long int add_carta(long long int ESTADO, int naipe, int valor);
@@ -215,7 +227,7 @@ void imprime_carta(char *path, int x, int y, ESTADO e, int mao, int naipe, int v
 	ESTADO novo = e;
 	novo.card = 1; // parte do estado que define uma açao 
    
-	if (mao == 0) {
+	if (mao == 0 && e.ultimo_jogador == 0) {
 		if (carta_existe (novo.highlight, naipe, valor)) {
 			novo.highlight = rem_carta(novo.highlight, naipe, valor); //se ela ja esta subida, ao ser clicada outra vez, desce
 		}
@@ -239,7 +251,7 @@ void imprime_carta(char *path, int x, int y, ESTADO e, int mao, int naipe, int v
 void imprime (char *path, ESTADO e) {
 
 	int n, v, m;
-	int X[4] = {200, 10, 200, 600};
+	int X[4] = {200, 600, 200, 10};
 	int Y[4] = {550, 200, 10, 200};
 
 	for(m = 0; m < 4; m++) { 
@@ -497,6 +509,7 @@ void imprime_botao_passar(ESTADO e) {
 	char script[10240];
 	ESTADO novo = e;
 	
+	if(e.ultimo_jogador == 0){
 		novo.ultima_jogada = e.ultima_jogada;
     novo.highlight = 0;
     novo.pass = 1;
@@ -504,6 +517,10 @@ void imprime_botao_passar(ESTADO e) {
 		printf("<a xlink:href = \"%s\"><image x = \"240\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/PassLI2.png\" /></a>\n", script); //IMPRIME BOTAO EM FORMATO PNG (BOTAO ESSE QUE FOI COPIADO PARA A PASTA HTML)
 }
 
+	else {
+		printf("<image x = \"240\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/PassLI2.png\" />\n"); //SE EU CONSEGUIR JOGAR, O BOTAO É CLICAVEL, SENÃO NÃO É
+	}
+}
 
 
 ESTADO jogar (ESTADO e) {
@@ -583,21 +600,29 @@ void parse (char *query) {
 int a;
 	if (query != NULL && strlen(query) != 0) {
 		e = str2estado(query); //função que tinha sido dada pelo professor
+
+		
 		if (e.card) e.card = 0;
-a= 	da_valor(e.highlight);
-printf("%d\n", a);
+//a= 	e.ultimo_jogador;
+//printf("%d\n", a);
 		if (e.play) e = jogar(e);
     if (e.pass) e = passar(e);
+
 	}	
 
 	else {
 		e = baralhar();
-    primeiro_jogar(e);
+   
+ a=e.ultimo_jogador;
+printf("%d\n", a);
+
 	}
 	
 	imprime(BARALHO, e);
 	imprime_botao_jogar(e);
   imprime_botao_passar(e);
+//  a= 	e.ultimo_jogador;
+//printf("%d\n", a);
 }
 
 
