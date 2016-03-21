@@ -500,11 +500,11 @@ void imprime_botao_jogar(ESTADO e) {
 		novo.ultimo_jogador = incrementa_jogador(e);
 		novo.play = 1;
 		sprintf(script, "%s?%s", SCRIPT, estado2str(novo));
-		printf("<a xlink:href = \"%s\"><image x = \"120\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/SubmitLI2.png\" /></a>\n", script); //IMPRIME BOTAO EM FORMATO PNG (BOTAO ESSE QUE FOI COPIADO PARA A PASTA HTML)
+		printf("<a xlink:href = \"%s\"><image x = \"280\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/SubmitLI2.png\" /></a>\n", script); //IMPRIME BOTAO EM FORMATO PNG (BOTAO ESSE QUE FOI COPIADO PARA A PASTA HTML)
 	}
 
 	else {
-		printf("<image x = \"120\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/SubmitLI2.png\" />\n"); //SE EU CONSEGUIR JOGAR, O BOTAO É CLICAVEL, SENÃO NÃO É
+		printf("<image x = \"280\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/SubmitLI2.png\" />\n"); //SE EU CONSEGUIR JOGAR, O BOTAO É CLICAVEL, SENÃO NÃO É
 	}
 }	
 
@@ -519,11 +519,11 @@ void imprime_botao_passar(ESTADO e) {
     novo.ultimo_jogador = incrementa_jogador(e);
     novo.pass = 1;
 		sprintf(script, "%s?%s", SCRIPT, estado2str(novo));
-		printf("<a xlink:href = \"%s\"><image x = \"240\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/PassLI2.png\" /></a>\n", script); //IMPRIME BOTAO EM FORMATO PNG (BOTAO ESSE QUE FOI COPIADO PARA A PASTA HTML)
+		printf("<a xlink:href = \"%s\"><image x = \"380\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/PassLI2.png\" /></a>\n", script); //IMPRIME BOTAO EM FORMATO PNG (BOTAO ESSE QUE FOI COPIADO PARA A PASTA HTML)
 }
 
 	else {
-		printf("<image x = \"240\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/PassLI2.png\" />\n"); //SE EU CONSEGUIR JOGAR, O BOTAO É CLICAVEL, SENÃO NÃO É
+		printf("<image x = \"380\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/PassLI2.png\" />\n"); //SE EU CONSEGUIR JOGAR, O BOTAO É CLICAVEL, SENÃO NÃO É
 	}
 }
 
@@ -621,7 +621,7 @@ printf("%d\n", a);
 	
 	imprime(BARALHO, e);
 	imprime_botao_jogar(e);
-  imprime_botao_passar(e);
+  	imprime_botao_passar(e);
 //  a= 	e.ultimo_jogador;
 //printf("%d\n", a);
 }
