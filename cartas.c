@@ -506,7 +506,9 @@ void imprime_botao_jogar(ESTADO e) {
 	
 	if (posso_jogar(e)) {
 		if(e.highlight == 0 && novo.ultima_jogada == -1) novo.ultima_jogada = -1;  
-		else novo.ultima_jogada = e.highlight;
+		else{ novo.ultima_jogada = e.highlight;
+      novo.cartas[0] = e.cartas[0] - (numero_de_cartas(novo.ultima_jogada));
+      }
 		novo.ultimo_jogador = incrementa_jogador(e);
 		novo.play = 1;
 		sprintf(script, "%s?%s", SCRIPT, estado2str(novo));
@@ -618,13 +620,16 @@ int a;
 //printf("%d\n", a);
 		if (e.play) e = jogar(e);
     if (e.pass) e = passar(e);
+    a=e.mao[0];
+    printf("%d\n", a);
+
 
 	}	
 
 	else {
 		e = baralhar();
    
- a=e.ultimo_jogador;
+ a=e.mao[0];
 printf("%d\n", a);
 
 	}
