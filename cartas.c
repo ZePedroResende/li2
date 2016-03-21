@@ -482,6 +482,10 @@ else {	if (!combinacao_valida (e.highlight)) {
 }
 }
 	
+int incrementa_jogador (ESTADO e){
+  if (e.ultimo_jogador != 3) return (e.ultimo_jogador += 1);
+  else return 0;
+}
 
 
 
@@ -493,7 +497,7 @@ void imprime_botao_jogar(ESTADO e) {
 	if (posso_jogar(e)) {
 		if(e.highlight == 0 && novo.ultima_jogada == -1) novo.ultima_jogada = -1;  
 		else novo.ultima_jogada = e.highlight;
-
+		novo.ultimo_jogador = incrementa_jogador(e);
 		novo.play = 1;
 		sprintf(script, "%s?%s", SCRIPT, estado2str(novo));
 		printf("<a xlink:href = \"%s\"><image x = \"120\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/SubmitLI2.png\" /></a>\n", script); //IMPRIME BOTAO EM FORMATO PNG (BOTAO ESSE QUE FOI COPIADO PARA A PASTA HTML)
@@ -512,6 +516,7 @@ void imprime_botao_passar(ESTADO e) {
 	if(e.ultimo_jogador == 0){
 		novo.ultima_jogada = e.ultima_jogada;
     novo.highlight = 0;
+    novo.ultimo_jogador = incrementa_jogador(e);
     novo.pass = 1;
 		sprintf(script, "%s?%s", SCRIPT, estado2str(novo));
 		printf("<a xlink:href = \"%s\"><image x = \"240\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/PassLI2.png\" /></a>\n", script); //IMPRIME BOTAO EM FORMATO PNG (BOTAO ESSE QUE FOI COPIADO PARA A PASTA HTML)
@@ -586,10 +591,6 @@ Caso não seja passado nada à cgi-bin, ela assume que todas as cartas estão pr
 @param query A query que é passada à cgi-bin
  */
 
-void incrementa_jogador (ESTADO e){
-  if (e.ultimo_jogador != 3) ++e.ultimo_jogador;
-  else e.ultimo_jogador = 0;
-}
 
 
 
