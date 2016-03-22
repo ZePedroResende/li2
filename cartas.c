@@ -441,7 +441,7 @@ else return 0;
 int posso_jogar (ESTADO e) {
 	
 	if (e.ultima_jogada == -1){
-		if (!combinacao_valida (e.highlight) && !(carta_existe(e.highlight,0,0))) { 
+		if (!combinacao_valida (e.highlight) ) { 
 			return 0;
 		}
 		
@@ -505,11 +505,9 @@ void imprime_botao_jogar(ESTADO e) {
 	ESTADO novo = e;
 
 	if (posso_jogar(e)) {
-	
-		 novo.ultima_jogada = e.highlight;
-      novo.cartas[0] = e.cartas[0] - (numero_de_cartas(novo.ultima_jogada));
-      
-		novo.ultimo_jogador = incrementa_jogador(e);
+	    novo.ultima_jogada = e.highlight;
+        novo.cartas[0] = e.cartas[0] - (numero_de_cartas(novo.ultima_jogada));
+      	novo.ultimo_jogador = incrementa_jogador(e);
 		novo.play = 1;
 		sprintf(script, "%s?%s", SCRIPT, estado2str(novo));
 		printf("<a xlink:href = \"%s\"><image x = \"280\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/SubmitLI2.png\" /></a>\n", script); //IMPRIME BOTAO EM FORMATO PNG (BOTAO ESSE QUE FOI COPIADO PARA A PASTA HTML)
@@ -638,9 +636,13 @@ int a;
     printf("%d\n", a);
 
     }
+
     if (e.ultimo_jogador != 0){
-      e = bots(e);
+    	e = e;
     }
+   // if (e.ultimo_jogador != 0){
+     // e = bots(e);
+    //}
 	}
 
 	else {
