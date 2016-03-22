@@ -637,8 +637,8 @@ int a;
 
     }
 
-    if (e.ultimo_jogador != 0){
-    	e = e;
+    else{
+    	e.ultimo_jogador = incrementa_jogador(e);
     }
    // if (e.ultimo_jogador != 0){
      // e = bots(e);
