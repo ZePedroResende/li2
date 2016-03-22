@@ -516,7 +516,7 @@ void imprime_botao_jogar(ESTADO e) {
 	}
 
 	else {
-		printf("<image x = \"280\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/SubmitLI2.png\" />\n"); //SE EU CONSEGUIR JOGAR, O BOTAO É CLICAVEL, SENÃO NÃO É
+		printf("<image x = \"280\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/SubmitLI2out.png\" />\n"); //SE EU CONSEGUIR JOGAR, O BOTAO É CLICAVEL, SENÃO NÃO É
 	}
 }	
 
@@ -535,7 +535,7 @@ void imprime_botao_passar(ESTADO e) {
 }
 
 	else {
-		printf("<image x = \"380\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/PassLI2.png\" />\n"); //SE EU CONSEGUIR JOGAR, O BOTAO É CLICAVEL, SENÃO NÃO É
+		printf("<image x = \"380\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/PassLI2out.png\" />\n"); //SE EU CONSEGUIR JOGAR, O BOTAO É CLICAVEL, SENÃO NÃO É
 	}
 }
 
