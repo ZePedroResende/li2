@@ -441,7 +441,7 @@ else return 0;
 int posso_jogar (ESTADO e) {
 	
 	if (e.ultima_jogada == -1){
-		if (!combinacao_valida (e.highlight)) { 
+		if (!combinacao_valida (e.highlight) && !(carta_existe(e.highlight,0,0))) { 
 			return 0;
 		}
 		
@@ -503,12 +503,12 @@ void imprime_botao_jogar(ESTADO e) {
 
 	char script[10240];
 	ESTADO novo = e;
-	
+
 	if (posso_jogar(e)) {
-		if(e.highlight == 0 && novo.ultima_jogada == -1) novo.ultima_jogada = -1;  
-		else{ novo.ultima_jogada = e.highlight;
+	
+		 novo.ultima_jogada = e.highlight;
       novo.cartas[0] = e.cartas[0] - (numero_de_cartas(novo.ultima_jogada));
-      }
+      
 		novo.ultimo_jogador = incrementa_jogador(e);
 		novo.play = 1;
 		sprintf(script, "%s?%s", SCRIPT, estado2str(novo));
@@ -518,14 +518,14 @@ void imprime_botao_jogar(ESTADO e) {
 	else {
 		printf("<image x = \"280\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/SubmitLI2out.png\" />\n"); //SE EU CONSEGUIR JOGAR, O BOTAO É CLICAVEL, SENÃO NÃO É
 	}
-}	
+}
 
 void imprime_botao_passar(ESTADO e) {
 
 	char script[10240];
 	ESTADO novo = e;
-	
-	if(e.ultimo_jogador == 0){
+
+	if(e.ultimo_jogador == 0 && e.ultima_jogada != -1){
 		novo.ultima_jogada = e.ultima_jogada;
     novo.highlight = 0;
     novo.ultimo_jogador = incrementa_jogador(e);
@@ -550,16 +550,14 @@ ESTADO jogar (ESTADO e) {
 	e.play = 0;
 
 		for (n = 0; n < 4; n++) {
-			
 			for (v = 0; v < 13; v++) {
-				
 				if (carta_existe((e.highlight), n, v)) {
 					e.mao[0] = rem_carta(e.mao[0], n, v);
 					x += 20;
 					imprime_carta(BARALHO, x, y, e, 4, n , v);
 				}
 			}
-		}	
+		}
 
 	e.highlight = 0; 
 	return e;
@@ -573,7 +571,23 @@ ESTADO passar (ESTADO e) {
 	return e;
 }
 
+/*
+  Validação Bots:
 
+  - Se bot começar com 3 de ouros, é essa a carta que ele tem de jogar, ou um par, ou um trio com o 3 de ouros
+
+  - Supondo que somos nós a começar. O bot1 tem de jogar uma combinação válida maior que a nossa. Seguidamente, o bot2 uma maior que o bot1, e o bot3 uma maior que o bot2.
+
+  - Objetivo do bot: Procurar na sua mão a menor combinação possível a ser jogada, em relação à anterior. 
+  (Se for ele a começar a turno, ele jogará na mesma a menor carta possível em relação à última carta jogada da última ronda).
+
+  - Se ao percorrer a mão do bot, ele não tiver uma combinação maior que a anterior, não joga nada, sendo equivalente a um "PASS".
+ */
+
+
+ESTADO bots(ESTADO e){
+
+}
 
 
 /*
@@ -614,7 +628,7 @@ int a;
 	if (query != NULL && strlen(query) != 0) {
 		e = str2estado(query); //função que tinha sido dada pelo professor
 
-		
+    if (e.ultimo_jogador == 0){
 		if (e.card) e.card = 0;
 //a= 	e.ultimo_jogador;
 //printf("%d\n", a);
@@ -623,8 +637,11 @@ int a;
     a=e.mao[0];
     printf("%d\n", a);
 
-
-	}	
+    }
+    if (e.ultimo_jogador != 0){
+      e = bots(e);
+    }
+	}
 
 	else {
 		e = baralhar();
@@ -640,27 +657,6 @@ printf("%d\n", a);
 //  a= 	e.ultimo_jogador;
 //printf("%d\n", a);
 }
-
-
-
-
-
-/*
-void parse(char *query) {
-	long long int ESTADO;
-	MAO array [4]={};
-	baralhar (array);
-	if(sscanf(query, "%lld_%lld_%lld_%lld", &array[0], &array[1], &array[2], &array[3]) == 4) {
-    imprime(BARALHO, array);
-
-	} else {
-   
-	imprime(BARALHO, array);
-	}
-}
-*/
-
-
 
 
 /** \brief Função principal
