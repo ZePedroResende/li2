@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-// >> 1 - menos significativo com o boda (n/2) . << 1 mais significativo com o boda (n*2)
+
 /**
 URL da CGI
 */
@@ -69,31 +69,37 @@ int carta_existe(long long int ESTADO, int naipe, int valor) ;
 
 
 int primeiro_jogar(ESTADO e){
-
+int n =0;
   
       if (carta_existe(e.mao[0], 0, 0)){
-       return  0;
+       n=0;
 	 }
 	 
       if (carta_existe(e.mao[1], 0, 0)){
-       return  1;
+       n= 1;
        
    }
       if (carta_existe(e.mao[2], 0, 0)){
-       return  2;
+       n=  2;
        
       }
       if (carta_existe(e.mao[3], 0, 0)){
-       return  3;
+       n=  3;
        
       }
 
-
+return n;
 }
 
 long long int add_carta(long long int ESTADO, int naipe, int valor);
 
 ESTADO baralhar () {
+	int a=0 , i=0 , j=0 , k=0 , l=0 , n=0 , v=0, jogador;
+
+	long long int player1[13];
+	long long int player2[13];
+	long long int player3[13];
+	long long int player4[13];
 	
 	ESTADO e = {{0},0,{0},0,0,0,-1,0};
 
@@ -103,13 +109,7 @@ ESTADO baralhar () {
 	e.cartas[3] = 13;
 
 
-	long long int a , i , j , k , l , n , v;
-    a = i = j = k = l = n = v = 0;
-	long long int player1[13];
-	long long int player2[13];
-	long long int player3[13];
-	long long int player4[13];
-	int jogador;
+
 
 	for(a = 0; a <= 12; a++) {
 		player1[a] = 0;
@@ -148,6 +148,8 @@ ESTADO baralhar () {
 	return e;
 
 }
+
+
 
 
 /** \brief Devolve o índice da carta
@@ -225,15 +227,15 @@ void imprime_carta(char *path, int x, int y, ESTADO e, int mao, int naipe, int v
 	char *rank = VALORES;
 	char script[10240];
 	ESTADO novo = e;
-	novo.card = 1; // parte do estado que define uma açao 
+	novo.card = 1; 
    
 	if (mao == 0 && e.ultimo_jogador == 0) {
 		if (carta_existe (novo.highlight, naipe, valor)) {
-			novo.highlight = rem_carta(novo.highlight, naipe, valor); //se ela ja esta subida, ao ser clicada outra vez, desce
+			novo.highlight = rem_carta(novo.highlight, naipe, valor); 
 		}
 
 		else {
-			novo.highlight = add_carta(novo.highlight, naipe, valor); // senão estiver subida, tem de ser subida ao clicar.	
+			novo.highlight = add_carta(novo.highlight, naipe, valor); 
 		}
 
 		sprintf(script, "%s?%s", SCRIPT, estado2str(novo));
@@ -264,16 +266,16 @@ void imprime (char *path, ESTADO e) {
 				
 				if (carta_existe(e.mao[m], n, v)) {
 					
-					if (m % 2 == 0) { // SE NA MAO TIVER 0 E 2, AVANÇA O X (SE A MINHA VOU O 0 OU O 2, AVANÇA O X)
+					if (m % 2 == 0) { 
 						x += 20;
 					}
 
 					else {
-						y += 20; // SE TIVER NA MAO 1 E 2, AVANÇA O Y (SE A MINHA MAO FOR...)
+						y += 20; 
 					}
 
 					if (m == 0 && carta_existe(e.highlight, n, v)) {
-						imprime_carta(path, x, (y - 20), e, m, n, v); //AO SER SELECIONADA UMA CARTA, A CARTA SOBE! HOLY SHIT!	
+						imprime_carta(path, x, (y - 20), e, m, n, v); 	
 					}
 				
 					else {
@@ -325,8 +327,6 @@ void imprime(char *path, long long int ESTADO[]) {
 	printf("</svg>\n");
 }
 */
-//TER 4 FUNÇÕES AUXILIARES PARA 1 CARTA, 2 CARTAS, 3 CARTAS, 4 CARTAS, 5 CARTAS 
-	//CARTAS QUE ESTÃO DENTRO DE UMA COMBINAÇÃO VALIDA TEM O MESMO VALOR, se nao tiver é nao valida.
 
 
 
@@ -363,8 +363,8 @@ int combinacao_valida(MAO m) {
 	if ((numero_de_cartas (m)) > 3) {
 	 	return 0;
 	}
-	
-	return 1;
+
+	else return 1;
 }
 
 int compara_tamanho(MAO m1, MAO m2){
@@ -423,19 +423,20 @@ int da_maior_naipe (MAO m){
 
 
 int combinacao_maior (MAO m1, MAO m2) {
-  // m1 == e.ultima.jogada
-  // m2 == highlight
+  int n =0;
         if ((da_valor(m2)) != -1){
-            if (da_valor(m1) < da_valor(m2)) return 1;
-            if (da_valor(m1) >  da_valor(m2)) return 0 ;
+            if (da_valor(m1) < da_valor(m2)) n =1;
+            if (da_valor(m1) >  da_valor(m2)) n= 0 ;
             if (da_valor(m1) == da_valor(m2)) {
-             if (da_maior_naipe(m1) < da_maior_naipe(m2)) return 1;
+             if (da_maior_naipe(m1) < da_maior_naipe(m2)) n=1;
              
             }
           }
       
 
-else return 0;
+else n= 0;
+
+return n;
 }
 
 int posso_jogar (ESTADO e) {
@@ -497,6 +498,7 @@ int incrementa_jogador (ESTADO e){
   else return 0;
 }
 
+ESTADO bots2(ESTADO e);
 
 
 void imprime_botao_jogar(ESTADO e) {
@@ -509,12 +511,13 @@ void imprime_botao_jogar(ESTADO e) {
         novo.cartas[0] = e.cartas[0] - (numero_de_cartas(novo.ultima_jogada));
       	novo.ultimo_jogador = incrementa_jogador(e);
 		novo.play = 1;
+		
 		sprintf(script, "%s?%s", SCRIPT, estado2str(novo));
-		printf("<a xlink:href = \"%s\"><image x = \"280\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/SubmitLI2.png\" /></a>\n", script); //IMPRIME BOTAO EM FORMATO PNG (BOTAO ESSE QUE FOI COPIADO PARA A PASTA HTML)
+		printf("<a xlink:href = \"%s\"><image x = \"280\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/SubmitLI2.png\" /></a>\n", script); 
 	}
 
 	else {
-		printf("<image x = \"280\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/SubmitLI2out.png\" />\n"); //SE EU CONSEGUIR JOGAR, O BOTAO É CLICAVEL, SENÃO NÃO É
+		printf("<image x = \"280\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/SubmitLI2out.png\" />\n"); 
 	}
 }
 
@@ -529,11 +532,11 @@ void imprime_botao_passar(ESTADO e) {
     novo.ultimo_jogador = incrementa_jogador(e);
     novo.pass = 1;
 		sprintf(script, "%s?%s", SCRIPT, estado2str(novo));
-		printf("<a xlink:href = \"%s\"><image x = \"380\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/PassLI2.png\" /></a>\n", script); //IMPRIME BOTAO EM FORMATO PNG (BOTAO ESSE QUE FOI COPIADO PARA A PASTA HTML)
+		printf("<a xlink:href = \"%s\"><image x = \"380\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/PassLI2.png\" /></a>\n", script); 
 }
 
 	else {
-		printf("<image x = \"380\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/PassLI2out.png\" />\n"); //SE EU CONSEGUIR JOGAR, O BOTAO É CLICAVEL, SENÃO NÃO É
+		printf("<image x = \"380\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/PassLI2out.png\" />\n"); 
 	}
 }
 
@@ -548,7 +551,7 @@ void imprime_botao_incrementa(ESTADO e) {
     novo.ultimo_jogador = incrementa_jogador(e);
     
 		sprintf(script, "%s?%s", SCRIPT, estado2str(novo));
-		printf("<a xlink:href = \"%s\"><image x = \"480\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/PassLI2.png\" /></a>\n", script); //IMPRIME BOTAO EM FORMATO PNG (BOTAO ESSE QUE FOI COPIADO PARA A PASTA HTML)
+		printf("<a xlink:href = \"%s\"><image x = \"480\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/PassLI2.png\" /></a>\n", script);
 
 
 	
@@ -565,7 +568,7 @@ void imprime_botao_incrementa(ESTADO e) {
 
 ESTADO jogar (ESTADO e) {
 	
-	int n, v, x, y, m;
+	int n, v, x, y;
 
 	x = 250;
 	y = 400;
@@ -583,23 +586,26 @@ ESTADO jogar (ESTADO e) {
 		}
 
 	e.highlight = 0; 
+	
 	return e;
 }
 
 
 ESTADO passar (ESTADO e) {
-	int n, v, x, y, m;
+	
 	e.pass = 0;
 	e.highlight = 0; 
 	return e;
 }
 
+
+/*
 ESTADO incrementa (ESTADO e) {
 	int n, v, x, y, m;
 	e.highlight = e.highlight; 
 	return e;
 }
-
+*/
 /*
   Validação Bots:
 
@@ -634,11 +640,11 @@ if (!combinacao_valida (m)) {
 	return 1;
 }
 
-ESTADO bots(ESTADO e){
-	MAO m ;
+/*ESTADO bots(ESTADO e){
+	long long int m=0 ;
 	int n,v;
 
-while(e.ultimo_jogador > 0){
+while(e.ultimo_jogador != 0){
 if (e.ultima_jogada == -1 && e.ultimo_jogador == 2 ){
  e.cartas[e.ultimo_jogador] = e.cartas[(e.ultimo_jogador)] - 1;
  e.mao[e.ultimo_jogador] = rem_carta(e.mao[(e.ultimo_jogador)],0,0);
@@ -647,10 +653,10 @@ if (e.ultima_jogada == -1 && e.ultimo_jogador == 2 ){
  e.card = 0;
  
 
- return e; 
+ 
 }
 
-if (e.ultima_jogada != -1 && e.ultimo_jogador == 3){
+else
 	for (n = 1; n <= 3; n++)
 		for (v = 0; v <= 12; v++) {
 			m = add_carta(0,n,v);
@@ -658,23 +664,60 @@ if (e.ultima_jogada != -1 && e.ultimo_jogador == 3){
 				e.cartas[e.ultimo_jogador] = e.cartas[(e.ultimo_jogador)] - 1;
 				e.mao[e.ultimo_jogador] = rem_carta(e.mao[(e.ultimo_jogador)],n,v);
 				e.ultima_jogada = m;
-				e.ultimo_jogador = incrementa_jogador(e);
+				e.ultimo_jogador = incrementa_jogador(;
 				e.card = 0;
-
-
-				return e; 
-				
-		}
-
+            }
+        }
+    }
 }
 return e;
-
 }
+*/
+
+
+
+ESTADO bots1(ESTADO e){
+
+
+
+if (e.ultima_jogada == -1 && e.ultimo_jogador == 3 ){
+ e.cartas[e.ultimo_jogador] =( e.cartas[(e.ultimo_jogador)]) - 1;
+ e.mao[e.ultimo_jogador] = rem_carta(e.mao[(e.ultimo_jogador)],0,0);
+ e.ultima_jogada = 1;
+ e.ultimo_jogador = incrementa_jogador(e);
+ e.card = 0;
+ return e;
+ }
+return e;
 }
+
+
+
+
+
+ESTADO bots2(ESTADO e){
+	long long int m=0 ;
+	int n,v;
+
+  while(e.ultimo_jogador != 0){
+if (e.ultima_jogada != -1  ){
+	for (v = 0; v <= 12; v++)
+    for (n = 0; n <= 3; n++){
+			m = add_carta(0,n,v);
+			if (carta_existe(e.mao[e.ultimo_jogador],n,v) && valida_bots_jogadas_normais(e,m)){
+				m = add_carta(0,n,v);
+				e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) -1 ;
+				e.ultima_jogada = m;
+				e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador],n,v) ;
+				
+				e.ultimo_jogador = incrementa_jogador(e);
+				e.card = 0;
+            }
+        }
+ }
+  }
+    return e;
 }
-
-
-
 
 
 
@@ -715,25 +758,25 @@ void parse (char *query) {
 int a;
 
 	if (query != NULL && strlen(query) != 0) {
-		e = str2estado(query); //função que tinha sido dada pelo professor
+		e = str2estado(query); 
 		
 		if (e.card) e.card = 0;
-//a= 	e.ultimo_jogador;
-//printf("%d\n", a);
-		if (e.play) e = jogar(e);
-    if (e.pass) e = passar(e);
-if(e.ultimo_jogador != 0) e = incrementa(e);
+/*a= 	e.ultimo_jogador;
+printf("%d\n", a);*/
+		if (e.play) e = bots2(jogar(e));
+        if (e.pass) e = bots2(passar(e));
+       /* if(e.ultimo_jogador != 0) e = incrementa(e);*/
     a=e.mao[0];
     printf("%d\n", a);
-   // if (e.ultimo_jogador != 0){
-     // e = bots(e);
-    //}
+   /* if (e.ultimo_jogador != 0){
+      e = bots(e);
+    }*/
 	}
 
 
 	else {
 		
-   e = bots(baralhar());
+   e = bots1(baralhar());
 
  a=e.mao[0];
 printf("%d\n", a);
@@ -741,12 +784,11 @@ printf("%d\n", a);
 	}
 	
 	imprime(BARALHO, e);
-	imprime_botao_jogar(e);
+    (imprime_botao_jogar(e));
   	imprime_botao_passar(e);
   	imprime_botao_incrementa(e);
-  
-//  a= 	e.ultimo_jogador;
-//printf("%d\n", a);
+/*  a= 	e.ultimo_jogador;
+printf("%d\n", a);*/
 }
 
 
@@ -761,7 +803,7 @@ int main() {
  * Cabeçalhos necessários numa CGI
  */
 
- 	srandom(time(NULL));
+ 	srand(time(NULL));
 	printf("Content-Type: text/html; charset=utf-8\n\n");
 	printf("<header><title>Big2wo</title></header>\n");
 	printf("<body>\n");
