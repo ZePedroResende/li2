@@ -684,7 +684,7 @@ ESTADO bots1(ESTADO e){
 
 
 
-if (e.ultima_jogada == -1 && e.ultimo_jogador == 3 ){
+if (e.ultima_jogada == -1 && e.ultimo_jogador != 0 ){
  e.cartas[e.ultimo_jogador] =( e.cartas[(e.ultimo_jogador)]) - 1;
  e.mao[e.ultimo_jogador] = rem_carta(e.mao[(e.ultimo_jogador)],0,0);
  e.ultima_jogada = 1;
@@ -781,6 +781,9 @@ printf("%d\n", a);*/
 	else {
 		
    e = bots1(baralhar());
+   while(e.ultimo_jogador != 0){
+     e = bots2(e);
+   }
 
  a=e.mao[0];
 printf("%d\n", a);
