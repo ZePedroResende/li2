@@ -613,10 +613,72 @@ ESTADO incrementa (ESTADO e) {
   - Se ao percorrer a mão do bot, ele não tiver uma combinação maior que a anterior, não joga nada, sendo equivalente a um "PASS".
  */
 
+int valida_bots_jogadas_normais (ESTADO e, MAO m) {
+	
+if (!combinacao_valida (m)) { 
+			return 0;
+		}
+		
+		else {
+
+				if (!compara_tamanho (e.ultima_jogada, m)) {
+					return 0; 
+				}
+
+	 			else { 
+	 				if (!combinacao_maior (e.ultima_jogada, m)) {
+	 					return 0;
+	 				}
+	 			}
+	}
+	return 1;
+}
 
 ESTADO bots(ESTADO e){
+	MAO m ;
+	int n,v;
+
+
+if (e.ultima_jogada == -1 ){
+ e.cartas[e.ultimo_jogador] = e.cartas[(e.ultimo_jogador)] - 1;
+ e.mao[e.ultimo_jogador] = rem_carta(e.mao[(e.ultimo_jogador)],0,0);
+ e.ultima_jogada = 1;
+ e.ultimo_jogador = incrementa_jogador(e);
+ e.card = 0;
+ 
+
+ return e; 
+}
+
+else{
+	for (n = 0; n <= 3; n++)
+		for (v = 0; v <= 12; v++) {
+			m = add_carta(0,n,v);
+			if (carta_existe(e.mao[e.ultimo_jogador],n,v) && valida_bots_jogadas_normais(e,m)){
+				e.cartas[e.ultimo_jogador] = e.cartas[(e.ultimo_jogador)] - 1;
+				e.mao[e.ultimo_jogador] = rem_carta(e.mao[(e.ultimo_jogador)],n,v);
+				e.ultima_jogada = m;
+				e.ultimo_jogador = incrementa_jogador(e);
+				e.card = 0;
+				return e; 
+						}
+		}
+}
+
+return e;
 
 }
+
+
+
+ESTADO joga_bots(ESTADO e){
+while (e.ultimo_jogador != 0){
+		bots(e);
+}
+return e;
+}
+
+
 
 
 /*
@@ -673,8 +735,9 @@ if(e.ultimo_jogador != 0) e = incrementa(e);
 
 
 	else {
-		e = baralhar();
-   
+		
+   e = joga_bots(baralhar());
+
  a=e.mao[0];
 printf("%d\n", a);
 
