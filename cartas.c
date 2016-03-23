@@ -538,6 +538,31 @@ void imprime_botao_passar(ESTADO e) {
 }
 
 
+
+void imprime_botao_incrementa(ESTADO e) {
+
+	char script[10240];
+	ESTADO novo = e;
+
+	
+    novo.ultimo_jogador = incrementa_jogador(e);
+    
+		sprintf(script, "%s?%s", SCRIPT, estado2str(novo));
+		printf("<a xlink:href = \"%s\"><image x = \"480\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/PassLI2.png\" /></a>\n", script); //IMPRIME BOTAO EM FORMATO PNG (BOTAO ESSE QUE FOI COPIADO PARA A PASTA HTML)
+
+
+	
+}
+
+
+
+
+
+
+
+
+
+
 ESTADO jogar (ESTADO e) {
 	
 	int n, v, x, y, m;
@@ -566,6 +591,12 @@ ESTADO passar (ESTADO e) {
 	int n, v, x, y, m;
 	e.pass = 0;
 	e.highlight = 0; 
+	return e;
+}
+
+ESTADO incrementa (ESTADO e) {
+	int n, v, x, y, m;
+	e.highlight = e.highlight; 
 	return e;
 }
 
@@ -623,27 +654,23 @@ void parse (char *query) {
 	ESTADO e;
 
 int a;
+
 	if (query != NULL && strlen(query) != 0) {
 		e = str2estado(query); //função que tinha sido dada pelo professor
-
-    if (e.ultimo_jogador == 0){
+		
 		if (e.card) e.card = 0;
 //a= 	e.ultimo_jogador;
 //printf("%d\n", a);
 		if (e.play) e = jogar(e);
     if (e.pass) e = passar(e);
+if(e.ultimo_jogador != 0) e = incrementa(e);
     a=e.mao[0];
     printf("%d\n", a);
-
-    }
-
-    else{
-    	e.ultimo_jogador = incrementa_jogador(e);
-    }
    // if (e.ultimo_jogador != 0){
      // e = bots(e);
     //}
 	}
+
 
 	else {
 		e = baralhar();
@@ -656,6 +683,8 @@ printf("%d\n", a);
 	imprime(BARALHO, e);
 	imprime_botao_jogar(e);
   	imprime_botao_passar(e);
+  	imprime_botao_incrementa(e);
+  
 //  a= 	e.ultimo_jogador;
 //printf("%d\n", a);
 }
