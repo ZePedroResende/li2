@@ -33,7 +33,7 @@ const long long int ESTADO_INICIAL = 0x1FFF;
 
 
 
-#define FORMATO "%lld_%lld_%lld_%lld_%lld_%d_%d_%d_%d_%d_%d_%d_%lld_%d"
+#define FORMATO "%lld_%lld_%lld_%lld_%lld_%d_%d_%d_%d_%d_%d_%d_%d_%lld_%d"
 
 
 typedef long long int MAO;
@@ -44,7 +44,7 @@ struct estado {
 
 	int cartas[4];
 
-	int play, pass, card;
+	int play, pass, card, ultima_jogada_valida;
 
 	MAO ultima_jogada;
 	int ultimo_jogador;
@@ -53,14 +53,14 @@ struct estado {
 typedef struct estado ESTADO;
 char* estado2str(ESTADO e){
   static char str[10240];
-  sprintf(str, FORMATO, e.mao[0], e.mao[1], e.mao[2], e.mao[3], e.highlight, e.cartas[0], e.cartas[1], e.cartas[2], e.cartas[3], e.play, e.pass, e.card, e.ultima_jogada, e.ultimo_jogador);
+  sprintf(str, FORMATO, e.mao[0], e.mao[1], e.mao[2], e.mao[3], e.highlight, e.cartas[0], e.cartas[1], e.cartas[2], e.cartas[3], e.play, e.pass, e.card,e.ultima_jogada_valida, e.ultima_jogada, e.ultimo_jogador);
 
   return str;
 }
 
 ESTADO str2estado(char* str){
   ESTADO e;
-  sscanf(str, FORMATO, &e.mao[0], &e.mao[1], &e.mao[2], &e.mao[3], &e.highlight, &e.cartas[0], &e.cartas[1], &e.cartas[2], &e.cartas[3], &e.play, &e.pass, &e.card, &e.ultima_jogada, &e.ultimo_jogador);  
+  sscanf(str, FORMATO, &e.mao[0], &e.mao[1], &e.mao[2], &e.mao[3], &e.highlight, &e.cartas[0], &e.cartas[1], &e.cartas[2], &e.cartas[3], &e.play, &e.pass, &e.card,&e.ultima_jogada_valida, &e.ultima_jogada, &e.ultimo_jogador);  
 
   return e;
 }
@@ -101,7 +101,7 @@ ESTADO baralhar () {
 	long long int player3[13];
 	long long int player4[13];
 	
-	ESTADO e = {{0},0,{0},0,0,0,-1,0};
+	ESTADO e = {{0},0,{0},0,0,0,0,-1,0};
 
 	e.cartas[0] = 13;
 	e.cartas[1] = 13;
@@ -144,6 +144,7 @@ ESTADO baralhar () {
 	}
 
 	e.ultimo_jogador = primeiro_jogar(e);
+  e.ultima_jogada_valida = e.ultimo_jogador;
 
 	return e;
 
@@ -445,6 +446,7 @@ int posso_jogar (ESTADO e) {
 		if (!combinacao_valida (e.highlight) ) { 
 			return 0;
 		}
+  
 		
 		else {
 	 	
@@ -459,6 +461,27 @@ int posso_jogar (ESTADO e) {
             	else return 0;
             }
         }
+
+	}
+  if (e.ultima_jogada_valida == 0){
+		if (!combinacao_valida (e.highlight) ) { 
+			return 0;
+		}
+  
+		
+		else {
+	 	
+	 		if (e.ultimo_jogador != 0) {
+	 			return 0; 
+	 		}
+			else {
+	 			if ((da_valor (e.highlight) != -1) ) {
+	 				return 1;
+	 			}	 
+            	
+        else return 0;
+      }
+    }
 
 	}
 	
@@ -511,7 +534,7 @@ void imprime_botao_jogar(ESTADO e) {
         novo.cartas[0] = e.cartas[0] - (numero_de_cartas(novo.ultima_jogada));
       	novo.ultimo_jogador = incrementa_jogador(e);
 		novo.play = 1;
-		
+    novo.ultima_jogada_valida = 0;	
 		sprintf(script, "%s?%s", SCRIPT, estado2str(novo));
 		printf("<a xlink:href = \"%s\"><image x = \"280\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/SubmitLI2.png\" /></a>\n", script); 
 	}
@@ -526,7 +549,7 @@ void imprime_botao_passar(ESTADO e) {
 	char script[10240];
 	ESTADO novo = e;
 
-	if(e.ultimo_jogador == 0 && e.ultima_jogada != -1){
+	if(e.ultimo_jogador == 0 && e.ultima_jogada != -1 && e.ultima_jogada_valida != 0){
 		novo.ultima_jogada = e.ultima_jogada;
     novo.highlight = 0;
     novo.ultimo_jogador = incrementa_jogador(e);
@@ -709,7 +732,27 @@ ESTADO bots2(ESTADO e){
 	long long int m=0 ;
 	int n,v;
 
-  
+  if (e.ultima_jogada_valida == e.ultimo_jogador ){
+    for (v = 0; v <= 12; v++){
+      for (n = 0; n <= 3; n++){
+        m = add_carta(0,n,v);
+        if (carta_existe(e.mao[e.ultimo_jogador],n,v)){
+          m = add_carta(0,n,v);
+          e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) -1 ;
+          e.ultima_jogada = m;
+          e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador],n,v) ;
+          e.ultima_jogada_valida = e.ultimo_jogador;
+          e.ultimo_jogador = incrementa_jogador(e);
+          e.card = 0;
+          return e ;
+        }
+      
+      }
+ }
+
+  }
+
+  else{
 	for (v = 0; v <= 12; v++){
     for (n = 0; n <= 3; n++){
 			m = add_carta(0,n,v);
@@ -718,7 +761,7 @@ ESTADO bots2(ESTADO e){
 				e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) -1 ;
 				e.ultima_jogada = m;
 				e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador],n,v) ;
-				
+				e.ultima_jogada_valida = e.ultimo_jogador;
 				e.ultimo_jogador = incrementa_jogador(e);
 				e.card = 0;
         return e ;
@@ -726,6 +769,7 @@ ESTADO bots2(ESTADO e){
       
         }
  }
+}
   e.ultimo_jogador = incrementa_jogador(e);
  return e;
 }
