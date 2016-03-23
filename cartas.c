@@ -584,9 +584,13 @@ ESTADO jogar (ESTADO e) {
 				}
 			}
 		}
-
+    e = bots2(e);
+    while(e.ultimo_jogador != 0){
+    e = bots2(e);
+    }
 	e.highlight = 0; 
-	
+
+
 	return e;
 }
 
@@ -699,12 +703,11 @@ ESTADO bots2(ESTADO e){
 	long long int m=0 ;
 	int n,v;
 
-  while(e.ultimo_jogador != 0){
-if (e.ultima_jogada != -1  ){
-	for (v = 0; v <= 12; v++)
+  
+	for (v = 0; v <= 12; v++){
     for (n = 0; n <= 3; n++){
 			m = add_carta(0,n,v);
-			if (carta_existe(e.mao[e.ultimo_jogador],n,v) && valida_bots_jogadas_normais(e,m)){
+			if (carta_existe(e.mao[e.ultimo_jogador],n,v)){
 				m = add_carta(0,n,v);
 				e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) -1 ;
 				e.ultima_jogada = m;
@@ -712,11 +715,12 @@ if (e.ultima_jogada != -1  ){
 				
 				e.ultimo_jogador = incrementa_jogador(e);
 				e.card = 0;
-            }
+        return e ;
+      }
+
         }
  }
-  }
-    return e;
+ return e;
 }
 
 
@@ -763,7 +767,7 @@ int a;
 		if (e.card) e.card = 0;
 /*a= 	e.ultimo_jogador;
 printf("%d\n", a);*/
-		if (e.play) e = bots2(jogar(e));
+		if (e.play) e = jogar(e);
         if (e.pass) e = bots2(passar(e));
        /* if(e.ultimo_jogador != 0) e = incrementa(e);*/
     a=e.mao[0];
