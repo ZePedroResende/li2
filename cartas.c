@@ -723,9 +723,10 @@ ESTADO bots2(ESTADO e){
 				e.card = 0;
         return e ;
       }
-
+      
         }
  }
+  e.ultimo_jogador = incrementa_jogador(e);
  return e;
 }
 
