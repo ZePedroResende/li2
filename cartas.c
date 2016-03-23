@@ -598,6 +598,12 @@ ESTADO jogar (ESTADO e) {
 ESTADO passar (ESTADO e) {
 	
 	e.pass = 0;
+  e = bots2(e);
+  while(e.ultimo_jogador != 0){
+    e = bots2(e);
+  }
+	
+
 	e.highlight = 0; 
 	return e;
 }
@@ -768,7 +774,7 @@ int a;
 /*a= 	e.ultimo_jogador;
 printf("%d\n", a);*/
 		if (e.play) e = jogar(e);
-        if (e.pass) e = bots2(passar(e));
+        if (e.pass) e = passar(e);
        /* if(e.ultimo_jogador != 0) e = incrementa(e);*/
     a=e.mao[0];
     printf("%d\n", a);
