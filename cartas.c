@@ -707,7 +707,7 @@ ESTADO bots2(ESTADO e){
 	for (v = 0; v <= 12; v++){
     for (n = 0; n <= 3; n++){
 			m = add_carta(0,n,v);
-			if (carta_existe(e.mao[e.ultimo_jogador],n,v)){
+			if (carta_existe(e.mao[e.ultimo_jogador],n,v) && valida_bots_jogadas_normais(e,m)){
 				m = add_carta(0,n,v);
 				e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) -1 ;
 				e.ultima_jogada = m;
