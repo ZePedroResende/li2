@@ -673,39 +673,27 @@ if (!combinacao_valida (m)) {
 	return 1;
 }
 
-/*ESTADO bots(ESTADO e){
-	long long int m=0 ;
-	int n,v;
+int validacao_2maos_bots (ESTADO e, MAO p) {
 
-while(e.ultimo_jogador != 0){
-if (e.ultima_jogada == -1 && e.ultimo_jogador == 2 ){
- e.cartas[e.ultimo_jogador] = e.cartas[(e.ultimo_jogador)] - 1;
- e.mao[e.ultimo_jogador] = rem_carta(e.mao[(e.ultimo_jogador)],0,0);
- e.ultima_jogada = 1;
- e.ultimo_jogador = incrementa_jogador(e);
- e.card = 0;
- 
+	if (!combinacao_valida(p)) {
+		return 0;
+	}
 
- 
-}
+	else {
 
-else
-	for (n = 1; n <= 3; n++)
-		for (v = 0; v <= 12; v++) {
-			m = add_carta(0,n,v);
-			if (carta_existe(e.mao[e.ultimo_jogador],n,v) && valida_bots_jogadas_normais(e,m)){
-				e.cartas[e.ultimo_jogador] = e.cartas[(e.ultimo_jogador)] - 1;
-				e.mao[e.ultimo_jogador] = rem_carta(e.mao[(e.ultimo_jogador)],n,v);
-				e.ultima_jogada = m;
-				e.ultimo_jogador = incrementa_jogador(;
-				e.card = 0;
-            }
-        }
-    }
+		if(!compara_tamanho(e.ultima_jogada, p)) {
+			return 0;
+		}
+
+		else {
+			if(!combinacao_maior (e.ultima_jogada, p)) {
+				return 0;
+			}
+		}
+	}
+
+	return 1;
 }
-return e;
-}
-*/
 
 
 
@@ -728,6 +716,129 @@ return e;
 
 
 
+
+
+
+
+ESTADO bots2(ESTADO e){
+	long long int m=0;
+	long long int z=0;
+	int n,v,nx,vx,ncartas;
+
+ncartas = numero_de_cartas(e.ultima_jogada);
+
+if (ncartas == 1) {
+	if (e.ultima_jogada_valida == e.ultimo_jogador ){
+		for (v = 0; v <= 12; v++){
+      		for (n = 0; n <= 3; n++){
+        		m = add_carta(0,n,v);
+        		if (carta_existe(e.mao[e.ultimo_jogador],n,v)){
+          			m = add_carta(0,n,v);
+          			e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) -1 ;
+	          		e.ultima_jogada = m;
+	          		e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador],n,v) ;
+	          		e.ultima_jogada_valida = e.ultimo_jogador;
+	          		e.ultimo_jogador = incrementa_jogador(e);
+	          		e.card = 0;
+          			return e;
+        		}	
+      		}	
+		}
+	}
+
+	else { 
+		for (v = 0; v <= 12; v++){
+    		for (n = 0; n <= 3; n++){
+				m = add_carta(0,n,v);
+				if (carta_existe(e.mao[e.ultimo_jogador],n,v) && valida_bots_jogadas_normais(e,m)){
+					m = add_carta(0,n,v);
+					e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) -1 ;
+					e.ultima_jogada = m;
+					e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador],n,v) ;
+					e.ultima_jogada_valida = e.ultimo_jogador;
+					e.ultimo_jogador = incrementa_jogador(e);
+					e.card = 0;
+        			return e;
+      			}
+      		}
+ 		}
+	}
+}
+
+
+
+
+
+
+
+
+
+if (ncartas == 2) {
+
+	if (e.ultima_jogada_valida == e.ultimo_jogador ){
+		for (v = 0; v <= 12; v++){
+      		for (n = 0; n <= 3; n++){
+        		m = add_carta(0,n,v);
+        		if (carta_existe(e.mao[e.ultimo_jogador],n,v)){
+          			m = add_carta(0,n,v);
+          			e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) -1 ;
+	          		e.ultima_jogada = m;
+	          		e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador],n,v) ;
+	          		e.ultima_jogada_valida = e.ultimo_jogador;
+	          		e.ultimo_jogador = incrementa_jogador(e);
+	          		e.card = 0;
+          			return e;
+        		}	
+      		}	
+		}
+	}
+
+else{
+	for(v = 0; v <= 12; v++) {
+		
+		for(n = 0; n <= 3; n++) {
+
+			if (carta_existe(e.ultimo_jogador, n, v)) {
+        		
+        		m = add_carta(0,n,v);			
+
+				for (vx = 0; vx <= 12; vx++) {
+
+					for(nx = 0; nx <= 3; nx++) {
+      
+      					z = add_carta(0, nx, vx);
+      				
+      					p = add_carta(m,nx,vx);
+      				
+      					if (carta_existe(e.ultimo_jogador,nx,vx) && z != m && validacao_2maos_bots(e,p)) {
+      						p = add_carta(m, nx, vx);
+      						e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) - 2;
+      						e.ultima_jogada = p;
+      						e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador], n, v);
+      						e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador], nx, vx);
+      						e.ultima_jogada_valida = e.ultimo_jogador;
+      						e.ultimo_jogador = incrementa_jogador(e);
+      						e.card = 0;
+      						return e;
+      					}
+      				}
+				}
+			}
+    	}
+  	}
+  }
+ }
+
+
+
+ 	e.ultimo_jogador = incrementa_jogador(e);
+ 	return e;
+}
+
+
+
+
+/*
 ESTADO bots2(ESTADO e){
 	long long int m=0 ;
 	int n,v;
@@ -773,7 +884,7 @@ ESTADO bots2(ESTADO e){
   e.ultimo_jogador = incrementa_jogador(e);
  return e;
 }
-
+*/
 
 
 /*
