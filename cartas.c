@@ -864,7 +864,7 @@ else{
 				for(l = 0; l <= 3; l++) {
                 	if (carta_existe(e.mao[e.ultimo_jogador], l, v)) { 
 						g = add_carta(0,l,v);
-						
+
 					for(k = 0; k <= 3; k++) {
                         g = add_carta(0,l,v);
       					z = add_carta(0, k, v);
@@ -875,6 +875,7 @@ else{
       					if (carta_existe(e.mao[e.ultimo_jogador],k,v) && z != m && g != m && g != z && validacao_2maos_bots(e,p) ) {
       						m = add_carta(0,n,v);
       						p = add_carta(m, k, v);
+      						p = add_carta(p,l,v);
       						e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) - 3;
       						e.ultima_jogada = p;
       						e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador], n, v);
