@@ -723,7 +723,9 @@ return e;
 ESTADO bots2(ESTADO e){
 	long long int m=0;
 	long long int z=0;
-	int n,v,nx,vx,ncartas;
+	long long int p=0;
+	long long int g=0; 
+	int n,v,k,l,ncartas;
 
 ncartas = numero_de_cartas(e.ultima_jogada);
 
@@ -798,30 +800,93 @@ else{
 		
 		for(n = 0; n <= 3; n++) {
 
-			if (carta_existe(e.ultimo_jogador, n, v)) {
+			if (carta_existe(e.mao[e.ultimo_jogador], n, v)) {
         		
         		m = add_carta(0,n,v);			
 
-				for (vx = 0; vx <= 12; vx++) {
+				
 
-					for(nx = 0; nx <= 3; nx++) {
+					for(k = 0; k <= 3; k++) {
       
-      					z = add_carta(0, nx, vx);
+      					z = add_carta(0, k, v);
+      				    m = add_carta(0,n,v);
+      					p = add_carta(m,k,v);
       				
-      					p = add_carta(m,nx,vx);
-      				
-      					if (carta_existe(e.ultimo_jogador,nx,vx) && z != m && validacao_2maos_bots(e,p)) {
-      						p = add_carta(m, nx, vx);
+      					if (carta_existe(e.mao[e.ultimo_jogador],k,v) && z != m && validacao_2maos_bots(e,p) ) {
+      						m = add_carta(0,n,v);
+      						p = add_carta(m, k, v);
       						e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) - 2;
       						e.ultima_jogada = p;
       						e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador], n, v);
-      						e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador], nx, vx);
+      						e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador], k, v);
       						e.ultima_jogada_valida = e.ultimo_jogador;
       						e.ultimo_jogador = incrementa_jogador(e);
       						e.card = 0;
       						return e;
       					}
       				}
+				
+			}
+    	}
+  	}
+  }
+ }
+ 
+if (ncartas == 3) {
+
+	if (e.ultima_jogada_valida == e.ultimo_jogador ){
+		for (v = 0; v <= 12; v++){
+      		for (n = 0; n <= 3; n++){
+        		m = add_carta(0,n,v);
+        		if (carta_existe(e.mao[e.ultimo_jogador],n,v)){
+          			m = add_carta(0,n,v);
+          			e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) -1 ;
+	          		e.ultima_jogada = m;
+	          		e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador],n,v) ;
+	          		e.ultima_jogada_valida = e.ultimo_jogador;
+	          		e.ultimo_jogador = incrementa_jogador(e);
+	          		e.card = 0;
+          			return e;
+        		}	
+      		}	
+		}
+	}
+
+else{
+	for(v = 0; v <= 12; v++) {
+		
+		for(n = 0; n <= 3; n++) {
+
+			if (carta_existe(e.mao[e.ultimo_jogador], n, v)) {
+        		
+        		m = add_carta(0,n,v);			
+
+				for(l = 0; l <= 3; l++) {
+                	if (carta_existe(e.mao[e.ultimo_jogador], l, v)) { 
+						g = add_carta(0,l,v);
+						
+					for(k = 0; k <= 3; k++) {
+                        g = add_carta(0,l,v);
+      					z = add_carta(0, k, v);
+      				    m = add_carta(0,n,v);
+      					p = add_carta(m,k,v);
+      					p = add_carta(p,l,v);
+      				
+      					if (carta_existe(e.mao[e.ultimo_jogador],k,v) && z != m && g != m && g != z && validacao_2maos_bots(e,p) ) {
+      						m = add_carta(0,n,v);
+      						p = add_carta(m, k, v);
+      						e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) - 3;
+      						e.ultima_jogada = p;
+      						e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador], n, v);
+      						e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador], k, v);
+      						e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador], l, v);
+      						e.ultima_jogada_valida = e.ultimo_jogador;
+      						e.ultimo_jogador = incrementa_jogador(e);
+      						e.card = 0;
+      						return e;
+      					}
+      				}
+				}
 				}
 			}
     	}
@@ -830,9 +895,10 @@ else{
  }
 
 
+e.ultimo_jogador = incrementa_jogador(e);
+return e;
+ 
 
- 	e.ultimo_jogador = incrementa_jogador(e);
- 	return e;
 }
 
 
