@@ -212,17 +212,6 @@ int carta_existe(long long int ESTADO, int naipe, int valor) {
 
 
 
-
-/*
-void imprime_carta(char *path, int x, int y, long long int ESTADO, long long int ESTADO1, long long int ESTADO2, long long int ESTADO3 , int naipe, int valor) {
-	char *suit = NAIPES;
-	char *rank = VALORES;
-	char script[10240];
-	sprintf(script, "%s?%lld_%lld_%lld_%lld", SCRIPT, rem_carta(ESTADO, naipe, valor), ESTADO1, ESTADO2, ESTADO3);
-	printf("<a xlink:href = \"%s\"><image x = \"%d\" y = \"%d\" height = \"110\" width = \"80\" xlink:href = \"%s/%c%c.svg\" /></a>\n", script, x, y, path, rank[valor], suit[naipe]);
-}
-*/
-
 /** \brief Imprime o estado?5639952667138_4389327735900288_107805827932500_826110870569_4539780431872_13_13_13_13_1_0_0_0_0
 Esta função está a imprimir o estado em quatro colunas: uma para cada naipe
 @param path	o URL correspondente à pasta que contém todas as cartas
@@ -321,48 +310,6 @@ void imprime (char *path, ESTADO e) {
 
 
 
-/*
-void imprime(char *path, long long int ESTADO[]) {
-	int n, v;
-	int x1, y1, x2, y2, x3, y3, x4, y4;
-	x1 = 220;
-    y2 = 490;
-    x3 = 480;
-    y4 = 230;
-
-	printf("<svg height = \"800\" width = \"800\">\n");
-	printf("<rect x = \"0\" y = \"0\" height = \"800\" width = \"800\" style = \"fill:#007700\"/>\n");
-
-	for(y1 = 670, x2=670, y3= 30, x4 = 30  , n = 0; n < 4; n++) {
-		for(v = 0; v < 13; v++)
-			
-            if(carta_existe(ESTADO[0], n, v)) {
-				x1 += 20;
-				imprime_carta(path, x1, y1, ESTADO[0],  ESTADO[1],  ESTADO[2],  ESTADO[3], n, v);
-			}
-
-            else if(carta_existe(ESTADO[1], n, v)) {
-				y2 -= 20 ;
-				imprime_carta(path, x2, y2,  ESTADO[0], ESTADO[1],  ESTADO[2],  ESTADO[3], n, v);
-			}
-			
-
-			else if(carta_existe(ESTADO[2], n, v)) {
-				x3 -= 20;
-				imprime_carta(path, x3, y3, ESTADO[0],  ESTADO[1],  ESTADO[2],  ESTADO[3], n, v);
-			}
-
-			else if(carta_existe(ESTADO[3], n, v)) {
-				y4 += 20;
-				imprime_carta(path, x4, y4,  ESTADO[0],  ESTADO[1],  ESTADO[2],  ESTADO[3], n, v);
-			}
-	}
-	printf("</svg>\n");
-}
-*/
-
-
-
 int numero_de_cartas(MAO m){
 	
 	int n, v, contaCartas=0;
@@ -378,18 +325,6 @@ int numero_de_cartas(MAO m){
 }
 
 
-
-
-/*
-  funçao int conta_cartas Mao
-  2 int da_valor(MAO) que devolve -1 se a mao tem mais do que um valor e o valor caso todas as cartas da mao tenham o mesmo valor
-  3 faz um funçao int da_maior_naipe (MAO) que devolve o maior naipe de uma MAO
-
-
-
-  isto para a combinaçao maior .
-  (1-1/1)
- */
 
 int combinacao_valida(MAO m) { 
 	
@@ -566,13 +501,13 @@ void imprime_botao_jogar(ESTADO e) {
         novo.cartas[0] = e.cartas[0] - (numero_de_cartas(novo.ultima_jogada));
       	novo.ultimo_jogador = incrementa_jogador(e);
 		novo.play = 1;
-    novo.ultima_jogada_valida = 0;	
+    	novo.ultima_jogada_valida = 0;	
 		sprintf(script, "%s?%s", SCRIPT, estado2str(novo));
-		printf("<a xlink:href = \"%s\"><image x = \"280\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/SubmitLI2.png\" /></a>\n", script); 
+		printf("<a xlink:href = \"%s\"><image x = \"280\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/SubmitLI2.png\" /></a>\n", script); 
 	}
 
 	else {
-		printf("<image x = \"280\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/SubmitLI2out.png\" />\n"); 
+		printf("<image x = \"280\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/SubmitLI2out.png\" />\n"); 
 	}
 }
 
@@ -583,27 +518,17 @@ void imprime_botao_passar(ESTADO e) {
 
 	if(e.ultimo_jogador == 0 && e.ultima_jogada != -1 && e.ultima_jogada_valida != 0){
 		novo.ultima_jogada = e.ultima_jogada;
-    novo.highlight = 0;
-    novo.ultimo_jogador = incrementa_jogador(e);
-    novo.pass = 1;
+   		novo.highlight = 0;
+    	novo.ultimo_jogador = incrementa_jogador(e);
+    	novo.pass = 1;
 		sprintf(script, "%s?%s", SCRIPT, estado2str(novo));
-		printf("<a xlink:href = \"%s\"><image x = \"380\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/PassLI2.png\" /></a>\n", script); 
+		printf("<a xlink:href = \"%s\"><image x = \"380\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/PassLI2.png\" /></a>\n", script); 
 }
 
 	else {
-		printf("<image x = \"380\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/PassLI2out.png\" />\n"); 
+		printf("<image x = \"380\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/PassLI2out.png\" />\n"); 
 	}
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -626,10 +551,13 @@ ESTADO jogar (ESTADO e) {
 				}
 			}
 		}
+    
     e = bots2(e);
+    
     while(e.ultimo_jogador != 0){
-    e = bots2(e);
+    	e = bots2(e);
     }
+	
 	e.highlight = 0; 
 
 
@@ -640,10 +568,11 @@ ESTADO jogar (ESTADO e) {
 ESTADO passar (ESTADO e) {
 	
 	e.pass = 0;
-  e = bots2(e);
-  while(e.ultimo_jogador != 0){
-    e = bots2(e);
-  }
+  	e = bots2(e);
+  	
+  	while(e.ultimo_jogador != 0){
+    	e = bots2(e);
+  	}
 	
 
 	e.highlight = 0; 
@@ -651,25 +580,6 @@ ESTADO passar (ESTADO e) {
 }
 
 
-/*
-ESTADO incrementa (ESTADO e) {
-	int n, v, x, y, m;
-	e.highlight = e.highlight; 
-	return e;
-}
-*/
-/*
-  Validação Bots:
-
-  - Se bot começar com 3 de ouros, é essa a carta que ele tem de jogar, ou um par, ou um trio com o 3 de ouros
-
-  - Supondo que somos nós a começar. O bot1 tem de jogar uma combinação válida maior que a nossa. Seguidamente, o bot2 uma maior que o bot1, e o bot3 uma maior que o bot2.
-
-  - Objetivo do bot: Procurar na sua mão a menor combinação possível a ser jogada, em relação à anterior. 
-  (Se for ele a começar a turno, ele jogará na mesma a menor carta possível em relação à última carta jogada da última ronda).
-
-  - Se ao percorrer a mão do bot, ele não tiver uma combinação maior que a anterior, não joga nada, sendo equivalente a um "PASS".
- */
 
 int valida_bots_jogadas_normais (ESTADO e, MAO m) {
 	
@@ -721,21 +631,18 @@ ESTADO bots1(ESTADO e){
 
 
 if (e.ultima_jogada == -1 && e.ultimo_jogador != 0 ){
- e.cartas[e.ultimo_jogador] =( e.cartas[(e.ultimo_jogador)]) - 1;
- e.mao[e.ultimo_jogador] = rem_carta(e.mao[(e.ultimo_jogador)],0,0);
- e.ultima_jogada = 1;
- e.ultimo_jogador = incrementa_jogador(e);
- e.card = 0;
- e.cartas_bots[e.ultimo_jogador] = 2;
- return e;
- }
-return e;
+ 	e.cartas[e.ultimo_jogador] =( e.cartas[(e.ultimo_jogador)]) - 1;
+ 	e.mao[e.ultimo_jogador] = rem_carta(e.mao[(e.ultimo_jogador)],0,0);
+ 	e.ultima_jogada = 1;
+ 	e.ultimo_jogador = incrementa_jogador(e);
+ 	e.card = 0;
+ 	e.cartas_bots[e.ultimo_jogador] = 2;
+ 	
+ 	return e;
 }
 
-
-
-
-
+	return e;
+}
 
 
 
@@ -792,11 +699,6 @@ if (ncartas == 1) {
 
 
 
-
-
-
-
-
 if (ncartas == 2) {
 
 	if (e.ultima_jogada_valida == e.ultimo_jogador ){
@@ -818,7 +720,7 @@ if (ncartas == 2) {
 		}
 	}
 
-else{
+else {
 	for(v = 0; v <= 12; v++) {
 		
 		for(n = 0; n <= 3; n++) {
@@ -826,8 +728,6 @@ else{
 			if (carta_existe(e.mao[e.ultimo_jogador], n, v)) {
         		
         		m = add_carta(0,n,v);			
-
-				
 
 					for(k = 0; k <= 3; k++) {
       
@@ -849,12 +749,11 @@ else{
       						return e;
       					}
       				}
-				
 			}
     	}
   	}
-  }
  }
+}
  
 if (ncartas == 3) {
 
@@ -921,102 +820,27 @@ else{
   }
  }
 
-e.cartas_bots[e.ultimo_jogador] = 0;
-e.ultimo_jogador = incrementa_jogador(e);
-return e;
- 
-
+	e.cartas_bots[e.ultimo_jogador] = 0;
+	e.ultimo_jogador = incrementa_jogador(e);
+	return e;
 }
 
 
-
-
-/*
-ESTADO bots2(ESTADO e){
-	long long int m=0 ;
-	int n,v;
-
-  if (e.ultima_jogada_valida == e.ultimo_jogador ){
-    for (v = 0; v <= 12; v++){
-      for (n = 0; n <= 3; n++){
-        m = add_carta(0,n,v);
-        if (carta_existe(e.mao[e.ultimo_jogador],n,v)){
-          m = add_carta(0,n,v);
-          e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) -1 ;
-          e.ultima_jogada = m;
-          e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador],n,v) ;
-          e.ultima_jogada_valida = e.ultimo_jogador;
-          e.ultimo_jogador = incrementa_jogador(e);
-          e.card = 0;
-          return e ;
-        }
-      
-      }
- }
-
-  }
-
-  else{
-	for (v = 0; v <= 12; v++){
-    for (n = 0; n <= 3; n++){
-			m = add_carta(0,n,v);
-			if (carta_existe(e.mao[e.ultimo_jogador],n,v) && valida_bots_jogadas_normais(e,m)){
-				m = add_carta(0,n,v);
-				e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) -1 ;
-				e.ultima_jogada = m;
-				e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador],n,v) ;
-				e.ultima_jogada_valida = e.ultimo_jogador;
-				e.ultimo_jogador = incrementa_jogador(e);
-				e.card = 0;
-        return e ;
-      }
-      
-        }
- }
-}
-  e.ultimo_jogador = incrementa_jogador(e);
- return e;
-}
-*/
-
-
-/*
-ESTADO jogar (ESTADO e){
-  int n, v, x=250, y=400;  
-  e.play = 0;
-  for(n = 0; n < 4; n++) {
-    for(v = 0; v < 13; v++) {
-      if(carta_existe(e.highlight, n, v)) {
-        e.mao[0]=rem_carta(e.mao[0], n, v);
-        x+=20;
-        imprime_carta(BARALHO, x, y, e, 4, n, v);
-      }
-    }
-  }    
-  e.highlight = 0;
-  return e;
-}
-*/
-
-
-
-void imprime_botao_incrementa(ESTADO e) {
+void imprime_botao_reset(ESTADO e) {
 
 	char script[10240];
 	
-if (e.cartas[0] != 0 && e.cartas[1] != 0 && e.cartas[2] != 0 && e.cartas[3] != 0 ){
+	if (e.cartas[0] != 0 && e.cartas[1] != 0 && e.cartas[2] != 0 && e.cartas[3] != 0 ){
 
 }
-else{	
+else {	
     e = bots1(baralhar());
+   
    while(e.ultimo_jogador != 0){
-     e = bots2(e);
-    }
+     	e = bots2(e);
+   }
 		sprintf(script, "%s?%s", SCRIPT, estado2str(e));
-		printf("<a xlink:href = \"%s\"><image x = \"480\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/PassLI2.png\" /></a>\n", script);
-
-
-	
+		printf("<a xlink:href = \"%s\"><image x = \"480\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/Reset.png\" /></a>\n", script);
 }
 }
 
@@ -1035,49 +859,40 @@ Caso não seja passado nada à cgi-bin, ela assume que todas as cartas estão pr
 
 
 
-
-
 void parse (char *query) {
 	
 	ESTADO e;
 
-int a;
+	int a;
 
 	if (query != NULL && strlen(query) != 0) {
 		e = str2estado(query); 
 		
 		if (e.card) e.card = 0;
-/*a= 	e.ultimo_jogador;
-printf("%d\n", a);*/
 		if (e.play) e = jogar(e);
         if (e.pass) e = passar(e);
-       /* if(e.ultimo_jogador != 0) e = incrementa(e);*/
-    a=e.mao[0];
-    printf("%d\n", a);
-   /* if (e.ultimo_jogador != 0){
-      e = bots(e);
-    }*/
+    
+    	a=e.mao[0];
+    	printf("%d\n", a);
 	}
 
 
 	else {
 		
-   e = bots1(baralhar());
-   while(e.ultimo_jogador != 0){
-     e = bots2(e);
-   }
+   		e = bots1(baralhar());
+   	
+   		while(e.ultimo_jogador != 0){
+     		e = bots2(e);
+   		}
 
- a=e.mao[0];
-printf("%d\n", a);
-
+ 		a=e.mao[0];
+		printf("%d\n", a);
 	}
 	
 	imprime(BARALHO, e);
-    (imprime_botao_jogar(e));
+    imprime_botao_jogar(e);
   	imprime_botao_passar(e);
-  	imprime_botao_incrementa(e);
-/*  a= 	e.ultimo_jogador;
-printf("%d\n", a);*/
+  	imprime_botao_reset(e);
 }
 
 
@@ -1110,12 +925,3 @@ int main() {
 	return 0;
 }
 
-
-/*
-int main () {
-	int x;
-	x = baralhar();
-	printf("%d \n", x);
-	return 0;
-}
-*/
