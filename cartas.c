@@ -149,6 +149,7 @@ ESTADO baralhar () {
 	}
 
 	e.ultimo_jogador = primeiro_jogar(e);
+	e.cartas_bots[e.ultimo_jogador] = 1;
     e.ultima_jogada_valida = e.ultimo_jogador;
 
 	return e;
@@ -258,7 +259,7 @@ void imprime_carta(char *path, int x, int y, ESTADO e, int mao, int naipe, int v
 
 void imprime (char *path, ESTADO e) {
 
-	int n, v, m, bx1= 500 , by1 = 300 , bx2=340 , by2 = 150 , bx3= 150 , by3 = 320;
+	int n, v, m, bx1= 500 , by1 = 300 , bx2=340 , by2 = 150 , bx3= 100 , by3 = 500;
 	int X[4] = {200, 600, 200, 10};
 	int Y[4] = {550, 200, 10, 200};
 
@@ -288,10 +289,10 @@ void imprime (char *path, ESTADO e) {
 				}
 				
 				if(carta_existe(e.cartas_bots[3],n,v)){
-				  if (n == 0) by3 = 150;
-                  if (n == 1) by3 = 170;
-                  if (n == 2) by3 = 190;
-                  if (n == 3) by3 = 210;
+				  if (n == 0) by3 = 200;
+                  if (n == 1) by3 = 220;
+                  if (n == 2) by3 = 240;
+                  if (n == 3) by3 = 260;
 				  imprime_carta(path,bx3, by3, e, m, n, v);
 				} 
 
@@ -596,20 +597,7 @@ void imprime_botao_passar(ESTADO e) {
 
 
 
-void imprime_botao_incrementa(ESTADO e) {
 
-	char script[10240];
-	ESTADO novo = e;
-
-	
-    novo.ultimo_jogador = incrementa_jogador(e);
-    
-		sprintf(script, "%s?%s", SCRIPT, estado2str(novo));
-		printf("<a xlink:href = \"%s\"><image x = \"480\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/PassLI2.png\" /></a>\n", script);
-
-
-	
-}
 
 
 
@@ -738,7 +726,7 @@ if (e.ultima_jogada == -1 && e.ultimo_jogador != 0 ){
  e.ultima_jogada = 1;
  e.ultimo_jogador = incrementa_jogador(e);
  e.card = 0;
- e.cartas_bots[e.ultimo_jogador] = 1;
+ e.cartas_bots[e.ultimo_jogador] = 2;
  return e;
  }
 return e;
@@ -1011,6 +999,29 @@ ESTADO jogar (ESTADO e){
 */
 
 
+
+void imprime_botao_incrementa(ESTADO e) {
+
+	char script[10240];
+	
+
+	
+    e = bots1(baralhar());
+   while(e.ultimo_jogador != 0){
+     e = bots2(e);
+    
+		sprintf(script, "%s?%s", SCRIPT, estado2str(e));
+		printf("<a xlink:href = \"%s\"><image x = \"480\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/PassLI2.png\" /></a>\n", script);
+
+
+	
+}
+}
+
+
+
+
+
 /** \brief Trata os argumentos da CGI
 Esta função recebe a query que é passada à cgi-bin e trata-a.
 Neste momento, a query contém o estado que é um inteiro que representa um conjunto de cartas.
@@ -1018,6 +1029,8 @@ Cada carta corresponde a um bit que está a 1 se essa carta está no conjunto e 
 Caso não seja passado nada à cgi-bin, ela assume que todas as cartas estão presentes.
 @param query A query que é passada à cgi-bin
  */
+
+
 
 
 
