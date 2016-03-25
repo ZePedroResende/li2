@@ -1004,12 +1004,14 @@ void imprime_botao_incrementa(ESTADO e) {
 
 	char script[10240];
 	
+if (e.cartas[0] != 0 && e.cartas[1] != 0 && e.cartas[2] != 0 && e.cartas[3] != 0 ){
 
-	
+}
+else{	
     e = bots1(baralhar());
    while(e.ultimo_jogador != 0){
      e = bots2(e);
-    
+    }
 		sprintf(script, "%s?%s", SCRIPT, estado2str(e));
 		printf("<a xlink:href = \"%s\"><image x = \"480\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/PassLI2.png\" /></a>\n", script);
 
