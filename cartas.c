@@ -258,7 +258,7 @@ void imprime_carta(char *path, int x, int y, ESTADO e, int mao, int naipe, int v
 
 void imprime (char *path, ESTADO e) {
 
-	int n, v, m, bx1= 500 , by1 = 300 , bx2=340 , by2 = 50 , bx3= 150 , by3 = 320;
+	int n, v, m, bx1= 500 , by1 = 300 , bx2=340 , by2 = 150 , bx3= 150 , by3 = 320;
 	int X[4] = {200, 600, 200, 10};
 	int Y[4] = {550, 200, 10, 200};
 
@@ -271,19 +271,28 @@ void imprime (char *path, ESTADO e) {
 			for (v = 0; v < 13; v++){
 				
 				if(carta_existe(e.cartas_bots[1],n,v)){
+                  if (n == 0) by1 = 300;
+                  if (n == 1) by1 = 320;
+                  if (n == 2) by1 = 340;
+                  if (n== 3) by1 = 360;
                   imprime_carta(path, bx1, by1, e, m, n, v); 
-                  by1 += 20;
-
 				}
 
 				if(carta_existe(e.cartas_bots[2],n,v)){
+				  if (n == 0) bx2 = 340;
+                  if (n == 1) bx2 = 360;
+                  if (n == 2) bx2 = 380;
+                  if (n == 3) bx2 = 400;
 				  imprime_carta(path, bx2, by2, e, m, n, v);
-				  bx2 +=20;
+				  
 				}
 				
 				if(carta_existe(e.cartas_bots[3],n,v)){
+				  if (n == 0) by3 = 150;
+                  if (n == 1) by3 = 170;
+                  if (n == 2) by3 = 190;
+                  if (n == 3) by3 = 210;
 				  imprime_carta(path,bx3, by3, e, m, n, v);
-				  by3 += 20;
 				} 
 
 				if (carta_existe(e.mao[m], n, v)) {
@@ -924,7 +933,7 @@ else{
   }
  }
 
-
+e.cartas_bots[e.ultimo_jogador] = 0;
 e.ultimo_jogador = incrementa_jogador(e);
 return e;
  
