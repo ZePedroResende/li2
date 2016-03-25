@@ -33,7 +33,7 @@ const long long int ESTADO_INICIAL = 0x1FFF;
 
 
 
-#define FORMATO "%lld_%lld_%lld_%lld_%lld_%d_%d_%d_%d_%d_%d_%d_%d_%lld_%d"
+#define FORMATO "%lld_%lld_%lld_%lld_%lld_%d_%d_%d_%d_%d_%d_%d_%d_%lld_%d_%lld_%lld_%lld_%lld"
 
 
 typedef long long int MAO;
@@ -42,25 +42,27 @@ struct estado {
 
 	MAO highlight;
 
+    
 	int cartas[4];
 
 	int play, pass, card, ultima_jogada_valida;
 
 	MAO ultima_jogada;
 	int ultimo_jogador;
+	MAO cartas_bots[4];
 };
 	
 typedef struct estado ESTADO;
 char* estado2str(ESTADO e){
   static char str[10240];
-  sprintf(str, FORMATO, e.mao[0], e.mao[1], e.mao[2], e.mao[3], e.highlight, e.cartas[0], e.cartas[1], e.cartas[2], e.cartas[3], e.play, e.pass, e.card,e.ultima_jogada_valida, e.ultima_jogada, e.ultimo_jogador);
+  sprintf(str, FORMATO, e.mao[0], e.mao[1], e.mao[2], e.mao[3], e.highlight, e.cartas[0], e.cartas[1], e.cartas[2], e.cartas[3], e.play, e.pass, e.card,e.ultima_jogada_valida, e.ultima_jogada, e.ultimo_jogador, e.cartas_bots[0], e.cartas_bots[1], e.cartas_bots[2], e.cartas_bots[3]);
 
   return str;
 }
 
 ESTADO str2estado(char* str){
   ESTADO e;
-  sscanf(str, FORMATO, &e.mao[0], &e.mao[1], &e.mao[2], &e.mao[3], &e.highlight, &e.cartas[0], &e.cartas[1], &e.cartas[2], &e.cartas[3], &e.play, &e.pass, &e.card,&e.ultima_jogada_valida, &e.ultima_jogada, &e.ultimo_jogador);  
+  sscanf(str, FORMATO, &e.mao[0], &e.mao[1], &e.mao[2], &e.mao[3], &e.highlight, &e.cartas[0], &e.cartas[1], &e.cartas[2], &e.cartas[3], &e.play, &e.pass, &e.card,&e.ultima_jogada_valida, &e.ultima_jogada, &e.ultimo_jogador, &e.cartas_bots[0], &e.cartas_bots[1], &e.cartas_bots[2], &e.cartas_bots[3]);  
 
   return e;
 }
@@ -101,14 +103,17 @@ ESTADO baralhar () {
 	long long int player3[13];
 	long long int player4[13];
 	
-	ESTADO e = {{0},0,{0},0,0,0,0,-1,0};
+	ESTADO e = {{0},0,{0},0,0,0,0,-1,0,{0}};
 
 	e.cartas[0] = 13;
 	e.cartas[1] = 13;
 	e.cartas[2] = 13;
 	e.cartas[3] = 13;
-
-
+    
+    e.cartas_bots[0] =0;
+    e.cartas_bots[1] =0;
+    e.cartas_bots[2] =0;
+    e.cartas_bots[3] =0;
 
 
 	for(a = 0; a <= 12; a++) {
@@ -144,7 +149,7 @@ ESTADO baralhar () {
 	}
 
 	e.ultimo_jogador = primeiro_jogar(e);
-  e.ultima_jogada_valida = e.ultimo_jogador;
+    e.ultima_jogada_valida = e.ultimo_jogador;
 
 	return e;
 
@@ -253,7 +258,7 @@ void imprime_carta(char *path, int x, int y, ESTADO e, int mao, int naipe, int v
 
 void imprime (char *path, ESTADO e) {
 
-	int n, v, m;
+	int n, v, m, bx1= 500 , by1 = 300 , bx2=340 , by2 = 50 , bx3= 150 , by3 = 320;
 	int X[4] = {200, 600, 200, 10};
 	int Y[4] = {550, 200, 10, 200};
 
@@ -263,8 +268,24 @@ void imprime (char *path, ESTADO e) {
 
 		for (n = 0; n < 4; n++) {
 			
-			for (v = 0; v < 13; v++)
+			for (v = 0; v < 13; v++){
 				
+				if(carta_existe(e.cartas_bots[1],n,v)){
+                  imprime_carta(path, bx1, by1, e, m, n, v); 
+                  by1 += 20;
+
+				}
+
+				if(carta_existe(e.cartas_bots[2],n,v)){
+				  imprime_carta(path, bx2, by2, e, m, n, v);
+				  bx2 +=20;
+				}
+				
+				if(carta_existe(e.cartas_bots[3],n,v)){
+				  imprime_carta(path,bx3, by3, e, m, n, v);
+				  by3 += 20;
+				} 
+
 				if (carta_existe(e.mao[m], n, v)) {
 					
 					if (m % 2 == 0) { 
@@ -283,6 +304,7 @@ void imprime (char *path, ESTADO e) {
 						imprime_carta(path, x, y, e, m, n, v);
 					}
 			}
+		  }
 		}
 	}
 }
@@ -707,6 +729,7 @@ if (e.ultima_jogada == -1 && e.ultimo_jogador != 0 ){
  e.ultima_jogada = 1;
  e.ultimo_jogador = incrementa_jogador(e);
  e.card = 0;
+ e.cartas_bots[e.ultimo_jogador] = 1;
  return e;
  }
 return e;
@@ -738,6 +761,7 @@ if (ncartas == 1) {
           			m = add_carta(0,n,v);
           			e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) -1 ;
 	          		e.ultima_jogada = m;
+	          		e.cartas_bots[e.ultimo_jogador] = m;
 	          		e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador],n,v) ;
 	          		e.ultima_jogada_valida = e.ultimo_jogador;
 	          		e.ultimo_jogador = incrementa_jogador(e);
@@ -756,6 +780,7 @@ if (ncartas == 1) {
 					m = add_carta(0,n,v);
 					e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) -1 ;
 					e.ultima_jogada = m;
+					e.cartas_bots[e.ultimo_jogador] = m;
 					e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador],n,v) ;
 					e.ultima_jogada_valida = e.ultimo_jogador;
 					e.ultimo_jogador = incrementa_jogador(e);
@@ -785,6 +810,7 @@ if (ncartas == 2) {
           			m = add_carta(0,n,v);
           			e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) -1 ;
 	          		e.ultima_jogada = m;
+	          		e.cartas_bots[e.ultimo_jogador] = m;
 	          		e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador],n,v) ;
 	          		e.ultima_jogada_valida = e.ultimo_jogador;
 	          		e.ultimo_jogador = incrementa_jogador(e);
@@ -817,6 +843,7 @@ else{
       						p = add_carta(m, k, v);
       						e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) - 2;
       						e.ultima_jogada = p;
+      						e.cartas_bots[e.ultimo_jogador] = p;
       						e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador], n, v);
       						e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador], k, v);
       						e.ultima_jogada_valida = e.ultimo_jogador;
@@ -842,6 +869,7 @@ if (ncartas == 3) {
           			m = add_carta(0,n,v);
           			e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) -1 ;
 	          		e.ultima_jogada = m;
+	          		e.cartas_bots[e.ultimo_jogador] = m;
 	          		e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador],n,v) ;
 	          		e.ultima_jogada_valida = e.ultimo_jogador;
 	          		e.ultimo_jogador = incrementa_jogador(e);
@@ -878,6 +906,7 @@ else{
       						p = add_carta(p,l,v);
       						e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) - 3;
       						e.ultima_jogada = p;
+      						e.cartas_bots[e.ultimo_jogador] = p;
       						e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador], n, v);
       						e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador], k, v);
       						e.mao[e.ultimo_jogador] = rem_carta(e.mao[e.ultimo_jogador], l, v);
