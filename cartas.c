@@ -250,8 +250,8 @@ void imprime_carta(char *path, int x, int y, ESTADO e, int mao, int naipe, int v
 
 void imprime (char *path, ESTADO e) {
 
-	int n, v, m, bx1= 500 , by1 = 300 , bx2=340 , by2 = 150 , bx3= 100 , by3 = 500;
-	int X[4] = {200, 600, 200, 10};
+	int n, v, m, bx1= 600 , by1 = 300 , bx2=340 , by2 = 150 , bx3= 100 , by3 = 500;
+	int X[4] = {200, 700, 200, 10};
 	int Y[4] = {550, 200, 10, 200};
 
 	for(m = 0; m < 4; m++) { 
@@ -280,10 +280,10 @@ void imprime (char *path, ESTADO e) {
 				}
 				
 				if(carta_existe(e.cartas_bots[3],n,v)){
-				  if (n == 0) by3 = 200;
-                  if (n == 1) by3 = 220;
-                  if (n == 2) by3 = 240;
-                  if (n == 3) by3 = 260;
+				  if (n == 0) by3 = 300;
+                  if (n == 1) by3 = 320;
+                  if (n == 2) by3 = 340;
+                  if (n== 3) by3 = 360;
 				  imprime_carta(path,bx3, by3, e, m, n, v);
 				} 
 
@@ -916,7 +916,9 @@ int main() {
 	printf("<body>\n");
 	printf("<h1>Big2wo</h1>\n");
 	printf("<svg height = \"800\" width = \"800\">\n");
-	printf("<rect x = \"0\" y = \"0\" height = \"800\" width = \"800\" style = \"fill:#007700\"/>\n");
+/*	printf("<rect x = \"0\" y = \"0\" height = \"800\" width = \"800\" style = \"fill:#007700\"/>\n");*/
+printf("<image x = \"0\" y = \"0\" height = \"800\" width = \"800\" xlink:href = \"http://localhost/cards/tab.svg\" /></a>\n");
+
 
 /*
  * Ler os valores passados à cgi que estão na variável ambiente e passá-los ao programa
