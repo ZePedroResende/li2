@@ -35,6 +35,17 @@ const long long int ESTADO_INICIAL = 0x1FFF;
 
 #define FORMATO "%lld_%lld_%lld_%lld_%lld_%d_%d_%d_%d_%d_%d_%d_%d_%lld_%d_%lld_%lld_%lld_%lld"
 
+/* A struct estado contém as variáveis, as quais vão ser alteradas e manipuladas de modo a produzir jogadas válidas, tanto pelo jogador
+como pelos "bots"
+Dentro desta struct existe: 
+	1) mao[4] -> Array que contém a mão de cada jogador;
+	2) highlight -> Carta(s) selecionada(s) pelo utilizador;
+	3) cartas[4] -> Número de cartas de cada mão;
+	4) play, pass -> Valor que varia entre 0 e 1 conforme a ação do utlizador;
+	5) ultima_jogada_valida -> Número de jogador que realmente executou uma jogada válida;
+	6) ultima_jogada -> Ultima carta/combinição jogada;
+	7) ultimo_jogador -> Número do jogador que está a efetuar uma jogada;
+	8) cartas_bots[4] -> Cartas que os bots jogaram; */
 
 typedef long long int MAO;
 struct estado {
@@ -51,7 +62,10 @@ struct estado {
 	int ultimo_jogador;
 	MAO cartas_bots[4];
 };
-	
+
+
+/* Transforma o estado numa string, de forma a ser passado ao url. */
+
 typedef struct estado ESTADO;
 char* estado2str(ESTADO e){
   static char str[10240];
@@ -60,6 +74,7 @@ char* estado2str(ESTADO e){
   return str;
 }
 
+/* Transforma a string do url num estado novo. */
 ESTADO str2estado(char* str){
   ESTADO e;
   sscanf(str, FORMATO, &e.mao[0], &e.mao[1], &e.mao[2], &e.mao[3], &e.highlight, &e.cartas[0], &e.cartas[1], &e.cartas[2], &e.cartas[3], &e.play, &e.pass, &e.card,&e.ultima_jogada_valida, &e.ultima_jogada, &e.ultimo_jogador, &e.cartas_bots[0], &e.cartas_bots[1], &e.cartas_bots[2], &e.cartas_bots[3]);  
@@ -69,6 +84,10 @@ ESTADO str2estado(char* str){
 
 int carta_existe(long long int ESTADO, int naipe, int valor) ;
 
+
+/* Conforme as regras do jogo, a primeiro jogador a jogar é aquele que tem o 3 de ouros na sua mão.
+Esta função procura nas mãos de cada jogador o valor e o naipe correspondentes ao 3 de ouros. O jogador que
+tiver essa carta, passará a ser o ultimo_jogador, dando então prosseguimento. */
 
 int primeiro_jogar(ESTADO e){
 int n =0;
@@ -95,12 +114,18 @@ return n;
 
 long long int add_carta(long long int ESTADO, int naipe, int valor);
 
+/* Função que distribui as cartas por todas as mãos, de igual modo (13 para cada).
+Através da função "rand", as cartas são distribuidas aleatóriamente. Aqui, são feitas outras tarefas:
+O ultimo_jogador vai tomar o valor da função primeiro_jogador, previamente definida, que indica o jogador que começa o jogo,
+da-mos a e.cartas_bots[e.ultimo_jogador] o valor 1, de maneira que se um bot começar o jogo, este vai apresentar o 3 de ouros no tabuleiro,
+e a ultima_jogada_valida toma o valor do ultimo_jogador, guardando assim o ultimo jogador que jogou corretamente. */
+
 ESTADO baralhar () {
 	int a=0 , i=0 , j=0 , k=0 , l=0 , n=0 , v=0, jogador;
 
 	long long int player1[13];
 	long long int player2[13];
-	long long int player3[13];
+	long long int player3[13]; 
 	long long int player4[13];
 	
 	ESTADO e = {{0},0,{0},0,0,0,0,-1,0,{0}};
@@ -212,10 +237,17 @@ int carta_existe(long long int ESTADO, int naipe, int valor) {
 
 
 
-/** \brief Imprime o estado?5639952667138_4389327735900288_107805827932500_826110870569_4539780431872_13_13_13_13_1_0_0_0_0
+/** \brief Imprime o estado
 Esta função está a imprimir o estado em quatro colunas: uma para cada naipe
 @param path	o URL correspondente à pasta que contém todas as cartas
 @param ESTADO	O estado atual
+*/
+
+/* Esta função tem como objetivo imprimir as cartas no tabuleiro. 
+Se a carta a apresentar se encontre na mao do jogador (mao tomar o valor de 0 e o ultimo_jogador no estado for igual a 0), 
+e caso a carta seja selecionada e entao adicionada ao highlight , se ja se encontrar no highlight, entao é removida do highlight .
+Caso contrario , se a carta encontra-se na mao de um bot logo e imprimido o verso de uma carta caso contrario a carta 
+ja foi jogada por um bot logo e mostrada a carta correspondente.
 */
 
 void imprime_carta(char *path, int x, int y, ESTADO e, int mao, int naipe, int valor) {
@@ -247,7 +279,9 @@ void imprime_carta(char *path, int x, int y, ESTADO e, int mao, int naipe, int v
 
 
 
-
+/*
+Apresenta as cartas no trabuleiro nas respetivas coordenadas 
+*/
 void imprime (char *path, ESTADO e) {
 
 	int n, v, m, bx1= 600 , by1 = 300 , bx2=340 , by2 = 150 , bx3= 100 , by3 = 500;
@@ -312,7 +346,9 @@ void imprime (char *path, ESTADO e) {
 }
 
 
-
+/*
+Conta o numero de cartas que se encontra numa mao numa dada altura
+*/
 int numero_de_cartas(MAO m){
 	
 	int n, v, contaCartas=0;
@@ -327,7 +363,13 @@ int numero_de_cartas(MAO m){
 	return contaCartas;
 }
 
+/* se a jogada for pa 5 :
+	validar a tua mao
+	validar a ultima jogada para saber se sao 5 car e se sim que tipo de 5 cartas
+	validar as duas e ver se a nossa  tem o mesmo tipo e um valor maior ou se o tipo por si so e maior
 
+	vai ter de ter uma compara para cada um dos tipos  
+	*/
 
 int combinacao_valida(MAO m) { 
 	
@@ -338,6 +380,9 @@ int combinacao_valida(MAO m) {
 	else return 1;
 }
 
+/* Compara o tamanha entre duas mãos, ou seja, ve o tamanho da ultima jogada, e compara o tamanho com a jogada actual,
+e vê se a combinação tem o mesmo tamanho */
+
 int compara_tamanho(MAO m1, MAO m2){
 	if (numero_de_cartas(m1) == numero_de_cartas(m2)) {
 		return 1;
@@ -345,6 +390,7 @@ int compara_tamanho(MAO m1, MAO m2){
 
 	return 0;
 }
+
 
 int da_valor (MAO m){
 
@@ -368,15 +414,13 @@ int da_valor (MAO m){
       if (carta_existe(m, n, v)){
         if (v != primeiraCarta){
           return -1 ;
-
         }
-
       }
 	}
 	return primeiraCarta;
-
 }
 
+/* Esta função obtém o maior naipe dentro de uma mão, de forma a ser usado para avaliar a maior jogada. */
 
 int da_maior_naipe (MAO m){
  	int n, v, maior=0;
@@ -392,6 +436,9 @@ int da_maior_naipe (MAO m){
 }
 
 
+/* Aqui, é verificado se a jogada actual é maior que a jogada anterior. Conforme o retorno da função dá valor, a jogada
+actual é possível ser realizada ou não. Ao comparar, de os retornos das duas funções forem iguais, ou seja, se os maiores 
+valores de cada mão forem iguais, comparamos o naipe, assim identificando qual a maior jogada */
 
 int combinacao_maior (MAO m1, MAO m2) {
   int n =0;
@@ -409,6 +456,9 @@ else n= 0;
 
 return n;
 }
+
+/* É nesta função que a jogada do utilizador é verificada. Se esta for possível, é permitido ao utilizador colocar as cartas
+no meio do tabuleiro, registando assim a sua jogada. Caso contrário, ou o utilizador passa, ou tenta arranjar outro tipo de combinação. */
 
 int posso_jogar (ESTADO e) {
 	
@@ -484,7 +534,8 @@ int posso_jogar (ESTADO e) {
 	}
 }
 
-
+/* Em cada jogada, o jogador é incrementado, tomando assim o controlo do jogador que está em jogo. 
+Como estes variam entre 0 e 3 (4 jogadores), enquanto ele for diferente de 3, vai incrementar para um próximo jogador, e uma próxima jogada. */
 	
 int incrementa_jogador (ESTADO e){
   if (e.ultimo_jogador != 3) return (e.ultimo_jogador += 1);
@@ -493,6 +544,8 @@ int incrementa_jogador (ESTADO e){
 
 ESTADO bots2(ESTADO e);
 
+/* Esta função trata de imprimir o botão "SUBMIT" na página HTML. Aqui, usamos a função posso_jogar.
+Se for possível jogar, o botão é clicável, sendo primitida a jogada. Caso contrário, o botão fica mais escuro, não sendo clicável. */
 
 void imprime_botao_jogar(ESTADO e) {
 
@@ -514,6 +567,10 @@ void imprime_botao_jogar(ESTADO e) {
 	}
 }
 
+/* Esta função trata de imprimir o botão "PASS" na página HTML. Quando o utilizador não tem nenhuma combinação válida possível
+em relação a última jogada, é possível usar o botão "PASS". O utilizador pode usar sempre o botão "PASS", 
+excepto quando é o primeiro a jogar (3 de ouros) ou quando todos passam a jogada e este foi o ultimo a jogar uma carta/combinaçao  */
+
 void imprime_botao_passar(ESTADO e) {
 
 	char script[10240];
@@ -534,7 +591,13 @@ void imprime_botao_passar(ESTADO e) {
 }
 
 
-
+/*
+a funçao jogar vai ser invocada pela funçao parse , 
+e vai retirar as cartas da mao do jogador caso esta exista no highlight , 
+colocando a na posiçao do tabuleiro correspondete a jogada do utilizador
+ou seja, vai ser a funçao executada quando carregamos no botao jogar para um dado highlight .
+Esta funçao tambem convoca as funçoes dos bots que executam as suas jogadas enquanto nao for a vez do utilizador jogar
+*/
 
 ESTADO jogar (ESTADO e) {
 	
@@ -567,6 +630,10 @@ ESTADO jogar (ESTADO e) {
 	return e;
 }
 
+/*
+funçao invocada na parse , que vai ser executada quando carregamos no botao passar, e que so incrementa o jogador e mantem o resto do estado.
+Esta funçao tambem convoca as funçoes dos bots que executam as suas jogadas enquanto nao for a vez do utilizador jogar. 
+*/
 
 ESTADO passar (ESTADO e) {
 	
@@ -582,7 +649,7 @@ ESTADO passar (ESTADO e) {
 	return e;
 }
 
-
+/* A valida_bots_jogadas_normais e validacao_2maos_bots sao as funçoes que vao validar as jogadas dos bots */
 
 int valida_bots_jogadas_normais (ESTADO e, MAO m) {
 	
@@ -628,11 +695,11 @@ int validacao_2maos_bots (ESTADO e, MAO p) {
 }
 
 
-
+/*
+a bots1 vai ser executa para quando um bot começa a jogar(tem o 3 de ouros na sua mao) 
+E executada na modificaçao do baralhar na parse 
+*/
 ESTADO bots1(ESTADO e){
-
-
-
 if (e.ultima_jogada == -1 && e.ultimo_jogador != 0 ){
  	e.cartas[e.ultimo_jogador] =( e.cartas[(e.ultimo_jogador)]) - 1;
  	e.mao[e.ultimo_jogador] = rem_carta(e.mao[(e.ultimo_jogador)],0,0);
@@ -648,7 +715,9 @@ if (e.ultima_jogada == -1 && e.ultimo_jogador != 0 ){
 }
 
 
-
+/*
+a bots2 vai ser executada para quando um bot executar uma joga que nao seja jogar 3 de ouros, isto inclui jogadas de 1, 2, 3 cartas e tambem passagens pelos mesmos.
+*/
 
 ESTADO bots2(ESTADO e){
 	long long int m=0;
@@ -828,7 +897,9 @@ else{
 	return e;
 }
 
-
+/*
+Imprime botao resete  vai imprimir um botao quando algum dos jogadores ganha a ronda ou seja acaba as cartas da sua mae 
+*/
 void imprime_botao_reset(ESTADO e) {
 
 	char script[10240];
