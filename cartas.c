@@ -27,9 +27,6 @@ Ordem das cartas
 	a 1 caso ela pertença à mão ou 0 caso contrário
 */
 
-const long long int ESTADO_INICIAL = 0x1FFF;
-
-
 
 
 
@@ -48,6 +45,7 @@ Dentro desta struct existe:
 	8) cartas_bots[4] -> Cartas que os bots jogaram; */
 
 typedef long long int MAO;
+
 struct estado {
 	MAO mao[4];
 
@@ -62,6 +60,29 @@ struct estado {
 	int ultimo_jogador;
 	MAO cartas_bots[4];
 };
+
+/*
+   criar tres funcoes para avaliar 5 cartas *straight
+    
+   separa valores
+   separa naipes
+   ordenacao
+
+   quando tem um as: ver em que ordem tem um straight. A partir daí, é que vemos onde pomos o as.
+
+
+
+   para avaliar o resto das combinações:
+
+   usar separa-valores e separa-naipes
+
+
+
+   separa valores . 
+   cria um array com 14 posiçoes com o As e o 2 no principio e o A na 14 . 
+   Se tiveres cinco poisçoes diferentes de 0 tens um strait .
+   */
+
 
 
 /* Transforma o estado numa string, de forma a ser passado ao url. */
