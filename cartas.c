@@ -468,78 +468,305 @@ else n= 0;
 return n;
 }
 
+
+
+int valida_straight (MAO m) {
+
+	int v,i,n,j;
+
+	int contaValores[14];
+
+	for (i = 0; i < 14; i++) {
+		contaValores[i] = 0;
+	}
+
+	i = 2;
+	for (v = 0; v < 13; v++) {
+		for(n = 0; n < 4; n++) {
+			switch (v) {
+				case 12: if (carta_existe(m,n,v)) { contaValores[0]++; contaValores[13]++; } break;
+				case 13: if (carta_existe(m,n,v)) { contaValores[1]++; } break;
+				default: if (carta_existe(m,n,v)) { contaValores[i]++; } break;
+			}	
+    	}
+    	i++;
+	}
+
+	j = 0;
+	while ((j + 4) < 14) {
+		if ((contaValores[j] != 0) && (contaValores[j+1] != 0) && (contaValores[j+2] != 0) && (contaValores[j+3] != 0) && (contaValores[j+4] != 0)) {
+			return 1;
+		}
+		j++;
+	}
+
+	return -1; 
+}
+
+int maior_carta_straight (MAO m) {
+
+	int v,i,n,j;
+
+	int contaValores[14];
+
+	for (i = 0; i < 14; i++) {
+		contaValores[i] = 0;
+	}
+
+	i = 2;
+	for (v = 0; v < 13; v++) {
+		for(n = 0; n < 4; n++) {
+			switch (v) {
+				case 12: if (carta_existe(m,n,v)) { contaValores[0]++; contaValores[13]++; } break;
+				case 13: if (carta_existe(m,n,v)) { contaValores[1]++; } break;
+				default: if (carta_existe(m,n,v)) { contaValores[i]++; } break;
+			}	
+    	}
+    	i++;
+	}
+
+	if ((contaValores[1] != 0)) {
+		for (j = 12; j >= 0; j--) {
+			if (contaValores[j] != 0) {
+				return (contaValores[j]);
+			}
+		}
+	}
+
+	else {
+		for (j = 13; j > 0; j--) {
+			if (contaValores[j] != 0) {
+				return contaValores[j];
+			}
+		}
+	}
+	return 0; /* TER CUIDADO COM ISTO, FOI ADICIONADO PARA RESOLVER PROBLEMAS DE COMPILAÇÃO */
+}
+
+int maior_naipe_straight (MAO m, int maiorCarta) {
+
+	int i, n, v;
+	i = 0;
+	v = maiorCarta;
+
+	switch (v) {
+		case 0: { v = 11; } break;
+		case 1: { v = 12; } break;
+		default: { v -= 2; } break;
+	}
+
+	for (n = 0; n < 4; n++) {
+		if (carta_existe(m,n,v)) i = n;
+	}
+
+	return i;
+}
+
+
+int valida_flush (MAO m) {
+
+	int v, n, i;
+
+	int contaNaipes[4];
+
+	for (i = 0; i < 4; i++) {
+		contaNaipes[i] = 0;
+	}
+
+	for (v = 0; v < 13; v++)
+		for(n = 0; n < 4; n++) {
+			switch(n) {
+				case 0: if (carta_existe(m,n,v)) { contaNaipes[0]++; } break;
+				case 1: if (carta_existe(m,n,v)) { contaNaipes[1]++; } break;
+				case 2: if (carta_existe(m,n,v)) { contaNaipes[2]++; } break;
+				case 3: if (carta_existe(m,n,v)) { contaNaipes[3]++; } break;
+			}
+		}
+
+
+	if (contaNaipes[0] >= 5) return 0;
+	
+	else {
+		if (contaNaipes[1] >= 5) return 1;
+	
+		else {
+			if (contaNaipes[2] >= 5) return 2; 
+			
+			else {
+				if (contaNaipes[3] >= 5) return 3;
+				else return -1;
+			}
+		}
+	}
+}
+
+int maior_carta_flush (MAO m) {
+
+	int i, n, v;
+	i = 0;
+	for (v = 0; v < 13; v++) {
+		for (n = 0; n < 4; n++) {
+			if (carta_existe(m,n,v)) i = v; 
+		}
+	}
+
+	return i;
+}
+
 /* É nesta função que a jogada do utilizador é verificada. Se esta for possível, é permitido ao utilizador colocar as cartas
 no meio do tabuleiro, registando assim a sua jogada. Caso contrário, ou o utilizador passa, ou tenta arranjar outro tipo de combinação. */
 
+int validacao_5cartas (MAO m) {
+
+	if ((valida_straight(m)) == 1) {
+		return 1;
+	}
+
+	else {
+		if ((valida_flush(m)) != -1) {
+			return 2;
+		}
+	}
+
+	return -1;
+}
+
+
 int posso_jogar (ESTADO e) {
 	
-	if (e.ultima_jogada == -1){
-		if (!combinacao_valida (e.highlight) ) { 
-			return 0;
-		}
-		else {	 	
-	 		if (e.ultimo_jogador != 0) {
-	 			return 0; 
-	 		}
+	if ((numero_de_cartas(e.highlight)) == 5) {
+ 		if (e.ultima_jogada == -1) {
+			if (((validacao_5cartas(e.highlight)) != -1) && (carta_existe(e.highlight, 0, 0)) && (e.ultimo_jogador == 0)) {
+				return 1;
+			}
 			else {
-	 			if ((da_valor (e.highlight) != -1) && (carta_existe(e.highlight, 0, 0))) {
-	 				return 1;
-	 			}	 
-            	
-            	else return 0;
-            }
-        }
+				return 0;
+			} 		
+ 		}
 
+ 		else {
+ 			if (e.ultima_jogada_valida == 0) {
+ 				if (((validacao_5cartas(e.highlight)) != -1) && (e.ultimo_jogador == 0)) {
+					return 1;
+				}
+				else {
+					return 0;
+				} 
+ 			}
+ 			else {
+ 				
+ 				if ((validacao_5cartas(e.highlight)) > (validacao_5cartas(e.ultima_jogada))) {
+ 					return 1;
+ 				}
+
+ 				else {
+ 					if ((validacao_5cartas(e.highlight)) != (validacao_5cartas(e.ultima_jogada))) {
+ 						return 0;
+ 					}
+ 						
+ 					else {
+ 						if ((validacao_5cartas(e.highlight)) == 1) {
+ 							/*VAI BUSCAR A MAIOR CARTA DAS DUAS*/
+ 							if ((maior_carta_straight(e.highlight)) > (maior_carta_straight(e.ultima_jogada))) {
+ 								return 1;
+ 							}
+ 							else {
+ 								if ((maior_carta_straight(e.highlight)) == (maior_carta_straight(e.ultima_jogada))) {
+ 									if ((maior_naipe_straight(e.highlight, (maior_carta_straight(e.highlight)))) > (maior_naipe_straight(e.ultima_jogada, (maior_carta_straight(e.ultima_jogada))))) {
+ 										return 1;
+ 									}
+ 									else {
+ 										return 0;
+ 									}
+ 								}
+ 							}
+ 						}
+ 						
+ 						else {
+ 							if ((validacao_5cartas(e.highlight)) == 2) {
+ 								/*VAI BUSCAR O NAIPE DAS DUAS, E VE SE O DE O HIGHLIGHT É MAIOR, E SE O NAIPE FOR IGUAL, VAI BUSCAR A MAIOR CARTA*/
+ 								if ((valida_flush(e.highlight)) < (valida_flush(e.ultima_jogada))) {
+ 									return 0;
+ 								}
+ 								else {
+ 									if ((valida_flush(e.highlight)) > (valida_flush(e.ultima_jogada))) {
+ 										return 1;
+ 									}
+ 									else { /*e.highlight == e.ultima_jogada*/
+ 										if ((maior_carta_flush(e.highlight)) < (maior_carta_flush(e.ultima_jogada))) {
+ 											return 0;
+ 										}
+ 										else {
+ 											return 1;
+ 										}
+ 									}
+ 								}
+ 							}
+ 						}
+ 					}
+ 				}
+ 				return 0;
+ 			}
+ 		}
 	}
-  if (e.ultima_jogada_valida == 0){
-		if (!combinacao_valida (e.highlight) ) { 
-			return 0;
+
+	else {
+		if (e.ultima_jogada == -1) {
+			if (!combinacao_valida (e.highlight) ) { 
+				return 0;
+			}
+			else {	 	
+	 			if (e.ultimo_jogador != 0) {
+	 				return 0; 
+	 			}
+				else {
+	 				if ((da_valor (e.highlight) != -1) && (carta_existe(e.highlight, 0, 0))) {
+	 					return 1;
+	 				}	 
+            		else return 0;
+            	}
+        	}
 		}
   
-		
-		else {
-	 	
-	 		if (e.ultimo_jogador != 0) {
-	 			return 0; 
-	 		}
-			else {
-	 			if ((da_valor (e.highlight) != -1) ) {
-	 				return 1;
-	 			}	 
-            	
-        else return 0;
-      }
-    }
-
-	}
-	
-	else {	
-		if (!combinacao_valida (e.highlight)) { 
-			return 0;
-		}
-		
-		else {
-	 	
-	 		if (e.ultimo_jogador != 0) {
-	 			return 0; 
-	 		}
-			
-			else {
-	 		
-				if (!compara_tamanho (e.ultima_jogada, e.highlight)) {
-					return 0; 
-				}
-
-	 			else { 
-	 				if (!combinacao_maior (e.ultima_jogada, e.highlight)) {
-	 					return 0;
-	 				}
-	 			}
+  		if (e.ultima_jogada_valida == 0) {
+			if (!combinacao_valida (e.highlight) ) { 
+				return 0;
 			}
-		}	
-
-	return 1;
-	}
+			else {
+	 			if (e.ultimo_jogador != 0) {
+	 				return 0; 
+	 			}
+				else {
+	 				if ((da_valor (e.highlight) != -1) ) {
+	 					return 1;
+	 				}	 
+        			else return 0;
+      			}
+   			}
+		}
+	
+		else {	
+			if (!combinacao_valida (e.highlight)) { 
+				return 0;
+			}
+			else {
+	 			if (e.ultimo_jogador != 0) {
+	 				return 0; 
+	 			}
+				else {
+					if (!compara_tamanho (e.ultima_jogada, e.highlight)) {
+						return 0; 
+					}
+	 				else { 
+	 					if (!combinacao_maior (e.ultima_jogada, e.highlight)) {
+	 						return 0;
+	 					}
+	 				}
+				}
+			}	
+			return 1;
+		}
+ 	}
 }
 
 /* Em cada jogada, o jogador é incrementado, tomando assim o controlo do jogador que está em jogo. 
