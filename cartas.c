@@ -313,9 +313,9 @@ void imprime (char *path, ESTADO e) {
 
 		int x = X[m], y = Y[m];
 
-		for (n = 0; n < 4; n++) {
+		for (v = 0; v < 13; v++) {
 			
-			for (v = 0; v < 13; v++){
+			for (n = 0; n < 4; n++){
 
 				if(m == 1 && carta_existe(e.cartas_bots[1],n,v)){
                   imprime_carta(path, bx1, by1, e, m, n, v); 
@@ -481,11 +481,11 @@ int valida_straight (MAO m) {
 	}
 
 	i = 2;
-	for (v = 0; v < 13; v++) {
+	for (v = 0; v <= 13; v++) {
 		for(n = 0; n < 4; n++) {
 			switch (v) {
-				case 12: if (carta_existe(m,n,v)) { contaValores[0]++; contaValores[13]++; } break;
-				case 13: if (carta_existe(m,n,v)) { contaValores[1]++; } break;
+				case 11: if (carta_existe(m,n,v)) { contaValores[0]++; contaValores[13]++; } break;
+				case 12: if (carta_existe(m,n,v)) { contaValores[1]++; } break;
 				default: if (carta_existe(m,n,v)) { contaValores[i]++; } break;
 			}	
     	}
@@ -517,8 +517,8 @@ int maior_carta_straight (MAO m) {
 	for (v = 0; v < 13; v++) {
 		for(n = 0; n < 4; n++) {
 			switch (v) {
-				case 12: if (carta_existe(m,n,v)) { contaValores[0]++; contaValores[13]++; } break;
-				case 13: if (carta_existe(m,n,v)) { contaValores[1]++; } break;
+				case 11: if (carta_existe(m,n,v)) { contaValores[0]++; contaValores[13]++; } break;
+				case 12: if (carta_existe(m,n,v)) { contaValores[1]++; } break;
 				default: if (carta_existe(m,n,v)) { contaValores[i]++; } break;
 			}	
     	}
@@ -613,24 +613,281 @@ int maior_carta_flush (MAO m) {
 	return i;
 }
 
-/* É nesta função que a jogada do utilizador é verificada. Se esta for possível, é permitido ao utilizador colocar as cartas
-no meio do tabuleiro, registando assim a sua jogada. Caso contrário, ou o utilizador passa, ou tenta arranjar outro tipo de combinação. */
+int valida_fullhouse (MAO m) {
+
+	int v,i,n,j;
+
+	int contaValores[14];
+
+	for (i = 0; i < 14; i++) {
+		contaValores[i] = 0;
+	}
+
+	i = 2;
+	for (v = 0; v < 14; v++) {
+		for(n = 0; n < 4; n++) {
+			switch (v) {
+				case 11: if (carta_existe(m,n,v)) { contaValores[0]++; contaValores[13]++; } break;
+				case 12: if (carta_existe(m,n,v)) { contaValores[1]++; } break;
+				default: if (carta_existe(m,n,v)) { contaValores[i]++; } break;
+			}	
+    	}
+    	i++;
+	}
+
+	for (i = 0; i < 14; i++) {
+		if (contaValores[i] == 3) {
+			for (j = 0; j < 14; j++) {
+				if ((contaValores[j] == 2) && (contaValores[j] != contaValores[i])) {
+					return 1;
+				}
+			}
+		}
+	}
+	return 0;
+}
+
+int maior_carta_trio_fullhouse (MAO m) {
+
+	int v,i,n,j,var;
+
+	int contaValores[14];
+
+	for (i = 0; i < 14; i++) {
+		contaValores[i] = 0;
+	}
+
+	i = 2;
+	for (v = 0; v < 14; v++) {
+		for(n = 0; n < 4; n++) {
+			switch (v) {
+				case 11: if (carta_existe(m,n,v)) { contaValores[0]++; contaValores[13]++; } break;
+				case 12: if (carta_existe(m,n,v)) { contaValores[1]++; } break;
+				default: if (carta_existe(m,n,v)) { contaValores[i]++; } break;
+			}	
+    	}
+    	i++;
+	}
+
+	for (j = 0; j < 14; j++) {
+		if (contaValores[j] == 3) {
+			var = contaValores[j];
+		}
+	}
+
+	switch (var) {
+		case 0: { var = 11; } break;
+		case 1: { var = 12; } break;
+		default: { var -= 2; } break;
+	}
+	
+	return var;
+}
+
+int valida_fourkind (MAO m) {
+	
+	int v,i,n,j;
+
+	int contaValores[14];
+
+	for (i = 0; i < 14; i++) {
+		contaValores[i] = 0;
+	}
+
+	i = 2;
+	for (v = 0; v < 14; v++) {
+		for(n = 0; n < 4; n++) {
+			switch (v) {
+				case 11: if (carta_existe(m,n,v)) { contaValores[0]++; contaValores[13]++; } break;
+				case 12: if (carta_existe(m,n,v)) { contaValores[1]++; } break;
+				default: if (carta_existe(m,n,v)) { contaValores[i]++; } break;
+			}	
+    	}
+    	i++;
+	}
+
+	for (j = 0; j < 14; j++) {
+		if (contaValores[j] == 4) {
+			return 1;
+		}
+	}
+
+	return 0;
+}
+
+int maior_carta_fourkind (MAO m) {
+
+	int v,i,n,j,var;
+
+	int contaValores[14];
+
+	for (i = 0; i < 14; i++) {
+		contaValores[i] = 0;
+	}
+
+	i = 2;
+	for (v = 0; v < 14; v++) {
+		for(n = 0; n < 4; n++) {
+			switch (v) {
+				case 11: if (carta_existe(m,n,v)) { contaValores[0]++; contaValores[13]++; } break;
+				case 12: if (carta_existe(m,n,v)) { contaValores[1]++; } break;
+				default: if (carta_existe(m,n,v)) { contaValores[i]++; } break;
+			}	
+    	}
+    	i++;
+	}
+
+	for (j = 0; j < 14; j++) {
+		if (contaValores[j] == 4) {
+			var = contaValores[j];
+		}
+	}
+
+	switch (var) {
+		case 0: { var = 11; } break;
+		case 1: { var = 12; } break;
+		default: { var -= 2; } break;
+	}
+	
+	return var;
+}
+
+int valida_straightflush (MAO m) {
+
+	int v,i,n,j,var,flag;
+
+	int contaValores[14];
+	int contaNaipes[4];
+
+	for (i = 0; i < 14; i++) {
+		contaValores[i] = 0;
+	}
+
+	i = 2;
+	for (v = 0; v < 14; v++) {
+		for(n = 0; n < 4; n++) {
+			switch (v) {
+				case 11: if (carta_existe(m,n,v)) { contaValores[0]++; contaValores[13]++; } break;
+				case 12: if (carta_existe(m,n,v)) { contaValores[1]++; } break;
+				default: if (carta_existe(m,n,v)) { contaValores[i]++; } break;
+			}	
+    	}
+    	i++;
+	}
+
+	for (v = 0; v < 14; v++) {
+		for(n = 0; n < 4; n++) {
+			switch(n) {
+				case 0: if (carta_existe(m,n,v)) { contaNaipes[0]++; } break;
+				case 1: if (carta_existe(m,n,v)) { contaNaipes[1]++; } break;
+				case 2: if (carta_existe(m,n,v)) { contaNaipes[2]++; } break;
+				case 3: if (carta_existe(m,n,v)) { contaNaipes[3]++; } break;
+			}
+		}
+	}
+
+	j = 0;
+	flag = 1;
+	var = 0;
+	while ((j + 4) < 14) {
+		if ((contaValores[j] != 0) && (contaValores[j+1] != 0) && (contaValores[j+2] != 0) && (contaValores[j+3] != 0) && (contaValores[j+4] != 0)) {
+			while(flag != 0) {
+				for (v = 0; v < 14; v++) {
+					for (n = 0; n < 4; n++) {
+				  		if (carta_existe(m,n,v)) {
+				  			var = n;
+				  			flag = 0;
+				  		}	
+					}
+			 	}
+			}
+			for (v = 0; v < 14; v++) {
+				for (n = 0; n < 4; n++) {
+					if ((carta_existe(m,n,v)) && (var != n)) {
+				 		return -1;
+					}
+				}
+			}
+			return 1;
+		}
+		j++;
+	}
+
+	return -1; 
+}
+
+int maior_carta_straightflush (MAO m) {
+
+	int v,i,n,j,var;
+
+	int contaValores[14];
+
+	for (i = 0; i < 14; i++) {
+		contaValores[i] = 0;
+	}
+
+	i = 2;
+	for (v = 0; v < 14; v++) {
+		for(n = 0; n < 4; n++) {
+			switch (v) {
+				case 11: if (carta_existe(m,n,v)) { contaValores[0]++; contaValores[13]++; } break;
+				case 12: if (carta_existe(m,n,v)) { contaValores[1]++; } break;
+				default: if (carta_existe(m,n,v)) { contaValores[i]++; } break;
+			}	
+    	}
+    	i++;
+	}
+
+	for (j = 0; j < 14; j++) {
+		if (contaValores[j] == 5) {
+			var = contaValores[j];
+		}
+	}
+
+	switch (var) {
+		case 0: { var = 11; } break;
+		case 1: { var = 12; } break;
+		default: { var -= 2; } break;
+	}
+	
+	return var;
+}
 
 int validacao_5cartas (MAO m) {
 
-	if ((valida_straight(m)) == 1) {
-		return 1;
+	if ((valida_straightflush(m)) == 1) {
+		return 5;
 	}
-
 	else {
-		if ((valida_flush(m)) != -1) {
-			return 2;
+
+		if ((valida_straight(m)) == 1) {
+			return 1;
+		}
+
+		else {
+			if ((valida_flush(m)) != -1) {
+				return 2;
+			}
+
+			else {
+				if ((valida_fullhouse(m)) == 1) {
+					return 3;
+				}
+
+				else {
+					if ((valida_fourkind(m)) == 1) {
+						return 4;
+					}					
+				}
+			}
 		}
 	}
 
 	return -1;
 }
 
+/* É nesta função que a jogada do utilizador é verificada. Se esta for possível, é permitido ao utilizador colocar as cartas
+no meio do tabuleiro, registando assim a sua jogada. Caso contrário, ou o utilizador passa, ou tenta arranjar outro tipo de combinação. */
 
 int posso_jogar (ESTADO e) {
 	
@@ -660,7 +917,7 @@ int posso_jogar (ESTADO e) {
  				}
 
  				else {
- 					if ((validacao_5cartas(e.highlight)) != (validacao_5cartas(e.ultima_jogada))) {
+ 					if ((validacao_5cartas(e.highlight)) < (validacao_5cartas(e.ultima_jogada))) {
  						return 0;
  					}
  						
@@ -694,6 +951,60 @@ int posso_jogar (ESTADO e) {
  									}
  									else { /*e.highlight == e.ultima_jogada*/
  										if ((maior_carta_flush(e.highlight)) < (maior_carta_flush(e.ultima_jogada))) {
+ 											return 0;
+ 										}
+ 										else {
+ 											return 1;
+ 										}
+ 									}
+ 								}
+ 							}
+ 							if ((validacao_5cartas(e.highlight)) == 3) {
+ 								if ((valida_fullhouse(e.highlight)) < (valida_fullhouse(e.ultima_jogada))) {
+ 									return 0;
+ 								}
+ 								else {
+ 									if ((valida_fullhouse(e.highlight)) > (valida_fullhouse(e.ultima_jogada))) {
+ 										return 1;
+ 									}
+ 									else {
+ 										if ((maior_carta_trio_fullhouse(e.highlight)) < (maior_carta_trio_fullhouse(e.ultima_jogada))) {
+ 											return 0;
+ 										}
+ 										else {
+ 											return 1;
+ 										}
+ 									}
+ 								}
+ 							}
+ 							if ((valida_fourkind(e.highlight)) == 4) {
+ 								if ((valida_fourkind(e.highlight)) < (valida_fourkind(e.ultima_jogada))) {
+ 									return 0;
+ 								}
+ 								else {
+ 									if ((valida_fourkind(e.highlight)) > (valida_fourkind(e.ultima_jogada))) {
+ 										return 1;
+ 									}
+ 									else {
+ 										if ((maior_carta_fourkind(e.highlight)) < (maior_carta_fourkind(e.ultima_jogada))) {
+ 											return 0;
+ 										}
+ 										else {
+ 											return 1;
+ 										}
+ 									}
+ 								}
+ 							}
+ 							if ((valida_straightflush(e.highlight)) == 5) {
+ 								if ((valida_straightflush(e.highlight)) < (valida_straightflush(e.ultima_jogada))) {
+ 									return 0;
+ 								}
+ 								else {
+ 									if ((valida_straightflush(e.highlight)) > (valida_straightflush(e.ultima_jogada))) {
+ 										return 1;
+ 									}
+ 									else {
+ 										if ((maior_carta_straightflush(e.highlight)) < (maior_carta_straightflush(e.ultima_jogada))) {
  											return 0;
  										}
  										else {
