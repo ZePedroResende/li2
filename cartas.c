@@ -292,9 +292,9 @@ void imprime_carta(char *path, int x, int y, ESTADO e, int mao, int naipe, int v
 	}
 
 	else {
-	if( carta_existe(e.mao[1],naipe,valor) || carta_existe(e.mao[2],naipe,valor) || carta_existe(e.mao[3],naipe,valor))
-		printf("<image x = \"%d\" y = \"%d\" height = \"110\" width = \"80\" xlink:href = \"%s/11C.png\" />\n", x, y, path);
-	else printf("<image x = \"%d\" y = \"%d\" height = \"110\" width = \"80\" xlink:href = \"%s/%c%c.svg\" />\n", x, y, path, rank[valor], suit[naipe]);
+	/* if( carta_existe(e.mao[1],naipe,valor) || carta_existe(e.mao[2],naipe,valor) || carta_existe(e.mao[3],naipe,valor))
+		printf("<image x = \"%d\" y = \"%d\" height = \"110\" width = \"80\" xlink:href = \"%s/11C.png\" />\n", x, y, path); */ 
+	/*else*/ printf("<image x = \"%d\" y = \"%d\" height = \"110\" width = \"80\" xlink:href = \"%s/%c%c.svg\" />\n", x, y, path, rank[valor], suit[naipe]);
 	}
 }
 
@@ -1355,13 +1355,16 @@ ESTADO fazjogada (ESTADO e, int v){
 			else {
 				if ((maior_carta_straight_bots(e.mao[e.ultimo_jogador])) == (maior_carta_straight_bots(e.ultima_jogada))) {
 					if ((maior_naipe_straight_bots(e.mao[e.ultimo_jogador],(descodifica_straight(maior_carta_straight_bots(e.mao[e.ultimo_jogador]))))) > (maior_naipe_straight_bots(e.ultima_jogada,(descodifica_straight(maior_carta_straight_bots(e.ultima_jogada)))))) {
-						return (joga_straight(e));
+						e = joga_straight(e);
+						return e;
 					}
 			 		else {
-			 			return (passabot(e));
+			 			e = passabot(e);
+			 			return e;
 			 		}
 				}
 			}
+			break;
   }
   return e; /* PARA RESOLVER PROBLEMA DE COMPILAÇÃO */
 }
@@ -1370,7 +1373,8 @@ ESTADO pbot(ESTADO e){
   	int v;
   	v = 0;
   	v = validacao_5cartas(e.ultima_jogada);
-	return (fazjogada (e, v));
+  	e = (fazjogada (e, v));
+	return e;
 }
 
 /*
@@ -1498,7 +1502,7 @@ if (ncartas == 3) {
       		}	
 		}
 	}
-
+}
 else{
 	for(v = 0; v <= 12; v++) {
 		
@@ -1562,12 +1566,12 @@ else{
 		}
 	}
 	else {
-		return pbot(e);
+		
+		e = pbot(e);
+		return e;
 	}
   }
 
-
- }
 
 	e.cartas_bots[e.ultimo_jogador] = 0;
 	e.ultimo_jogador = incrementa_jogador(e);
