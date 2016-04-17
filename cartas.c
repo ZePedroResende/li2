@@ -30,7 +30,7 @@ Ordem das cartas
 
 
 
-#define FORMATO "%lld_%lld_%lld_%lld_%lld_%d_%d_%d_%d_%d_%d_%d_%d_%lld_%d_%lld_%lld_%lld_%lld"
+#define FORMATO "%lld_%lld_%lld_%lld_%lld_%d_%d_%d_%d_%d_%d_%d_%d_%lld_%d_%lld_%lld_%lld_%lld_%d"
 
 /* A struct estado contém as variáveis, as quais vão ser alteradas e manipuladas de modo a produzir jogadas válidas, tanto pelo jogador
 como pelos "bots"
@@ -48,17 +48,13 @@ typedef long long int MAO;
 
 struct estado {
 	MAO mao[4];
-
 	MAO highlight;
-
-    
 	int cartas[4];
-
 	int play, pass, card, ultima_jogada_valida;
-
 	MAO ultima_jogada;
 	int ultimo_jogador;
 	MAO cartas_bots[4];
+  int layout;
 };
 
 /*
@@ -90,7 +86,7 @@ struct estado {
 typedef struct estado ESTADO;
 char* estado2str(ESTADO e){
   static char str[10240];
-  sprintf(str, FORMATO, e.mao[0], e.mao[1], e.mao[2], e.mao[3], e.highlight, e.cartas[0], e.cartas[1], e.cartas[2], e.cartas[3], e.play, e.pass, e.card,e.ultima_jogada_valida, e.ultima_jogada, e.ultimo_jogador, e.cartas_bots[0], e.cartas_bots[1], e.cartas_bots[2], e.cartas_bots[3]);
+  sprintf(str, FORMATO, e.mao[0], e.mao[1], e.mao[2], e.mao[3], e.highlight, e.cartas[0], e.cartas[1], e.cartas[2], e.cartas[3], e.play, e.pass, e.card,e.ultima_jogada_valida, e.ultima_jogada, e.ultimo_jogador, e.cartas_bots[0], e.cartas_bots[1], e.cartas_bots[2], e.cartas_bots[3], e.layout);
 
   return str;
 }
@@ -98,7 +94,7 @@ char* estado2str(ESTADO e){
 /* Transforma a string do url num estado novo. */
 ESTADO str2estado(char* str){
   ESTADO e;
-  sscanf(str, FORMATO, &e.mao[0], &e.mao[1], &e.mao[2], &e.mao[3], &e.highlight, &e.cartas[0], &e.cartas[1], &e.cartas[2], &e.cartas[3], &e.play, &e.pass, &e.card,&e.ultima_jogada_valida, &e.ultima_jogada, &e.ultimo_jogador, &e.cartas_bots[0], &e.cartas_bots[1], &e.cartas_bots[2], &e.cartas_bots[3]);  
+  sscanf(str, FORMATO, &e.mao[0], &e.mao[1], &e.mao[2], &e.mao[3], &e.highlight, &e.cartas[0], &e.cartas[1], &e.cartas[2], &e.cartas[3], &e.play, &e.pass, &e.card,&e.ultima_jogada_valida, &e.ultima_jogada, &e.ultimo_jogador, &e.cartas_bots[0], &e.cartas_bots[1], &e.cartas_bots[2], &e.cartas_bots[3], &e.layout);  
 
   return e;
 }
@@ -149,7 +145,7 @@ ESTADO baralhar () {
 	long long int player3[13]; 
 	long long int player4[13];
 	
-	ESTADO e = {{0},0,{0},0,0,0,0,-1,0,{0}};
+	ESTADO e = {{0},0,{0},0,0,0,0,-1,0,{0},0};
 
 	e.cartas[0] = 13;
 	e.cartas[1] = 13;
@@ -196,8 +192,8 @@ ESTADO baralhar () {
 
 	e.ultimo_jogador = primeiro_jogar(e);
 	e.cartas_bots[e.ultimo_jogador] = 1;
-    e.ultima_jogada_valida = e.ultimo_jogador;
-
+   e.ultima_jogada_valida = e.ultimo_jogador;
+   e.layout = 0;
 	return e;
 
 }
@@ -312,7 +308,7 @@ void imprime (char *path, ESTADO e) {
 	for(m = 0; m < 4; m++) { 
 
 		int x = X[m], y = Y[m];
-
+    if(e.layout == 1){
 		for (v = 0; v < 13; v++) {
 			for (n = 0; n < 4; n++){
 				if(m == 1 && carta_existe(e.cartas_bots[1],n,v)){
@@ -343,6 +339,40 @@ void imprime (char *path, ESTADO e) {
 			    }
 		    }
 		}
+    }
+    else{
+      for (n = 0; n < 4; n++) {
+        for (v = 0; v < 13; v++){
+          if(m == 1 && carta_existe(e.cartas_bots[1],n,v)){
+            imprime_carta(path, bx1, by1, e, m, n, v); 
+            by1+=20;
+          }
+          if(m == 2 && carta_existe(e.cartas_bots[2],n,v)){
+            imprime_carta(path, bx2, by2, e, m, n, v);
+            bx2+=20;
+          }
+          if(m == 3 && carta_existe(e.cartas_bots[3],n,v)){
+            imprime_carta(path,bx3, by3, e, m, n, v);
+            by3 += 20;
+          } 
+          if (carta_existe(e.mao[m], n, v)) {				
+            if (m % 2 == 0) { 
+              x += 20;
+            }
+            else {
+              y += 20; 
+            }
+            if (m == 0 && carta_existe(e.highlight, n, v)) {
+              imprime_carta(path, x, (y - 20), e, m, n, v); 	
+            }
+				    else {
+              imprime_carta(path, x, y, e, m, n, v);
+            }
+			    }
+		    }
+		} 
+    }
+
 	}
 }
 
@@ -1141,8 +1171,19 @@ ESTADO jogar (ESTADO e) {
 	y = 400;
 
 	e.play = 0;
-
-		for (n = 0; n < 4; n++) {
+  if(e.layout == 1){
+		for (v = 0; v < 13; v++) {
+			for (n = 0; n < 4; n++) {
+				if (carta_existe((e.highlight), n, v)) {
+					e.mao[0] = rem_carta(e.mao[0], n, v);
+					x += 20;
+					imprime_carta(BARALHO, x, y, e, 4, n , v);
+				}
+			}
+		}
+}
+  else{
+   	for (n = 0; n < 4; n++) {
 			for (v = 0; v < 13; v++) {
 				if (carta_existe((e.highlight), n, v)) {
 					e.mao[0] = rem_carta(e.mao[0], n, v);
@@ -1151,7 +1192,9 @@ ESTADO jogar (ESTADO e) {
 				}
 			}
 		}
-    
+ 
+  }
+
     e = bots2(e);
     
     while(e.ultimo_jogador != 0){
@@ -1742,6 +1785,20 @@ else {
 }
 }
 
+void imprime_botao_layout(ESTADO e) {
+
+	char script[10240];
+	
+ 
+  if(e.layout == 0){	
+    e.layout = 1;
+}
+  else{
+    e.layout = 0;
+    }
+		sprintf(script, "%s?%s", SCRIPT, estado2str(e));
+		printf("<a xlink:href = \"%s\"><image x = \"480\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/Reset.png\" /></a>\n", script);
+  }
 
 
 
@@ -1791,6 +1848,7 @@ void parse (char *query) {
     imprime_botao_jogar(e);
   	imprime_botao_passar(e);
   	imprime_botao_reset(e);
+    imprime_botao_layout(e);
 }
 
 
