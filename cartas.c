@@ -1364,11 +1364,15 @@ ESTADO passabot(ESTADO e) {
 	return e;
 }
 
-int maior_carta_flush_bots (MAO m, int n) {
-	int i,v;
+int maior_carta_flush_bots (MAO m, int n1) {
+	int i,v,flag;
 	i = 0;
-	for (v = 13; v >= 0; --v) {
-		if (carta_existe(m,n,v)) i = v; 
+	flag = 0;
+	for (v = 12; (v >= 0) && (flag != 1); --v) {
+		if (carta_existe(m,n1,v)) {
+			flag = 1;
+			i = v;
+		}	
 	}
 	return i;
 }
@@ -1377,55 +1381,55 @@ ESTADO joga_flush(ESTADO e) {
 
 	long long int m=0, n=0;
 
-	int flag,v1,v2,v3,v4,v5,n1;
+	int flag1,flag2,flag3,flag4,v1,v2,v3,v4,v5,p1=0,p2=0,p3=0,p4=0,p5=0,n1;
 	
 	n1 = valida_flush(e.mao[e.ultimo_jogador]); 
  	v1 = maior_carta_flush_bots(e.mao[e.ultimo_jogador], n1);
-
-	flag = 0;
-	for(v2 = (v1 - 1); v2 >= 0 && flag != 1; --v2) {
+	
+	flag1 = 0;
+	p1 = v1;
+	for(v2 = (v1 - 1); v2 >= 0 && flag1 != 1; --v2) {
 		if (carta_existe(e.mao[e.ultimo_jogador],n1,v2)) {
-			v2 = v2;
-			flag = 1;
+			p2 = v2;
+			flag1 = 1;
 		} 
 	}
 	
-	flag = 0;
-	for (v3 = (v2 - 1); v3 >= 0 && flag != 1; --v3) {
+	flag2 = 0;
+	for (v3 = v2; v3 >= 0 && flag2 != 1; --v3) {
 		if (carta_existe(e.mao[e.ultimo_jogador],n1,v3)) {
-			v3 = v3;
-			flag = 1;
+			p3 = v3;
+			flag2 = 1;
 		}
 	}
 
-	flag = 0;
-	for (v4 = (v3 - 1); v4 >= 0 && flag != 1; --v4) {
+	flag3 = 0;
+	for (v4 = v3; v4 >= 0 && flag3 != 1; --v4) {
 		if (carta_existe(e.mao[e.ultimo_jogador],n1,v4)) {
-			v4 = v4;
-			flag = 1;
+			p4 = v4;
+			flag3 = 1;
 		}
 	}
 	
-	flag = 0;
-	for (v5 = (v4 - 1); v5 >= 0 && flag != 1; --v5) {
+	flag4 = 0;
+	for (v5 = v4; v5 >= 0 && flag4 != 1; --v5) {
 		if (carta_existe(e.mao[e.ultimo_jogador],n1,v5)) {
-			v5 = v5;
-			flag = 1;
+			p5 = v5;
+			flag4 = 1;
 		}
 	}
 	
-printf("%d %d %d %d %d %d",n1,v1,v2,v3,v4,v5);
-  	m = add_carta(0,n1,v1);
-  	m = add_carta(m,n1,v2);
-  	m = add_carta(m,n1,v3);
-  	m = add_carta(m,n1,v4);
-  	m = add_carta(m,n1,v5);
+  	m = add_carta(0,n1,p1);
+  	m = add_carta(m,n1,p2);
+  	m = add_carta(m,n1,p3);
+  	m = add_carta(m,n1,p4);
+  	m = add_carta(m,n1,p5);
 
-  	n = rem_carta((e.mao[e.ultimo_jogador]),n1,v1);
-  	n = rem_carta(n,n1,v2);
-  	n = rem_carta(n,n1,v3);
-  	n = rem_carta(n,n1,v4);
-  	n = rem_carta(n,n1,v5);
+  	n = rem_carta((e.mao[e.ultimo_jogador]),n1,p1);
+  	n = rem_carta(n,n1,p2);
+  	n = rem_carta(n,n1,p3);
+  	n = rem_carta(n,n1,p4);
+  	n = rem_carta(n,n1,p5);
 
     e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) - 5;
 	e.ultima_jogada = m;
@@ -1451,18 +1455,31 @@ ESTADO fazjogada (ESTADO e, int v){
 				return e;
 			}
 			else{
-				e.cartas_bots[e.ultimo_jogador] = 0;
-			    e.ultimo_jogador = incrementa_jogador(e);
-				return e;	
+				if(valida_flush(e.mao[e.ultimo_jogador]) != -1){
+					e = joga_flush(e);
+					return e;
+				}
+
+				else{
+					e.cartas_bots[e.ultimo_jogador] = 0;
+			    	e.ultimo_jogador = incrementa_jogador(e);
+					return e;
+				}	
 			}
 		}
   
         else {
-          	e.cartas_bots[e.ultimo_jogador] =0;
-          	e.ultimo_jogador = incrementa_jogador(e);
-          	return e;
-        }
+        	if(valida_flush(e.mao[e.ultimo_jogador]) != -1){
+					e = joga_flush(e);
+					return e;
+				}
 
+			else{
+				e.cartas_bots[e.ultimo_jogador] = 0;
+			    e.ultimo_jogador = incrementa_jogador(e);
+				return e;
+			}
+		}
 	}
   }
   else {
