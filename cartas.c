@@ -1248,7 +1248,6 @@ if (e.ultima_jogada == -1 && e.ultimo_jogador != 0 ){
 	return e;
 }
 
-
 int maior_carta_straight_bots(MAO m){
 	int v,i,n,j;
 
@@ -1285,8 +1284,8 @@ int maior_carta_straight_bots(MAO m){
 			if ((contaValores[j] != 0) && (contaValores[j-1] != 0) && (contaValores[j-3] != 0) && (contaValores[j-4] != 0)) {
 				return j;
 			}
+			j--;
 		}
-		j--;
 	}
 	return -1;
 }
@@ -1314,26 +1313,44 @@ int maior_naipe_straight_bots (MAO m, int maiorCarta) {
 
 ESTADO joga_straight(ESTADO e) {
 
-	long long int m = 0;
+	long long int m=0, n=0;
 
-	int v1,v2,v3,v4,v5,n1,n2,n3,n4,n5;
+	int v1,v2,v3,v4,v5,n1,n2,n3,n4,n5,p1,p2,p3,p4,p5;
 
-	v1 = descodifica_straight(maior_carta_straight_bots(e.mao[e.ultimo_jogador]));
-	v2 = descodifica_straight(maior_carta_straight_bots(e.mao[e.ultimo_jogador]) - 1);
-	v3 = descodifica_straight(maior_carta_straight_bots(e.mao[e.ultimo_jogador]) - 2);
-	v4 = descodifica_straight(maior_carta_straight_bots(e.mao[e.ultimo_jogador]) - 3);
-	v5 = descodifica_straight(maior_carta_straight_bots(e.mao[e.ultimo_jogador]) - 4);
-	n1 = (maior_naipe_straight_bots(e.mao[e.ultimo_jogador],(descodifica_straight(maior_carta_straight_bots(e.mao[e.ultimo_jogador]))))); 
-	n2 = (maior_naipe_straight_bots(e.mao[e.ultimo_jogador],(descodifica_straight(maior_carta_straight_bots(e.mao[e.ultimo_jogador])))) - 1);
-	n3 = (maior_naipe_straight_bots(e.mao[e.ultimo_jogador],(descodifica_straight(maior_carta_straight_bots(e.mao[e.ultimo_jogador])))) - 2);
-	n4 = (maior_naipe_straight_bots(e.mao[e.ultimo_jogador],(descodifica_straight(maior_carta_straight_bots(e.mao[e.ultimo_jogador])))) - 3);
-	n5 = (maior_naipe_straight_bots(e.mao[e.ultimo_jogador],(descodifica_straight(maior_carta_straight_bots(e.mao[e.ultimo_jogador])))) - 4);
+  p1 = maior_carta_straight_bots (e.mao[e.ultimo_jogador]);
+  p2 = (maior_carta_straight_bots(e.mao[e.ultimo_jogador]))-1;
+  p3 = (maior_carta_straight_bots(e.mao[e.ultimo_jogador]))-2;
+  p4 = (maior_carta_straight_bots(e.mao[e.ultimo_jogador]))-3;
+  p5 = (maior_carta_straight_bots(e.mao[e.ultimo_jogador]))-4;
+
+	v1 = descodifica_straight(p1);
+	v2 = descodifica_straight(p2);
+	v3 = descodifica_straight(p3);
+	v4 = descodifica_straight(p4);
+	v5 = descodifica_straight(p5);
+
+  n1 = maior_naipe_straight_bots((e.mao[e.ultimo_jogador]),v1);
+  n2 = maior_naipe_straight_bots((e.mao[e.ultimo_jogador]),v2);
+	n3 = maior_naipe_straight_bots((e.mao[e.ultimo_jogador]),v3);
+	n4 = maior_naipe_straight_bots((e.mao[e.ultimo_jogador]),v4);
+	n5 = maior_naipe_straight_bots((e.mao[e.ultimo_jogador]),v5);
 	
-	m = add_carta((add_carta((add_carta((add_carta((add_carta(0,n1,v1)),n2,v2)),n3,v3)),n4,v4)),n5,v5);
-	e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) - 5;
+	m = add_carta(0,n1,v1);
+  m = add_carta(m,n2,v2);
+  m = add_carta(m,n3,v3);
+  m = add_carta(m,n4,v4);
+  m = add_carta(m,n5,v5);
+
+  n = rem_carta((e.mao[e.ultimo_jogador]),n1,v1);
+  n = rem_carta(n,n2,v2);
+  n = rem_carta(n,n3,v3);
+  n = rem_carta(n,n4,v4);
+  n = rem_carta(n,n5,v5);
+
+  e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) - 5;
 	e.ultima_jogada = m;
 	e.cartas_bots[e.ultimo_jogador] = m;
-	e.mao[e.ultimo_jogador] = rem_carta((rem_carta((rem_carta((rem_carta((rem_carta(e.mao[e.ultimo_jogador],n1,v1)),n2,v2)),n3,v3)),n4,v4)),n5,v5);
+	e.mao[e.ultimo_jogador] = n;
 	e.ultima_jogada_valida = e.ultimo_jogador;
 	e.ultimo_jogador = incrementa_jogador(e);
 	e.card = 0;
@@ -1347,26 +1364,135 @@ ESTADO passabot(ESTADO e) {
 	return e;
 }
 
+int maior_carta_flush_bots (MAO m, int n) {
+	int i,v;
+	i = 0;
+	for (v = 13; v >= 0; --v) {
+		if (carta_existe(m,n,v)) i = v; 
+	}
+	return i;
+}
+
+ESTADO joga_flush(ESTADO e) {
+
+	long long int m=0, n=0;
+
+	int flag,v1,v2,v3,v4,v5,n1;
+	
+	n1 = valida_flush(e.mao[e.ultimo_jogador]); 
+ 	v1 = maior_carta_flush_bots(e.mao[e.ultimo_jogador], n1);
+
+	flag = 0;
+	for(v2 = (v1 - 1); v2 >= 0 && flag != 1; --v2) {
+		if (carta_existe(e.mao[e.ultimo_jogador],n1,v2)) {
+			v2 = v2;
+			flag = 1;
+		} 
+	}
+	
+	flag = 0;
+	for (v3 = (v2 - 1); v3 >= 0 && flag != 1; --v3) {
+		if (carta_existe(e.mao[e.ultimo_jogador],n1,v3)) {
+			v3 = v3;
+			flag = 1;
+		}
+	}
+
+	flag = 0;
+	for (v4 = (v3 - 1); v4 >= 0 && flag != 1; --v4) {
+		if (carta_existe(e.mao[e.ultimo_jogador],n1,v4)) {
+			v4 = v4;
+			flag = 1;
+		}
+	}
+	
+	flag = 0;
+	for (v5 = (v4 - 1); v5 >= 0 && flag != 1; --v5) {
+		if (carta_existe(e.mao[e.ultimo_jogador],n1,v5)) {
+			v5 = v5;
+			flag = 1;
+		}
+	}
+	
+printf("%d %d %d %d %d %d",n1,v1,v2,v3,v4,v5);
+  	m = add_carta(0,n1,v1);
+  	m = add_carta(m,n1,v2);
+  	m = add_carta(m,n1,v3);
+  	m = add_carta(m,n1,v4);
+  	m = add_carta(m,n1,v5);
+
+  	n = rem_carta((e.mao[e.ultimo_jogador]),n1,v1);
+  	n = rem_carta(n,n1,v2);
+  	n = rem_carta(n,n1,v3);
+  	n = rem_carta(n,n1,v4);
+  	n = rem_carta(n,n1,v5);
+
+    e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) - 5;
+	e.ultima_jogada = m;
+	e.cartas_bots[e.ultimo_jogador] = m;
+	e.mao[e.ultimo_jogador] = n;
+	e.ultima_jogada_valida = e.ultimo_jogador;
+	e.ultimo_jogador = incrementa_jogador(e);
+	e.card = 0;
+	return e;
+}
+
 ESTADO fazjogada (ESTADO e, int v){
-  switch(v){
-  	case 1: if ((maior_carta_straight_bots(e.mao[e.ultimo_jogador])) > (maior_carta_straight_bots(e.ultima_jogada))) {
-  				return (joga_straight(e));
-  			} 
-			else {
-				if ((maior_carta_straight_bots(e.mao[e.ultimo_jogador])) == (maior_carta_straight_bots(e.ultima_jogada))) {
-					if ((maior_naipe_straight_bots(e.mao[e.ultimo_jogador],(descodifica_straight(maior_carta_straight_bots(e.mao[e.ultimo_jogador]))))) > (maior_naipe_straight_bots(e.ultima_jogada,(descodifica_straight(maior_carta_straight_bots(e.ultima_jogada)))))) {
-						e = joga_straight(e);
-						return e;
-					}
-			 		else {
-			 			e = passabot(e);
-			 			return e;
-			 		}
+ 
+  if (v == 1){
+  	if ((maior_carta_straight_bots(e.mao[e.ultimo_jogador])) > (maior_carta_straight_bots(e.ultima_jogada))) {  
+      e = joga_straight(e);
+      return e;
+  	} 
+	else {
+		if ((maior_carta_straight_bots(e.mao[e.ultimo_jogador])) == (maior_carta_straight_bots(e.ultima_jogada))) {
+          	if ((maior_naipe_straight_bots(e.mao[e.ultimo_jogador],(descodifica_straight(maior_carta_straight_bots(e.mao[e.ultimo_jogador]))))) > (maior_naipe_straight_bots(e.ultima_jogada,(descodifica_straight(maior_carta_straight_bots(e.ultima_jogada)))))) {
+            	e = joga_straight(e);
+				return e;
+			}
+			else{
+				e.cartas_bots[e.ultimo_jogador] = 0;
+			    e.ultimo_jogador = incrementa_jogador(e);
+				return e;	
+			}
+		}
+  
+        else {
+          	e.cartas_bots[e.ultimo_jogador] =0;
+          	e.ultimo_jogador = incrementa_jogador(e);
+          	return e;
+        }
+
+	}
+  }
+  else {
+	if (v == 2) {
+		if ((valida_flush(e.mao[e.ultimo_jogador])) > (valida_flush(e.ultima_jogada))) {
+			e = joga_flush(e);
+			return e;
+		}
+		else {
+			if ((valida_flush(e.mao[e.ultimo_jogador])) == (valida_flush(e.ultima_jogada))) {
+				if ((maior_carta_flush_bots(e.mao[e.ultimo_jogador], (valida_flush(e.mao[e.ultimo_jogador])))) > (maior_carta_flush_bots(e.ultima_jogada, (valida_flush(e.ultima_jogada))))) {
+					e = joga_flush(e);
+					return e;
+				}
+				else {
+					e.cartas_bots[e.ultimo_jogador] = 0;
+					e.ultimo_jogador = incrementa_jogador(e);
+					return e;
 				}
 			}
-			break;
+			else {
+				e.cartas_bots[e.ultimo_jogador] = 0;
+				e.ultimo_jogador = incrementa_jogador(e);
+				return e;
+			}	
+		}
+	}
   }
-  return e; /* PARA RESOLVER PROBLEMA DE COMPILAÇÃO */
+  e = passabot(e);
+  return e;
 }
 
 ESTADO pbot(ESTADO e){
