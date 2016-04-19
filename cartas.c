@@ -665,7 +665,7 @@ int valida_fullhouse (MAO m) {
 
 int maior_carta_trio_fullhouse (MAO m) {
 
-	int v,i,n,j,var;
+	int v,i,n,j,var=0 ;
 
 	int contaValores[14];
 
@@ -725,7 +725,7 @@ int valida_fourkind (MAO m) {
 
 int maior_carta_fourkind (MAO m) {
 
-	int v,i,n,j,var;
+	int v,i,n,j,var = 0;
 
 	int contaValores[14];
 
