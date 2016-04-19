@@ -1706,14 +1706,6 @@ ESTADO joga_fullhouse(ESTADO e) {
   		}
   	}
 
-
-
-
-
-
-
-
-printf("%d %d %d %d %d",n1,n2,n3,np1,np2);
 	m = add_carta(0,n1,v1);
   	m = add_carta(m,n2,v1);
   	m = add_carta(m,n3,v1);
