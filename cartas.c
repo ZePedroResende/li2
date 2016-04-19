@@ -633,9 +633,11 @@ int maior_carta_flush (MAO m) {
 
 int valida_fullhouse (MAO m) {
 
-	int v,i,n,j;
-
+	int v,i,n,j,p,flag;
 	int contaValores[13];
+
+	p=-1;
+	flag=0;
 
 	for (i = 0; i < 13; i++) {
 		contaValores[i] = 0;
@@ -651,21 +653,23 @@ int valida_fullhouse (MAO m) {
     	i++;
 	}
 
-	for (i = 0; i < 13; i++) {
-		if (contaValores[i] >= 3) {
-			for (j = 0; j < 13; j++) {
-				if ((contaValores[j] >= 2) && (contaValores[j] != contaValores[i])) {
-					return 1;
+	for (i = 0; i < 13 && flag != 1; i++) {;
+		if (contaValores[i] >= 3 && flag != 1) {
+			for (j = 0; j < 13  && flag != 1; j++) {
+				if ((contaValores[j] >= 2) && j != i && flag != 1) {
+					p = i;
+					flag = 1;
+					return p;
 				}
 			}
 		}
 	}
-	return 0;
+	return p;
 }
 
 int maior_carta_trio_fullhouse (MAO m) {
 
-	int v,i,n,j,var=0 ;
+	int v,i,n,j,var;
 
 	int contaValores[14];
 
@@ -696,26 +700,25 @@ int valida_fourkind (MAO m) {
 	
 	int v,i,n,j;
 
-	int contaValores[14];
+	int contaValores[13];
 
-	for (i = 0; i < 14; i++) {
+	for (i = 0; i < 13; i++) {
 		contaValores[i] = 0;
 	}
 
-	i = 2;
-	for (v = 0; v < 14; v++) {
+	i = 0;
+	for (v = 0; v < 13; v++) {
 		for(n = 0; n < 4; n++) {
-			switch (v) {
-				case 11: if (carta_existe(m,n,v)) { contaValores[0]++; contaValores[13]++; } break;
-				case 12: if (carta_existe(m,n,v)) { contaValores[1]++; } break;
-				default: if (carta_existe(m,n,v)) { contaValores[i]++; } break;
+			if ((carta_existe(m,n,v))) {
+				contaValores[i]++;
 			}	
     	}
     	i++;
 	}
 
-	for (j = 0; j < 14; j++) {
+	for (j = 0; j < 13; j++) {
 		if (contaValores[j] == 4) {
+			
 			return 1;
 		}
 	}
@@ -725,38 +728,32 @@ int valida_fourkind (MAO m) {
 
 int maior_carta_fourkind (MAO m) {
 
-	int v,i,n,j,var = 0;
+	int v,i,x,n,j,var,flag;
+	int contaValores[13];
 
-	int contaValores[14];
+	var = -1;
 
-	for (i = 0; i < 14; i++) {
+	for (i = 0; i < 13; i++) {
 		contaValores[i] = 0;
 	}
 
-	i = 2;
-	for (v = 0; v < 14; v++) {
+	x = 0;
+	for (v = 0; v < 13; v++) {
 		for(n = 0; n < 4; n++) {
-			switch (v) {
-				case 11: if (carta_existe(m,n,v)) { contaValores[0]++; contaValores[13]++; } break;
-				case 12: if (carta_existe(m,n,v)) { contaValores[1]++; } break;
-				default: if (carta_existe(m,n,v)) { contaValores[i]++; } break;
+			if (carta_existe(m,n,v)) {
+				contaValores[x]++;
 			}	
     	}
-    	i++;
-	}
-
-	for (j = 0; j < 14; j++) {
-		if (contaValores[j] == 4) {
-			var = j;
-		}
-	}
-
-	switch (var) {
-		case 0: { var = 11; } break;
-		case 1: { var = 12; } break;
-		default: { var -= 2; } break;
+    	x++;
 	}
 	
+	flag = 0;
+	for (j = 12; j >= 0 && flag != 1; --j) {
+		if ((contaValores[j]) == 4) {
+			var = j;
+			flag = 1; 
+		}
+	}
 	return var;
 }
 
@@ -981,12 +978,12 @@ int validacao_5cartas (MAO m) {
 			}
 
 			else {
-				if ((valida_fullhouse(m)) == 1) {
+				if ((valida_fullhouse(m)) != -1) {
 					return 3;
 				}
 
 				else {
-					if ((valida_fourkind(m)) == 1) {
+					if ((maior_carta_fourkind(m)) != -1) {
 						return 4;
 					}					
 				}
@@ -1011,7 +1008,14 @@ int posso_jogar (ESTADO e) {
 				return 0;
 			} 		
  		}
-
+ 		if (e.ultima_jogada_valida == 0 && e.ultimo_jogador == 0) {
+ 			if ((validacao_5cartas(e.highlight)) != -1) {
+				return 1;
+			}
+			else {
+				return 0;
+			}
+ 		}
  		else {
  		 if (!compara_tamanho(e.ultima_jogada, e.highlight)) { return 0; }
  		  else{
@@ -1073,41 +1077,21 @@ int posso_jogar (ESTADO e) {
  								}
  							}
  							if ((validacao_5cartas(e.highlight)) == 3) {
- 								if ((valida_fullhouse(e.highlight)) < (valida_fullhouse(e.ultima_jogada))) {
+ 								if (valida_fullhouse(e.highlight) == -1 || (valida_fullhouse(e.highlight) < valida_fullhouse(e.ultima_jogada))) {
  									return 0;
  								}
  								else {
- 									if ((valida_fullhouse(e.highlight)) > (valida_fullhouse(e.ultima_jogada))) {
- 										return 1;
- 									}
- 									else {
- 										if ((maior_carta_trio_fullhouse(e.highlight)) < (maior_carta_trio_fullhouse(e.ultima_jogada))) {
- 											return 0;
- 										}
- 										else {
- 											return 1;
- 										}
- 									}
+ 									return 1;
  								}
  							}
  							if ((validacao_5cartas(e.highlight)) == 4) {
- 								if ((valida_fourkind(e.highlight)) < (valida_fourkind(e.ultima_jogada))) {
- 									return 0;
- 								}
- 								else {
- 									if ((valida_fourkind(e.highlight)) > (valida_fourkind(e.ultima_jogada))) {
- 										return 1;
- 									}
- 									else {
- 										if ((maior_carta_fourkind(e.highlight)) < (maior_carta_fourkind(e.ultima_jogada))) {
- 											return 0;
- 										}
- 										else {
- 											return 1;
- 										}
- 									}
- 								}
- 							}
+								if (maior_carta_fourkind(e.highlight) > maior_carta_fourkind(e.ultima_jogada) && maior_carta_fourkind(e.highlight) != -1 ) {
+									return 1;
+								}
+								else {
+									return 0;
+								}
+							}
  							if ((validacao_5cartas(e.highlight)) == 5) {
  								if ((maior_carta_straightflush_bots(e.highlight)) != 1) {
  									return 0;
@@ -1608,6 +1592,196 @@ int codifica(int v){
 	}	
 }
 
+int da_carta_fourkind (MAO m) {
+
+	int v,i,n,j,var=0,flag;
+	int contaValores[13];
+
+	for (i = 0; i < 13; i++) {
+		contaValores[i] = 0;
+	}
+
+	i = 0;
+	for (v = 0; v < 13; v++) {
+		for(n = 0; n < 4; n++) {
+			if ((carta_existe(m,n,v))) {
+				contaValores[i]++;
+			}	
+    	}
+    	i++;
+	}
+
+	flag = 0;
+	for (j = 0; (j < 13) && (flag != 1); j++) {
+		if (contaValores[j] == 1) {
+			var = j;
+			flag = 1;
+		}
+	}
+	printf("%d\n",var );
+	return var;
+}
+
+int maior_carta_par_fullhouse (MAO m) {
+
+	int v,i,n,j,var,flag;
+
+	int contaValores[13];
+
+	for (i = 0; i < 13; i++) {
+		contaValores[i] = 0;
+	}
+
+	i = 0;
+	for (v = 0; v < 13; v++) {
+		for(n = 0; n < 4; n++) {
+			if (carta_existe(m,n,v)) {
+				contaValores[i]++;
+			}	
+    	}
+    	i++;
+	}
+
+	flag = 0;
+	for (j = 0; (j < 14) && (flag != 1); j++) {
+		if (contaValores[j] == 2) {
+			var = j;
+			flag = 1;
+		}
+	}
+
+	return var;
+}
+
+ESTADO joga_fullhouse(ESTADO e) {
+
+	long long int m=0, n=0;
+
+	int v1=0,n3=0,n2=0,n1=0,p=0,p1=0,p2=0,p3=0,np1=0,np2=0,flag,flag1,flag2,flag3,flag4;
+
+  	v1 = valida_fullhouse(e.mao[e.ultimo_jogador]);
+  	
+  	p = maior_carta_par_fullhouse(e.mao[e.ultimo_jogador]); /* valor do par */
+
+  	flag = 0;
+  	for (n = 3; n >= 0 && flag != 1; --n) {
+  		if(carta_existe(e.mao[e.ultimo_jogador], n, v1)) {
+  			n1 = n;
+  			flag = 1;
+  		}
+  	}
+
+  	flag1 = 0;
+  	p1 = n;
+  	for (n = p1; n >= 0 && flag1 != 1; --n) {
+  		if(carta_existe(e.mao[e.ultimo_jogador], n, v1)) {
+  			n2 = n;
+  			flag1 = 1;
+  		}
+  	}
+
+  	flag2 = 0;
+  	p2 = p1-1;
+  	for (n = p2; n >= 0 && flag2 != 1; --n) {
+  		if (carta_existe(e.mao[e.ultimo_jogador], n, v1)) {
+  			n3 = n;
+  			flag2 = 1;
+  		}
+  	}
+
+  	flag3 = 0;
+  	for (n = 3; n >= 0 && flag3 != 1; --n) {
+  		if (carta_existe(e.mao[e.ultimo_jogador], n, p)) {
+  			np1 = n;
+  			flag3 = 1;
+  		}
+  	}
+  	
+  	flag4 = 0;
+  	p3 = n;
+  	for (n = p3; n >= 0 && flag4 != 1; --n) {
+  		if (carta_existe(e.mao[e.ultimo_jogador], n, p)) {
+  			np2 = n;
+  			flag4 = 1;
+  		}
+  	}
+
+
+
+
+
+
+
+
+printf("%d %d %d %d %d",n1,n2,n3,np1,np2);
+	m = add_carta(0,n1,v1);
+  	m = add_carta(m,n2,v1);
+  	m = add_carta(m,n3,v1);
+  	m = add_carta(m,np1,p);
+  	m = add_carta(m,np2,p);
+
+  	n = rem_carta((e.mao[e.ultimo_jogador]),n1,v1);
+  	n = rem_carta(n,n2,v1);
+  	n = rem_carta(n,n3,v1);
+  	n = rem_carta(n,np1,p);
+  	n = rem_carta(n,np2,p);
+
+  	e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) - 5;
+	e.ultima_jogada = m;
+	e.cartas_bots[e.ultimo_jogador] = m;
+	e.mao[e.ultimo_jogador] = n;
+	e.ultima_jogada_valida = e.ultimo_jogador;
+	e.ultimo_jogador = incrementa_jogador(e);
+	e.card = 0;
+	return e;
+}
+
+
+
+
+
+
+
+ESTADO joga_fourkind(ESTADO e) {
+
+	long long int m=0, n=0;
+
+	int v1=0,n2=0,n1=0,p=0;
+
+  	v1 = maior_carta_fourkind(e.mao[e.ultimo_jogador]);
+  	
+  	p = da_carta_fourkind(e.mao[e.ultimo_jogador]);
+
+  	for (n1 = 3; n1 >= 0; --n1) {
+  		if (carta_existe(e.mao[e.ultimo_jogador],n1,p)) {
+  			n2 = n1;
+  		}	
+  	}
+  	/* os v's são todos iguais, exceto v5 */
+
+	m = add_carta(0,0,v1);
+  	m = add_carta(m,1,v1);
+  	m = add_carta(m,2,v1);
+  	m = add_carta(m,3,v1);
+  	m = add_carta(m,n2,p);
+
+  	n = rem_carta((e.mao[e.ultimo_jogador]),0,v1);
+  	n = rem_carta(n,1,v1);
+  	n = rem_carta(n,2,v1);
+  	n = rem_carta(n,3,v1);
+  	n = rem_carta(n,n2,p);
+
+  	e.cartas[e.ultimo_jogador] = (e.cartas[e.ultimo_jogador]) - 5;
+	e.ultima_jogada = m;
+	e.cartas_bots[e.ultimo_jogador] = m;
+	e.mao[e.ultimo_jogador] = n;
+	e.ultima_jogada_valida = e.ultimo_jogador;
+	e.ultimo_jogador = incrementa_jogador(e);
+	e.card = 0;
+	return e;
+}
+
+
 ESTADO joga_straightflush(ESTADO e) {
 
 	long long int m=0, n=0;
@@ -1671,98 +1845,132 @@ ESTADO fazjogada (ESTADO e, int v){
 					return e;
 				}
 				else {
-					if(maior_carta_straightflush_bots(e.mao[e.ultimo_jogador]) != -1){
-						e = joga_straightflush(e);
+					if(valida_fullhouse(e.mao[e.ultimo_jogador]) != -1) {
+						e = joga_fullhouse(e);
 						return e;
 					}
-					else{
-						e.cartas_bots[e.ultimo_jogador] = 0;
-			    		e.ultimo_jogador = incrementa_jogador(e);
-						return e;
-					}	
+					else {					
+						if(maior_carta_fourkind(e.mao[e.ultimo_jogador]) != -1) {
+							e = joga_fourkind(e);
+							return e;
+						}
+						else{
+							if(maior_carta_straightflush_bots(e.mao[e.ultimo_jogador]) != -1){
+								e = joga_straightflush(e);
+								return e;
+							}
+							else {
+								e.cartas_bots[e.ultimo_jogador] = 0;
+			    				e.ultimo_jogador = incrementa_jogador(e);
+								return e;
+							}
+						}	
+					}
 				}
-			}
+  			}
   		}
-        else {
-        	if(valida_flush(e.mao[e.ultimo_jogador]) != -1){
-				e = joga_flush(e);
-				return e;
-			}
-			else {
-				if (maior_carta_straightflush_bots(e.mao[e.ultimo_jogador]) != -1){
-					e = joga_straightflush(e);
-					return e;
-				}
-				else{
-					e.cartas_bots[e.ultimo_jogador] = 0;
-			    	e.ultimo_jogador = incrementa_jogador(e);
-					return e;
-				}
-			}
-		}
   	}
- }
-  else {
-	if (v == 2) {
-		if ((valida_flush(e.mao[e.ultimo_jogador])) > (valida_flush(e.ultima_jogada))) {
-			e = joga_flush(e);
-			return e;
-		}
-		else {
-			if ((valida_flush(e.mao[e.ultimo_jogador])) == (valida_flush(e.ultima_jogada))) {
-				if ((maior_carta_flush_bots(e.mao[e.ultimo_jogador], (valida_flush(e.mao[e.ultimo_jogador])))) > (maior_carta_flush_bots(e.ultima_jogada, (valida_flush(e.ultima_jogada))))) {
+  }
+  		else {
+			if (v == 2) {
+				if ((valida_flush(e.mao[e.ultimo_jogador])) > (valida_flush(e.ultima_jogada))) {
 					e = joga_flush(e);
 					return e;
 				}
-				else {
-					if (maior_carta_straightflush_bots(e.mao[e.ultimo_jogador]) != -1){
-						e = joga_straightflush(e);
+			else {
+				if ((valida_flush(e.mao[e.ultimo_jogador])) == (valida_flush(e.ultima_jogada))) {
+					if ((maior_carta_flush_bots(e.mao[e.ultimo_jogador], (valida_flush(e.mao[e.ultimo_jogador])))) > (maior_carta_flush_bots(e.ultima_jogada, (valida_flush(e.ultima_jogada))))) {
+						e = joga_flush(e);
 						return e;
 					}
 					else {
-						e.cartas_bots[e.ultimo_jogador] = 0;
-						e.ultimo_jogador = incrementa_jogador(e);
-						return e;
+						if(valida_fullhouse(e.mao[e.ultimo_jogador]) != -1) {
+							e = joga_fullhouse(e);
+							return e;
+						}
+						else {
+							if(maior_carta_fourkind(e.mao[e.ultimo_jogador]) != -1) {
+								e = joga_fourkind(e);
+								return e;
+							}
+							else {
+								if (maior_carta_straightflush_bots(e.mao[e.ultimo_jogador]) != -1){
+									e = joga_straightflush(e);
+									return e;
+								}
+								else {
+									e.cartas_bots[e.ultimo_jogador] = 0;
+									e.ultimo_jogador = incrementa_jogador(e);
+									return e;
+								}
+							}
+						}
 					}
 				}
 			}
-			else {
-				if (maior_carta_straightflush_bots(e.mao[e.ultimo_jogador]) != -1){
-					e = joga_straightflush(e);
+  		}
+		else {
+			if (v == 3) {
+				if (valida_fullhouse(e.mao[e.ultimo_jogador]) > valida_fullhouse(e.ultima_jogada) && (valida_fullhouse(e.mao[e.ultimo_jogador] != -1))) {
+					e = joga_fullhouse(e);
 					return e;
 				}
 				else {
-					e.cartas_bots[e.ultimo_jogador] = 0;
-					e.ultimo_jogador = incrementa_jogador(e);
-					return e;
-				}
-			}	
-		}
-	}
-
-	else {
-		if (v == 5) {
-			if((maior_carta_straightflush_bots(e.mao[e.ultimo_jogador]) == -1)) {
-				e = passabot(e);
-				return e;
-			}
-			else {
-				if (codifica(maior_carta_straightflush_bots(e.mao[e.ultimo_jogador])) > codifica(maior_carta_straightflush_bots(e.ultima_jogada))) {
-					e = joga_straightflush(e);
-					return e;
-				}
-				else {
-					if ((codifica(maior_carta_straightflush_bots(e.mao[e.ultimo_jogador])) == (codifica(maior_carta_straightflush_bots(e.ultima_jogada)))) && (maior_naipeCarta_straightflush_bots(e.mao[e.ultimo_jogador])) > (maior_naipeCarta_straightflush_bots(e.ultima_jogada))) {
-						e = joga_straightflush(e);
+					if(maior_carta_fourkind(e.mao[e.ultimo_jogador]) != -1) {
+						e = joga_fourkind(e);
 						return e;
 					}
+					else {
+						if (maior_carta_straightflush_bots(e.mao[e.ultimo_jogador]) != -1){
+							e = joga_straightflush(e);
+							return e;
+						}
+					}
 				}
-			}
-		}
-	}
-  }
-  e = passabot(e);
-  return e;
+			}		
+			else {
+				if (v == 4) {
+					if ((maior_carta_fourkind(e.mao[e.ultimo_jogador])) > (maior_carta_fourkind(e.ultima_jogada)) && (maior_carta_fourkind(e.mao[e.ultimo_jogador]) != -1)) {
+						e = joga_fourkind(e);
+						return e;
+					}
+					else {
+						if (maior_carta_straightflush_bots(e.mao[e.ultimo_jogador]) != -1){
+							e = joga_straightflush(e);
+							return e;
+						}
+						else {
+							e = passabot(e);
+							return e;
+						}
+					}
+				}
+				else {
+					if (v == 5) {
+						if((maior_carta_straightflush_bots(e.mao[e.ultimo_jogador]) == -1)) {
+							e = passabot(e);
+							return e;
+						}
+						else {
+							if (codifica(maior_carta_straightflush_bots(e.mao[e.ultimo_jogador])) > codifica(maior_carta_straightflush_bots(e.ultima_jogada))) {
+								e = joga_straightflush(e);
+								return e;
+							}
+							else {
+								if ((codifica(maior_carta_straightflush_bots(e.mao[e.ultimo_jogador])) == (codifica(maior_carta_straightflush_bots(e.ultima_jogada)))) && (maior_naipeCarta_straightflush_bots(e.mao[e.ultimo_jogador])) > (maior_naipeCarta_straightflush_bots(e.ultima_jogada))) {
+									e = joga_straightflush(e);
+									return e;
+								}
+							}
+						}
+					}
+				}
+  			}
+  		}	
+  	}
+ 
+  	e = passabot(e);
+  	return e;
 }
 
 ESTADO pbot(ESTADO e){
@@ -2033,9 +2241,7 @@ void parse (char *query) {
 		if (e.card) e.card = 0;
 		if (e.play) e = jogar(e);
         if (e.pass) e = passar(e);
-    
-    	a=e.mao[0];
-    	printf("%d\n", a);
+
 	}
 
 
