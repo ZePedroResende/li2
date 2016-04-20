@@ -670,8 +670,8 @@ int valida_fullhouse (MAO m) {
 int maior_carta_trio_fullhouse (MAO m) {
 
 	int v,i,n,j,var;
-
 	int contaValores[14];
+	var = 0;
 
 	for (i = 0; i < 14; i++) {
 		contaValores[i] = 0;
@@ -1672,7 +1672,7 @@ ESTADO joga_fullhouse(ESTADO e) {
   	}
 
   	flag1 = 0;
-  	p1 = n;
+  	p1 = n1-1;
   	for (n = p1; n >= 0 && flag1 != 1; --n) {
   		if(carta_existe(e.mao[e.ultimo_jogador], n, v1)) {
   			n2 = n;
@@ -1681,7 +1681,7 @@ ESTADO joga_fullhouse(ESTADO e) {
   	}
 
   	flag2 = 0;
-  	p2 = p1-1;
+  	p2 = n2-1;
   	for (n = p2; n >= 0 && flag2 != 1; --n) {
   		if (carta_existe(e.mao[e.ultimo_jogador], n, v1)) {
   			n3 = n;
@@ -1705,6 +1705,8 @@ ESTADO joga_fullhouse(ESTADO e) {
   			flag4 = 1;
   		}
   	}
+
+  	printf("BALAI-ME %d %d %d %d %d\n", n1,n2,n3,np1,np2);
 
 	m = add_carta(0,n1,v1);
   	m = add_carta(m,n2,v1);
@@ -1819,35 +1821,34 @@ ESTADO joga_straightflush(ESTADO e) {
 	return e;
 }
 
-ESTADO fazjogada (ESTADO e, int v){
-  if (v == 1){
-  	if ((maior_carta_straight_bots(e.mao[e.ultimo_jogador])) > (maior_carta_straight_bots(e.ultima_jogada))) {  
-      e = joga_straight(e);
-      return e;
-  	} 
-	else {
-		if ((maior_carta_straight_bots(e.mao[e.ultimo_jogador])) == (maior_carta_straight_bots(e.ultima_jogada))) {
-          	if ((maior_naipe_straight_bots(e.mao[e.ultimo_jogador],(descodifica_straight(maior_carta_straight_bots(e.mao[e.ultimo_jogador]))))) > (maior_naipe_straight_bots(e.ultima_jogada,(descodifica_straight(maior_carta_straight_bots(e.ultima_jogada)))))) {
-            	e = joga_straight(e);
+ESTADO fazjogada (ESTADO e, int v) {
+	if (v == 1) {
+		if (maior_carta_straight_bots(e.mao[e.ultimo_jogador]) > maior_carta_straight_bots(e.ultima_jogada)) {  
+			e = joga_straight(e);
+			return e;
+		}
+		else {
+			if ((maior_carta_straight_bots(e.mao[e.ultimo_jogador])) == (maior_carta_straight_bots(e.ultima_jogada))) {
+				e = joga_straight(e);
 				return e;
 			}
 			else{
-				if(valida_flush(e.mao[e.ultimo_jogador]) != -1){
+				if (valida_flush(e.mao[e.ultimo_jogador]) != -1){
 					e = joga_flush(e);
 					return e;
 				}
 				else {
-					if(valida_fullhouse(e.mao[e.ultimo_jogador]) != -1) {
+					if (valida_fullhouse(e.mao[e.ultimo_jogador]) != -1) {
 						e = joga_fullhouse(e);
 						return e;
 					}
-					else {					
-						if(maior_carta_fourkind(e.mao[e.ultimo_jogador]) != -1) {
+					else {
+						if (maior_carta_fourkind(e.mao[e.ultimo_jogador]) != -1) {
 							e = joga_fourkind(e);
 							return e;
 						}
-						else{
-							if(maior_carta_straightflush_bots(e.mao[e.ultimo_jogador]) != -1){
+						else {
+							if (maior_carta_straightflush_bots(e.mao[e.ultimo_jogador]) != -1){
 								e = joga_straightflush(e);
 								return e;
 							}
@@ -1856,113 +1857,115 @@ ESTADO fazjogada (ESTADO e, int v){
 			    				e.ultimo_jogador = incrementa_jogador(e);
 								return e;
 							}
-						}	
+						}
 					}
 				}
-  			}
-  		}
-  	}
-  }
-  		else {
-			if (v == 2) {
-				if ((valida_flush(e.mao[e.ultimo_jogador])) > (valida_flush(e.ultima_jogada))) {
+			}
+		}
+	}
+
+	if (v == 2) {
+		if ((valida_flush(e.mao[e.ultimo_jogador])) > (valida_flush(e.ultima_jogada))) {
+			e = joga_flush(e);
+			return e;
+		}
+		else {
+			if ((valida_flush(e.mao[e.ultimo_jogador])) == (valida_flush(e.ultima_jogada))) {
+				if ((maior_carta_flush_bots(e.mao[e.ultimo_jogador], (valida_flush(e.mao[e.ultimo_jogador])))) > (maior_carta_flush_bots(e.ultima_jogada, (valida_flush(e.ultima_jogada))))) {
 					e = joga_flush(e);
 					return e;
-				}
-			else {
-				if ((valida_flush(e.mao[e.ultimo_jogador])) == (valida_flush(e.ultima_jogada))) {
-					if ((maior_carta_flush_bots(e.mao[e.ultimo_jogador], (valida_flush(e.mao[e.ultimo_jogador])))) > (maior_carta_flush_bots(e.ultima_jogada, (valida_flush(e.ultima_jogada))))) {
-						e = joga_flush(e);
+				}		
+				else {
+					if (valida_fullhouse(e.mao[e.ultimo_jogador]) != -1) {
+						e = joga_fullhouse(e);
 						return e;
 					}
 					else {
-						if(valida_fullhouse(e.mao[e.ultimo_jogador]) != -1) {
-							e = joga_fullhouse(e);
+						if (maior_carta_fourkind(e.mao[e.ultimo_jogador]) != -1) {
+							e = joga_fourkind(e);
 							return e;
 						}
 						else {
-							if(maior_carta_fourkind(e.mao[e.ultimo_jogador]) != -1) {
-								e = joga_fourkind(e);
+							if (maior_carta_straightflush_bots(e.mao[e.ultimo_jogador]) != -1){
+								e = joga_straightflush(e);
 								return e;
 							}
 							else {
-								if (maior_carta_straightflush_bots(e.mao[e.ultimo_jogador]) != -1){
-									e = joga_straightflush(e);
-									return e;
-								}
-								else {
-									e.cartas_bots[e.ultimo_jogador] = 0;
-									e.ultimo_jogador = incrementa_jogador(e);
-									return e;
-								}
+								e.cartas_bots[e.ultimo_jogador] = 0;
+								e.ultimo_jogador = incrementa_jogador(e);
+								return e;
 							}
 						}
 					}
 				}
 			}
-  		}
+		}
+	}
+
+	if (v == 3) {
+		if (valida_fullhouse(e.mao[e.ultimo_jogador]) > valida_fullhouse(e.ultima_jogada) && (valida_fullhouse(e.mao[e.ultimo_jogador] != -1))) {
+			e = joga_fullhouse(e);
+			return e;
+		}
 		else {
-			if (v == 3) {
-				if (valida_fullhouse(e.mao[e.ultimo_jogador]) > valida_fullhouse(e.ultima_jogada) && (valida_fullhouse(e.mao[e.ultimo_jogador] != -1))) {
-					e = joga_fullhouse(e);
+			if (maior_carta_fourkind(e.mao[e.ultimo_jogador]) != -1) {
+				e = joga_fourkind(e);
+				return e;
+			}
+			else {
+				if (maior_carta_straightflush_bots(e.mao[e.ultimo_jogador]) != -1) {
+					e = joga_straightflush(e);
 					return e;
 				}
 				else {
-					if(maior_carta_fourkind(e.mao[e.ultimo_jogador]) != -1) {
-						e = joga_fourkind(e);
-						return e;
-					}
-					else {
-						if (maior_carta_straightflush_bots(e.mao[e.ultimo_jogador]) != -1){
-							e = joga_straightflush(e);
-							return e;
-						}
-					}
+					e.cartas_bots[e.ultimo_jogador] = 0;
+					e.ultimo_jogador = incrementa_jogador(e);
+					return e;
 				}
-			}		
+			}
+		}
+	}
+
+	if (v == 4) {
+		if ((maior_carta_fourkind(e.mao[e.ultimo_jogador])) > (maior_carta_fourkind(e.ultima_jogada)) && (maior_carta_fourkind(e.mao[e.ultimo_jogador]) != -1)) {
+			e = joga_fourkind(e);
+			return e;
+		}
+		else {
+			if (maior_carta_straightflush_bots(e.mao[e.ultimo_jogador]) != -1){
+				e = joga_straightflush(e);
+				return e;
+			}
 			else {
-				if (v == 4) {
-					if ((maior_carta_fourkind(e.mao[e.ultimo_jogador])) > (maior_carta_fourkind(e.ultima_jogada)) && (maior_carta_fourkind(e.mao[e.ultimo_jogador]) != -1)) {
-						e = joga_fourkind(e);
-						return e;
-					}
-					else {
-						if (maior_carta_straightflush_bots(e.mao[e.ultimo_jogador]) != -1){
-							e = joga_straightflush(e);
-							return e;
-						}
-						else {
-							e = passabot(e);
-							return e;
-						}
-					}
+				e.cartas_bots[e.ultimo_jogador] = 0;
+				e.ultimo_jogador = incrementa_jogador(e);
+				return e;
+			}
+		}
+	}
+
+	if (v == 5) {
+		if((maior_carta_straightflush_bots(e.mao[e.ultimo_jogador]) == -1)) {
+			e.cartas_bots[e.ultimo_jogador] = 0;
+			e.ultimo_jogador = incrementa_jogador(e);
+			return e;
+		}
+		else {
+			if (codifica(maior_carta_straightflush_bots(e.mao[e.ultimo_jogador])) > codifica(maior_carta_straightflush_bots(e.ultima_jogada))) {
+				e = joga_straightflush(e);
+				return e;
+			}
+			else {
+				if ((codifica(maior_carta_straightflush_bots(e.mao[e.ultimo_jogador])) == (codifica(maior_carta_straightflush_bots(e.ultima_jogada)))) && (maior_naipeCarta_straightflush_bots(e.mao[e.ultimo_jogador])) > (maior_naipeCarta_straightflush_bots(e.ultima_jogada))) {
+					e = joga_straightflush(e);
+					return e;
 				}
-				else {
-					if (v == 5) {
-						if((maior_carta_straightflush_bots(e.mao[e.ultimo_jogador]) == -1)) {
-							e = passabot(e);
-							return e;
-						}
-						else {
-							if (codifica(maior_carta_straightflush_bots(e.mao[e.ultimo_jogador])) > codifica(maior_carta_straightflush_bots(e.ultima_jogada))) {
-								e = joga_straightflush(e);
-								return e;
-							}
-							else {
-								if ((codifica(maior_carta_straightflush_bots(e.mao[e.ultimo_jogador])) == (codifica(maior_carta_straightflush_bots(e.ultima_jogada)))) && (maior_naipeCarta_straightflush_bots(e.mao[e.ultimo_jogador])) > (maior_naipeCarta_straightflush_bots(e.ultima_jogada))) {
-									e = joga_straightflush(e);
-									return e;
-								}
-							}
-						}
-					}
-				}
-  			}
-  		}	
-  	}
- 
-  	e = passabot(e);
-  	return e;
+			}
+		}
+	}
+
+	e = passabot(e);
+	return e;
 }
 
 ESTADO pbot(ESTADO e){
