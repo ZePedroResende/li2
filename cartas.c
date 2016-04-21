@@ -301,9 +301,9 @@ Apresenta as cartas no tabuleiro nas respetivas coordenadas
 */
 void imprime (char *path, ESTADO e) {
 
-	int n, v, m, bx1= 600 , by1 = 300 , bx2=340 , by2 = 150 , bx3= 100 , by3 = 300;
-	int X[4] = {200, 700, 200, 10};
-	int Y[4] = {550, 200, 10, 200};
+	int n, v, m, bx1= 820 , by1 = 250 , bx2=570 , by2 = 150 , bx3= 395 , by3 = 250;
+	int X[4] = {405, 1190, 405, 10};
+	int Y[4] = {595, 100, 15, 100};
 
 	for(m = 0; m < 4; m++) { 
 
@@ -325,10 +325,10 @@ void imprime (char *path, ESTADO e) {
 				} 
 				if (carta_existe(e.mao[m], n, v)) {				
 					if (m % 2 == 0) { 
-						x += 20;
+						x += 30;
 					}
 					else {
-						y += 20; 
+						y += 30; 
 					}
 					if (m == 0 && carta_existe(e.highlight, n, v)) {
 						imprime_carta(path, x, (y - 20), e, m, n, v); 	
@@ -353,14 +353,14 @@ void imprime (char *path, ESTADO e) {
           }
           if(m == 3 && carta_existe(e.cartas_bots[3],n,v)){
             imprime_carta(path,bx3, by3, e, m, n, v);
-            by3 += 20;
+            by3 +=20;
           } 
           if (carta_existe(e.mao[m], n, v)) {				
             if (m % 2 == 0) { 
-              x += 20;
+              x += 30;
             }
             else {
-              y += 20; 
+              y += 30; 
             }
             if (m == 0 && carta_existe(e.highlight, n, v)) {
               imprime_carta(path, x, (y - 20), e, m, n, v); 	
@@ -1203,11 +1203,11 @@ void imprime_botao_jogar(ESTADO e) {
 		novo.play = 1;
     	novo.ultima_jogada_valida = 0;	
 		sprintf(script, "%s?%s", SCRIPT, estado2str(novo));
-		printf("<a xlink:href = \"%s\"><image x = \"260\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/SubmitLI2.png\" /></a>\n", script); 
+		printf("<a xlink:href = \"%s\"><image x = \"530\" y = \"710\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/SubmitLI2.png\" /></a>\n", script); 
 	}
 
 	else {
-		printf("<image x = \"260\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/SubmitLI2out.png\" />\n"); 
+		printf("<image x = \"530\" y = \"710\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/SubmitLI2out.png\" />\n"); 
 	}
 }
 
@@ -1226,11 +1226,11 @@ void imprime_botao_passar(ESTADO e) {
     	novo.ultimo_jogador = incrementa_jogador(e);
     	novo.pass = 1;
 		sprintf(script, "%s?%s", SCRIPT, estado2str(novo));
-		printf("<a xlink:href = \"%s\"><image x = \"360\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/PassLI2.png\" /></a>\n", script); 
+		printf("<a xlink:href = \"%s\"><image x = \"630\" y = \"710\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/PassLI2.png\" /></a>\n", script); 
 }
 
 	else {
-		printf("<image x = \"360\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/PassLI2out.png\" />\n"); 
+		printf("<image x = \"630\" y = \"710\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/PassLI2out.png\" />\n"); 
 	}
 }
 
@@ -1247,8 +1247,8 @@ ESTADO jogar (ESTADO e) {
 	
 	int n, v, x, y;
 
-	x = 250;
-	y = 400;
+	x = 551;
+	y = 450;
 
 	e.play = 0;
   if(e.layout == 1){
@@ -2206,7 +2206,7 @@ void imprime_botao_layout(ESTADO e) {
     e.layout = 0;
     }
 		sprintf(script, "%s?%s", SCRIPT, estado2str(e));
-		printf("<a xlink:href = \"%s\"><image x = \"700\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/Reset.png\" /></a>\n", script);
+		printf("<a xlink:href = \"%s\"><image x = \"1180\" y = \"710\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/Reset.png\" /></a>\n", script);
   }
 
 void imprime_botao_trofeu(ESTADO e) {
@@ -2791,7 +2791,7 @@ void imprime_botao_clear(ESTADO e) {
   
  	e = clear(e);
     sprintf(script, "%s?%s", SCRIPT, estado2str(e));
-    printf("<a xlink:href = \"%s\"><image x = \"450\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/clear.png\" /></a>\n", script);
+    printf("<a xlink:href = \"%s\"><image x = \"730\" y = \"715\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/clear.png\" /></a>\n", script);
   }
 
 
@@ -2811,7 +2811,7 @@ void imprime_botao_sugestao(ESTADO e) {
 			} 
     }
     sprintf(script, "%s?%s", SCRIPT, estado2str(e));
-    printf("<a xlink:href = \"%s\"><image x = \"0\" y = \"700\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/sugestaostallman.gif\" /></a>\n", script);
+    printf("<a xlink:href = \"%s\"><image x = \"20\" y = \"710\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/sugestaostallman.gif\" /></a>\n", script);
 }
 
 
@@ -2881,11 +2881,11 @@ int main() {
 	printf("Content-Type: text/html; charset=utf-8\n\n");
 	printf("<header><title>Big2wo</title></header>\n");
 	printf("<body>\n");
-	printf("<h1>Big2wo</h1>\n");
-	printf("<svg height = \"800\" width = \"800\">\n");
+/*  printf("<h1>Big2wo</h1>\n");*/
+	printf("<svg height = \"1000\" width = \"1280\">\n");
 /*	printf("<rect x = \"0\" y = \"0\" height = \"800\" width = \"800\" style = \"fill:#007700\"/>\n");*/
-printf("<image x = \"0\" y = \"0\" height = \"800\" width = \"800\" xlink:href = \"http://localhost/cards/tab.png\" /></a>\n");
-
+printf("<image x = \"0\" y = \"0\" height = \"720\" width = \"1280\" xlink:href = \"http://localhost/cards/tabfinal.png\" /></a>\n");
+printf("<image x = \"0\" y = \"719\" height = \"80\" width = \"1280\" xlink:href = \"http://localhost/cards/barra.png\" /></a>\n");
 
 /*
  * Ler os valores passados à cgi que estão na variável ambiente e passá-los ao programa
