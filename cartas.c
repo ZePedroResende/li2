@@ -2884,7 +2884,7 @@ int main() {
 	printf("<h1>Big2wo</h1>\n");
 	printf("<svg height = \"800\" width = \"800\">\n");
 /*	printf("<rect x = \"0\" y = \"0\" height = \"800\" width = \"800\" style = \"fill:#007700\"/>\n");*/
-printf("<image x = \"0\" y = \"0\" height = \"800\" width = \"800\" xlink:href = \"http://localhost/cards/tab.svg\" /></a>\n");
+printf("<image x = \"0\" y = \"0\" height = \"800\" width = \"800\" xlink:href = \"http://localhost/cards/tab.png\" /></a>\n");
 
 
 /*
