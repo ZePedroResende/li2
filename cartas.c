@@ -2191,7 +2191,7 @@ else {
      	e = bots2(e);
    }
 		sprintf(script, "%s?%s", SCRIPT, estado2str(e));
-		printf("<a xlink:href = \"%s\"><image x = \"570\" y = \"600\" height = \"220\" width = \"200\" xlink:href = \"http://localhost/cards/playagain.png\" /></a>\n", script);
+		printf("<a xlink:href = \"%s\"><image x = \"850\" y = \"530\" height = \"220\" width = \"200\" xlink:href = \"http://localhost/cards/playagain.png\" /></a>\n", script);
 }
 }
 
@@ -2218,22 +2218,22 @@ void imprime_botao_trofeu(ESTADO e) {
   if(e.cartas[0] == 0){	
     
 		sprintf(script, "%s?%s", SCRIPT, estado2str(e));
-		printf("<a xlink:href = \"%s\"><image x = \"0\" y = \"30\" height = \"750\" width = \"750\" xlink:href = \"http://localhost/cards/trofeu.png\" /></a>\n", script);
+		printf("<a xlink:href = \"%s\"><image x = \"260\" y = \"50\" height = \"750\" width = \"750\" xlink:href = \"http://localhost/cards/trofeu.png\" /></a>\n", script);
   }
 
   if(e.cartas[1] == 0){
 	sprintf(script, "%s?%s", SCRIPT, estado2str(e));
-		printf("<a xlink:href = \"%s\"><image x = \"0\" y = \"30\" height = \"750\" width = \"750\" xlink:href = \"http://localhost/cards/trofeu2.png\" /></a>\n", script);
+		printf("<a xlink:href = \"%s\"><image x = \"260\" y = \"50\" height = \"750\" width = \"750\" xlink:href = \"http://localhost/cards/trofeu2.png\" /></a>\n", script);
   }
   
   if(e.cartas[2] == 0) {
 	sprintf(script, "%s?%s", SCRIPT, estado2str(e));
-		printf("<a xlink:href = \"%s\"><image x = \"0\" y = \"30\" height = \"750\" width = \"750\" xlink:href = \"http://localhost/cards/trofeu3.png\" /></a>\n", script);
+		printf("<a xlink:href = \"%s\"><image x = \"260\" y = \"50\" height = \"750\" width = \"750\" xlink:href = \"http://localhost/cards/trofeu3.png\" /></a>\n", script);
   }
   
   if(e.cartas[3] == 0){
 	sprintf(script, "%s?%s", SCRIPT, estado2str(e));
-		printf("<a xlink:href = \"%s\"><image x = \"0\" y = \"30\" height = \"750\" width = \"750\" xlink:href = \"http://localhost/cards/trofeu4.png\" /></a>\n", script);
+		printf("<a xlink:href = \"%s\"><image x = \"260\" y = \"50\" height = \"750\" width = \"750\" xlink:href = \"http://localhost/cards/trofeu4.png\" /></a>\n", script);
   }
   
   }
