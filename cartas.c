@@ -2819,7 +2819,7 @@ void imprime_botao_start(ESTADO e) {
 
   	char script[10240];
   
-if (e.start == 1) e = sugestao1(e);{
+if (e.start == 1){
 	e.start=0;
     sprintf(script, "%s?%s", SCRIPT, estado2str(e));
     printf("<rect x = \"0\" y = \"0\" height = \"800\" width = \"1280\" style = \"fill:#000000\"/>\n");
@@ -2828,6 +2828,19 @@ if (e.start == 1) e = sugestao1(e);{
 
  }
 }
+
+void imprime_botao_exit(ESTADO e) {
+
+  	char script[10240];
+  
+if (e.start == 0){
+	e.start=1;
+    sprintf(script, "%s?%s", SCRIPT, estado2str(e));
+   	printf("<a xlink:href = \"%s\"><image x = \"1080\" y = \"650\" height = \"110\" width = \"150\" xlink:href = \"http://localhost/cards/ExitLI2.png\" /></a>\n", script);
+
+ }
+}
+
 
 
 /** \brief Trata os argumentos da CGI
@@ -2882,7 +2895,7 @@ else{
     imprime_botao_layout(e);
     imprime_botao_clear(e);
     imprime_botao_sugestao(e);
-
+    imprime_botao_exit(e); 
  
 
 }
