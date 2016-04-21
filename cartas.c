@@ -30,7 +30,7 @@ Ordem das cartas
 
 
 
-#define FORMATO "%lld_%lld_%lld_%lld_%lld_%d_%d_%d_%d_%d_%d_%d_%d_%lld_%d_%lld_%lld_%lld_%lld_%d"
+#define FORMATO "%lld_%lld_%lld_%lld_%lld_%d_%d_%d_%d_%d_%d_%d_%d_%lld_%d_%lld_%lld_%lld_%lld_%d_%d"
 
 /* A struct estado contém as variáveis, as quais vão ser alteradas e manipuladas de modo a produzir jogadas válidas, tanto pelo jogador
 como pelos "bots"
@@ -55,6 +55,7 @@ struct estado {
 	int ultimo_jogador;
 	MAO cartas_bots[4];
   int layout;
+  int start;
 };
 
 /*
@@ -86,7 +87,7 @@ struct estado {
 typedef struct estado ESTADO;
 char* estado2str(ESTADO e){
   static char str[10240];
-  sprintf(str, FORMATO, e.mao[0], e.mao[1], e.mao[2], e.mao[3], e.highlight, e.cartas[0], e.cartas[1], e.cartas[2], e.cartas[3], e.play, e.pass, e.card,e.ultima_jogada_valida, e.ultima_jogada, e.ultimo_jogador, e.cartas_bots[0], e.cartas_bots[1], e.cartas_bots[2], e.cartas_bots[3], e.layout);
+  sprintf(str, FORMATO, e.mao[0], e.mao[1], e.mao[2], e.mao[3], e.highlight, e.cartas[0], e.cartas[1], e.cartas[2], e.cartas[3], e.play, e.pass, e.card,e.ultima_jogada_valida, e.ultima_jogada, e.ultimo_jogador, e.cartas_bots[0], e.cartas_bots[1], e.cartas_bots[2], e.cartas_bots[3], e.layout,e.start);
 
   return str;
 }
@@ -94,7 +95,7 @@ char* estado2str(ESTADO e){
 /* Transforma a string do url num estado novo. */
 ESTADO str2estado(char* str){
   ESTADO e;
-  sscanf(str, FORMATO, &e.mao[0], &e.mao[1], &e.mao[2], &e.mao[3], &e.highlight, &e.cartas[0], &e.cartas[1], &e.cartas[2], &e.cartas[3], &e.play, &e.pass, &e.card,&e.ultima_jogada_valida, &e.ultima_jogada, &e.ultimo_jogador, &e.cartas_bots[0], &e.cartas_bots[1], &e.cartas_bots[2], &e.cartas_bots[3], &e.layout);  
+  sscanf(str, FORMATO, &e.mao[0], &e.mao[1], &e.mao[2], &e.mao[3], &e.highlight, &e.cartas[0], &e.cartas[1], &e.cartas[2], &e.cartas[3], &e.play, &e.pass, &e.card,&e.ultima_jogada_valida, &e.ultima_jogada, &e.ultimo_jogador, &e.cartas_bots[0], &e.cartas_bots[1], &e.cartas_bots[2], &e.cartas_bots[3], &e.layout,&e.start);  
 
   return e;
 }
@@ -145,7 +146,7 @@ ESTADO baralhar () {
 	long long int player3[13]; 
 	long long int player4[13];
 	
-	ESTADO e = {{0},0,{0},0,0,0,0,-1,0,{0},0};
+	ESTADO e = {{0},0,{0},0,0,0,0,-1,0,{0},0,1};
 
 	e.cartas[0] = 13;
 	e.cartas[1] = 13;
@@ -2791,7 +2792,7 @@ void imprime_botao_clear(ESTADO e) {
   
  	e = clear(e);
     sprintf(script, "%s?%s", SCRIPT, estado2str(e));
-    printf("<a xlink:href = \"%s\"><image x = \"730\" y = \"715\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/clear.png\" /></a>\n", script);
+    printf("<a xlink:href = \"%s\"><image x = \"730\" y = \"710\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/ClearLI2.png\" /></a>\n", script);
   }
 
 
@@ -2814,6 +2815,19 @@ void imprime_botao_sugestao(ESTADO e) {
     printf("<a xlink:href = \"%s\"><image x = \"20\" y = \"710\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/sugestaostallman.gif\" /></a>\n", script);
 }
 
+void imprime_botao_start(ESTADO e) {
+
+  	char script[10240];
+  
+if (e.start == 1) e = sugestao1(e);{
+	e.start=0;
+    sprintf(script, "%s?%s", SCRIPT, estado2str(e));
+    printf("<rect x = \"0\" y = \"0\" height = \"800\" width = \"1280\" style = \"fill:#000000\"/>\n");
+	printf("<image x = \"0\" y = \"0\" height = \"800\" width = \"1280\" xlink:href = \"http://localhost/cards/bg.png\" /></a>\n");
+   	printf("<a xlink:href = \"%s\"><image x = \"1080\" y = \"650\" height = \"110\" width = \"150\" xlink:href = \"http://localhost/cards/StartLI2.png\" /></a>\n", script);
+
+ }
+}
 
 
 /** \brief Trata os argumentos da CGI
@@ -2851,6 +2865,11 @@ void parse (char *query) {
  		a=e.mao[0];
 		printf("%d\n", a);
 	}
+
+if(e.start == 1){
+imprime_botao_start(e);
+	}
+else{
 if (e.cartas[0] == 0 || e.cartas[1] == 0 || e.cartas[2] == 0 || e.cartas[3] == 0 ){
  imprime_botao_trofeu(e);
  imprime_botao_reset(e);
@@ -2863,6 +2882,10 @@ else{
     imprime_botao_layout(e);
     imprime_botao_clear(e);
     imprime_botao_sugestao(e);
+
+ 
+
+}
 }
 }
 
