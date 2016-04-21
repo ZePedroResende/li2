@@ -1204,11 +1204,11 @@ void imprime_botao_jogar(ESTADO e) {
 		novo.play = 1;
     	novo.ultima_jogada_valida = 0;	
 		sprintf(script, "%s?%s", SCRIPT, estado2str(novo));
-		printf("<a xlink:href = \"%s\"><image x = \"530\" y = \"710\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/SubmitLI2.png\" /></a>\n", script); 
+		printf("<a xlink:href = \"%s\"><image x = \"510\" y = \"710\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/SubmitLI2.png\" /></a>\n", script); 
 	}
 
 	else {
-		printf("<image x = \"530\" y = \"710\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/SubmitLI2out.png\" />\n"); 
+		printf("<image x = \"510\" y = \"710\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/SubmitLI2out.png\" />\n"); 
 	}
 }
 
@@ -1227,11 +1227,11 @@ void imprime_botao_passar(ESTADO e) {
     	novo.ultimo_jogador = incrementa_jogador(e);
     	novo.pass = 1;
 		sprintf(script, "%s?%s", SCRIPT, estado2str(novo));
-		printf("<a xlink:href = \"%s\"><image x = \"630\" y = \"710\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/PassLI2.png\" /></a>\n", script); 
+		printf("<a xlink:href = \"%s\"><image x = \"610\" y = \"710\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/PassLI2.png\" /></a>\n", script); 
 }
 
 	else {
-		printf("<image x = \"630\" y = \"710\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/PassLI2out.png\" />\n"); 
+		printf("<image x = \"610\" y = \"710\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/PassLI2out.png\" />\n"); 
 	}
 }
 
@@ -2207,7 +2207,7 @@ void imprime_botao_layout(ESTADO e) {
     e.layout = 0;
     }
 		sprintf(script, "%s?%s", SCRIPT, estado2str(e));
-		printf("<a xlink:href = \"%s\"><image x = \"1180\" y = \"710\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/Reset.png\" /></a>\n", script);
+		printf("<a xlink:href = \"%s\"><image x = \"1140\" y = \"710\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/Reset.png\" /></a>\n", script);
   }
 
 void imprime_botao_trofeu(ESTADO e) {
@@ -2792,7 +2792,7 @@ void imprime_botao_clear(ESTADO e) {
   
  	e = clear(e);
     sprintf(script, "%s?%s", SCRIPT, estado2str(e));
-    printf("<a xlink:href = \"%s\"><image x = \"730\" y = \"710\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/ClearLI2.png\" /></a>\n", script);
+    printf("<a xlink:href = \"%s\"><image x = \"710\" y = \"710\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/ClearLI2.png\" /></a>\n", script);
   }
 
 
@@ -2812,7 +2812,7 @@ void imprime_botao_sugestao(ESTADO e) {
 			} 
     }
     sprintf(script, "%s?%s", SCRIPT, estado2str(e));
-    printf("<a xlink:href = \"%s\"><image x = \"20\" y = \"710\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/sugestaostallman.gif\" /></a>\n", script);
+    printf("<a xlink:href = \"%s\"><image x = \"40\" y = \"710\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/sugestaostallman.gif\" /></a>\n", script);
 }
 
 void imprime_botao_start(ESTADO e) {
@@ -2836,7 +2836,7 @@ void imprime_botao_exit(ESTADO e) {
 if (e.start == 0){
 	e.start=1;
     sprintf(script, "%s?%s", SCRIPT, estado2str(e));
-   	printf("<a xlink:href = \"%s\"><image x = \"1080\" y = \"650\" height = \"110\" width = \"150\" xlink:href = \"http://localhost/cards/ExitLI2.png\" /></a>\n", script);
+   	printf("<a xlink:href = \"%s\"><image x = \"1140\" y = \"603\" height = \"80\" width = \"100\" xlink:href = \"http://localhost/cards/ExitLI2.png\" /></a>\n", script);
 
  }
 }
@@ -2922,7 +2922,7 @@ int main() {
 /*	printf("<rect x = \"0\" y = \"0\" height = \"800\" width = \"800\" style = \"fill:#007700\"/>\n");*/
 printf("<image x = \"0\" y = \"0\" height = \"720\" width = \"1280\" xlink:href = \"http://localhost/cards/tabfinal.png\" /></a>\n");
 printf("<image x = \"0\" y = \"719\" height = \"80\" width = \"1280\" xlink:href = \"http://localhost/cards/barra.png\" /></a>\n");
-
+printf("<image x = \"1250\" y = \"15\" height = \"10\" width = \"20\" xlink:href = \"http://localhost/cards/easteregg.gif\" /></a>\n");
 /*
  * Ler os valores passados à cgi que estão na variável ambiente e passá-los ao programa
  */
