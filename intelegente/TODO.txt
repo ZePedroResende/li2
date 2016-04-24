@@ -1,0 +1,4 @@
+VERSAO 1.0 
+
+    - jogador que tenha 5 cartas as jogue 
+    - sempre que tiver triplos 
