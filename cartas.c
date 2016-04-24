@@ -2711,7 +2711,7 @@ if (ncartas == 3) {
       		}	
 		}
 	}
-}
+
 else{
 	for(v = 0; v <= 12; v++) {
 		
@@ -2746,6 +2746,7 @@ else{
     	}
   	}
   }
+}
 
   if (ncartas == 5) {
   	if (e.ultima_jogada_valida == e.ultimo_jogador){
