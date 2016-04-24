@@ -2820,6 +2820,12 @@ void imprime_botao_start(ESTADO e) {
   	char script[10240];
   
 if (e.start == 1){
+	e = bots1(baralhar());
+   	
+   		while(e.ultimo_jogador != 0){
+     		e = bots2(e);
+   		}
+
 	e.start=0;
     sprintf(script, "%s?%s", SCRIPT, estado2str(e));
     printf("<rect x = \"0\" y = \"0\" height = \"800\" width = \"1280\" style = \"fill:#000000\"/>\n");
@@ -2834,6 +2840,12 @@ void imprime_botao_exit(ESTADO e) {
   	char script[10240];
   
 if (e.start == 0){
+	e = bots1(baralhar());
+   	
+   		while(e.ultimo_jogador != 0){
+     		e = bots2(e);
+   		}
+
 	e.start=1;
     sprintf(script, "%s?%s", SCRIPT, estado2str(e));
    	printf("<a xlink:href = \"%s\"><image x = \"1140\" y = \"603\" height = \"80\" width = \"100\" xlink:href = \"http://localhost/cards/ExitLI2.png\" /></a>\n", script);
