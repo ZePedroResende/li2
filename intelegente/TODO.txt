@@ -1,8 +1,0 @@
-VERSAO 1.0 
-
-    - jogador que tenha 5 cartas as jogue; 
-    - sempre que tiver triplos tem de os jogar; 
-    - Fazer um ciclo for pelas 52 cartas, para em qualquer momento, o jogador saber qual a maior carta em jogo
-    - Considerar pares e triplos "altos" a partir do 10;
-    - Sempre que na mão inicial o bot tiver duas combinações (uma fraca e outra muito alta), joga logo que possa a combinação baixa, 
-      espera pelas outras jogadas, e se possível, joga logo a combinação alta, livrando-se assim de 10 cartas.
