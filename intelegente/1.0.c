@@ -73,19 +73,6 @@ int combinacao_valida(MAO m) {
 	else return 1;
 }
 
-ESTADO passar (ESTADO e) {
-	
-	e.pass = 0;
-  	e = bots2(e);
-  	
-  	while(e.ultimo_jogador != 0){
-    	e = bots2(e);
-  	}
-	
-
-	e.highlight = 0; 
-	return e;
-}
 
 int valida_bots_jogadas_normais (ESTADO e, MAO m) {
 	
