@@ -1197,7 +1197,7 @@ void imprime_botao_jogar(ESTADO e) {
 	char script[10240];
 	ESTADO novo = e;
 
-	if (posso_jogar(e)) {
+	if (posso_jogar(e) && e.highlight != 0) {
 	    novo.ultima_jogada = e.highlight;
         novo.cartas[0] = e.cartas[0] - (numero_de_cartas(novo.ultima_jogada));
       	novo.ultimo_jogador = incrementa_jogador(e);
