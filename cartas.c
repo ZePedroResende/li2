@@ -1094,7 +1094,7 @@ int posso_jogar (ESTADO e) {
 								}
 							}
  							if ((validacao_5cartas(e.highlight)) == 5) {
- 								if ((maior_carta_straightflush_bots(e.highlight)) != 1) {
+ 								if ((maior_carta_straightflush_bots(e.highlight)) == -1) {
  									return 0;
  								}
  								else {
@@ -1385,7 +1385,7 @@ int maior_naipe_straight_bots (MAO m, int maiorCarta) {
 		}
 	return i;
 }
-
+int codifica(int v);
 
 ESTADO joga_straight(ESTADO e) {
 
@@ -1394,12 +1394,12 @@ ESTADO joga_straight(ESTADO e) {
 	int v1,v2,v3,v4,v5,n1,n2,n3,n4,n5,p1,p2,p3,p4,p5;
 
   p1 = maior_carta_straight_bots (e.mao[e.ultimo_jogador]);
-  p2 = (maior_carta_straight_bots(e.mao[e.ultimo_jogador]))-1;
-  p3 = (maior_carta_straight_bots(e.mao[e.ultimo_jogador]))-2;
-  p4 = (maior_carta_straight_bots(e.mao[e.ultimo_jogador]))-3;
-  p5 = (maior_carta_straight_bots(e.mao[e.ultimo_jogador]))-4;
+  p2 = codifica((maior_carta_straight_bots(e.mao[e.ultimo_jogador]))-1);
+  p3 = codifica((maior_carta_straight_bots(e.mao[e.ultimo_jogador]))-2);
+  p4 = codifica((maior_carta_straight_bots(e.mao[e.ultimo_jogador]))-3);
+  p5 = codifica((maior_carta_straight_bots(e.mao[e.ultimo_jogador]))-4);
 
-	v1 = descodifica_straight(p1);
+	v1 = p1;
 	v2 = descodifica_straight(p2);
 	v3 = descodifica_straight(p3);
 	v4 = descodifica_straight(p4);
@@ -2434,16 +2434,16 @@ ESTADO sugestao_straight(ESTADO e) {
   int v1,v2,v3,v4,v5,n1,n2,n3,n4,n5,p1,p2,p3,p4,p5;
 
   p1 = maior_carta_straight_bots (e.mao[e.ultimo_jogador]);
-  p2 = (maior_carta_straight_bots(e.mao[e.ultimo_jogador]))-1;
-  p3 = (maior_carta_straight_bots(e.mao[e.ultimo_jogador]))-2;
-  p4 = (maior_carta_straight_bots(e.mao[e.ultimo_jogador]))-3;
-  p5 = (maior_carta_straight_bots(e.mao[e.ultimo_jogador]))-4;
+  p2 = codifica((maior_carta_straight_bots(e.mao[e.ultimo_jogador]))-1);
+  p3 = codifica((maior_carta_straight_bots(e.mao[e.ultimo_jogador]))-2);
+  p4 = codifica((maior_carta_straight_bots(e.mao[e.ultimo_jogador]))-3);
+  p5 = codifica((maior_carta_straight_bots(e.mao[e.ultimo_jogador]))-4);
 
-  v1 = descodifica_straight(p1);
-  v2 = descodifica_straight(p2);
-  v3 = descodifica_straight(p3);
-  v4 = descodifica_straight(p4);
-  v5 = descodifica_straight(p5);
+	v1 = p1;
+	v2 = descodifica_straight(p2);
+	v3 = descodifica_straight(p3);
+	v4 = descodifica_straight(p4);
+	v5 = descodifica_straight(p5);
 
   n1 = maior_naipe_straight_bots((e.mao[e.ultimo_jogador]),v1);
   n2 = maior_naipe_straight_bots((e.mao[e.ultimo_jogador]),v2);
