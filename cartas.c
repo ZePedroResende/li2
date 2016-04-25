@@ -1831,7 +1831,7 @@ ESTADO fazjogada (ESTADO e, int v) {
 			return e;
 		}
 		else {
-			if ((maior_carta_straight_bots(e.mao[e.ultimo_jogador])) == (maior_carta_straight_bots(e.ultima_jogada))) {
+			if ((maior_carta_straight_bots(e.mao[e.ultimo_jogador])) == (maior_carta_straight_bots(e.ultima_jogada)) && ((maior_naipe_straight_bots(e.mao[e.ultimo_jogador], (maior_carta_straight_bots(e.mao[e.ultimo_jogador])))) > (maior_naipe_straight(e.ultima_jogada, (maior_carta_straight_bots(e.ultima_jogada)))))) {
 				e = joga_straight(e);
 				return e;
 			}
@@ -2471,7 +2471,7 @@ ESTADO fazsugestao (ESTADO e, int v) {
       return e;
     }
     else {
-      if ((maior_carta_straight_bots(e.mao[e.ultimo_jogador])) == (maior_carta_straight_bots(e.ultima_jogada))) {
+      if ((maior_carta_straight_bots(e.mao[e.ultimo_jogador])) == (maior_carta_straight_bots(e.ultima_jogada)) && ((maior_naipe_straight_bots(e.mao[e.ultimo_jogador], (maior_carta_straight_bots(e.mao[e.ultimo_jogador])))) > (maior_naipe_straight(e.ultima_jogada, (maior_carta_straight(e.ultima_jogada)))))) {
         e = sugestao_straight(e);
         return e;
       }
