@@ -1282,7 +1282,7 @@ return e;
 */
 
     e = bots2(e);
-    while(e.ultimo_jogador != 0 && e.cartas[1] != 0 && e.cartas[2] != 0 && e.cartas[3] != 0 ){
+    while(e.ultimo_jogador != 0 e.cartas[0] != 0 && e.cartas[1] != 0 && e.cartas[2] != 0 && e.cartas[3] != 0 ){
     	e = bots2(e);
     }
 
