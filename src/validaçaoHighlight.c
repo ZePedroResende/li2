@@ -2,7 +2,7 @@
 
 
 /*
-Conta o número de cartas que se encontra numa mao numa dada altura
+Conta o número de cartas que se encontra numa mao numa dada altura. Retorna esse mesmo valor.
 */
 int numero_de_cartas(MAO m) {
     
@@ -17,7 +17,9 @@ int numero_de_cartas(MAO m) {
 }
 
 
-/* Confirma se a mão que é recebida (o highlight), tem uma, duas ou três cartas */
+/* Confirma se a mão que é recebida (o highlight), tem uma, duas ou três cartas.
+Retorna 0 se tiver mais de três cartas, senão retorna 1. 
+*/
 int combinacao_valida(MAO m) {
     
     if ((numero_de_cartas (m)) > 3) {
@@ -28,7 +30,7 @@ int combinacao_valida(MAO m) {
 }
 
 /* Compara o tamanha entre duas mãos, ou seja, ve o tamanho da ultima jogada, e compara o tamanho com a jogada actual,
-e vê se a combinação tem o mesmo tamanho */
+e vê se a combinação tem o mesmo tamanho. Retorna 1 se tiverem o mesmo tamanho, e 0 caso contrário.  */
 
 int compara_tamanho(MAO m1, MAO m2){
     if (numero_de_cartas(m1) == numero_de_cartas(m2)) {
@@ -38,7 +40,7 @@ int compara_tamanho(MAO m1, MAO m2){
     return 0;
 }
 
-/*numa jogada de 1,2 e 3 cartas esta funçao e utilizada para comparar o valor entre a ultima jogada e a efetua pelo atual jogador*/
+/* Numa jogada de 1,2 e 3 cartas esta função é utilizada para comparar o valor entre a ultima_jogada e a efetuda pelo atual_jogador. */
 int da_valor (MAO m){
     
     int n, v, primeiraCarta, flag = 0;
@@ -67,7 +69,9 @@ int da_valor (MAO m){
     return primeiraCarta;
 }
 
-/* Esta função obtém o maior naipe dentro de uma mão, de forma a ser usado para avaliar a maior jogada. */
+/* Esta função obtém o maior naipe dentro de uma mão, de forma a ser usado para avaliar a maior jogada. 
+   A função retorna o valor do maior naipe de uma carta. 
+*/
 
 int da_maior_naipe (MAO m){
     int n, v, maior=0;
@@ -85,7 +89,9 @@ int da_maior_naipe (MAO m){
 
 /* Aqui, é verificado se a jogada actual é maior que a jogada anterior. Conforme o retorno da função dá valor, a jogada
 actual é possível ser realizada ou não. Ao comparar, de os retornos das duas funções forem iguais, ou seja, se os maiores
-valores de cada mão forem iguais, comparamos o naipe, assim identificando qual a maior jogada */
+valores de cada mão forem iguais, comparamos o naipe, assim identificando qual a maior jogada.
+Esta função retorna 1 caso seja possível jogar, ou seja, a jogada do utilizador for maior do que a anterior, ou 0 caso contrário.
+*/
 
 int combinacao_maior (MAO m1, MAO m2) {
     int n =0;
@@ -108,6 +114,7 @@ int combinacao_maior (MAO m1, MAO m2) {
 /*
 É nesta função que a jogada do utilizador é verificada. Se esta for possível, é permitido ao utilizador colocar as cartas
 no meio do tabuleiro, registando assim a sua jogada. Caso contrário, ou o utilizador passa, ou tenta arranjar outro tipo de combinação.
+Dependo dos casos, a função retorna 1 se for possível executar a jogada, ou 0 caso contrário. 
 */
 int posso_jogar (ESTADO e) {
     

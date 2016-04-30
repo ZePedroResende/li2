@@ -10,6 +10,7 @@ Exemplo:
 -> v = 1: Straight;
 -> v = 2: Flush;
 -> etc....
+É retornado um novo estado, estado esse que contém todas as altereções feitas na ronda (cartas jogadas, passagem de ronda).
 */
 
 ESTADO fazjogada (ESTADO e, int v) {
@@ -162,6 +163,7 @@ ESTADO fazjogada (ESTADO e, int v) {
 /*
 O estado pbot executa a função validao_5cartas, de forma a verificar qual a combinação da ultima jogada, de forma a avaliar com a combinação que vai ser jogada.
 Posto isto, é chamado o esatdo fazjogada, para verificar se, e comparando com a jogada anterior, o bot tem uma combinação válida para ser jogada.
+É retornado o estado do jogo actual.
 */
 ESTADO pbot(ESTADO e){
     int v;
@@ -178,6 +180,7 @@ ESTADO pbot(ESTADO e){
 /*
 Nas cartas selecionadas pelo utilizador (neste caso um straight flush), determina o valor da maior carta desse, para mais tarde comparar, se necessário, com as ultimas jogadas, de forma a avaliar a jogada.
 Esta função foi usada para avaliar a mão do utilizador, pois seguia o mesmo precedimento.
+A função retorna então o valor da maior carta de um straight se existir um straight, e -1 se não existir.
 */
 int maior_carta_straight_bots(MAO m){
     /* USAMOS MAIOR_CARTA_STRAIGHT_BOTS PARA AVALIAR A MAIOR CARTA DE UM STRAIGHT FLUSH, POIS ERA O MESMO PROCEDIMENTO */
@@ -236,6 +239,7 @@ int maior_carta_straight_bots(MAO m){
 
 /*
 Depois de ser validada um straight na mão de um dos bots, esta função determina o naipe da maior carta nesse straight, para se for necessário comparar com valores iguais.
+A função retorna o valor correspondente ao naipe da maior carta do straight existente.
 */
 int maior_naipe_straight_bots (MAO m, int maiorCarta) {
     int i,n;
@@ -249,6 +253,7 @@ int maior_naipe_straight_bots (MAO m, int maiorCarta) {
 
 /*
 Depois de ser validada um flush na mão de um dos bots, esta função determina o valor da maior carta nesse flush, para se for necessário comparar com valores iguais.
+A função retorna o valor da maior carta do flush.
 */
 int maior_carta_flush_bots (MAO m, int n1) {
     int i,v,flag;
@@ -267,6 +272,7 @@ int maior_carta_flush_bots (MAO m, int n1) {
 /*
 Para a formação de um four of a kind, é necessário quatro cartas com o mesmo valor mais uma carta qualquer existente na mão.
 Esta função escolhe essa carta, verificando primeiro se existe na mão. A primeira que for encontrada, é adicionada ao four of a kind.
+A função retorna o valor da primeira carta que encontra para juntar ao four of a kind.
 */
 int da_carta_fourkind (MAO m) {
     
@@ -417,6 +423,7 @@ int maior_carta_straightflush_bots (MAO m) {
 /*
 Função para determinar o naipe da maior carta de um straight flush na mão de um bot. Esta função tem o intuito de se na ultima jogada for jogado um straight flush com o mesmo valor
 do que o que vai ser jogado agora, temos de analisar o naipe para ver se a jogada é válida.
+Aqui é retornado o valor correspondente ao naipe da maior carta de um straight flush. Senão, é retornado -1.
 */
 int maior_naipeCarta_straightflush_bots (MAO m) {
     

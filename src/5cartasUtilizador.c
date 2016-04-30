@@ -4,6 +4,7 @@
 
 /*
 O estado passabot permite que o bot passe uma jogada, se não tiver qualquer tipo de combinação válida para ser jogada.
+Retorna o estado do jogo actual, após passagem de ronda.
 */
 ESTADO passabot(ESTADO e) {
     e.cartas_bots[e.actual_jogador] = 0;
@@ -14,6 +15,7 @@ ESTADO passabot(ESTADO e) {
 
 /*
 Ao receber o highlight do utilizador (neste caso um straight), confirma se este é válido para ser efetuada uma jogada.
+É retornado 1 se o straight for válido, e -1 caso contrário.
 */
 int valida_straight (MAO m) {
     
@@ -50,6 +52,7 @@ int valida_straight (MAO m) {
 
 /*
 Nas cartas selecionadas pelo utilizador (neste caso um straight), determina o valor da maior carta desse, para mais tarde comparar, se necessário, com as ultimas jogadas, de forma a avaliar a jogada.
+Aqui é retornado o valor da maior carta de um straight.
 */
 int maior_carta_straight (MAO m) {
     
@@ -94,6 +97,7 @@ int maior_carta_straight (MAO m) {
 
 /*
 Nas cartas selecionadas pelo utilizador (neste caso um straight), determina o naipe da maior carta desse, para mais tarde comparar, se necessário, com as ultimas jogadas, de forma a avaliar a jogada.
+A função retorna o naipe da maior carta do straight.
 */
 int maior_naipe_straight (MAO m, int maiorCarta) {
     
@@ -116,6 +120,12 @@ int maior_naipe_straight (MAO m, int maiorCarta) {
 
 /*
 Ao receber o highlight do utilizador (neste caso um flush), confirma se este é válido para ser efetuada uma jogada.
+Nesta função, é retornado 0,1,2 ou 3 conforme o naipe do flush.
+Exemplo:
+0 -> Ouros;
+1 -> Copas;
+etc...
+Com isto, conseguimos mais tarde avaliar dois flushes. É retornado -1 se não existir flush.
 */
 int valida_flush (MAO m) {
     
@@ -157,6 +167,7 @@ int valida_flush (MAO m) {
 
 /*
 Nas cartas selecionadas pelo utilizador (neste caso um flush), determina o valor da maior carta desse, para mais tarde comparar, se necessário, com as ultimas jogadas, de forma a avaliar a jogada.
+É retornado o valor da maior carta do flush.
 */
 int maior_carta_flush (MAO m) {
     
@@ -214,6 +225,7 @@ int valida_fullhouse (MAO m) {
 
 /*
 Nas cartas selecionadas pelo utilizador (neste caso um fullhouse), determina o valor da maior carta do trio desse, para mais tarde comparar, se necessário, com as ultimas jogadas, de forma a avaliar a jogada.
+É retornado o valor da maior carta do full house.
 */
 int maior_carta_trio_fullhouse (MAO m) {
     
@@ -247,6 +259,7 @@ int maior_carta_trio_fullhouse (MAO m) {
 
 /*
 Ao receber o highlight do utilizador (neste caso um four of a kind), confirma se este é válido para ser efetuada uma jogada.
+É retornado 1 caso a combinação seja válida, e 0 caso contrário.
 */
 int valida_fourkind (MAO m) {
     
@@ -282,6 +295,7 @@ int valida_fourkind (MAO m) {
 /*
 Nas cartas selecionadas pelo utilizador (neste caso um four of a kind), determina o valor da maior carta de entre as quatro cartas com o mesmo valor,
 para mais tarde comparar, se necessário, com as ultimas jogadas, de forma a avaliar a jogada.
+A função retorna o valor da carta do four of a kind.
 */
 int maior_carta_fourkind (MAO m) {
     
@@ -317,6 +331,7 @@ int maior_carta_fourkind (MAO m) {
 
 /*
 Ao receber o highlight do utilizador (neste caso um straight flush), confirma se este é válido para ser efetuada uma jogada.
+É retornado 1 se o straight flush for válido e -1 caso contrário.
 */
 int valida_straightflush (MAO m) {
     

@@ -4,6 +4,7 @@
 
 /*
 A valida_bots_jogadas_normais é a função que vai validar as jogadas dos bots (uma, duas e três cartas).
+É retornado 0 se os bots não puderem efetuar a jogada, e 1 caso contrário.
 */
 int valida_bots_jogadas_normais (ESTADO e, MAO m) {
     
@@ -27,6 +28,7 @@ int valida_bots_jogadas_normais (ESTADO e, MAO m) {
 /*
 A função bots1 vai ser executada quando um bot começa a jogar(sendo que este tem o 3 de ouros na sua mão).
 E executada na modificação do baralhar na parse.
+É retornado o estado do jogo após ser jogado o 3 de ouros.
 */
 ESTADO bots1(ESTADO e){
     if (e.ultima_jogada == -1 && e.actual_jogador != 0 ){
@@ -46,6 +48,7 @@ ESTADO bots1(ESTADO e){
 /*
 O estado bots2 é executado quando um bot executa uma jogada que não seja jogar um 3 de ouros, isto inclui jogadas de 1, 2, 3 e 5 cartas.
 Se não existir nenhuma combinação válida a ser jogada (comparando com a ultima jogada), o bot passa a jogada.
+É retornado o estado actual do jogo após as jogadas dos bots.
 */
 ESTADO bots2(ESTADO e){
     long long int m=0;
