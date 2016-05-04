@@ -1,0 +1,78 @@
+\hypertarget{acoesBotoes_8c}{\section{acoes\-Botoes.\-c File Reference}
+\label{acoesBotoes_8c}\index{acoes\-Botoes.\-c@{acoes\-Botoes.\-c}}
+}
+{\ttfamily \#include \char`\"{}big2.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{acoesBotoes_8c_a96b595aeba3ff0ff598d6745cb40789e}{incrementa\-\_\-jogador} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{acoesBotoes_8c_ac2046f3551b35cbd70a91c9f36370be4}{jogar} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{acoesBotoes_8c_ae8122d63a9683eed0eb23141846c7908}{passar} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{acoesBotoes_8c_a3ead227c9507845db4aa94d55ffcabfe}{clear} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{acoesBotoes_8c_a3ead227c9507845db4aa94d55ffcabfe}{\index{acoes\-Botoes.\-c@{acoes\-Botoes.\-c}!clear@{clear}}
+\index{clear@{clear}!acoesBotoes.c@{acoes\-Botoes.\-c}}
+\subsubsection[{clear}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} clear (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{acoesBotoes_8c_a3ead227c9507845db4aa94d55ffcabfe}
+O estado clear permite-\/nos após termos diferentes cartas no highlight, removê-\/las do mesmo, e colocando-\/as de novo na nossa mão, melhorando assim a jogabilidade. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{acoesBotoes_8c_a96b595aeba3ff0ff598d6745cb40789e}{\index{acoes\-Botoes.\-c@{acoes\-Botoes.\-c}!incrementa\-\_\-jogador@{incrementa\-\_\-jogador}}
+\index{incrementa\-\_\-jogador@{incrementa\-\_\-jogador}!acoesBotoes.c@{acoes\-Botoes.\-c}}
+\subsubsection[{incrementa\-\_\-jogador}]{\setlength{\rightskip}{0pt plus 5cm}int incrementa\-\_\-jogador (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{acoesBotoes_8c_a96b595aeba3ff0ff598d6745cb40789e}
+Em cada jogada, o jogador é incrementado, tomando assim o controlo do jogador que está em jogo. Como estes variam entre 0 e 3 (4 jogadores), enquanto ele for diferente de 3, vai incrementar para um próximo jogador, e uma próxima jogada. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro correspondente ao número de um novo jogador. 
+\end{DoxyReturn}
+\hypertarget{acoesBotoes_8c_ac2046f3551b35cbd70a91c9f36370be4}{\index{acoes\-Botoes.\-c@{acoes\-Botoes.\-c}!jogar@{jogar}}
+\index{jogar@{jogar}!acoesBotoes.c@{acoes\-Botoes.\-c}}
+\subsubsection[{jogar}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} jogar (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{acoesBotoes_8c_ac2046f3551b35cbd70a91c9f36370be4}
+A função jogar vai ser invocada pela função parse, e vai retirar as cartas da mão do jogador caso esta exista no highlight, colocando-\/a na posição do tabuleiro correspondete a jogada do utilizador, ou seja, vai ser a função executada quando carregamos no botao jogar para um dado highlight. Esta função também convoca as funções dos bots que executam as suas jogadas enquanto não for a vez do utilizador jogar. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{acoesBotoes_8c_ae8122d63a9683eed0eb23141846c7908}{\index{acoes\-Botoes.\-c@{acoes\-Botoes.\-c}!passar@{passar}}
+\index{passar@{passar}!acoesBotoes.c@{acoes\-Botoes.\-c}}
+\subsubsection[{passar}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} passar (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{acoesBotoes_8c_ae8122d63a9683eed0eb23141846c7908}
+Função invocada na parse, que vai ser executada quando carregamos no botao passar, e que só incrementa o jogador e mantém o resto do estado. Esta função também convoca as funções dos bots que executam as suas jogadas enquanto não for a vez do utilizador jogar. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}

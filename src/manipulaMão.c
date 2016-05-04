@@ -890,6 +890,102 @@ int posso_jogar (ESTADO e) {
     }
 }
 
+int seleciona_par_fullhouse (MAO m) {
+    int n,v,i;
+    int contaValoresFullHouse[13];
+
+    for (i = 0; i < 13; i++) {
+        contaValoresFullHouse[i] = 0;
+    }
+
+    i = 0;
+    for (v = 0; v < 13; v++) {
+        for(n = 0; n < 4; n++) {
+            if ((carta_existe(m,n,v))) {
+                contaValoresFullHouse[i]++;
+            }
+        }
+        i++;
+    }
+
+    for (i = 1; i < 13; i++) {
+        if (contaValoresFullHouse[i] >= 2) return i;
+    }
+    return -1;
+}
+
+int seleciona_trio_fullhouse (MAO m) {
+
+    int n,v,i;
+    int contaValoresFullHouse[13];
+
+    for (i = 0; i < 13; i++) {
+        contaValoresFullHouse[i] = 0;
+    }
+
+    i = 0;
+    for (v = 0; v < 13; v++) {
+        for(n = 0; n < 4; n++) {
+            if ((carta_existe(m,n,v))) {
+                contaValoresFullHouse[i]++;
+            }
+        }
+        i++;
+    }
+
+    for (i = 1; i < 13; i++) {
+        if (contaValoresFullHouse[i] >= 3) return i;
+    }
+    return -1;
+}
+
+int seleciona_maior_carta_straight_bots (MAO m) {
+    
+    int v,i,n,j;
+    
+    int contaValores[14];
+    
+    for (i = 0; i < 14; i++) {
+        contaValores[i] = 0;
+    }
+    
+    i = 2;
+    for (v = 0; v < 13; v++) {
+        for(n = 0; n < 4; n++) {
+            switch (v) {
+                case 11: if (carta_existe(m,n,v)) { contaValores[0]++; contaValores[13]++; } break;
+                case 12: if (carta_existe(m,n,v)) { contaValores[1]++; } break;
+                default: if (carta_existe(m,n,v)) { contaValores[i]++; } break;
+            }
+        }
+        i++;
+    }
+
+    j = 6;
+    while ((j-4) >= 0) {
+        if ((contaValores[j] != 0) && (contaValores[j-1] != 0) && (contaValores[j-2] != 0) && (contaValores[j-3] != 0) && (contaValores[j-4] != 0)) {
+            switch (j) {
+                case 0: { j = 11; } break;
+                case 1: { j = 12; } break;
+                default: { j -= 2; } break;
+            }
+            return j;
+        }
+        j--;
+    }
+
+    return -1;
+}
+
+int seleciona_maior_naipeCarta_straight_bots(MAO m, int maiorCarta) {
+    int i,n;
+    i = 0;
+    if (maiorCarta == 0) return 0;
+    for (n = 3; n >= 0; --n) {
+        if (carta_existe(m,n,maiorCarta)) i = n;
+    }
+    return i;
+} 
 
 /**
 Nas cartas selecionadas pelo utilizador (neste caso um straight flush), determina o valor da maior carta desse, para mais tarde comparar, se necessário, com as ultimas jogadas, de forma a avaliar a jogada.
@@ -923,7 +1019,7 @@ int maior_carta_straight_bots(MAO m){
     if (contaValores[1] != 0) {
         j = 12;
         while ((j-4) >= 0) {
-            if ((contaValores[j] != 0) && (contaValores[j-1] != 0) && (contaValores[j-3] != 0) && (contaValores[j-4] != 0)) {
+            if ((contaValores[j] != 0) && (contaValores[j-1] != 0) && (contaValores[j-2] != 0) && (contaValores[j-3] != 0) && (contaValores[j-4] != 0)) {
                 switch (j) {
                     case 0: { j = 11; } break;
                     case 1: { j = 12; } break;
@@ -937,7 +1033,7 @@ int maior_carta_straight_bots(MAO m){
     else {
         j = 13;
         while ((j-4) >= 1) {
-            if ((contaValores[j] != 0) && (contaValores[j-1] != 0) && (contaValores[j-3] != 0) && (contaValores[j-4] != 0)) {
+            if ((contaValores[j] != 0) && (contaValores[j-1] != 0) && (contaValores[j-2] != 0) && (contaValores[j-3] != 0) && (contaValores[j-4] != 0)) {
                 switch (j) {
                     case 0: { j = 11; } break;
                     case 1: { j = 12; } break;

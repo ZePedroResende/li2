@@ -1,0 +1,132 @@
+\hypertarget{bots_8c}{\section{bots.\-c File Reference}
+\label{bots_8c}\index{bots.\-c@{bots.\-c}}
+}
+{\ttfamily \#include \char`\"{}big2.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{bots_8c_abd9506db582a612dacea4031f80c2a42}{valida\-\_\-bots\-\_\-jogadas\-\_\-normais} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e, \hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{bots_8c_a93e82cc5c6b528bd6ba2841eb8d1a21d}{bots1} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{bots_8c_ae6b15e4c614bdca1d35ab38c963240cc}{bot\-\_\-comeca\-\_\-jogada} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{bots_8c_a05860fa19cd69a48baef40e0523a2f5a}{joga\-\_\-bot\-\_\-1carta} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{bots_8c_a7f6bfd197501d21e51249e9824bc5aa7}{joga\-\_\-bot\-\_\-2cartas} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{bots_8c_a22649ce6e871511ee3430955c38bef3b}{joga\-\_\-bot\-\_\-3cartas} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{bots_8c_a9e785b28ebbd04ee2cbf4b66374f02a2}{bots2} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{bots_8c_ae6b15e4c614bdca1d35ab38c963240cc}{\index{bots.\-c@{bots.\-c}!bot\-\_\-comeca\-\_\-jogada@{bot\-\_\-comeca\-\_\-jogada}}
+\index{bot\-\_\-comeca\-\_\-jogada@{bot\-\_\-comeca\-\_\-jogada}!bots.c@{bots.\-c}}
+\subsubsection[{bot\-\_\-comeca\-\_\-jogada}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} bot\-\_\-comeca\-\_\-jogada (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{bots_8c_ae6b15e4c614bdca1d35ab38c963240cc}
+Neste estado, como o bot começa uma jogada (quando toda a gente passa), optamos por só o fazer jogar uma carta. Portanto, aqui é selecionada uma carta da mão do bot para ser jogada. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{bots_8c_a93e82cc5c6b528bd6ba2841eb8d1a21d}{\index{bots.\-c@{bots.\-c}!bots1@{bots1}}
+\index{bots1@{bots1}!bots.c@{bots.\-c}}
+\subsubsection[{bots1}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} bots1 (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{bots_8c_a93e82cc5c6b528bd6ba2841eb8d1a21d}
+A função bots1 vai ser executada quando um bot começa a jogar(sendo que este tem o 3 de ouros na sua mão). E executada na modificação do baralhar na parse. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{bots_8c_a9e785b28ebbd04ee2cbf4b66374f02a2}{\index{bots.\-c@{bots.\-c}!bots2@{bots2}}
+\index{bots2@{bots2}!bots.c@{bots.\-c}}
+\subsubsection[{bots2}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} bots2 (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{bots_8c_a9e785b28ebbd04ee2cbf4b66374f02a2}
+O estado bots2 é executado quando um bot executa uma jogada que não seja jogar um 3 de ouros, isto inclui jogadas de 1, 2, 3 e 5 cartas. Se não existir nenhuma combinação válida a ser jogada (comparando com a ultima jogada), o bot passa a jogada. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{bots_8c_a05860fa19cd69a48baef40e0523a2f5a}{\index{bots.\-c@{bots.\-c}!joga\-\_\-bot\-\_\-1carta@{joga\-\_\-bot\-\_\-1carta}}
+\index{joga\-\_\-bot\-\_\-1carta@{joga\-\_\-bot\-\_\-1carta}!bots.c@{bots.\-c}}
+\subsubsection[{joga\-\_\-bot\-\_\-1carta}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} joga\-\_\-bot\-\_\-1carta (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{bots_8c_a05860fa19cd69a48baef40e0523a2f5a}
+Neste estado, o bot vai jogar uma carta consoante a ultima carta jogada. Aqui, é vista a menor carta possível de o bot jogar, relativamente à ultima jogada. Se o bot não tiver uma carta maior do que a ultima jogada, passará a jogada. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{bots_8c_a7f6bfd197501d21e51249e9824bc5aa7}{\index{bots.\-c@{bots.\-c}!joga\-\_\-bot\-\_\-2cartas@{joga\-\_\-bot\-\_\-2cartas}}
+\index{joga\-\_\-bot\-\_\-2cartas@{joga\-\_\-bot\-\_\-2cartas}!bots.c@{bots.\-c}}
+\subsubsection[{joga\-\_\-bot\-\_\-2cartas}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} joga\-\_\-bot\-\_\-2cartas (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{bots_8c_a7f6bfd197501d21e51249e9824bc5aa7}
+Neste estado, o bot vai jogar duas cartas consoante as ultimas cartas jogadas. Aqui, é visto o menor par possível de o bot jogar, relativamente à ultima jogada. Se o bot não tiver um par maior do que a ultima jogada, passará a jogada. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{bots_8c_a22649ce6e871511ee3430955c38bef3b}{\index{bots.\-c@{bots.\-c}!joga\-\_\-bot\-\_\-3cartas@{joga\-\_\-bot\-\_\-3cartas}}
+\index{joga\-\_\-bot\-\_\-3cartas@{joga\-\_\-bot\-\_\-3cartas}!bots.c@{bots.\-c}}
+\subsubsection[{joga\-\_\-bot\-\_\-3cartas}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} joga\-\_\-bot\-\_\-3cartas (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{bots_8c_a22649ce6e871511ee3430955c38bef3b}
+Neste estado, o bot vai jogar três cartas consoante as ultimas cartas jogadas. Aqui, é visto o menor triplo possível de o bot jogar, relativamente à ultima jogada. Se o bot não tiver um triplo maior do que a ultima jogada, passará a jogada. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{bots_8c_abd9506db582a612dacea4031f80c2a42}{\index{bots.\-c@{bots.\-c}!valida\-\_\-bots\-\_\-jogadas\-\_\-normais@{valida\-\_\-bots\-\_\-jogadas\-\_\-normais}}
+\index{valida\-\_\-bots\-\_\-jogadas\-\_\-normais@{valida\-\_\-bots\-\_\-jogadas\-\_\-normais}!bots.c@{bots.\-c}}
+\subsubsection[{valida\-\_\-bots\-\_\-jogadas\-\_\-normais}]{\setlength{\rightskip}{0pt plus 5cm}int valida\-\_\-bots\-\_\-jogadas\-\_\-normais (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e, }
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{bots_8c_abd9506db582a612dacea4031f80c2a42}
+A valida\-\_\-bots\-\_\-jogadas\-\_\-normais é a função que vai validar as jogadas dos bots (uma, duas e três cartas). É retornado 0 se os bots não puderem efetuar a jogada, e 1 caso contrário. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 1 se for possível jogar, 0 caso contrário. 
+\end{DoxyReturn}

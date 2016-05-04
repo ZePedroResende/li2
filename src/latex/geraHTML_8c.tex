@@ -1,0 +1,240 @@
+\hypertarget{geraHTML_8c}{\section{gera\-H\-T\-M\-L.\-c File Reference}
+\label{geraHTML_8c}\index{gera\-H\-T\-M\-L.\-c@{gera\-H\-T\-M\-L.\-c}}
+}
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$time.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}big2.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{geraHTML_8c_a5bfb6d281e200376d3625daf7669aa85}{imprime\-\_\-carta} (char $\ast$path, int x, int y, \hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e, int mao, int naipe, int valor)
+\item 
+void \hyperlink{geraHTML_8c_a91ca896201f1f9b61f181e4776c84764}{imprime\-\_\-aux\-\_\-valor} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e, int m, int bx1, int by1, int bx2, int by2, int bx3, int by3, int x, int y, char $\ast$path)
+\item 
+void \hyperlink{geraHTML_8c_a40228e9349a2be1a4d84b28ed0bf2f4d}{imprime\-\_\-aux\-\_\-naipe} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e, int m, int bx1, int by1, int bx2, int by2, int bx3, int by3, int x, int y, char $\ast$path)
+\item 
+void \hyperlink{geraHTML_8c_a23f0652131065daa5c58f9cca5a386f0}{imprime} (char $\ast$path, \hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+void \hyperlink{geraHTML_8c_ae51994337a9ae1665eca0234d397604e}{imprime\-\_\-botao\-\_\-jogar} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+void \hyperlink{geraHTML_8c_a7917cd9a0d53f543f65fd1cfcfedcbcd}{imprime\-\_\-botao\-\_\-passar} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+void \hyperlink{geraHTML_8c_a7772a80198ca01a538ba941b11278d3b}{imprime\-\_\-botao\-\_\-clear} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+void \hyperlink{geraHTML_8c_a23ec09efb6991224a1c9be38eb81de87}{imprime\-\_\-botao\-\_\-sugestao} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+void \hyperlink{geraHTML_8c_af4abfc1f68669452cd844582c85cd087}{imprime\-\_\-botao\-\_\-start} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+void \hyperlink{geraHTML_8c_a5ef821cbcc7229e70396d968eea287f1}{imprime\-\_\-botao\-\_\-exit} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+void \hyperlink{geraHTML_8c_a5261232ec5ebe355a81ba3afec48a2aa}{imprime\-\_\-botao\-\_\-reset} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+void \hyperlink{geraHTML_8c_aef069ba237bb99d64d3ddead6f5cb877}{imprime\-\_\-botao\-\_\-layout} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+void \hyperlink{geraHTML_8c_adee9d83fe2853b8fc805b61da762d48a}{imprime\-\_\-botao\-\_\-trofeu} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+void \hyperlink{geraHTML_8c_af22742568b531d69c62aacf16b7c301e}{parse} (char $\ast$query)
+\item 
+int \hyperlink{geraHTML_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{geraHTML_8c_a23f0652131065daa5c58f9cca5a386f0}{\index{gera\-H\-T\-M\-L.\-c@{gera\-H\-T\-M\-L.\-c}!imprime@{imprime}}
+\index{imprime@{imprime}!geraHTML.c@{gera\-H\-T\-M\-L.\-c}}
+\subsubsection[{imprime}]{\setlength{\rightskip}{0pt plus 5cm}void imprime (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{path, }
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{geraHTML_8c_a23f0652131065daa5c58f9cca5a386f0}
+Apresenta as cartas no tabuleiro nas respetivas coordenadas. 
+\begin{DoxyParams}{Parameters}
+{\em path} & O path. \\
+\hline
+{\em e} & O estado do jogo actual. \\
+\hline
+\end{DoxyParams}
+\hypertarget{geraHTML_8c_a40228e9349a2be1a4d84b28ed0bf2f4d}{\index{gera\-H\-T\-M\-L.\-c@{gera\-H\-T\-M\-L.\-c}!imprime\-\_\-aux\-\_\-naipe@{imprime\-\_\-aux\-\_\-naipe}}
+\index{imprime\-\_\-aux\-\_\-naipe@{imprime\-\_\-aux\-\_\-naipe}!geraHTML.c@{gera\-H\-T\-M\-L.\-c}}
+\subsubsection[{imprime\-\_\-aux\-\_\-naipe}]{\setlength{\rightskip}{0pt plus 5cm}void imprime\-\_\-aux\-\_\-naipe (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e, }
+\item[{int}]{m, }
+\item[{int}]{bx1, }
+\item[{int}]{by1, }
+\item[{int}]{bx2, }
+\item[{int}]{by2, }
+\item[{int}]{bx3, }
+\item[{int}]{by3, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{char $\ast$}]{path}
+\end{DoxyParamCaption}
+)}}\label{geraHTML_8c_a40228e9349a2be1a4d84b28ed0bf2f4d}
+\hypertarget{geraHTML_8c_a91ca896201f1f9b61f181e4776c84764}{\index{gera\-H\-T\-M\-L.\-c@{gera\-H\-T\-M\-L.\-c}!imprime\-\_\-aux\-\_\-valor@{imprime\-\_\-aux\-\_\-valor}}
+\index{imprime\-\_\-aux\-\_\-valor@{imprime\-\_\-aux\-\_\-valor}!geraHTML.c@{gera\-H\-T\-M\-L.\-c}}
+\subsubsection[{imprime\-\_\-aux\-\_\-valor}]{\setlength{\rightskip}{0pt plus 5cm}void imprime\-\_\-aux\-\_\-valor (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e, }
+\item[{int}]{m, }
+\item[{int}]{bx1, }
+\item[{int}]{by1, }
+\item[{int}]{bx2, }
+\item[{int}]{by2, }
+\item[{int}]{bx3, }
+\item[{int}]{by3, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{char $\ast$}]{path}
+\end{DoxyParamCaption}
+)}}\label{geraHTML_8c_a91ca896201f1f9b61f181e4776c84764}
+\hypertarget{geraHTML_8c_a7772a80198ca01a538ba941b11278d3b}{\index{gera\-H\-T\-M\-L.\-c@{gera\-H\-T\-M\-L.\-c}!imprime\-\_\-botao\-\_\-clear@{imprime\-\_\-botao\-\_\-clear}}
+\index{imprime\-\_\-botao\-\_\-clear@{imprime\-\_\-botao\-\_\-clear}!geraHTML.c@{gera\-H\-T\-M\-L.\-c}}
+\subsubsection[{imprime\-\_\-botao\-\_\-clear}]{\setlength{\rightskip}{0pt plus 5cm}void imprime\-\_\-botao\-\_\-clear (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{geraHTML_8c_a7772a80198ca01a538ba941b11278d3b}
+A função imprime\-\_\-botao\-\_\-clear imprime o botão clear para o browser, o qual vai limpar as cartas do highlight, e retorná-\/las à nossa mão. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\hypertarget{geraHTML_8c_a5ef821cbcc7229e70396d968eea287f1}{\index{gera\-H\-T\-M\-L.\-c@{gera\-H\-T\-M\-L.\-c}!imprime\-\_\-botao\-\_\-exit@{imprime\-\_\-botao\-\_\-exit}}
+\index{imprime\-\_\-botao\-\_\-exit@{imprime\-\_\-botao\-\_\-exit}!geraHTML.c@{gera\-H\-T\-M\-L.\-c}}
+\subsubsection[{imprime\-\_\-botao\-\_\-exit}]{\setlength{\rightskip}{0pt plus 5cm}void imprime\-\_\-botao\-\_\-exit (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{geraHTML_8c_a5ef821cbcc7229e70396d968eea287f1}
+A função imprime\-\_\-botao\-\_\-exit imprime o botão de exit para o browser, de forma a ser possível recomeçar o jogo, voltando ao menu inicial com o botão start. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\hypertarget{geraHTML_8c_ae51994337a9ae1665eca0234d397604e}{\index{gera\-H\-T\-M\-L.\-c@{gera\-H\-T\-M\-L.\-c}!imprime\-\_\-botao\-\_\-jogar@{imprime\-\_\-botao\-\_\-jogar}}
+\index{imprime\-\_\-botao\-\_\-jogar@{imprime\-\_\-botao\-\_\-jogar}!geraHTML.c@{gera\-H\-T\-M\-L.\-c}}
+\subsubsection[{imprime\-\_\-botao\-\_\-jogar}]{\setlength{\rightskip}{0pt plus 5cm}void imprime\-\_\-botao\-\_\-jogar (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{geraHTML_8c_ae51994337a9ae1665eca0234d397604e}
+Esta função trata de imprimir o botão \char`\"{}\-S\-U\-B\-M\-I\-T\char`\"{} na página H\-T\-M\-L. Aqui, usamos a função posso\-\_\-jogar. Se for possível jogar, o botão é clicável, sendo primitida a jogada. Caso contrário, o botão fica mais escuro, não sendo clicável. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\hypertarget{geraHTML_8c_aef069ba237bb99d64d3ddead6f5cb877}{\index{gera\-H\-T\-M\-L.\-c@{gera\-H\-T\-M\-L.\-c}!imprime\-\_\-botao\-\_\-layout@{imprime\-\_\-botao\-\_\-layout}}
+\index{imprime\-\_\-botao\-\_\-layout@{imprime\-\_\-botao\-\_\-layout}!geraHTML.c@{gera\-H\-T\-M\-L.\-c}}
+\subsubsection[{imprime\-\_\-botao\-\_\-layout}]{\setlength{\rightskip}{0pt plus 5cm}void imprime\-\_\-botao\-\_\-layout (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{geraHTML_8c_aef069ba237bb99d64d3ddead6f5cb877}
+\hypertarget{geraHTML_8c_a7917cd9a0d53f543f65fd1cfcfedcbcd}{\index{gera\-H\-T\-M\-L.\-c@{gera\-H\-T\-M\-L.\-c}!imprime\-\_\-botao\-\_\-passar@{imprime\-\_\-botao\-\_\-passar}}
+\index{imprime\-\_\-botao\-\_\-passar@{imprime\-\_\-botao\-\_\-passar}!geraHTML.c@{gera\-H\-T\-M\-L.\-c}}
+\subsubsection[{imprime\-\_\-botao\-\_\-passar}]{\setlength{\rightskip}{0pt plus 5cm}void imprime\-\_\-botao\-\_\-passar (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{geraHTML_8c_a7917cd9a0d53f543f65fd1cfcfedcbcd}
+Esta função trata de imprimir o botão \char`\"{}\-P\-A\-S\-S\char`\"{} na página H\-T\-M\-L. Quando o utilizador não tem nenhuma combinação válida possível em relação a última jogada, é possível usar o botão \char`\"{}\-P\-A\-S\-S\char`\"{}. O utilizador pode usar sempre o botão \char`\"{}\-P\-A\-S\-S\char`\"{}, excepto quando é o primeiro a jogar (3 de ouros) ou quando todos passam a jogada e este foi o ultimo a jogar uma carta/combinaçao 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\hypertarget{geraHTML_8c_a5261232ec5ebe355a81ba3afec48a2aa}{\index{gera\-H\-T\-M\-L.\-c@{gera\-H\-T\-M\-L.\-c}!imprime\-\_\-botao\-\_\-reset@{imprime\-\_\-botao\-\_\-reset}}
+\index{imprime\-\_\-botao\-\_\-reset@{imprime\-\_\-botao\-\_\-reset}!geraHTML.c@{gera\-H\-T\-M\-L.\-c}}
+\subsubsection[{imprime\-\_\-botao\-\_\-reset}]{\setlength{\rightskip}{0pt plus 5cm}void imprime\-\_\-botao\-\_\-reset (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{geraHTML_8c_a5261232ec5ebe355a81ba3afec48a2aa}
+A função imprime\-\_\-botao\-\_\-reset imprime um botão que quando algum dos jogadores ganha a ronda, ou seja, acabam as cartas da sua mão. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\hypertarget{geraHTML_8c_af4abfc1f68669452cd844582c85cd087}{\index{gera\-H\-T\-M\-L.\-c@{gera\-H\-T\-M\-L.\-c}!imprime\-\_\-botao\-\_\-start@{imprime\-\_\-botao\-\_\-start}}
+\index{imprime\-\_\-botao\-\_\-start@{imprime\-\_\-botao\-\_\-start}!geraHTML.c@{gera\-H\-T\-M\-L.\-c}}
+\subsubsection[{imprime\-\_\-botao\-\_\-start}]{\setlength{\rightskip}{0pt plus 5cm}void imprime\-\_\-botao\-\_\-start (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{geraHTML_8c_af4abfc1f68669452cd844582c85cd087}
+A função imprime\-\_\-botao\-\_\-start imprime o botão de start do menu inicial para o browser. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\hypertarget{geraHTML_8c_a23ec09efb6991224a1c9be38eb81de87}{\index{gera\-H\-T\-M\-L.\-c@{gera\-H\-T\-M\-L.\-c}!imprime\-\_\-botao\-\_\-sugestao@{imprime\-\_\-botao\-\_\-sugestao}}
+\index{imprime\-\_\-botao\-\_\-sugestao@{imprime\-\_\-botao\-\_\-sugestao}!geraHTML.c@{gera\-H\-T\-M\-L.\-c}}
+\subsubsection[{imprime\-\_\-botao\-\_\-sugestao}]{\setlength{\rightskip}{0pt plus 5cm}void imprime\-\_\-botao\-\_\-sugestao (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{geraHTML_8c_a23ec09efb6991224a1c9be38eb81de87}
+A função imprime\-\_\-botao\-\_\-sugestao imprime o botão de sugestão para o browser. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\hypertarget{geraHTML_8c_adee9d83fe2853b8fc805b61da762d48a}{\index{gera\-H\-T\-M\-L.\-c@{gera\-H\-T\-M\-L.\-c}!imprime\-\_\-botao\-\_\-trofeu@{imprime\-\_\-botao\-\_\-trofeu}}
+\index{imprime\-\_\-botao\-\_\-trofeu@{imprime\-\_\-botao\-\_\-trofeu}!geraHTML.c@{gera\-H\-T\-M\-L.\-c}}
+\subsubsection[{imprime\-\_\-botao\-\_\-trofeu}]{\setlength{\rightskip}{0pt plus 5cm}void imprime\-\_\-botao\-\_\-trofeu (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{geraHTML_8c_adee9d83fe2853b8fc805b61da762d48a}
+\hypertarget{geraHTML_8c_a5bfb6d281e200376d3625daf7669aa85}{\index{gera\-H\-T\-M\-L.\-c@{gera\-H\-T\-M\-L.\-c}!imprime\-\_\-carta@{imprime\-\_\-carta}}
+\index{imprime\-\_\-carta@{imprime\-\_\-carta}!geraHTML.c@{gera\-H\-T\-M\-L.\-c}}
+\subsubsection[{imprime\-\_\-carta}]{\setlength{\rightskip}{0pt plus 5cm}void imprime\-\_\-carta (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{path, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e, }
+\item[{int}]{mao, }
+\item[{int}]{naipe, }
+\item[{int}]{valor}
+\end{DoxyParamCaption}
+)}}\label{geraHTML_8c_a5bfb6d281e200376d3625daf7669aa85}
+Esta função tem como objetivo imprimir as cartas no tabuleiro. Se a carta a apresentar se encontre na mão do jogador (mao toma o valor de 0 e o actual\-\_\-jogador no estado for igual a 0), e caso a carta seja selecionada é então adicionada ao highlight. Se já se encontrar no highlight, então é removida de lá. Caso contrário, se a carta se encontrar na mão de um bot, é imprimido o verso de uma carta, caso contrário a carta já foi jogada por um bot logo é mostrada a carta correspondente. 
+\begin{DoxyParams}{Parameters}
+{\em path} & O path. \\
+\hline
+{\em x} & Coordenada H\-T\-M\-L. \\
+\hline
+{\em y} & Coordenada H\-T\-M\-L. \\
+\hline
+{\em e} & O estado atual. \\
+\hline
+{\em mao} & Número de um jogador. \\
+\hline
+{\em naipe} & O naipe da carta (inteiro entre 0 e 3). \\
+\hline
+{\em valor} & O valor da carta (inteiro entre 0 e 12). \\
+\hline
+\end{DoxyParams}
+\hypertarget{geraHTML_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{\index{gera\-H\-T\-M\-L.\-c@{gera\-H\-T\-M\-L.\-c}!main@{main}}
+\index{main@{main}!geraHTML.c@{gera\-H\-T\-M\-L.\-c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{geraHTML_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}
+brief Função principal Função principal do programa que imprime os cabeçalhos necessários e depois disso invoca a função que vai imprimir o código html para desenhar as cartas \hypertarget{geraHTML_8c_af22742568b531d69c62aacf16b7c301e}{\index{gera\-H\-T\-M\-L.\-c@{gera\-H\-T\-M\-L.\-c}!parse@{parse}}
+\index{parse@{parse}!geraHTML.c@{gera\-H\-T\-M\-L.\-c}}
+\subsubsection[{parse}]{\setlength{\rightskip}{0pt plus 5cm}void parse (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{query}
+\end{DoxyParamCaption}
+)}}\label{geraHTML_8c_af22742568b531d69c62aacf16b7c301e}
+brief Trata os argumentos da C\-G\-I Esta função recebe a query que é passada à cgi-\/bin e trata-\/a. Neste momento, a query contém o estado que é um inteiro que representa um conjunto de cartas. Cada carta corresponde a um bit que está a 1 se essa carta está no conjunto e a 0 caso contrário. Caso não seja passado nada à cgi-\/bin, ela assume que todas as cartas estão presentes. 
+\begin{DoxyParams}{Parameters}
+{\em query} & A query que é passada à cgi-\/bin \\
+\hline
+\end{DoxyParams}

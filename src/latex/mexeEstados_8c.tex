@@ -1,0 +1,403 @@
+\hypertarget{mexeEstados_8c}{\section{mexe\-Estados.\-c File Reference}
+\label{mexeEstados_8c}\index{mexe\-Estados.\-c@{mexe\-Estados.\-c}}
+}
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$time.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}big2.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{mexeEstados_8c_af32bcca287788ae0563fa9a6debf4603}{estado2str} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{mexeEstados_8c_aaab41d6d6fb292acd6c7c8da45bd96d5}{str2estado} (char $\ast$str)
+\item 
+int \hyperlink{mexeEstados_8c_a1080526906350feff526a843c90b980d}{primeiro\-\_\-jogar} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{mexeEstados_8c_af8adad96525d60314abc47ab0a35309d}{baralhar} ()
+\item 
+int \hyperlink{mexeEstados_8c_abd9506db582a612dacea4031f80c2a42}{valida\-\_\-bots\-\_\-jogadas\-\_\-normais} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e, \hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{mexeEstados_8c_a93e82cc5c6b528bd6ba2841eb8d1a21d}{bots1} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{mexeEstados_8c_ae6b15e4c614bdca1d35ab38c963240cc}{bot\-\_\-comeca\-\_\-jogada} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{mexeEstados_8c_a05860fa19cd69a48baef40e0523a2f5a}{joga\-\_\-bot\-\_\-1carta} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{mexeEstados_8c_a7f6bfd197501d21e51249e9824bc5aa7}{joga\-\_\-bot\-\_\-2cartas} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{mexeEstados_8c_a22649ce6e871511ee3430955c38bef3b}{joga\-\_\-bot\-\_\-3cartas} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{mexeEstados_8c_aafaf26fe467d7bf8b5730db56b780c1c}{pbot} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{mexeEstados_8c_aa96248333392ca76253163bc2d827d99}{joga\-\_\-straight} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{mexeEstados_8c_ace79d7c19907b9e636b21811c7ca4634}{joga\-\_\-flush} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{mexeEstados_8c_a3648ffe81d0bb8997e15de5000e477a8}{joga\-\_\-fullhouse} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{mexeEstados_8c_afb01393423fbaab3a276952b9854d348}{joga\-\_\-fourkind} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{mexeEstados_8c_a4328bdd8f79a2f48ccb60969f2cce476}{joga\-\_\-straightflush} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{mexeEstados_8c_a071da6c29c64ec1808fede85fbf0e6aa}{passabot} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{mexeEstados_8c_a9e785b28ebbd04ee2cbf4b66374f02a2}{bots2} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+int \hyperlink{mexeEstados_8c_a96b595aeba3ff0ff598d6745cb40789e}{incrementa\-\_\-jogador} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{mexeEstados_8c_ac2046f3551b35cbd70a91c9f36370be4}{jogar} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{mexeEstados_8c_ae8122d63a9683eed0eb23141846c7908}{passar} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{mexeEstados_8c_a3ead227c9507845db4aa94d55ffcabfe}{clear} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{mexeEstados_8c_a75ff3df65c8c8de9ce1df3a60b08f8e9}{sugestao} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{mexeEstados_8c_af8adad96525d60314abc47ab0a35309d}{\index{mexe\-Estados.\-c@{mexe\-Estados.\-c}!baralhar@{baralhar}}
+\index{baralhar@{baralhar}!mexeEstados.c@{mexe\-Estados.\-c}}
+\subsubsection[{baralhar}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} baralhar (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{mexeEstados_8c_af8adad96525d60314abc47ab0a35309d}
+Função que distribui as cartas por todas as mãos, de igual modo (13 para cada). Através da função \char`\"{}rand\char`\"{}, as cartas são distribuidas aleatoriamente. Aqui, são feitas outras tarefas\-: O actual\-\_\-jogador vai tomar o valor da função primeiro\-\_\-jogador, previamente definida, que indica o jogador que começa o jogo, da-\/mos a e.\-cartas\-\_\-bots\mbox{[}e.\-actual\-\_\-jogador\mbox{]} o valor 1, de maneira que se um bot começar o jogo, este vai apresentar o 3 de ouros no tabuleiro, e a ultimo\-\_\-jogador toma o valor do actual\-\_\-jogador, guardando assim o ultimo jogador que jogou corretamente. \begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{mexeEstados_8c_ae6b15e4c614bdca1d35ab38c963240cc}{\index{mexe\-Estados.\-c@{mexe\-Estados.\-c}!bot\-\_\-comeca\-\_\-jogada@{bot\-\_\-comeca\-\_\-jogada}}
+\index{bot\-\_\-comeca\-\_\-jogada@{bot\-\_\-comeca\-\_\-jogada}!mexeEstados.c@{mexe\-Estados.\-c}}
+\subsubsection[{bot\-\_\-comeca\-\_\-jogada}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} bot\-\_\-comeca\-\_\-jogada (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{mexeEstados_8c_ae6b15e4c614bdca1d35ab38c963240cc}
+Neste estado, como o bot começa uma jogada (quando toda a gente passa), optamos por só o fazer jogar uma carta. Portanto, aqui é selecionada uma carta da mão do bot para ser jogada. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{mexeEstados_8c_a93e82cc5c6b528bd6ba2841eb8d1a21d}{\index{mexe\-Estados.\-c@{mexe\-Estados.\-c}!bots1@{bots1}}
+\index{bots1@{bots1}!mexeEstados.c@{mexe\-Estados.\-c}}
+\subsubsection[{bots1}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} bots1 (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{mexeEstados_8c_a93e82cc5c6b528bd6ba2841eb8d1a21d}
+A função bots1 vai ser executada quando um bot começa a jogar(sendo que este tem o 3 de ouros na sua mão). E executada na modificação do baralhar na parse. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{mexeEstados_8c_a9e785b28ebbd04ee2cbf4b66374f02a2}{\index{mexe\-Estados.\-c@{mexe\-Estados.\-c}!bots2@{bots2}}
+\index{bots2@{bots2}!mexeEstados.c@{mexe\-Estados.\-c}}
+\subsubsection[{bots2}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} bots2 (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{mexeEstados_8c_a9e785b28ebbd04ee2cbf4b66374f02a2}
+O estado bots2 é executado quando um bot executa uma jogada que não seja jogar um 3 de ouros, isto inclui jogadas de 1, 2, 3 e 5 cartas. Se não existir nenhuma combinação válida a ser jogada (comparando com a ultima jogada), o bot passa a jogada. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{mexeEstados_8c_a3ead227c9507845db4aa94d55ffcabfe}{\index{mexe\-Estados.\-c@{mexe\-Estados.\-c}!clear@{clear}}
+\index{clear@{clear}!mexeEstados.c@{mexe\-Estados.\-c}}
+\subsubsection[{clear}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} clear (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{mexeEstados_8c_a3ead227c9507845db4aa94d55ffcabfe}
+O estado clear permite-\/nos após termos diferentes cartas no highlight, removê-\/las do mesmo, e colocando-\/as de novo na nossa mão, melhorando assim a jogabilidade. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{mexeEstados_8c_af32bcca287788ae0563fa9a6debf4603}{\index{mexe\-Estados.\-c@{mexe\-Estados.\-c}!estado2str@{estado2str}}
+\index{estado2str@{estado2str}!mexeEstados.c@{mexe\-Estados.\-c}}
+\subsubsection[{estado2str}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ estado2str (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{mexeEstados_8c_af32bcca287788ae0563fa9a6debf4603}
+Transforma um estado numa string do url, e retorna essa string. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Uma string com o estado. 
+\end{DoxyReturn}
+\hypertarget{mexeEstados_8c_a96b595aeba3ff0ff598d6745cb40789e}{\index{mexe\-Estados.\-c@{mexe\-Estados.\-c}!incrementa\-\_\-jogador@{incrementa\-\_\-jogador}}
+\index{incrementa\-\_\-jogador@{incrementa\-\_\-jogador}!mexeEstados.c@{mexe\-Estados.\-c}}
+\subsubsection[{incrementa\-\_\-jogador}]{\setlength{\rightskip}{0pt plus 5cm}int incrementa\-\_\-jogador (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{mexeEstados_8c_a96b595aeba3ff0ff598d6745cb40789e}
+Em cada jogada, o jogador é incrementado, tomando assim o controlo do jogador que está em jogo. Como estes variam entre 0 e 3 (4 jogadores), enquanto ele for diferente de 3, vai incrementar para um próximo jogador, e uma próxima jogada. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro correspondente ao número de um novo jogador. 
+\end{DoxyReturn}
+\hypertarget{mexeEstados_8c_a05860fa19cd69a48baef40e0523a2f5a}{\index{mexe\-Estados.\-c@{mexe\-Estados.\-c}!joga\-\_\-bot\-\_\-1carta@{joga\-\_\-bot\-\_\-1carta}}
+\index{joga\-\_\-bot\-\_\-1carta@{joga\-\_\-bot\-\_\-1carta}!mexeEstados.c@{mexe\-Estados.\-c}}
+\subsubsection[{joga\-\_\-bot\-\_\-1carta}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} joga\-\_\-bot\-\_\-1carta (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{mexeEstados_8c_a05860fa19cd69a48baef40e0523a2f5a}
+Neste estado, o bot vai jogar uma carta consoante a ultima carta jogada. Aqui, é vista a menor carta possível de o bot jogar, relativamente à ultima jogada. Se o bot não tiver uma carta maior do que a ultima jogada, passará a jogada. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{mexeEstados_8c_a7f6bfd197501d21e51249e9824bc5aa7}{\index{mexe\-Estados.\-c@{mexe\-Estados.\-c}!joga\-\_\-bot\-\_\-2cartas@{joga\-\_\-bot\-\_\-2cartas}}
+\index{joga\-\_\-bot\-\_\-2cartas@{joga\-\_\-bot\-\_\-2cartas}!mexeEstados.c@{mexe\-Estados.\-c}}
+\subsubsection[{joga\-\_\-bot\-\_\-2cartas}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} joga\-\_\-bot\-\_\-2cartas (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{mexeEstados_8c_a7f6bfd197501d21e51249e9824bc5aa7}
+Neste estado, o bot vai jogar duas cartas consoante as ultimas cartas jogadas. Aqui, é visto o menor par possível de o bot jogar, relativamente à ultima jogada. Se o bot não tiver um par maior do que a ultima jogada, passará a jogada. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{mexeEstados_8c_a22649ce6e871511ee3430955c38bef3b}{\index{mexe\-Estados.\-c@{mexe\-Estados.\-c}!joga\-\_\-bot\-\_\-3cartas@{joga\-\_\-bot\-\_\-3cartas}}
+\index{joga\-\_\-bot\-\_\-3cartas@{joga\-\_\-bot\-\_\-3cartas}!mexeEstados.c@{mexe\-Estados.\-c}}
+\subsubsection[{joga\-\_\-bot\-\_\-3cartas}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} joga\-\_\-bot\-\_\-3cartas (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{mexeEstados_8c_a22649ce6e871511ee3430955c38bef3b}
+Neste estado, o bot vai jogar três cartas consoante as ultimas cartas jogadas. Aqui, é visto o menor triplo possível de o bot jogar, relativamente à ultima jogada. Se o bot não tiver um triplo maior do que a ultima jogada, passará a jogada. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{mexeEstados_8c_ace79d7c19907b9e636b21811c7ca4634}{\index{mexe\-Estados.\-c@{mexe\-Estados.\-c}!joga\-\_\-flush@{joga\-\_\-flush}}
+\index{joga\-\_\-flush@{joga\-\_\-flush}!mexeEstados.c@{mexe\-Estados.\-c}}
+\subsubsection[{joga\-\_\-flush}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} joga\-\_\-flush (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{mexeEstados_8c_ace79d7c19907b9e636b21811c7ca4634}
+O estado joga\-\_\-flush é aquele que faz com que o bot jogue um flush. Após todas as validações da sua mão, ele adiciona cartas para jogar, removendo-\/as da sua mão. Posto isto, mostra as cartas no tabuleiro, e é a vez de outro jogador. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{mexeEstados_8c_afb01393423fbaab3a276952b9854d348}{\index{mexe\-Estados.\-c@{mexe\-Estados.\-c}!joga\-\_\-fourkind@{joga\-\_\-fourkind}}
+\index{joga\-\_\-fourkind@{joga\-\_\-fourkind}!mexeEstados.c@{mexe\-Estados.\-c}}
+\subsubsection[{joga\-\_\-fourkind}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} joga\-\_\-fourkind (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{mexeEstados_8c_afb01393423fbaab3a276952b9854d348}
+O estado joga\-\_\-fourkind é aquele que faz com que o bot jogue um four of a kind. Após todas as validações da sua mão, ele adiciona cartas para jogar, removendo-\/as da sua mão. Posto isto, mostra as cartas no tabuleiro, e é a vez de outro jogador. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{mexeEstados_8c_a3648ffe81d0bb8997e15de5000e477a8}{\index{mexe\-Estados.\-c@{mexe\-Estados.\-c}!joga\-\_\-fullhouse@{joga\-\_\-fullhouse}}
+\index{joga\-\_\-fullhouse@{joga\-\_\-fullhouse}!mexeEstados.c@{mexe\-Estados.\-c}}
+\subsubsection[{joga\-\_\-fullhouse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} joga\-\_\-fullhouse (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{mexeEstados_8c_a3648ffe81d0bb8997e15de5000e477a8}
+O estado joga\-\_\-fullhouse é aquele que faz com que o bot jogue um full house. Após todas as validações da sua mão, ele adiciona cartas para jogar, removendo-\/as da sua mão. Posto isto, mostra as cartas no tabuleiro, e é a vez de outro jogador. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{mexeEstados_8c_aa96248333392ca76253163bc2d827d99}{\index{mexe\-Estados.\-c@{mexe\-Estados.\-c}!joga\-\_\-straight@{joga\-\_\-straight}}
+\index{joga\-\_\-straight@{joga\-\_\-straight}!mexeEstados.c@{mexe\-Estados.\-c}}
+\subsubsection[{joga\-\_\-straight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} joga\-\_\-straight (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{mexeEstados_8c_aa96248333392ca76253163bc2d827d99}
+O estado joga\-\_\-straight é aquele que faz com que o bot jogue um straight. Após todas as validações da sua mão, ele adiciona cartas para jogar, removendo-\/as da sua mão. Posto isto, mostra as cartas no tabuleiro, e é a vez de outro jogador. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{mexeEstados_8c_a4328bdd8f79a2f48ccb60969f2cce476}{\index{mexe\-Estados.\-c@{mexe\-Estados.\-c}!joga\-\_\-straightflush@{joga\-\_\-straightflush}}
+\index{joga\-\_\-straightflush@{joga\-\_\-straightflush}!mexeEstados.c@{mexe\-Estados.\-c}}
+\subsubsection[{joga\-\_\-straightflush}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} joga\-\_\-straightflush (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{mexeEstados_8c_a4328bdd8f79a2f48ccb60969f2cce476}
+O estado joga\-\_\-straightflush é aquele que faz com que o bot jogue um straight flush. Após todas as validações da sua mão, ele adiciona cartas para jogar, removendo-\/as da sua mão. Posto isto, mostra as cartas no tabuleiro, e é a vez de outro jogador. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{mexeEstados_8c_ac2046f3551b35cbd70a91c9f36370be4}{\index{mexe\-Estados.\-c@{mexe\-Estados.\-c}!jogar@{jogar}}
+\index{jogar@{jogar}!mexeEstados.c@{mexe\-Estados.\-c}}
+\subsubsection[{jogar}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} jogar (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{mexeEstados_8c_ac2046f3551b35cbd70a91c9f36370be4}
+A função jogar vai ser invocada pela função parse, e vai retirar as cartas da mão do jogador caso esta exista no highlight, colocando-\/a na posição do tabuleiro correspondete a jogada do utilizador, ou seja, vai ser a função executada quando carregamos no botao jogar para um dado highlight. Esta função também convoca as funções dos bots que executam as suas jogadas enquanto não for a vez do utilizador jogar. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{mexeEstados_8c_a071da6c29c64ec1808fede85fbf0e6aa}{\index{mexe\-Estados.\-c@{mexe\-Estados.\-c}!passabot@{passabot}}
+\index{passabot@{passabot}!mexeEstados.c@{mexe\-Estados.\-c}}
+\subsubsection[{passabot}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} passabot (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{mexeEstados_8c_a071da6c29c64ec1808fede85fbf0e6aa}
+O estado passabot permite que o bot passe uma jogada, se não tiver qualquer tipo de combinação válida para ser jogada. Retorna o estado do jogo actual, após passagem de ronda. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{mexeEstados_8c_ae8122d63a9683eed0eb23141846c7908}{\index{mexe\-Estados.\-c@{mexe\-Estados.\-c}!passar@{passar}}
+\index{passar@{passar}!mexeEstados.c@{mexe\-Estados.\-c}}
+\subsubsection[{passar}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} passar (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{mexeEstados_8c_ae8122d63a9683eed0eb23141846c7908}
+Função invocada na parse, que vai ser executada quando carregamos no botao passar, e que só incrementa o jogador e mantém o resto do estado. Esta função também convoca as funções dos bots que executam as suas jogadas enquanto não for a vez do utilizador jogar. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{mexeEstados_8c_aafaf26fe467d7bf8b5730db56b780c1c}{\index{mexe\-Estados.\-c@{mexe\-Estados.\-c}!pbot@{pbot}}
+\index{pbot@{pbot}!mexeEstados.c@{mexe\-Estados.\-c}}
+\subsubsection[{pbot}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} pbot (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{mexeEstados_8c_aafaf26fe467d7bf8b5730db56b780c1c}
+O estado pbot executa a função validaco\-\_\-5cartas, de forma a verificar qual a combinação da ultima jogada, de forma a avaliar com a combinação que vai ser jogada. Posto isto, é chamado o esatdo fazjogada, para verificar se, e comparando com a jogada anterior, o bot tem uma combinação válida para ser jogada. É retornado o estado do jogo actual. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{mexeEstados_8c_a1080526906350feff526a843c90b980d}{\index{mexe\-Estados.\-c@{mexe\-Estados.\-c}!primeiro\-\_\-jogar@{primeiro\-\_\-jogar}}
+\index{primeiro\-\_\-jogar@{primeiro\-\_\-jogar}!mexeEstados.c@{mexe\-Estados.\-c}}
+\subsubsection[{primeiro\-\_\-jogar}]{\setlength{\rightskip}{0pt plus 5cm}int primeiro\-\_\-jogar (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{mexeEstados_8c_a1080526906350feff526a843c90b980d}
+Conforme as regras do jogo, a primeiro jogador a jogar é aquele que tem o 3 de ouros na sua mão. Esta função procura nas mãos de cada jogador o valor e o naipe correspondentes ao 3 de ouros. O jogador que tiver essa carta, passará a ser o actual\-\_\-jogador, dando então prosseguimento. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro correspondente ao jogador que vai executar primeiro a jogada. 
+\end{DoxyReturn}
+\hypertarget{mexeEstados_8c_aaab41d6d6fb292acd6c7c8da45bd96d5}{\index{mexe\-Estados.\-c@{mexe\-Estados.\-c}!str2estado@{str2estado}}
+\index{str2estado@{str2estado}!mexeEstados.c@{mexe\-Estados.\-c}}
+\subsubsection[{str2estado}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} str2estado (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{mexeEstados_8c_aaab41d6d6fb292acd6c7c8da45bd96d5}
+Transforma a string do url num estado novo, e retorna esse estado. 
+\begin{DoxyParams}{Parameters}
+{\em str} & Uma string com o estado. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{mexeEstados_8c_a75ff3df65c8c8de9ce1df3a60b08f8e9}{\index{mexe\-Estados.\-c@{mexe\-Estados.\-c}!sugestao@{sugestao}}
+\index{sugestao@{sugestao}!mexeEstados.c@{mexe\-Estados.\-c}}
+\subsubsection[{sugestao}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} sugestao (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{mexeEstados_8c_a75ff3df65c8c8de9ce1df3a60b08f8e9}
+O estado sugestão permite ao utilizador clicar num botão, onde este lhe seleciona cartas válidas a ser jogadas, passando-\/as para o highlight. Se o utilizador quiser jogar as cartas, simplesmente carrega no botão \char`\"{}\-S\-U\-B\-M\-I\-T\char`\"{}. O estado sugestão passará a jogada sempre que não houver cartas válidas para serem jogadas. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{mexeEstados_8c_abd9506db582a612dacea4031f80c2a42}{\index{mexe\-Estados.\-c@{mexe\-Estados.\-c}!valida\-\_\-bots\-\_\-jogadas\-\_\-normais@{valida\-\_\-bots\-\_\-jogadas\-\_\-normais}}
+\index{valida\-\_\-bots\-\_\-jogadas\-\_\-normais@{valida\-\_\-bots\-\_\-jogadas\-\_\-normais}!mexeEstados.c@{mexe\-Estados.\-c}}
+\subsubsection[{valida\-\_\-bots\-\_\-jogadas\-\_\-normais}]{\setlength{\rightskip}{0pt plus 5cm}int valida\-\_\-bots\-\_\-jogadas\-\_\-normais (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e, }
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{mexeEstados_8c_abd9506db582a612dacea4031f80c2a42}
+A valida\-\_\-bots\-\_\-jogadas\-\_\-normais é a função que vai validar as jogadas dos bots (uma, duas e três cartas). É retornado 0 se os bots não puderem efetuar a jogada, e 1 caso contrário. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 1 se for possível jogar, 0 caso contrário. 
+\end{DoxyReturn}

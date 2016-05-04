@@ -1,0 +1,95 @@
+\hypertarget{joga5cartasBots_8c}{\section{joga5cartas\-Bots.\-c File Reference}
+\label{joga5cartasBots_8c}\index{joga5cartas\-Bots.\-c@{joga5cartas\-Bots.\-c}}
+}
+{\ttfamily \#include \char`\"{}big2.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{joga5cartasBots_8c_aa96248333392ca76253163bc2d827d99}{joga\-\_\-straight} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{joga5cartasBots_8c_ace79d7c19907b9e636b21811c7ca4634}{joga\-\_\-flush} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{joga5cartasBots_8c_a3648ffe81d0bb8997e15de5000e477a8}{joga\-\_\-fullhouse} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{joga5cartasBots_8c_afb01393423fbaab3a276952b9854d348}{joga\-\_\-fourkind} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{joga5cartasBots_8c_a4328bdd8f79a2f48ccb60969f2cce476}{joga\-\_\-straightflush} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{joga5cartasBots_8c_ace79d7c19907b9e636b21811c7ca4634}{\index{joga5cartas\-Bots.\-c@{joga5cartas\-Bots.\-c}!joga\-\_\-flush@{joga\-\_\-flush}}
+\index{joga\-\_\-flush@{joga\-\_\-flush}!joga5cartasBots.c@{joga5cartas\-Bots.\-c}}
+\subsubsection[{joga\-\_\-flush}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} joga\-\_\-flush (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{joga5cartasBots_8c_ace79d7c19907b9e636b21811c7ca4634}
+O estado joga\-\_\-flush é aquele que faz com que o bot jogue um flush. Após todas as validações da sua mão, ele adiciona cartas para jogar, removendo-\/as da sua mão. Posto isto, mostra as cartas no tabuleiro, e é a vez de outro jogador. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{joga5cartasBots_8c_afb01393423fbaab3a276952b9854d348}{\index{joga5cartas\-Bots.\-c@{joga5cartas\-Bots.\-c}!joga\-\_\-fourkind@{joga\-\_\-fourkind}}
+\index{joga\-\_\-fourkind@{joga\-\_\-fourkind}!joga5cartasBots.c@{joga5cartas\-Bots.\-c}}
+\subsubsection[{joga\-\_\-fourkind}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} joga\-\_\-fourkind (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{joga5cartasBots_8c_afb01393423fbaab3a276952b9854d348}
+O estado joga\-\_\-fourkind é aquele que faz com que o bot jogue um four of a kind. Após todas as validações da sua mão, ele adiciona cartas para jogar, removendo-\/as da sua mão. Posto isto, mostra as cartas no tabuleiro, e é a vez de outro jogador. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{joga5cartasBots_8c_a3648ffe81d0bb8997e15de5000e477a8}{\index{joga5cartas\-Bots.\-c@{joga5cartas\-Bots.\-c}!joga\-\_\-fullhouse@{joga\-\_\-fullhouse}}
+\index{joga\-\_\-fullhouse@{joga\-\_\-fullhouse}!joga5cartasBots.c@{joga5cartas\-Bots.\-c}}
+\subsubsection[{joga\-\_\-fullhouse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} joga\-\_\-fullhouse (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{joga5cartasBots_8c_a3648ffe81d0bb8997e15de5000e477a8}
+O estado joga\-\_\-fullhouse é aquele que faz com que o bot jogue um full house. Após todas as validações da sua mão, ele adiciona cartas para jogar, removendo-\/as da sua mão. Posto isto, mostra as cartas no tabuleiro, e é a vez de outro jogador. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{joga5cartasBots_8c_aa96248333392ca76253163bc2d827d99}{\index{joga5cartas\-Bots.\-c@{joga5cartas\-Bots.\-c}!joga\-\_\-straight@{joga\-\_\-straight}}
+\index{joga\-\_\-straight@{joga\-\_\-straight}!joga5cartasBots.c@{joga5cartas\-Bots.\-c}}
+\subsubsection[{joga\-\_\-straight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} joga\-\_\-straight (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{joga5cartasBots_8c_aa96248333392ca76253163bc2d827d99}
+O estado joga\-\_\-straight é aquele que faz com que o bot jogue um straight. Após todas as validações da sua mão, ele adiciona cartas para jogar, removendo-\/as da sua mão. Posto isto, mostra as cartas no tabuleiro, e é a vez de outro jogador. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{joga5cartasBots_8c_a4328bdd8f79a2f48ccb60969f2cce476}{\index{joga5cartas\-Bots.\-c@{joga5cartas\-Bots.\-c}!joga\-\_\-straightflush@{joga\-\_\-straightflush}}
+\index{joga\-\_\-straightflush@{joga\-\_\-straightflush}!joga5cartasBots.c@{joga5cartas\-Bots.\-c}}
+\subsubsection[{joga\-\_\-straightflush}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} joga\-\_\-straightflush (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{joga5cartasBots_8c_a4328bdd8f79a2f48ccb60969f2cce476}
+O estado joga\-\_\-straightflush é aquele que faz com que o bot jogue um straight flush. Após todas as validações da sua mão, ele adiciona cartas para jogar, removendo-\/as da sua mão. Posto isto, mostra as cartas no tabuleiro, e é a vez de outro jogador. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}

@@ -124,6 +124,354 @@ int valida_bots_jogadas_normais (ESTADO e, MAO m) {
     return 1;
 }
 
+ESTADO joga_straight_bot3ouros (ESTADO e) {
+    long long int m=0, n=0;
+
+    int v1,v2,v3,v4,v5,n1,n2,n3,n4,n5,p1,p2,p3,p4,p5;
+
+    p1 = seleciona_maior_carta_straight_bots(e.mao[e.actual_jogador]);
+    p2 = codifica((seleciona_maior_carta_straight_bots(e.mao[e.actual_jogador]))-1);
+    p3 = codifica((seleciona_maior_carta_straight_bots(e.mao[e.actual_jogador]))-2);
+    p4 = codifica((seleciona_maior_carta_straight_bots(e.mao[e.actual_jogador]))-3);
+    p5 = codifica((seleciona_maior_carta_straight_bots(e.mao[e.actual_jogador]))-4);
+
+    v1 = p1;
+    v2 = descodifica_straight(p2);
+    v3 = descodifica_straight(p3);
+    v4 = descodifica_straight(p4);
+    v5 = descodifica_straight(p5);
+
+    n1 = seleciona_maior_naipeCarta_straight_bots((e.mao[e.actual_jogador]),v1);
+    n2 = seleciona_maior_naipeCarta_straight_bots((e.mao[e.actual_jogador]),v2);
+    n3 = seleciona_maior_naipeCarta_straight_bots((e.mao[e.actual_jogador]),v3);
+    n4 = seleciona_maior_naipeCarta_straight_bots((e.mao[e.actual_jogador]),v4);
+    n5 = seleciona_maior_naipeCarta_straight_bots((e.mao[e.actual_jogador]),v5);
+
+    m = add_carta(0,n1,v1);
+    m = add_carta(m,n2,v2);
+    m = add_carta(m,n3,v3);
+    m = add_carta(m,n4,v4);
+    m = add_carta(m,n5,v5);
+
+    n = rem_carta((e.mao[e.actual_jogador]),n1,v1);
+    n = rem_carta(n,n2,v2);
+    n = rem_carta(n,n3,v3);
+    n = rem_carta(n,n4,v4);
+    n = rem_carta(n,n5,v5);
+
+    e.cartas[e.actual_jogador] = (e.cartas[e.actual_jogador]) - 5;
+    e.ultima_jogada = m;
+    e.cartas_bots[e.actual_jogador] = m;
+    e.mao[e.actual_jogador] = n;
+    e.ultimo_jogador = e.actual_jogador;
+    e.actual_jogador = incrementa_jogador(e);
+    e.card = 0;
+    return e;
+}
+
+ESTADO joga_flush_bot3ouros (ESTADO e) {
+    long long int m=0, n=0;
+    int flag1,flag2,flag3,v1=0,v2=0,v3=0,v4=0,p1=0,p2=0,p3=0,p4=0,p5=0,n1=0;
+
+    n1 = 0; /* Naipe do três de ouros */
+
+    flag1 = 0;
+    p1 = v1;
+    for(v2 = (v1 - 1); v2 > 0 && flag1 != 1; --v2) {
+        if (carta_existe(e.mao[e.actual_jogador],n1,v2)) {
+            p2 = v2;
+            flag1 = 1;
+        }
+    }
+
+    flag2 = 0;
+    for (v3 = v2; v3 > 0 && flag2 != 1; --v3) {
+        if (carta_existe(e.mao[e.actual_jogador],n1,v3)) {
+            p3 = v3;
+            flag2 = 1;
+        }
+    }
+
+    flag3 = 0;
+    for (v4 = v3; v4 > 0 && flag3 != 1; --v4) {
+        if (carta_existe(e.mao[e.actual_jogador],n1,v4)) {
+            p4 = v4;
+            flag3 = 1;
+        }
+    }
+
+    p5 = 0; /* Valor do três de ouros */
+
+    m = add_carta(0,n1,p1);
+    m = add_carta(m,n1,p2);
+    m = add_carta(m,n1,p3);
+    m = add_carta(m,n1,p4);
+    m = add_carta(m,n1,p5);
+
+    n = rem_carta((e.mao[e.actual_jogador]),n1,p1);
+    n = rem_carta(n,n1,p2);
+    n = rem_carta(n,n1,p3);
+    n = rem_carta(n,n1,p4);
+    n = rem_carta(n,n1,p5);
+
+    e.cartas[e.actual_jogador] = (e.cartas[e.actual_jogador]) - 5;
+    e.ultima_jogada = m;
+    e.cartas_bots[e.actual_jogador] = m;
+    e.mao[e.actual_jogador] = n;
+    e.ultimo_jogador = e.actual_jogador;
+    e.actual_jogador = incrementa_jogador(e);
+    e.card = 0;
+    return e;
+}
+
+ESTADO joga_fullhouse_bot3ourosPar (ESTADO e) {
+    long long int m=0, f=0;
+    int vPar=0,n=0,n3=0,n2=0,n1=0,p1=0,p3=0,np1=0,np2=0,flag,flag1,flag3,flag4;    
+    
+    vPar = seleciona_par_fullhouse(e.mao[e.actual_jogador]);
+
+    flag = 0;
+    for (n = 3; n >= 1 && flag != 1; --n) {
+        if(carta_existe(e.mao[e.actual_jogador], n, 0)) {
+            n1 = n;
+            flag = 1;
+        }
+    }
+
+    flag1 = 0;
+    p1 = n1-1;
+    for (n = p1; n >= 1 && flag1 != 1; --n) {
+        if(carta_existe(e.mao[e.actual_jogador], n, 0)) {
+            n2 = n;
+            flag1 = 1;
+        }
+    }
+
+    n3 = 0; /* Naipe do três de ouros */
+
+    f = rem_carta((e.mao[e.actual_jogador]),n1,0);
+    f = rem_carta(f,n2,0);
+    f = rem_carta(f,n3,0);
+
+    flag3 = 0;
+    for (n = 3; n >= 0 && flag3 != 1; --n) {
+        if (carta_existe(e.mao[e.actual_jogador], n, vPar)) {
+            np1 = n;
+            flag3 = 1;
+        }
+    }
+
+    flag4 = 0;
+    p3 = n;
+    for (n = p3; n >= 0 && flag4 != 1; --n) {
+        if (carta_existe(e.mao[e.actual_jogador], n, vPar)) {
+            np2 = n;
+            flag4 = 1;
+        }
+    }
+
+    m = add_carta(0,n1,0);
+    m = add_carta(m,n2,0);
+    m = add_carta(m,n3,0);
+    m = add_carta(m,np1,vPar);
+    m = add_carta(m,np2,vPar);
+
+
+    f = rem_carta(f,np1,vPar);
+    f = rem_carta(f,np2,vPar);
+
+    e.cartas[e.actual_jogador] = (e.cartas[e.actual_jogador]) - 5;
+    e.ultima_jogada = m;
+    e.cartas_bots[e.actual_jogador] = m;
+    e.mao[e.actual_jogador] = f;
+    e.ultimo_jogador = e.actual_jogador;
+    e.actual_jogador = incrementa_jogador(e);
+    e.card = 0;
+    return e;
+}
+
+ESTADO joga_fullhouse_bot3ourosTrio (ESTADO e) {
+    long long int m=0, f=0;
+    int vTrio=0,n=0,n3=0,n2=0,n1=0,p1=0,p2=0,np1=0,np2=0,flag,flag1,flag2,flag3;
+    
+    vTrio = seleciona_trio_fullhouse(e.mao[e.actual_jogador]);
+
+    flag = 0;
+    for (n = 3; n >= 0 && flag != 1; --n) {
+        if(carta_existe(e.mao[e.actual_jogador], n, vTrio)) {
+            n1 = n;
+            flag = 1;
+        }
+    }
+
+    flag1 = 0;
+    p1 = n1-1;
+    for (n = p1; n >= 0 && flag1 != 1; --n) {
+        if(carta_existe(e.mao[e.actual_jogador], n, vTrio)) {
+            n2 = n;
+            flag1 = 1;
+        }
+    }
+
+    flag2 = 0;
+    p2 = n2-1;
+    for (n = p2; n >= 0 && flag2 != 1; --n) {
+        if (carta_existe(e.mao[e.actual_jogador], n, vTrio)) {
+            n3 = n;
+            flag2 = 1;
+        }
+    }
+
+
+    f = rem_carta((e.mao[e.actual_jogador]),n1,vTrio);
+    f = rem_carta(f,n2,vTrio);
+    f = rem_carta(f,n3,vTrio);
+
+    flag3 = 0;
+    for (n = 3; n >= 0 && flag3 != 1; --n) {
+        if (carta_existe(e.mao[e.actual_jogador], n, 0)) {
+            np1 = n;
+            flag3 = 1;
+        }
+    }
+
+    np2 = 0;
+
+    m = add_carta(0,n1,vTrio);
+    m = add_carta(m,n2,vTrio);
+    m = add_carta(m,n3,vTrio);
+    m = add_carta(m,np1,0);
+    m = add_carta(m,np2,0);
+
+
+    f = rem_carta(f,np1,0);
+    f = rem_carta(f,np2,0);
+
+    e.cartas[e.actual_jogador] = (e.cartas[e.actual_jogador]) - 5;
+    e.ultima_jogada = m;
+    e.cartas_bots[e.actual_jogador] = m;
+    e.mao[e.actual_jogador] = f;
+    e.ultimo_jogador = e.actual_jogador;
+    e.actual_jogador = incrementa_jogador(e);
+    e.card = 0;
+    return e;
+}
+
+ESTADO joga_fourkind_bot3ouros (ESTADO e) {
+    int flag=0,p=0,f=0;
+    long long int m=0,x=0;
+    
+    m = add_carta(0,0,0);
+    m = add_carta(m,1,0);
+    m = add_carta(m,2,0);
+    m = add_carta(m,3,0);
+    for (p = 1; p <= 12 && flag != 1; p++)
+        for (f = 0; f <= 3 && flag != 1; f++) {
+            if (carta_existe(e.mao[e.ultimo_jogador],f,p)){
+                flag = 1;
+            }
+        }
+    m = add_carta(m,f,p);
+
+    x = rem_carta(e.mao[e.actual_jogador],0,0);
+    x = rem_carta(x,1,0);
+    x = rem_carta(x,2,0);
+    x = rem_carta(x,f,p);
+
+    e.cartas[e.actual_jogador] = (e.cartas[e.actual_jogador]) - 3;
+    e.ultima_jogada = m;
+    e.cartas_bots[e.actual_jogador] = m;
+    e.mao[e.actual_jogador] = x;
+    e.ultimo_jogador = e.actual_jogador;
+    e.actual_jogador = incrementa_jogador(e);
+    e.card = 0;
+    return e;
+}
+
+ESTADO joga_trio_bot3ouros (ESTADO e) {
+    int flag,flag1,flag2,n=0,n1=0,n2=0,n3=0,p1=0,p2=0;
+    long long int x=0,m=0;
+
+    flag = 0;
+    for (n = 0; n < 4 && flag != 1; n++) {
+        if (carta_existe(e.mao[e.actual_jogador], n, 0)) {
+            n1 = n;
+            flag = 1;
+        }
+    }
+
+    flag1 = 0;
+    p1 = n1+1;
+    for (n = p1; n < 4 && flag1 != 1; n++) {
+        if (carta_existe(e.mao[e.actual_jogador], n, 0)) {
+            n2 = n;
+            flag1 = 1;
+        }
+    }
+
+    flag2 = 0;
+    p2 = n2+1;
+    for (n = p2; n < 4 && flag2 != 1; n++) {
+        if (carta_existe(e.mao[e.actual_jogador], n, 0)) {
+            n3 = n;
+            flag2 = 1;
+        }
+    }
+
+    m = add_carta(0,n1,0);
+    m = add_carta(m,n2,0);
+    m = add_carta(m,n3,0);
+
+    x = rem_carta(e.mao[e.actual_jogador],n1,0);
+    x = rem_carta(x,n2,0);
+    x = rem_carta(x,n3,0);
+
+    e.cartas[e.actual_jogador] = (e.cartas[e.actual_jogador]) - 3;
+    e.ultima_jogada = m;
+    e.cartas_bots[e.actual_jogador] = m;
+    e.mao[e.actual_jogador] = x;
+    e.ultimo_jogador = e.actual_jogador;
+    e.actual_jogador = incrementa_jogador(e);
+    e.card = 0;
+    return e;
+}
+
+ESTADO joga_par_bot3ouros (ESTADO e) {
+    int flag,flag1,n=0,n1=0,n2=0,p1=0;
+    long long int x=0,m=0;
+
+    flag = 0;
+    for (n = 0; n < 4 && flag != 1; n++) {
+        if (carta_existe(e.mao[e.actual_jogador], n, 0)) {
+            n1 = n;
+            flag = 1;
+        }
+    }
+
+    flag1 = 0;
+    p1 = n1+1;
+    for (n = p1; n < 4 && flag1 != 1; n++) {
+        if (carta_existe(e.mao[e.actual_jogador], n, 0)) {
+            n2 = n;
+            flag1 = 1;
+        }
+    }
+
+    m = add_carta(0,n1,0);
+    m = add_carta(m,n2,0);
+
+    x = rem_carta(e.mao[e.actual_jogador],n1,0);
+    x = rem_carta(x,n2,0);
+
+    e.cartas[e.actual_jogador] = (e.cartas[e.actual_jogador]) - 2;
+    e.ultima_jogada = m;
+    e.cartas_bots[e.actual_jogador] = m;
+    e.mao[e.actual_jogador] = x;
+    e.ultimo_jogador = e.actual_jogador;
+    e.actual_jogador = incrementa_jogador(e);
+    e.card = 0;
+    return e;
+}
 
 /**
 A função bots1 vai ser executada quando um bot começa a jogar(sendo que este tem o 3 de ouros na sua mão).
@@ -132,28 +480,268 @@ E executada na modificação do baralhar na parse.
 @returns O novo estado.
 */
 ESTADO bots1(ESTADO e){
-    if (e.ultima_jogada == -1 && e.actual_jogador != 0 ){
-        e.cartas[e.actual_jogador] =( e.cartas[(e.actual_jogador)]) - 1;
-        e.mao[e.actual_jogador] = rem_carta(e.mao[(e.actual_jogador)],0,0);
-        e.ultima_jogada = 1;
-        e.actual_jogador = incrementa_jogador(e);
-        e.card = 0;
-        e.cartas_bots[e.actual_jogador] = 2;
-        
-        return e;
+
+    int n,v;
+
+    if (e.ultima_jogada == -1 && e.actual_jogador != 0 ) {
+
+        int i;
+        int contaValores[13];
+        int contaNaipes[4];
+
+        for (i = 0; i < 13; i++) {
+            contaValores[i] = 0;
+        }
+
+
+        for (i = 0; i < 4; i++) {
+            contaNaipes[i] = 0;
+        }
+
+        i = 0;
+        for (v = 0; v < 13; v++) {
+            for (n = 0; n < 4; n++) {
+                if (carta_existe(e.mao[e.actual_jogador], n, v)) { contaValores[i]++; }
+            }
+            i++;
+        }
+
+        i = 0;
+        for (n = 0; n < 4; n++) {
+            for (v = 0; v < 13; v++) {  
+                if (carta_existe(e.mao[e.actual_jogador], n, v)) { contaNaipes[i]++; }
+            }
+            i++;
+        }
+
+        if (seleciona_maior_carta_straight_bots(e.mao[e.actual_jogador]) != -1) {
+            e = joga_straight_bot3ouros(e);
+            return e;
+        }
+
+        /*FLUSH COM 3 DE OUROS */
+        if (contaNaipes[0] == 5) {
+            e = joga_flush_bot3ouros(e);
+            return e;
+        }
+
+        if (contaValores[0] >= 3 && (seleciona_par_fullhouse(e.mao[e.actual_jogador]) != -1)) {
+            e = joga_fullhouse_bot3ourosPar(e);
+            return e;
+        }
+
+        if (contaValores[0] >= 2 && (seleciona_trio_fullhouse(e.mao[e.actual_jogador]) != -1)) {
+            e = joga_fullhouse_bot3ourosTrio(e);
+            return e;
+        }
+
+        /* FOUR KIND COM 3 DE OUROS */
+        if (contaValores[0] == 4) {
+            e = joga_fourkind_bot3ouros(e);
+            return e;
+        }
+
+        if (contaValores[0] == 3) {
+            e = joga_trio_bot3ouros(e);
+            return e;
+        }
+
+        if (contaValores[0] == 2) {
+            e = joga_par_bot3ouros(e);
+            return e;
+        }
+
+    e.cartas[e.actual_jogador] = (e.cartas[(e.actual_jogador)]) - 1;
+    e.mao[e.actual_jogador] = rem_carta(e.mao[(e.actual_jogador)],0,0);
+    e.ultima_jogada = 1;
+    e.actual_jogador = incrementa_jogador(e);
+    e.card = 0;
+    return e;
+}
+
+    return e;
+}
+
+
+
+
+/**
+Esta função, usada para os bots, verifica nas suas mãos se existe uma combinação de 3 cartas para ser jogada. Se sim, é permitida a jogada.
+@param m A mão de um jogador.
+@returns Um inteiro correspondente ao valor do triplo. Caso contrário, retorna -1, e não é válido.
+*/
+int valida_3cartas(MAO m){
+    int contaValores[13];
+    int a=0,i=0,n=0,v=0,b=0;
+    
+
+    for (i = 0; i < 13; i++) {
+        contaValores[i] = 0;
+    }
+
+    
+    for(v=0; v<13; v++){
+        for(n=0;n<4; n++){
+            if (carta_existe(m,n,v)) {
+                contaValores[a]++;
+            }
+        } 
+        a++;
     }
     
+
+        while(b<13){   
+            if (contaValores[b] >= 3) {
+                return b;
+            }
+            b++;
+        }
+    
+
+    return -1;
+}
+
+/**
+Esta função, usada para os bots, verifica nas suas mãos se existe uma combinação de 2 cartas para ser jogada. Se sim, é permitida a jogada.
+@param m A mão de um jogador.
+@returns Um inteiro correspondente ao valor do par. Caso contrário, retorna -1, e não é válido.
+*/
+int valida_2cartas(MAO m) {
+    int contaValores[13];
+    int a=0,i=0,n=0,v=0,b=0;
+    
+
+    for (i = 0; i < 13; i++) {
+        contaValores[i] = 0;
+    }
+
+    
+    for(v=0; v<13; v++){
+        for(n=0;n<4; n++){
+            if (carta_existe(m,n,v)) {
+                contaValores[a]++;
+            }
+        } 
+        a++;
+    }
+    
+    while(b<13){   
+        if (contaValores[b] >= 2) {
+            return b;
+        }
+        b++;
+    }
+    
+
+    return -1;
+}
+
+
+/**
+Seleciona três cartas com o mesmo valor da mão do bot para serem jogadas.
+@param e O estado actual.
+@returns O novo estado.
+*/
+ESTADO bot_comeca_3cartas (ESTADO e) {
+    long long int m=0, n=0;
+    int v1=0,n3=0,n2=0,n1=0,p1=0,p2=0,flag,flag1,flag2;
+
+    v1 = valida_3cartas(e.mao[e.actual_jogador]); 
+
+    flag = 0;
+    for (n = 3; n >= 0 && flag != 1; --n) {
+        if(carta_existe(e.mao[e.actual_jogador], n, v1)) {
+            n1 = n;
+            flag = 1;
+        }
+    }
+
+    flag1 = 0;
+    p1 = n1-1;
+    for (n = p1; n >= 0 && flag1 != 1; --n) {
+        if(carta_existe(e.mao[e.actual_jogador], n, v1)) {
+            n2 = n;
+            flag1 = 1;
+        }
+    }
+
+    flag2 = 0;
+    p2 = n2-1;
+    for (n = p2; n >= 0 && flag2 != 1; --n) {
+        if (carta_existe(e.mao[e.actual_jogador], n, v1)) {
+            n3 = n;
+            flag2 = 1;
+        }
+    }
+
+    m = add_carta(0,n1,v1);
+    m = add_carta(m,n2,v1);
+    m = add_carta(m,n3,v1);
+
+    n = rem_carta((e.mao[e.actual_jogador]),n1,v1);
+    n = rem_carta(n,n2,v1);
+    n = rem_carta(n,n3,v1);
+
+    e.cartas[e.actual_jogador] = (e.cartas[e.actual_jogador]) - 3;
+    e.ultima_jogada = m;
+    e.cartas_bots[e.actual_jogador] = m;
+    e.mao[e.actual_jogador] = n;
+    e.ultimo_jogador = e.actual_jogador;
+    e.actual_jogador = incrementa_jogador(e);
+    e.card = 0;
     return e;
 }
 
 /**
-Neste estado, como o bot começa uma jogada (quando toda a gente passa), optamos por só o fazer jogar uma carta. 
-Portanto, aqui é selecionada uma carta da mão do bot para ser jogada.
+Seleciona duas cartas com o mesmo valor da mão do bot para serem jogadas.
 @param e O estado actual.
 @returns O novo estado.
 */
-ESTADO bot_comeca_jogada (ESTADO e) {
+ESTADO bot_comeca_2cartas (ESTADO e) {
+    long long int m = 0, n = 0;
+    int np1=0,np2=0,p=0,p1=0,flag,flag1;
 
+    p = valida_2cartas(e.mao[e.actual_jogador]);
+
+    flag = 0;
+    for (n = 3; n >= 0 && flag != 1; --n) {
+        if (carta_existe(e.mao[e.actual_jogador], n, p)) {
+            np1 = n;
+            flag = 1;
+        }
+    }
+
+    flag1 = 0;
+    p1 = n;
+    for (n = p1; n >= 0 && flag1 != 1; --n) {
+        if (carta_existe(e.mao[e.actual_jogador], n, p)) {
+            np2 = n;
+            flag1 = 1;
+        }
+    }
+
+    m = add_carta(0,np1,p);
+    m = add_carta(m,np2,p);
+
+    n = rem_carta(e.mao[e.actual_jogador],np1,p);
+    n = rem_carta(n,np2,p);
+
+    e.cartas[e.actual_jogador] = (e.cartas[e.actual_jogador]) - 2;
+    e.ultima_jogada = m;
+    e.cartas_bots[e.actual_jogador] = m;
+    e.mao[e.actual_jogador] = n;
+    e.ultimo_jogador = e.actual_jogador;
+    e.actual_jogador = incrementa_jogador(e);
+    e.card = 0;
+    return e;
+}
+
+/**
+Seleciona a uma carta da mão do bot para ser jogada.
+@param e O estado actual.
+@returns O novo estado.
+*/
+ESTADO bot_comeca_1carta (ESTADO e) {
     long long int m = 0;
     int n,v;
 
@@ -170,9 +758,72 @@ ESTADO bot_comeca_jogada (ESTADO e) {
                 e.actual_jogador = incrementa_jogador(e);
                 e.card = 0;
                 return e;
+            }   
+        }       
+    }
+    return e;
+}
+
+
+/**
+Neste estado, como o bot começa uma jogada (quando toda a gente passa), ele vai ver qual a maior combinação que pode jogar. 
+@param e O estado actual.
+@returns O novo estado.
+*/
+ESTADO bot_comeca_jogada (ESTADO e) {
+
+    if (maior_carta_straight_bots(e.mao[e.actual_jogador]) != -1) {
+        e = joga_straight(e);
+        e.actual_jogador = 0;
+        return e;
+    }
+    else {
+        if (valida_flush(e.mao[e.actual_jogador]) != -1) {
+            e = joga_flush(e);
+            e.actual_jogador = incrementa_jogador(e);
+            return e;
+        }   
+        else {
+            if (valida_fullhouse(e.mao[e.actual_jogador]) != -1) {
+                e = joga_fullhouse(e);
+                e.actual_jogador = incrementa_jogador(e);
+                return e;
+            }       
+            else {
+                if (maior_carta_fourkind(e.mao[e.actual_jogador]) != -1) {
+                    e = joga_fourkind(e);
+                    e.actual_jogador = incrementa_jogador(e);
+                    return e;
+                }
+                else {
+                    if (maior_carta_straightflush_bots(e.mao[e.actual_jogador]) != -1) {
+                        e = joga_straightflush(e);
+                        e.actual_jogador = incrementa_jogador(e);
+                        return e;
+                    }
+                    else {
+                        if (valida_3cartas(e.mao[e.actual_jogador]) != -1) {
+                            e = bot_comeca_3cartas(e);
+                            return e;
+                        }
+
+                        else {
+                            if (valida_2cartas(e.mao[e.actual_jogador]) != -1){
+                                e = bot_comeca_2cartas(e);
+                                return e;
+                            }
+
+                            else {
+                                e = bot_comeca_1carta(e);
+                                return e;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
+
     return e;
 }
 
@@ -729,7 +1380,7 @@ ESTADO jogar (ESTADO e) {
     while(e.actual_jogador != 0 && e.cartas[0] != 0 && e.cartas[1] != 0 && e.cartas[2] != 0 && e.cartas[3] != 0){
         e = bots2(e);
     }
-    
+
     e.actual_jogador = 0;
     e.highlight = 0;
     return e;
@@ -747,11 +1398,10 @@ ESTADO passar (ESTADO e) {
     e.pass = 0;
     e = bots2(e);
     
-    while(e.actual_jogador != 0){
+    while(e.actual_jogador != 0 && e.cartas[0] != 0 && e.cartas[1] != 0 && e.cartas[2] != 0 && e.cartas[3] != 0){
         e = bots2(e);
     }
-    
-    
+
     e.highlight = 0;
     return e;
 }
@@ -784,8 +1434,6 @@ Se o utilizador quiser jogar as cartas, simplesmente carrega no botão "SUBMIT".
 */
 ESTADO sugestao(ESTADO e){
     ESTADO novo =  e;
-    long long int a ;
-    a = 1;
 
     novo.actual_jogador = 1;
     novo.mao[1] = e.mao[0]; 
@@ -795,7 +1443,7 @@ ESTADO sugestao(ESTADO e){
 
     if (e.ultima_jogada == -1){
         novo = bots1(novo);
-        e.highlight = a;
+        e.highlight = novo.ultima_jogada;
     }
     else {
         novo = bots2(novo);

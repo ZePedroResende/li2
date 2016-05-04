@@ -1,0 +1,200 @@
+\hypertarget{5cartasUtilizador_8c}{\section{5cartas\-Utilizador.c File Reference}
+\label{5cartasUtilizador_8c}\index{5cartas\-Utilizador.\-c@{5cartas\-Utilizador.\-c}}
+}
+{\ttfamily \#include \char`\"{}big2.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{5cartasUtilizador_8c_a071da6c29c64ec1808fede85fbf0e6aa}{passabot} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+int \hyperlink{5cartasUtilizador_8c_a478b718f78b088f0545df35ee9010e57}{valida\-\_\-straight} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{5cartasUtilizador_8c_a5f2a0b12c5781cc88354e619354890ff}{maior\-\_\-carta\-\_\-straight} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{5cartasUtilizador_8c_aa62d11498557552f1bfafc02ee06b687}{maior\-\_\-naipe\-\_\-straight} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m, int maior\-Carta)
+\item 
+int \hyperlink{5cartasUtilizador_8c_afc30df48f67380f18351a83fcf5f1ebd}{valida\-\_\-flush} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{5cartasUtilizador_8c_a1b5a5c5ecaca96ab37fa1c88804c7a59}{maior\-\_\-carta\-\_\-flush} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{5cartasUtilizador_8c_a20667d09a17736ad33c7543de1176c99}{valida\-\_\-fullhouse} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{5cartasUtilizador_8c_a64e815650294765a15a821cfd2058e88}{maior\-\_\-carta\-\_\-trio\-\_\-fullhouse} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{5cartasUtilizador_8c_a66f340469c9c8f4331de1da49a39470b}{valida\-\_\-fourkind} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{5cartasUtilizador_8c_ad3b034cf1c99f37351ac6d85cfebfeba}{maior\-\_\-carta\-\_\-fourkind} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{5cartasUtilizador_8c_a3bff1a608b34605f4508a7ae77ebe1a5}{valida\-\_\-straightflush} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{5cartasUtilizador_8c_a1b5a5c5ecaca96ab37fa1c88804c7a59}{\index{5cartas\-Utilizador.\-c@{5cartas\-Utilizador.\-c}!maior\-\_\-carta\-\_\-flush@{maior\-\_\-carta\-\_\-flush}}
+\index{maior\-\_\-carta\-\_\-flush@{maior\-\_\-carta\-\_\-flush}!5cartasUtilizador.c@{5cartas\-Utilizador.\-c}}
+\subsubsection[{maior\-\_\-carta\-\_\-flush}]{\setlength{\rightskip}{0pt plus 5cm}int maior\-\_\-carta\-\_\-flush (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{5cartasUtilizador_8c_a1b5a5c5ecaca96ab37fa1c88804c7a59}
+Nas cartas selecionadas pelo utilizador (neste caso um flush), determina o valor da maior carta desse, para mais tarde comparar, se necessário, com as ultimas jogadas, de forma a avaliar a jogada. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O valor da maior carta do flush. 
+\end{DoxyReturn}
+\hypertarget{5cartasUtilizador_8c_ad3b034cf1c99f37351ac6d85cfebfeba}{\index{5cartas\-Utilizador.\-c@{5cartas\-Utilizador.\-c}!maior\-\_\-carta\-\_\-fourkind@{maior\-\_\-carta\-\_\-fourkind}}
+\index{maior\-\_\-carta\-\_\-fourkind@{maior\-\_\-carta\-\_\-fourkind}!5cartasUtilizador.c@{5cartas\-Utilizador.\-c}}
+\subsubsection[{maior\-\_\-carta\-\_\-fourkind}]{\setlength{\rightskip}{0pt plus 5cm}int maior\-\_\-carta\-\_\-fourkind (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{5cartasUtilizador_8c_ad3b034cf1c99f37351ac6d85cfebfeba}
+Nas cartas selecionadas pelo utilizador (neste caso um four of a kind), determina o valor da maior carta de entre as quatro cartas com o mesmo valor, para mais tarde comparar, se necessário, com as ultimas jogadas, de forma a avaliar a jogada. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O valor das quatro cartas iguais. 
+\end{DoxyReturn}
+\hypertarget{5cartasUtilizador_8c_a5f2a0b12c5781cc88354e619354890ff}{\index{5cartas\-Utilizador.\-c@{5cartas\-Utilizador.\-c}!maior\-\_\-carta\-\_\-straight@{maior\-\_\-carta\-\_\-straight}}
+\index{maior\-\_\-carta\-\_\-straight@{maior\-\_\-carta\-\_\-straight}!5cartasUtilizador.c@{5cartas\-Utilizador.\-c}}
+\subsubsection[{maior\-\_\-carta\-\_\-straight}]{\setlength{\rightskip}{0pt plus 5cm}int maior\-\_\-carta\-\_\-straight (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{5cartasUtilizador_8c_a5f2a0b12c5781cc88354e619354890ff}
+Nas cartas selecionadas pelo utilizador (neste caso um straight), determina o valor da maior carta desse, para mais tarde comparar, se necessário, com as ultimas jogadas, de forma a avaliar a jogada. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O valor da maior carta de um straight. 
+\end{DoxyReturn}
+\hypertarget{5cartasUtilizador_8c_a64e815650294765a15a821cfd2058e88}{\index{5cartas\-Utilizador.\-c@{5cartas\-Utilizador.\-c}!maior\-\_\-carta\-\_\-trio\-\_\-fullhouse@{maior\-\_\-carta\-\_\-trio\-\_\-fullhouse}}
+\index{maior\-\_\-carta\-\_\-trio\-\_\-fullhouse@{maior\-\_\-carta\-\_\-trio\-\_\-fullhouse}!5cartasUtilizador.c@{5cartas\-Utilizador.\-c}}
+\subsubsection[{maior\-\_\-carta\-\_\-trio\-\_\-fullhouse}]{\setlength{\rightskip}{0pt plus 5cm}int maior\-\_\-carta\-\_\-trio\-\_\-fullhouse (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{5cartasUtilizador_8c_a64e815650294765a15a821cfd2058e88}
+Nas cartas selecionadas pelo utilizador (neste caso um fullhouse), determina o valor da maior carta do trio desse, para mais tarde comparar, se necessário, com as ultimas jogadas, de forma a avaliar a jogada. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O valor da maior carta do full house. 
+\end{DoxyReturn}
+\hypertarget{5cartasUtilizador_8c_aa62d11498557552f1bfafc02ee06b687}{\index{5cartas\-Utilizador.\-c@{5cartas\-Utilizador.\-c}!maior\-\_\-naipe\-\_\-straight@{maior\-\_\-naipe\-\_\-straight}}
+\index{maior\-\_\-naipe\-\_\-straight@{maior\-\_\-naipe\-\_\-straight}!5cartasUtilizador.c@{5cartas\-Utilizador.\-c}}
+\subsubsection[{maior\-\_\-naipe\-\_\-straight}]{\setlength{\rightskip}{0pt plus 5cm}int maior\-\_\-naipe\-\_\-straight (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m, }
+\item[{int}]{maior\-Carta}
+\end{DoxyParamCaption}
+)}}\label{5cartasUtilizador_8c_aa62d11498557552f1bfafc02ee06b687}
+Nas cartas selecionadas pelo utilizador (neste caso um straight), determina o naipe da maior carta desse, para mais tarde comparar, se necessário, com as ultimas jogadas, de forma a avaliar a jogada. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+{\em maior\-Carta} & Maior carta de um straight. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O naipe da maior carta do straight. 
+\end{DoxyReturn}
+\hypertarget{5cartasUtilizador_8c_a071da6c29c64ec1808fede85fbf0e6aa}{\index{5cartas\-Utilizador.\-c@{5cartas\-Utilizador.\-c}!passabot@{passabot}}
+\index{passabot@{passabot}!5cartasUtilizador.c@{5cartas\-Utilizador.\-c}}
+\subsubsection[{passabot}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} passabot (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{5cartasUtilizador_8c_a071da6c29c64ec1808fede85fbf0e6aa}
+O estado passabot permite que o bot passe uma jogada, se não tiver qualquer tipo de combinação válida para ser jogada. Retorna o estado do jogo actual, após passagem de ronda. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{5cartasUtilizador_8c_afc30df48f67380f18351a83fcf5f1ebd}{\index{5cartas\-Utilizador.\-c@{5cartas\-Utilizador.\-c}!valida\-\_\-flush@{valida\-\_\-flush}}
+\index{valida\-\_\-flush@{valida\-\_\-flush}!5cartasUtilizador.c@{5cartas\-Utilizador.\-c}}
+\subsubsection[{valida\-\_\-flush}]{\setlength{\rightskip}{0pt plus 5cm}int valida\-\_\-flush (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{5cartasUtilizador_8c_afc30df48f67380f18351a83fcf5f1ebd}
+Ao receber o highlight do utilizador (neste caso um flush), confirma se este é válido para ser efetuada uma jogada. Nesta função, é retornado 0,1,2 ou 3 conforme o naipe do flush. Exemplo\-: 0 -\/$>$ Ouros; 1 -\/$>$ Copas; etc... Com isto, conseguimos mais tarde avaliar dois flushes. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro (0,1,2,3), que corresponde a diferentes naipes. 
+\end{DoxyReturn}
+\hypertarget{5cartasUtilizador_8c_a66f340469c9c8f4331de1da49a39470b}{\index{5cartas\-Utilizador.\-c@{5cartas\-Utilizador.\-c}!valida\-\_\-fourkind@{valida\-\_\-fourkind}}
+\index{valida\-\_\-fourkind@{valida\-\_\-fourkind}!5cartasUtilizador.c@{5cartas\-Utilizador.\-c}}
+\subsubsection[{valida\-\_\-fourkind}]{\setlength{\rightskip}{0pt plus 5cm}int valida\-\_\-fourkind (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{5cartasUtilizador_8c_a66f340469c9c8f4331de1da49a39470b}
+Ao receber o highlight do utilizador (neste caso um four of a kind), confirma se este é válido para ser efetuada uma jogada. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 1, se for válido o four of a kind, e -\/1 caso contrário. 
+\end{DoxyReturn}
+\hypertarget{5cartasUtilizador_8c_a20667d09a17736ad33c7543de1176c99}{\index{5cartas\-Utilizador.\-c@{5cartas\-Utilizador.\-c}!valida\-\_\-fullhouse@{valida\-\_\-fullhouse}}
+\index{valida\-\_\-fullhouse@{valida\-\_\-fullhouse}!5cartasUtilizador.c@{5cartas\-Utilizador.\-c}}
+\subsubsection[{valida\-\_\-fullhouse}]{\setlength{\rightskip}{0pt plus 5cm}int valida\-\_\-fullhouse (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{5cartasUtilizador_8c_a20667d09a17736ad33c7543de1176c99}
+Ao receber o highlight do utilizador (neste caso um fullhouse), confirma se este é válido para ser efetuada uma jogada. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O valor. 
+\end{DoxyReturn}
+\hypertarget{5cartasUtilizador_8c_a478b718f78b088f0545df35ee9010e57}{\index{5cartas\-Utilizador.\-c@{5cartas\-Utilizador.\-c}!valida\-\_\-straight@{valida\-\_\-straight}}
+\index{valida\-\_\-straight@{valida\-\_\-straight}!5cartasUtilizador.c@{5cartas\-Utilizador.\-c}}
+\subsubsection[{valida\-\_\-straight}]{\setlength{\rightskip}{0pt plus 5cm}int valida\-\_\-straight (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{5cartasUtilizador_8c_a478b718f78b088f0545df35ee9010e57}
+Ao receber o highlight do utilizador (neste caso um straight), confirma se este é válido para ser efetuada uma jogada. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 1, se for válido o straight, e -\/1 caso contrário. 
+\end{DoxyReturn}
+\hypertarget{5cartasUtilizador_8c_a3bff1a608b34605f4508a7ae77ebe1a5}{\index{5cartas\-Utilizador.\-c@{5cartas\-Utilizador.\-c}!valida\-\_\-straightflush@{valida\-\_\-straightflush}}
+\index{valida\-\_\-straightflush@{valida\-\_\-straightflush}!5cartasUtilizador.c@{5cartas\-Utilizador.\-c}}
+\subsubsection[{valida\-\_\-straightflush}]{\setlength{\rightskip}{0pt plus 5cm}int valida\-\_\-straightflush (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{5cartasUtilizador_8c_a3bff1a608b34605f4508a7ae77ebe1a5}
+Ao receber o highlight do utilizador (neste caso um straight flush), confirma se este é válido para ser efetuada uma jogada. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 1, se for válido o straight, e -\/1 caso contrário. 
+\end{DoxyReturn}

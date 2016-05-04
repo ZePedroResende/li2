@@ -1,0 +1,46 @@
+\hypertarget{transformaEstado_8c}{\section{transforma\-Estado.\-c File Reference}
+\label{transformaEstado_8c}\index{transforma\-Estado.\-c@{transforma\-Estado.\-c}}
+}
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}big2.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{transformaEstado_8c_af32bcca287788ae0563fa9a6debf4603}{estado2str} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{transformaEstado_8c_aaab41d6d6fb292acd6c7c8da45bd96d5}{str2estado} (char $\ast$str)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{transformaEstado_8c_af32bcca287788ae0563fa9a6debf4603}{\index{transforma\-Estado.\-c@{transforma\-Estado.\-c}!estado2str@{estado2str}}
+\index{estado2str@{estado2str}!transformaEstado.c@{transforma\-Estado.\-c}}
+\subsubsection[{estado2str}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ estado2str (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{transformaEstado_8c_af32bcca287788ae0563fa9a6debf4603}
+Transforma um estado numa string do url, e retorna essa string. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Uma string com o estado. 
+\end{DoxyReturn}
+\hypertarget{transformaEstado_8c_aaab41d6d6fb292acd6c7c8da45bd96d5}{\index{transforma\-Estado.\-c@{transforma\-Estado.\-c}!str2estado@{str2estado}}
+\index{str2estado@{str2estado}!transformaEstado.c@{transforma\-Estado.\-c}}
+\subsubsection[{str2estado}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} str2estado (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{transformaEstado_8c_aaab41d6d6fb292acd6c7c8da45bd96d5}
+Transforma a string do url num estado novo, e retorna esse estado. 
+\begin{DoxyParams}{Parameters}
+{\em str} & Uma string com o estado. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}

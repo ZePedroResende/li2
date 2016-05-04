@@ -1,0 +1,101 @@
+\hypertarget{imprime__cartas_8c}{\section{imprime\-\_\-cartas.\-c File Reference}
+\label{imprime__cartas_8c}\index{imprime\-\_\-cartas.\-c@{imprime\-\_\-cartas.\-c}}
+}
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$time.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}big2.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{imprime__cartas_8c_a5bfb6d281e200376d3625daf7669aa85}{imprime\-\_\-carta} (char $\ast$path, int x, int y, \hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e, int mao, int naipe, int valor)
+\item 
+void \hyperlink{imprime__cartas_8c_a91ca896201f1f9b61f181e4776c84764}{imprime\-\_\-aux\-\_\-valor} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e, int m, int bx1, int by1, int bx2, int by2, int bx3, int by3, int x, int y, char $\ast$path)
+\item 
+void \hyperlink{imprime__cartas_8c_a40228e9349a2be1a4d84b28ed0bf2f4d}{imprime\-\_\-aux\-\_\-naipe} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e, int m, int bx1, int by1, int bx2, int by2, int bx3, int by3, int x, int y, char $\ast$path)
+\item 
+void \hyperlink{imprime__cartas_8c_a23f0652131065daa5c58f9cca5a386f0}{imprime} (char $\ast$path, \hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{imprime__cartas_8c_a23f0652131065daa5c58f9cca5a386f0}{\index{imprime\-\_\-cartas.\-c@{imprime\-\_\-cartas.\-c}!imprime@{imprime}}
+\index{imprime@{imprime}!imprime_cartas.c@{imprime\-\_\-cartas.\-c}}
+\subsubsection[{imprime}]{\setlength{\rightskip}{0pt plus 5cm}void imprime (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{path, }
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{imprime__cartas_8c_a23f0652131065daa5c58f9cca5a386f0}
+Apresenta as cartas no tabuleiro nas respetivas coordenadas. 
+\begin{DoxyParams}{Parameters}
+{\em path} & O path. \\
+\hline
+{\em e} & O estado do jogo actual. \\
+\hline
+\end{DoxyParams}
+\hypertarget{imprime__cartas_8c_a40228e9349a2be1a4d84b28ed0bf2f4d}{\index{imprime\-\_\-cartas.\-c@{imprime\-\_\-cartas.\-c}!imprime\-\_\-aux\-\_\-naipe@{imprime\-\_\-aux\-\_\-naipe}}
+\index{imprime\-\_\-aux\-\_\-naipe@{imprime\-\_\-aux\-\_\-naipe}!imprime_cartas.c@{imprime\-\_\-cartas.\-c}}
+\subsubsection[{imprime\-\_\-aux\-\_\-naipe}]{\setlength{\rightskip}{0pt plus 5cm}void imprime\-\_\-aux\-\_\-naipe (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e, }
+\item[{int}]{m, }
+\item[{int}]{bx1, }
+\item[{int}]{by1, }
+\item[{int}]{bx2, }
+\item[{int}]{by2, }
+\item[{int}]{bx3, }
+\item[{int}]{by3, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{char $\ast$}]{path}
+\end{DoxyParamCaption}
+)}}\label{imprime__cartas_8c_a40228e9349a2be1a4d84b28ed0bf2f4d}
+\hypertarget{imprime__cartas_8c_a91ca896201f1f9b61f181e4776c84764}{\index{imprime\-\_\-cartas.\-c@{imprime\-\_\-cartas.\-c}!imprime\-\_\-aux\-\_\-valor@{imprime\-\_\-aux\-\_\-valor}}
+\index{imprime\-\_\-aux\-\_\-valor@{imprime\-\_\-aux\-\_\-valor}!imprime_cartas.c@{imprime\-\_\-cartas.\-c}}
+\subsubsection[{imprime\-\_\-aux\-\_\-valor}]{\setlength{\rightskip}{0pt plus 5cm}void imprime\-\_\-aux\-\_\-valor (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e, }
+\item[{int}]{m, }
+\item[{int}]{bx1, }
+\item[{int}]{by1, }
+\item[{int}]{bx2, }
+\item[{int}]{by2, }
+\item[{int}]{bx3, }
+\item[{int}]{by3, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{char $\ast$}]{path}
+\end{DoxyParamCaption}
+)}}\label{imprime__cartas_8c_a91ca896201f1f9b61f181e4776c84764}
+\hypertarget{imprime__cartas_8c_a5bfb6d281e200376d3625daf7669aa85}{\index{imprime\-\_\-cartas.\-c@{imprime\-\_\-cartas.\-c}!imprime\-\_\-carta@{imprime\-\_\-carta}}
+\index{imprime\-\_\-carta@{imprime\-\_\-carta}!imprime_cartas.c@{imprime\-\_\-cartas.\-c}}
+\subsubsection[{imprime\-\_\-carta}]{\setlength{\rightskip}{0pt plus 5cm}void imprime\-\_\-carta (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{path, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e, }
+\item[{int}]{mao, }
+\item[{int}]{naipe, }
+\item[{int}]{valor}
+\end{DoxyParamCaption}
+)}}\label{imprime__cartas_8c_a5bfb6d281e200376d3625daf7669aa85}
+Esta função tem como objetivo imprimir as cartas no tabuleiro. Se a carta a apresentar se encontre na mão do jogador (mao toma o valor de 0 e o actual\-\_\-jogador no estado for igual a 0), e caso a carta seja selecionada é então adicionada ao highlight. Se já se encontrar no highlight, então é removida de lá. Caso contrário, se a carta se encontrar na mão de um bot, é imprimido o verso de uma carta, caso contrário a carta já foi jogada por um bot logo é mostrada a carta correspondente. 
+\begin{DoxyParams}{Parameters}
+{\em path} & O path. \\
+\hline
+{\em x} & Coordenada H\-T\-M\-L. \\
+\hline
+{\em y} & Coordenada H\-T\-M\-L. \\
+\hline
+{\em e} & O estado atual. \\
+\hline
+{\em mao} & Número de um jogador. \\
+\hline
+{\em naipe} & O naipe da carta (inteiro entre 0 e 3). \\
+\hline
+{\em valor} & O valor da carta (inteiro entre 0 e 12). \\
+\hline
+\end{DoxyParams}

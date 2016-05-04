@@ -1,0 +1,103 @@
+\hypertarget{base_8c}{\section{base.\-c File Reference}
+\label{base_8c}\index{base.\-c@{base.\-c}}
+}
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$time.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}big2.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{base_8c_aae1dcfc374f5eac5dfe3fb1fa81a35b1}{indice} (int naipe, int valor)
+\item 
+long long int \hyperlink{base_8c_aab35f79d51b1f11a75d4cd075bb95e1e}{add\-\_\-carta} (long long int \hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O}, int naipe, int valor)
+\item 
+long long int \hyperlink{base_8c_a9ffac9897a2c70b2f2a55d023ae994ed}{rem\-\_\-carta} (long long int \hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O}, int naipe, int valor)
+\item 
+int \hyperlink{base_8c_a38784e56d49bc0b3380c77c3e5fb251a}{carta\-\_\-existe} (long long int \hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O}, int naipe, int valor)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{base_8c_aab35f79d51b1f11a75d4cd075bb95e1e}{\index{base.\-c@{base.\-c}!add\-\_\-carta@{add\-\_\-carta}}
+\index{add\-\_\-carta@{add\-\_\-carta}!base.c@{base.\-c}}
+\subsubsection[{add\-\_\-carta}]{\setlength{\rightskip}{0pt plus 5cm}long long int add\-\_\-carta (
+\begin{DoxyParamCaption}
+\item[{long long int}]{E\-S\-T\-A\-D\-O, }
+\item[{int}]{naipe, }
+\item[{int}]{valor}
+\end{DoxyParamCaption}
+)}}\label{base_8c_aab35f79d51b1f11a75d4cd075bb95e1e}
+brief Adiciona uma carta ao estado 
+\begin{DoxyParams}{Parameters}
+{\em E\-S\-T\-A\-D\-O} & O estado atual \\
+\hline
+{\em naipe} & O naipe da carta (inteiro entre 0 e 3) \\
+\hline
+{\em valor} & O valor da carta (inteiro entre 0 e 12) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado 
+\end{DoxyReturn}
+\hypertarget{base_8c_a38784e56d49bc0b3380c77c3e5fb251a}{\index{base.\-c@{base.\-c}!carta\-\_\-existe@{carta\-\_\-existe}}
+\index{carta\-\_\-existe@{carta\-\_\-existe}!base.c@{base.\-c}}
+\subsubsection[{carta\-\_\-existe}]{\setlength{\rightskip}{0pt plus 5cm}int carta\-\_\-existe (
+\begin{DoxyParamCaption}
+\item[{long long int}]{E\-S\-T\-A\-D\-O, }
+\item[{int}]{naipe, }
+\item[{int}]{valor}
+\end{DoxyParamCaption}
+)}}\label{base_8c_a38784e56d49bc0b3380c77c3e5fb251a}
+brief Verifica se uma carta pertence ao estado 
+\begin{DoxyParams}{Parameters}
+{\em E\-S\-T\-A\-D\-O} & O estado atual \\
+\hline
+{\em naipe} & O naipe da carta (inteiro entre 0 e 3) \\
+\hline
+{\em valor} & O valor da carta (inteiro entre 0 e 12) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se a carta existe e 0 caso contrário 
+\end{DoxyReturn}
+\hypertarget{base_8c_aae1dcfc374f5eac5dfe3fb1fa81a35b1}{\index{base.\-c@{base.\-c}!indice@{indice}}
+\index{indice@{indice}!base.c@{base.\-c}}
+\subsubsection[{indice}]{\setlength{\rightskip}{0pt plus 5cm}int indice (
+\begin{DoxyParamCaption}
+\item[{int}]{naipe, }
+\item[{int}]{valor}
+\end{DoxyParamCaption}
+)}}\label{base_8c_aae1dcfc374f5eac5dfe3fb1fa81a35b1}
+brief Devolve o índice da carta 
+\begin{DoxyParams}{Parameters}
+{\em naipe} & O naipe da carta (inteiro entre 0 e 3) \\
+\hline
+{\em valor} & O valor da carta (inteiro entre 0 e 12) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O índice correspondente à carta 
+\end{DoxyReturn}
+\hypertarget{base_8c_a9ffac9897a2c70b2f2a55d023ae994ed}{\index{base.\-c@{base.\-c}!rem\-\_\-carta@{rem\-\_\-carta}}
+\index{rem\-\_\-carta@{rem\-\_\-carta}!base.c@{base.\-c}}
+\subsubsection[{rem\-\_\-carta}]{\setlength{\rightskip}{0pt plus 5cm}long long int rem\-\_\-carta (
+\begin{DoxyParamCaption}
+\item[{long long int}]{E\-S\-T\-A\-D\-O, }
+\item[{int}]{naipe, }
+\item[{int}]{valor}
+\end{DoxyParamCaption}
+)}}\label{base_8c_a9ffac9897a2c70b2f2a55d023ae994ed}
+brief Remove uma carta do estado 
+\begin{DoxyParams}{Parameters}
+{\em E\-S\-T\-A\-D\-O} & O estado atual \\
+\hline
+{\em naipe} & O naipe da carta (inteiro entre 0 e 3) \\
+\hline
+{\em valor} & O valor da carta (inteiro entre 0 e 12) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado 
+\end{DoxyReturn}

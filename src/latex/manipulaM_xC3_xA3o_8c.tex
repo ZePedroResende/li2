@@ -1,0 +1,776 @@
+\hypertarget{manipulaM_xC3_xA3o_8c}{\section{manipula\-Mão.\-c File Reference}
+\label{manipulaM_xC3_xA3o_8c}\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}}
+}
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$time.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}big2.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_aae1dcfc374f5eac5dfe3fb1fa81a35b1}{indice} (int naipe, int valor)
+\item 
+long long int \hyperlink{manipulaM_xC3_xA3o_8c_aab35f79d51b1f11a75d4cd075bb95e1e}{add\-\_\-carta} (long long int \hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O}, int naipe, int valor)
+\item 
+long long int \hyperlink{manipulaM_xC3_xA3o_8c_a9ffac9897a2c70b2f2a55d023ae994ed}{rem\-\_\-carta} (long long int \hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O}, int naipe, int valor)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_a38784e56d49bc0b3380c77c3e5fb251a}{carta\-\_\-existe} (long long int \hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O}, int naipe, int valor)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_aa8da549442aa424543846ebd1fcbedf8}{numero\-\_\-de\-\_\-cartas} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_a33ca16791f14e4f7e0e032b16293cf64}{combinacao\-\_\-valida} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_a52e0cec04592b1ea937ee9736f71a647}{compara\-\_\-tamanho} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m1, \hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m2)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_a6f90d5d665f82828b55fe54376c3d61d}{da\-\_\-valor} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_a6672f66ae6c78f4e7b155e6d6f0c0e29}{da\-\_\-maior\-\_\-naipe} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_a0f5cbf193371d902e0f5bf5dd51d0c2d}{combinacao\-\_\-maior} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m1, \hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m2)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_a478b718f78b088f0545df35ee9010e57}{valida\-\_\-straight} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_a5f2a0b12c5781cc88354e619354890ff}{maior\-\_\-carta\-\_\-straight} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_aa62d11498557552f1bfafc02ee06b687}{maior\-\_\-naipe\-\_\-straight} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m, int maior\-Carta)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_afc30df48f67380f18351a83fcf5f1ebd}{valida\-\_\-flush} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_a1b5a5c5ecaca96ab37fa1c88804c7a59}{maior\-\_\-carta\-\_\-flush} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_a20667d09a17736ad33c7543de1176c99}{valida\-\_\-fullhouse} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_a64e815650294765a15a821cfd2058e88}{maior\-\_\-carta\-\_\-trio\-\_\-fullhouse} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_a66f340469c9c8f4331de1da49a39470b}{valida\-\_\-fourkind} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_ad3b034cf1c99f37351ac6d85cfebfeba}{maior\-\_\-carta\-\_\-fourkind} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_a3bff1a608b34605f4508a7ae77ebe1a5}{valida\-\_\-straightflush} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_a0552dd7296dde9eb8258ffd0b259ce48}{utilizador\-\_\-joga\-\_\-straight} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_aed3e4f10036406917083d9dcf6ea538a}{utilizador\-\_\-joga\-\_\-flush} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_a65b4d7f20b9bd29ca14a1b8ef4a906fe}{utilizador\-\_\-joga\-\_\-fullhouse} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_a423a895ae587a3be3566566de70e61cd}{utilizador\-\_\-joga\-\_\-fourkind} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_a531e97562bd990e2ef3a8c45d1a1a9fe}{utilizador\-\_\-joga\-\_\-straightflush} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_a5c37545fd271196418bc51fa690f9a36}{utilizador\-\_\-joga\-\_\-singles\-\_\-pares\-\_\-triplos} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_ace42ded8b0af73fb13ccc607e384fd4b}{descodifica\-\_\-straight} (int maior\-Carta)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_a379751f5c8679969966b34b81180c86b}{codifica} (int v)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_a1d25ae35182c513f5f4ee2d68ec28477}{validacao\-\_\-5cartas} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_a9ba4ed2cba7051262789b744299bc4df}{posso\-\_\-jogar} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_a70d3ce065ffd8cfeb11c0b3a11ae8d0b}{maior\-\_\-carta\-\_\-straight\-\_\-bots} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_afd56f0f0cef4870c36e02da7134a5ed1}{maior\-\_\-naipe\-\_\-straight\-\_\-bots} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m, int maior\-Carta)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_ad6696bb8a6aa96ee0a07088bcfb4faaa}{maior\-\_\-carta\-\_\-flush\-\_\-bots} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m, int n1)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_a9f224c26dac45451ef52cc2eb6a56992}{da\-\_\-carta\-\_\-fourkind} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_a34f153861efa02b3935726538f056fcc}{maior\-\_\-carta\-\_\-par\-\_\-fullhouse} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_a568ed0305249076f7f463d32edd87a68}{maior\-\_\-carta\-\_\-straightflush\-\_\-bots} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{manipulaM_xC3_xA3o_8c_a784a951185a189a1b487ab297b1eae0e}{maior\-\_\-naipe\-Carta\-\_\-straightflush\-\_\-bots} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{manipulaM_xC3_xA3o_8c_ae1788d4a9e88ea32f0385924f0eebee7}{fazjogada\-\_\-straight} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{manipulaM_xC3_xA3o_8c_a5dfaea0188e62f7311719ba6b88c7003}{fazjogada\-\_\-flush} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{manipulaM_xC3_xA3o_8c_aa5e80e4bc749a8268e582e7886b6c90c}{fazjogada\-\_\-fullhouse} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{manipulaM_xC3_xA3o_8c_a239ab82ffbfba1e60795f3e4d58e7716}{fazjogada\-\_\-fourkind} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{manipulaM_xC3_xA3o_8c_a6ee99cd67f8d65abbbd24c02a5d25ac2}{fazjogada\-\_\-straightflush} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{manipulaM_xC3_xA3o_8c_aa334f9dafaa9285af25830c5e426bb64}{fazjogada} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e, int v)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{manipulaM_xC3_xA3o_8c_aab35f79d51b1f11a75d4cd075bb95e1e}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!add\-\_\-carta@{add\-\_\-carta}}
+\index{add\-\_\-carta@{add\-\_\-carta}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{add\-\_\-carta}]{\setlength{\rightskip}{0pt plus 5cm}long long int add\-\_\-carta (
+\begin{DoxyParamCaption}
+\item[{long long int}]{E\-S\-T\-A\-D\-O, }
+\item[{int}]{naipe, }
+\item[{int}]{valor}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_aab35f79d51b1f11a75d4cd075bb95e1e}
+brief Adiciona uma carta ao estado 
+\begin{DoxyParams}{Parameters}
+{\em E\-S\-T\-A\-D\-O} & O estado atual \\
+\hline
+{\em naipe} & O naipe da carta (inteiro entre 0 e 3) \\
+\hline
+{\em valor} & O valor da carta (inteiro entre 0 e 12) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a38784e56d49bc0b3380c77c3e5fb251a}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!carta\-\_\-existe@{carta\-\_\-existe}}
+\index{carta\-\_\-existe@{carta\-\_\-existe}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{carta\-\_\-existe}]{\setlength{\rightskip}{0pt plus 5cm}int carta\-\_\-existe (
+\begin{DoxyParamCaption}
+\item[{long long int}]{E\-S\-T\-A\-D\-O, }
+\item[{int}]{naipe, }
+\item[{int}]{valor}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a38784e56d49bc0b3380c77c3e5fb251a}
+brief Verifica se uma carta pertence ao estado 
+\begin{DoxyParams}{Parameters}
+{\em E\-S\-T\-A\-D\-O} & O estado atual \\
+\hline
+{\em naipe} & O naipe da carta (inteiro entre 0 e 3) \\
+\hline
+{\em valor} & O valor da carta (inteiro entre 0 e 12) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se a carta existe e 0 caso contrário 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a379751f5c8679969966b34b81180c86b}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!codifica@{codifica}}
+\index{codifica@{codifica}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{codifica}]{\setlength{\rightskip}{0pt plus 5cm}int codifica (
+\begin{DoxyParamCaption}
+\item[{int}]{v}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a379751f5c8679969966b34b81180c86b}
+Esta função faz o contrário da função descodifica\-\_\-straight. Pega nos valores normais do jogo, e codifica-\/os de forma a serem trabalhados em validações de straight e straight flush. 
+\begin{DoxyParams}{Parameters}
+{\em v} & O valor da maior carta descodificado. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O valor da maior carta codificado. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a0f5cbf193371d902e0f5bf5dd51d0c2d}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!combinacao\-\_\-maior@{combinacao\-\_\-maior}}
+\index{combinacao\-\_\-maior@{combinacao\-\_\-maior}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{combinacao\-\_\-maior}]{\setlength{\rightskip}{0pt plus 5cm}int combinacao\-\_\-maior (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m1, }
+\item[{{\bf M\-A\-O}}]{m2}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a0f5cbf193371d902e0f5bf5dd51d0c2d}
+Aqui, é verificado se a jogada actual é maior que a jogada anterior. Conforme o retorno da função dá valor, a jogada actual é possível ser realizada ou não. Ao comparar, de os retornos das duas funções forem iguais, ou seja, se os maiores valores de cada mão forem iguais, comparamos o naipe, assim identificando qual a maior jogada. 
+\begin{DoxyParams}{Parameters}
+{\em m1} & A mão de um jogador. \\
+\hline
+{\em m2} & A mão de outro jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 1 caso seja possível jogar, 0 caso contrário. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a33ca16791f14e4f7e0e032b16293cf64}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!combinacao\-\_\-valida@{combinacao\-\_\-valida}}
+\index{combinacao\-\_\-valida@{combinacao\-\_\-valida}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{combinacao\-\_\-valida}]{\setlength{\rightskip}{0pt plus 5cm}int combinacao\-\_\-valida (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a33ca16791f14e4f7e0e032b16293cf64}
+Confirma se a mão que é recebida (o highlight), tem uma, duas ou três cartas. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 0 se tiver mais de três cartas, caso contrário retorna 1. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a52e0cec04592b1ea937ee9736f71a647}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!compara\-\_\-tamanho@{compara\-\_\-tamanho}}
+\index{compara\-\_\-tamanho@{compara\-\_\-tamanho}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{compara\-\_\-tamanho}]{\setlength{\rightskip}{0pt plus 5cm}int compara\-\_\-tamanho (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m1, }
+\item[{{\bf M\-A\-O}}]{m2}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a52e0cec04592b1ea937ee9736f71a647}
+Compara o tamanha entre duas mãos, ou seja, ve o tamanho da ultima jogada, e compara o tamanho com a jogada actual, e vê se a combinação tem o mesmo tamanho. 
+\begin{DoxyParams}{Parameters}
+{\em m1} & A mão de um jogador. \\
+\hline
+{\em m2} & A mão de outro jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 1 se as mãos tiverem o mesmo tamanha, 0 caso contrário. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a9f224c26dac45451ef52cc2eb6a56992}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!da\-\_\-carta\-\_\-fourkind@{da\-\_\-carta\-\_\-fourkind}}
+\index{da\-\_\-carta\-\_\-fourkind@{da\-\_\-carta\-\_\-fourkind}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{da\-\_\-carta\-\_\-fourkind}]{\setlength{\rightskip}{0pt plus 5cm}int da\-\_\-carta\-\_\-fourkind (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a9f224c26dac45451ef52cc2eb6a56992}
+Para a formação de um four of a kind, é necessário quatro cartas com o mesmo valor mais uma carta qualquer existente na mão. Esta função escolhe essa carta, verificando primeiro se existe na mão. A primeira que for encontrada, é adicionada ao four of a kind. A função retorna o valor da primeira carta que encontra para juntar ao four of a kind. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O valor de uma carta. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a6672f66ae6c78f4e7b155e6d6f0c0e29}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!da\-\_\-maior\-\_\-naipe@{da\-\_\-maior\-\_\-naipe}}
+\index{da\-\_\-maior\-\_\-naipe@{da\-\_\-maior\-\_\-naipe}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{da\-\_\-maior\-\_\-naipe}]{\setlength{\rightskip}{0pt plus 5cm}int da\-\_\-maior\-\_\-naipe (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a6672f66ae6c78f4e7b155e6d6f0c0e29}
+Esta função obtém o maior naipe dentro de uma mão, de forma a ser usado para avaliar a maior jogada. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O naipe de uma carta. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a6f90d5d665f82828b55fe54376c3d61d}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!da\-\_\-valor@{da\-\_\-valor}}
+\index{da\-\_\-valor@{da\-\_\-valor}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{da\-\_\-valor}]{\setlength{\rightskip}{0pt plus 5cm}int da\-\_\-valor (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a6f90d5d665f82828b55fe54376c3d61d}
+\hypertarget{manipulaM_xC3_xA3o_8c_ace42ded8b0af73fb13ccc607e384fd4b}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!descodifica\-\_\-straight@{descodifica\-\_\-straight}}
+\index{descodifica\-\_\-straight@{descodifica\-\_\-straight}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{descodifica\-\_\-straight}]{\setlength{\rightskip}{0pt plus 5cm}int descodifica\-\_\-straight (
+\begin{DoxyParamCaption}
+\item[{int}]{maior\-Carta}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_ace42ded8b0af73fb13ccc607e384fd4b}
+No caso dos straight e straight flush, os ases podiam tomar dois valores diferentes, e o 2 era uma carta baixa, e não a mais alta do jogo. Para isso, criamos um array com 14 posições. Conforme a validação do que é selecionado pelo utilizador, vemos que \char`\"{}valor\char`\"{} é que toma os ases e o 2 (quando são selecionados), estando estes codificados. Para usarmos esses valores em comparações ou em qualquer outro processo, temos de os descodificar, para tudo funcionar corretamente. A função descodifica\-\_\-straight faz exatamente isso, retorna o \char`\"{}verdadeiro\char`\"{} valor da carta (não codificado). 
+\begin{DoxyParams}{Parameters}
+{\em maior\-Carta} & O valor da maior carta codificado. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O valor da maior carta descodificado. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_aa334f9dafaa9285af25830c5e426bb64}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!fazjogada@{fazjogada}}
+\index{fazjogada@{fazjogada}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{fazjogada}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} fazjogada (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e, }
+\item[{int}]{v}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_aa334f9dafaa9285af25830c5e426bb64}
+O estado fazjogada é aquele que verifica se o bot pode jogar uma combinação de 5 cartas. Através de todas as validações das diferentes combinações, e comparando sempre com a última jogada, o bot vê qual a próxima combinação que vai jogar (a menor possível). Se não tiver nada válido para jogar, o bot passa a jogada. Este estado recebe o pŕoprio estado e o int 'v', o qual representa qual a combinação a ser analisada, de forma a ver um conjunto mais amplo de jogadas possíveis. Exemplo\-: -\/$>$ v = 1\-: Straight; -\/$>$ v = 2\-: Flush; -\/$>$ etc.... É retornado um novo estado, estado esse que contém todas as altereções feitas na ronda (cartas jogadas, passagem de ronda). 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+{\em v} & O valor correspondente a uma sequência. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a5dfaea0188e62f7311719ba6b88c7003}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!fazjogada\-\_\-flush@{fazjogada\-\_\-flush}}
+\index{fazjogada\-\_\-flush@{fazjogada\-\_\-flush}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{fazjogada\-\_\-flush}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} fazjogada\-\_\-flush (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a5dfaea0188e62f7311719ba6b88c7003}
+Neste estado é avaliada a próxima jogada de 5 cartas do bot. Neste caso, a ultima jogada foi um flush. Consoante essa informação, se o bot tiver um flush maior que o anterior, joga-\/o. Senão, procura na sua mão a menor combinação possível a ser jogada. Se não tiver o que jogar, o bot passará a jogada. A função retorna sempre o estado do jogo atual. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a239ab82ffbfba1e60795f3e4d58e7716}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!fazjogada\-\_\-fourkind@{fazjogada\-\_\-fourkind}}
+\index{fazjogada\-\_\-fourkind@{fazjogada\-\_\-fourkind}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{fazjogada\-\_\-fourkind}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} fazjogada\-\_\-fourkind (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a239ab82ffbfba1e60795f3e4d58e7716}
+Neste estado é avaliada a próxima jogada de 5 cartas do bot. Neste caso, a ultima jogada foi um four of a kind. Consoante essa informação, se o bot tiver um four of a kind maior que o anterior, joga-\/o. Senão, procura na sua mão a menor combinação possível a ser jogada. Se não tiver o que jogar, o bot passará a jogada. A função retorna sempre o estado do jogo atual. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_aa5e80e4bc749a8268e582e7886b6c90c}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!fazjogada\-\_\-fullhouse@{fazjogada\-\_\-fullhouse}}
+\index{fazjogada\-\_\-fullhouse@{fazjogada\-\_\-fullhouse}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{fazjogada\-\_\-fullhouse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} fazjogada\-\_\-fullhouse (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_aa5e80e4bc749a8268e582e7886b6c90c}
+Neste estado é avaliada a próxima jogada de 5 cartas do bot. Neste caso, a ultima jogada foi um full house. Consoante essa informação, se o bot tiver um full house maior que o anterior, joga-\/o. Senão, procura na sua mão a menor combinação possível a ser jogada. Se não tiver o que jogar, o bot passará a jogada. A função retorna sempre o estado do jogo atual. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_ae1788d4a9e88ea32f0385924f0eebee7}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!fazjogada\-\_\-straight@{fazjogada\-\_\-straight}}
+\index{fazjogada\-\_\-straight@{fazjogada\-\_\-straight}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{fazjogada\-\_\-straight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} fazjogada\-\_\-straight (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_ae1788d4a9e88ea32f0385924f0eebee7}
+Neste estado é avaliada a próxima jogada de 5 cartas do bot. Neste caso, a ultima jogada foi um straight. Consoante essa informação, se o bot tiver um straight maior que o anterior, joga-\/o. Senão, procura na sua mão a menor combinação possível a ser jogada. Se não tiver o que jogar, o bot passará a jogada. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado do jogo. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a6ee99cd67f8d65abbbd24c02a5d25ac2}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!fazjogada\-\_\-straightflush@{fazjogada\-\_\-straightflush}}
+\index{fazjogada\-\_\-straightflush@{fazjogada\-\_\-straightflush}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{fazjogada\-\_\-straightflush}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} fazjogada\-\_\-straightflush (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a6ee99cd67f8d65abbbd24c02a5d25ac2}
+Neste estado é avaliada a próxima jogada de 5 cartas do bot. Neste caso, a ultima jogada foi um straight flush. Consoante essa informação, se o bot tiver um straight flush maior que o anterior, joga-\/o. Caso contrário, e como o straight flush é a maior combinação, o bot passará a jogada. A função retorna sempre o estado do jogo atual. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_aae1dcfc374f5eac5dfe3fb1fa81a35b1}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!indice@{indice}}
+\index{indice@{indice}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{indice}]{\setlength{\rightskip}{0pt plus 5cm}int indice (
+\begin{DoxyParamCaption}
+\item[{int}]{naipe, }
+\item[{int}]{valor}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_aae1dcfc374f5eac5dfe3fb1fa81a35b1}
+brief Devolve o índice da carta 
+\begin{DoxyParams}{Parameters}
+{\em naipe} & O naipe da carta (inteiro entre 0 e 3) \\
+\hline
+{\em valor} & O valor da carta (inteiro entre 0 e 12) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O índice correspondente à carta 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a1b5a5c5ecaca96ab37fa1c88804c7a59}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!maior\-\_\-carta\-\_\-flush@{maior\-\_\-carta\-\_\-flush}}
+\index{maior\-\_\-carta\-\_\-flush@{maior\-\_\-carta\-\_\-flush}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{maior\-\_\-carta\-\_\-flush}]{\setlength{\rightskip}{0pt plus 5cm}int maior\-\_\-carta\-\_\-flush (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a1b5a5c5ecaca96ab37fa1c88804c7a59}
+Nas cartas selecionadas pelo utilizador (neste caso um flush), determina o valor da maior carta desse, para mais tarde comparar, se necessário, com as ultimas jogadas, de forma a avaliar a jogada. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O valor da maior carta do flush. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_ad6696bb8a6aa96ee0a07088bcfb4faaa}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!maior\-\_\-carta\-\_\-flush\-\_\-bots@{maior\-\_\-carta\-\_\-flush\-\_\-bots}}
+\index{maior\-\_\-carta\-\_\-flush\-\_\-bots@{maior\-\_\-carta\-\_\-flush\-\_\-bots}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{maior\-\_\-carta\-\_\-flush\-\_\-bots}]{\setlength{\rightskip}{0pt plus 5cm}int maior\-\_\-carta\-\_\-flush\-\_\-bots (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m, }
+\item[{int}]{n1}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_ad6696bb8a6aa96ee0a07088bcfb4faaa}
+Depois de ser validada um flush na mão de um dos bots, esta função determina o valor da maior carta nesse flush, para se for necessário comparar com valores iguais. A função retorna o valor da maior carta do flush. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+{\em n1} & Naipe correspondente ao flush. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O valor da maior carta do flush. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_ad3b034cf1c99f37351ac6d85cfebfeba}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!maior\-\_\-carta\-\_\-fourkind@{maior\-\_\-carta\-\_\-fourkind}}
+\index{maior\-\_\-carta\-\_\-fourkind@{maior\-\_\-carta\-\_\-fourkind}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{maior\-\_\-carta\-\_\-fourkind}]{\setlength{\rightskip}{0pt plus 5cm}int maior\-\_\-carta\-\_\-fourkind (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_ad3b034cf1c99f37351ac6d85cfebfeba}
+Nas cartas selecionadas pelo utilizador (neste caso um four of a kind), determina o valor da maior carta de entre as quatro cartas com o mesmo valor, para mais tarde comparar, se necessário, com as ultimas jogadas, de forma a avaliar a jogada. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O valor das quatro cartas iguais. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a34f153861efa02b3935726538f056fcc}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!maior\-\_\-carta\-\_\-par\-\_\-fullhouse@{maior\-\_\-carta\-\_\-par\-\_\-fullhouse}}
+\index{maior\-\_\-carta\-\_\-par\-\_\-fullhouse@{maior\-\_\-carta\-\_\-par\-\_\-fullhouse}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{maior\-\_\-carta\-\_\-par\-\_\-fullhouse}]{\setlength{\rightskip}{0pt plus 5cm}int maior\-\_\-carta\-\_\-par\-\_\-fullhouse (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a34f153861efa02b3935726538f056fcc}
+Esta função procura na mão um par válido para ser usado num full house. Se existir um par, é retornado o valor desse. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Valor de um par para full house. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a5f2a0b12c5781cc88354e619354890ff}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!maior\-\_\-carta\-\_\-straight@{maior\-\_\-carta\-\_\-straight}}
+\index{maior\-\_\-carta\-\_\-straight@{maior\-\_\-carta\-\_\-straight}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{maior\-\_\-carta\-\_\-straight}]{\setlength{\rightskip}{0pt plus 5cm}int maior\-\_\-carta\-\_\-straight (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a5f2a0b12c5781cc88354e619354890ff}
+Nas cartas selecionadas pelo utilizador (neste caso um straight), determina o valor da maior carta desse, para mais tarde comparar, se necessário, com as ultimas jogadas, de forma a avaliar a jogada. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O valor da maior carta de um straight. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a70d3ce065ffd8cfeb11c0b3a11ae8d0b}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!maior\-\_\-carta\-\_\-straight\-\_\-bots@{maior\-\_\-carta\-\_\-straight\-\_\-bots}}
+\index{maior\-\_\-carta\-\_\-straight\-\_\-bots@{maior\-\_\-carta\-\_\-straight\-\_\-bots}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{maior\-\_\-carta\-\_\-straight\-\_\-bots}]{\setlength{\rightskip}{0pt plus 5cm}int maior\-\_\-carta\-\_\-straight\-\_\-bots (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a70d3ce065ffd8cfeb11c0b3a11ae8d0b}
+Nas cartas selecionadas pelo utilizador (neste caso um straight flush), determina o valor da maior carta desse, para mais tarde comparar, se necessário, com as ultimas jogadas, de forma a avaliar a jogada. Esta função foi usada para avaliar a mão do utilizador, pois seguia o mesmo precedimento. A função retorna então o valor da maior carta de um straight se existir um straight, e -\/1 se não existir. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O valor de uma carta. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a568ed0305249076f7f463d32edd87a68}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!maior\-\_\-carta\-\_\-straightflush\-\_\-bots@{maior\-\_\-carta\-\_\-straightflush\-\_\-bots}}
+\index{maior\-\_\-carta\-\_\-straightflush\-\_\-bots@{maior\-\_\-carta\-\_\-straightflush\-\_\-bots}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{maior\-\_\-carta\-\_\-straightflush\-\_\-bots}]{\setlength{\rightskip}{0pt plus 5cm}int maior\-\_\-carta\-\_\-straightflush\-\_\-bots (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a568ed0305249076f7f463d32edd87a68}
+Função para determinar a maior carta de um straight flush na mão de um bot, de forma a validar para ser jogado. Esta função retorna a maior carta desse straight flush para usarmos na validação e comparação com as outras jogadas. Esta função foi também usada para o highlight do utilizado, visto que funciona para os dois casos. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O valor da maior carta. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a64e815650294765a15a821cfd2058e88}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!maior\-\_\-carta\-\_\-trio\-\_\-fullhouse@{maior\-\_\-carta\-\_\-trio\-\_\-fullhouse}}
+\index{maior\-\_\-carta\-\_\-trio\-\_\-fullhouse@{maior\-\_\-carta\-\_\-trio\-\_\-fullhouse}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{maior\-\_\-carta\-\_\-trio\-\_\-fullhouse}]{\setlength{\rightskip}{0pt plus 5cm}int maior\-\_\-carta\-\_\-trio\-\_\-fullhouse (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a64e815650294765a15a821cfd2058e88}
+Nas cartas selecionadas pelo utilizador (neste caso um fullhouse), determina o valor da maior carta do trio desse, para mais tarde comparar, se necessário, com as ultimas jogadas, de forma a avaliar a jogada. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O valor da maior carta do full house. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_aa62d11498557552f1bfafc02ee06b687}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!maior\-\_\-naipe\-\_\-straight@{maior\-\_\-naipe\-\_\-straight}}
+\index{maior\-\_\-naipe\-\_\-straight@{maior\-\_\-naipe\-\_\-straight}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{maior\-\_\-naipe\-\_\-straight}]{\setlength{\rightskip}{0pt plus 5cm}int maior\-\_\-naipe\-\_\-straight (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m, }
+\item[{int}]{maior\-Carta}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_aa62d11498557552f1bfafc02ee06b687}
+Nas cartas selecionadas pelo utilizador (neste caso um straight), determina o naipe da maior carta desse, para mais tarde comparar, se necessário, com as ultimas jogadas, de forma a avaliar a jogada. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+{\em maior\-Carta} & Maior carta de um straight. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O naipe da maior carta do straight. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_afd56f0f0cef4870c36e02da7134a5ed1}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!maior\-\_\-naipe\-\_\-straight\-\_\-bots@{maior\-\_\-naipe\-\_\-straight\-\_\-bots}}
+\index{maior\-\_\-naipe\-\_\-straight\-\_\-bots@{maior\-\_\-naipe\-\_\-straight\-\_\-bots}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{maior\-\_\-naipe\-\_\-straight\-\_\-bots}]{\setlength{\rightskip}{0pt plus 5cm}int maior\-\_\-naipe\-\_\-straight\-\_\-bots (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m, }
+\item[{int}]{maior\-Carta}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_afd56f0f0cef4870c36e02da7134a5ed1}
+Depois de ser validada um straight na mão de um dos bots, esta função determina o naipe da maior carta nesse straight, para se for necessário comparar com valores iguais. A função retorna o valor correspondente ao naipe da maior carta do straight existente. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+{\em maior\-Carta} & A maior carta de um straight. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O naipe da maior carta de um straight. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a784a951185a189a1b487ab297b1eae0e}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!maior\-\_\-naipe\-Carta\-\_\-straightflush\-\_\-bots@{maior\-\_\-naipe\-Carta\-\_\-straightflush\-\_\-bots}}
+\index{maior\-\_\-naipe\-Carta\-\_\-straightflush\-\_\-bots@{maior\-\_\-naipe\-Carta\-\_\-straightflush\-\_\-bots}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{maior\-\_\-naipe\-Carta\-\_\-straightflush\-\_\-bots}]{\setlength{\rightskip}{0pt plus 5cm}int maior\-\_\-naipe\-Carta\-\_\-straightflush\-\_\-bots (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a784a951185a189a1b487ab297b1eae0e}
+Função para determinar o naipe da maior carta de um straight flush na mão de um bot. Esta função tem o intuito de se na ultima jogada for jogado um straight flush com o mesmo valor do que o que vai ser jogado agora, temos de analisar o naipe para ver se a jogada é válida. Aqui é retornado o valor correspondente ao naipe da maior carta de um straight flush. Senão, é retornado -\/1. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O naipe correspondente à maior carta. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_aa8da549442aa424543846ebd1fcbedf8}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!numero\-\_\-de\-\_\-cartas@{numero\-\_\-de\-\_\-cartas}}
+\index{numero\-\_\-de\-\_\-cartas@{numero\-\_\-de\-\_\-cartas}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{numero\-\_\-de\-\_\-cartas}]{\setlength{\rightskip}{0pt plus 5cm}int numero\-\_\-de\-\_\-cartas (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_aa8da549442aa424543846ebd1fcbedf8}
+Conta o número de cartas que se encontra numa mao numa dada altura. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O número de cartas. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a9ba4ed2cba7051262789b744299bc4df}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!posso\-\_\-jogar@{posso\-\_\-jogar}}
+\index{posso\-\_\-jogar@{posso\-\_\-jogar}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{posso\-\_\-jogar}]{\setlength{\rightskip}{0pt plus 5cm}int posso\-\_\-jogar (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a9ba4ed2cba7051262789b744299bc4df}
+É nesta função que a jogada do utilizador é verificada. Se esta for possível, é permitido ao utilizador colocar as cartas no meio do tabuleiro, registando assim a sua jogada. Caso contrário, ou o utilizador passa, ou tenta arranjar outro tipo de combinação. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 1 se for possível jogar, caso contrário retorna 0. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a9ffac9897a2c70b2f2a55d023ae994ed}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!rem\-\_\-carta@{rem\-\_\-carta}}
+\index{rem\-\_\-carta@{rem\-\_\-carta}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{rem\-\_\-carta}]{\setlength{\rightskip}{0pt plus 5cm}long long int rem\-\_\-carta (
+\begin{DoxyParamCaption}
+\item[{long long int}]{E\-S\-T\-A\-D\-O, }
+\item[{int}]{naipe, }
+\item[{int}]{valor}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a9ffac9897a2c70b2f2a55d023ae994ed}
+brief Remove uma carta do estado 
+\begin{DoxyParams}{Parameters}
+{\em E\-S\-T\-A\-D\-O} & O estado atual \\
+\hline
+{\em naipe} & O naipe da carta (inteiro entre 0 e 3) \\
+\hline
+{\em valor} & O valor da carta (inteiro entre 0 e 12) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O novo estado 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_aed3e4f10036406917083d9dcf6ea538a}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!utilizador\-\_\-joga\-\_\-flush@{utilizador\-\_\-joga\-\_\-flush}}
+\index{utilizador\-\_\-joga\-\_\-flush@{utilizador\-\_\-joga\-\_\-flush}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{utilizador\-\_\-joga\-\_\-flush}]{\setlength{\rightskip}{0pt plus 5cm}int utilizador\-\_\-joga\-\_\-flush (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_aed3e4f10036406917083d9dcf6ea538a}
+Função que valida o highlight do jogador, consoante a ultima jogada. Neste caso, como a ultima jogada foi um flush, a função valida se as 5 cartas (flush) escolhidas pelo utilizador são válidas de ser jogadas. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 1 se for possível jogar, caso contrário retorna 0. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a423a895ae587a3be3566566de70e61cd}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!utilizador\-\_\-joga\-\_\-fourkind@{utilizador\-\_\-joga\-\_\-fourkind}}
+\index{utilizador\-\_\-joga\-\_\-fourkind@{utilizador\-\_\-joga\-\_\-fourkind}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{utilizador\-\_\-joga\-\_\-fourkind}]{\setlength{\rightskip}{0pt plus 5cm}int utilizador\-\_\-joga\-\_\-fourkind (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a423a895ae587a3be3566566de70e61cd}
+Função que valida o highlight do jogador, consoante a ultima jogada. Neste caso, como a ultima jogada foi um four of a kind, a função valida se as 5 cartas (four of a kind) escolhidas pelo utilizador são válidas de ser jogadas. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 1 se for possível jogar, caso contrário retorna 0. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a65b4d7f20b9bd29ca14a1b8ef4a906fe}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!utilizador\-\_\-joga\-\_\-fullhouse@{utilizador\-\_\-joga\-\_\-fullhouse}}
+\index{utilizador\-\_\-joga\-\_\-fullhouse@{utilizador\-\_\-joga\-\_\-fullhouse}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{utilizador\-\_\-joga\-\_\-fullhouse}]{\setlength{\rightskip}{0pt plus 5cm}int utilizador\-\_\-joga\-\_\-fullhouse (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a65b4d7f20b9bd29ca14a1b8ef4a906fe}
+Função que valida o highlight do jogador, consoante a ultima jogada. Neste caso, como a ultima jogada foi um full house, a função valida se as 5 cartas (full house) escolhidas pelo utilizador são válidas de ser jogadas. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 1 se for possível jogar, caso contrário retorna 0. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a5c37545fd271196418bc51fa690f9a36}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!utilizador\-\_\-joga\-\_\-singles\-\_\-pares\-\_\-triplos@{utilizador\-\_\-joga\-\_\-singles\-\_\-pares\-\_\-triplos}}
+\index{utilizador\-\_\-joga\-\_\-singles\-\_\-pares\-\_\-triplos@{utilizador\-\_\-joga\-\_\-singles\-\_\-pares\-\_\-triplos}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{utilizador\-\_\-joga\-\_\-singles\-\_\-pares\-\_\-triplos}]{\setlength{\rightskip}{0pt plus 5cm}int utilizador\-\_\-joga\-\_\-singles\-\_\-pares\-\_\-triplos (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a5c37545fd271196418bc51fa690f9a36}
+Função que valida o highlight do jogador, para 1, 2 ou 3 cartas. Aqui, é permitido ao utilizador jogar uma das 3 combinações. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 1 se for possível jogar, caso contrário retorna 0. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a0552dd7296dde9eb8258ffd0b259ce48}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!utilizador\-\_\-joga\-\_\-straight@{utilizador\-\_\-joga\-\_\-straight}}
+\index{utilizador\-\_\-joga\-\_\-straight@{utilizador\-\_\-joga\-\_\-straight}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{utilizador\-\_\-joga\-\_\-straight}]{\setlength{\rightskip}{0pt plus 5cm}int utilizador\-\_\-joga\-\_\-straight (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a0552dd7296dde9eb8258ffd0b259ce48}
+Função que valida o highlight do jogador, consoante a ultima jogada. Neste caso, como a ultima jogada foi um straight, a função valida se as 5 cartas (straight) escolhidas pelo utilizador são válidas de ser jogadas. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 1 se for possível jogar, caso contrário retorna 0. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a531e97562bd990e2ef3a8c45d1a1a9fe}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!utilizador\-\_\-joga\-\_\-straightflush@{utilizador\-\_\-joga\-\_\-straightflush}}
+\index{utilizador\-\_\-joga\-\_\-straightflush@{utilizador\-\_\-joga\-\_\-straightflush}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{utilizador\-\_\-joga\-\_\-straightflush}]{\setlength{\rightskip}{0pt plus 5cm}int utilizador\-\_\-joga\-\_\-straightflush (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a531e97562bd990e2ef3a8c45d1a1a9fe}
+Função que valida o highlight do jogador, consoante a ultima jogada. Neste caso, como a ultima jogada foi um straight flush, a função valida se as 5 cartas (straight flush) escolhidas pelo utilizador são válidas de ser jogadas. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 1 se for possível jogar, caso contrário retorna 0. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_afc30df48f67380f18351a83fcf5f1ebd}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!valida\-\_\-flush@{valida\-\_\-flush}}
+\index{valida\-\_\-flush@{valida\-\_\-flush}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{valida\-\_\-flush}]{\setlength{\rightskip}{0pt plus 5cm}int valida\-\_\-flush (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_afc30df48f67380f18351a83fcf5f1ebd}
+Ao receber o highlight do utilizador (neste caso um flush), confirma se este é válido para ser efetuada uma jogada. Nesta função, é retornado 0,1,2 ou 3 conforme o naipe do flush. Exemplo\-: 0 -\/$>$ Ouros; 1 -\/$>$ Copas; etc... Com isto, conseguimos mais tarde avaliar dois flushes. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro (0,1,2,3), que corresponde a diferentes naipes. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a66f340469c9c8f4331de1da49a39470b}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!valida\-\_\-fourkind@{valida\-\_\-fourkind}}
+\index{valida\-\_\-fourkind@{valida\-\_\-fourkind}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{valida\-\_\-fourkind}]{\setlength{\rightskip}{0pt plus 5cm}int valida\-\_\-fourkind (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a66f340469c9c8f4331de1da49a39470b}
+Ao receber o highlight do utilizador (neste caso um four of a kind), confirma se este é válido para ser efetuada uma jogada. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 1, se for válido o four of a kind, e -\/1 caso contrário. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a20667d09a17736ad33c7543de1176c99}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!valida\-\_\-fullhouse@{valida\-\_\-fullhouse}}
+\index{valida\-\_\-fullhouse@{valida\-\_\-fullhouse}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{valida\-\_\-fullhouse}]{\setlength{\rightskip}{0pt plus 5cm}int valida\-\_\-fullhouse (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a20667d09a17736ad33c7543de1176c99}
+Ao receber o highlight do utilizador (neste caso um fullhouse), confirma se este é válido para ser efetuada uma jogada. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O valor. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a478b718f78b088f0545df35ee9010e57}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!valida\-\_\-straight@{valida\-\_\-straight}}
+\index{valida\-\_\-straight@{valida\-\_\-straight}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{valida\-\_\-straight}]{\setlength{\rightskip}{0pt plus 5cm}int valida\-\_\-straight (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a478b718f78b088f0545df35ee9010e57}
+Ao receber o highlight do utilizador (neste caso um straight), confirma se este é válido para ser efetuada uma jogada. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 1, se for válido o straight, e -\/1 caso contrário. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a3bff1a608b34605f4508a7ae77ebe1a5}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!valida\-\_\-straightflush@{valida\-\_\-straightflush}}
+\index{valida\-\_\-straightflush@{valida\-\_\-straightflush}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{valida\-\_\-straightflush}]{\setlength{\rightskip}{0pt plus 5cm}int valida\-\_\-straightflush (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a3bff1a608b34605f4508a7ae77ebe1a5}
+Ao receber o highlight do utilizador (neste caso um straight flush), confirma se este é válido para ser efetuada uma jogada. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 1, se for válido o straight, e -\/1 caso contrário. 
+\end{DoxyReturn}
+\hypertarget{manipulaM_xC3_xA3o_8c_a1d25ae35182c513f5f4ee2d68ec28477}{\index{manipula\-Mão.\-c@{manipula\-Mão.\-c}!validacao\-\_\-5cartas@{validacao\-\_\-5cartas}}
+\index{validacao\-\_\-5cartas@{validacao\-\_\-5cartas}!manipulaMão.c@{manipula\-Mão.\-c}}
+\subsubsection[{validacao\-\_\-5cartas}]{\setlength{\rightskip}{0pt plus 5cm}int validacao\-\_\-5cartas (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{manipulaM_xC3_xA3o_8c_a1d25ae35182c513f5f4ee2d68ec28477}
+A função validacao\-\_\-5cartas identifica qual tipo de combinação é que vai ser analisada. Conforme os returns de 1,2,3,4,5, o programa sabe qual combinação avaliar. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro correspondente a uma sequência. 
+\end{DoxyReturn}

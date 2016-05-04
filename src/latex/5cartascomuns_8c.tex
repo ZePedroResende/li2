@@ -1,0 +1,61 @@
+\hypertarget{5cartascomuns_8c}{\section{5cartascomuns.c File Reference}
+\label{5cartascomuns_8c}\index{5cartascomuns.\-c@{5cartascomuns.\-c}}
+}
+{\ttfamily \#include \char`\"{}big2.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{5cartascomuns_8c_ace42ded8b0af73fb13ccc607e384fd4b}{descodifica\-\_\-straight} (int maior\-Carta)
+\item 
+int \hyperlink{5cartascomuns_8c_a379751f5c8679969966b34b81180c86b}{codifica} (int v)
+\item 
+int \hyperlink{5cartascomuns_8c_a1d25ae35182c513f5f4ee2d68ec28477}{validacao\-\_\-5cartas} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{5cartascomuns_8c_a379751f5c8679969966b34b81180c86b}{\index{5cartascomuns.\-c@{5cartascomuns.\-c}!codifica@{codifica}}
+\index{codifica@{codifica}!5cartascomuns.c@{5cartascomuns.\-c}}
+\subsubsection[{codifica}]{\setlength{\rightskip}{0pt plus 5cm}int codifica (
+\begin{DoxyParamCaption}
+\item[{int}]{v}
+\end{DoxyParamCaption}
+)}}\label{5cartascomuns_8c_a379751f5c8679969966b34b81180c86b}
+Esta função faz o contrário da função descodifica\-\_\-straight. Pega nos valores normais do jogo, e codifica-\/os de forma a serem trabalhados em validações de straight e straight flush. 
+\begin{DoxyParams}{Parameters}
+{\em v} & O valor da maior carta descodificado. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O valor da maior carta codificado. 
+\end{DoxyReturn}
+\hypertarget{5cartascomuns_8c_ace42ded8b0af73fb13ccc607e384fd4b}{\index{5cartascomuns.\-c@{5cartascomuns.\-c}!descodifica\-\_\-straight@{descodifica\-\_\-straight}}
+\index{descodifica\-\_\-straight@{descodifica\-\_\-straight}!5cartascomuns.c@{5cartascomuns.\-c}}
+\subsubsection[{descodifica\-\_\-straight}]{\setlength{\rightskip}{0pt plus 5cm}int descodifica\-\_\-straight (
+\begin{DoxyParamCaption}
+\item[{int}]{maior\-Carta}
+\end{DoxyParamCaption}
+)}}\label{5cartascomuns_8c_ace42ded8b0af73fb13ccc607e384fd4b}
+No caso dos straight e straight flush, os ases podiam tomar dois valores diferentes, e o 2 era uma carta baixa, e não a mais alta do jogo. Para isso, criamos um array com 14 posições. Conforme a validação do que é selecionado pelo utilizador, vemos que \char`\"{}valor\char`\"{} é que toma os ases e o 2 (quando são selecionados), estando estes codificados. Para usarmos esses valores em comparações ou em qualquer outro processo, temos de os descodificar, para tudo funcionar corretamente. A função descodifica\-\_\-straight faz exatamente isso, retorna o \char`\"{}verdadeiro\char`\"{} valor da carta (não codificado). 
+\begin{DoxyParams}{Parameters}
+{\em maior\-Carta} & O valor da maior carta codificado. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O valor da maior carta descodificado. 
+\end{DoxyReturn}
+\hypertarget{5cartascomuns_8c_a1d25ae35182c513f5f4ee2d68ec28477}{\index{5cartascomuns.\-c@{5cartascomuns.\-c}!validacao\-\_\-5cartas@{validacao\-\_\-5cartas}}
+\index{validacao\-\_\-5cartas@{validacao\-\_\-5cartas}!5cartascomuns.c@{5cartascomuns.\-c}}
+\subsubsection[{validacao\-\_\-5cartas}]{\setlength{\rightskip}{0pt plus 5cm}int validacao\-\_\-5cartas (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{5cartascomuns_8c_a1d25ae35182c513f5f4ee2d68ec28477}
+A função validacao\-\_\-5cartas identifica qual tipo de combinação é que vai ser analisada. Conforme os returns de 1,2,3,4,5, o programa sabe qual combinação avaliar. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro correspondente a uma sequência. 
+\end{DoxyReturn}

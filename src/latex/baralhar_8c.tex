@@ -1,0 +1,43 @@
+\hypertarget{baralhar_8c}{\section{baralhar.\-c File Reference}
+\label{baralhar_8c}\index{baralhar.\-c@{baralhar.\-c}}
+}
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$time.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}big2.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{baralhar_8c_a1080526906350feff526a843c90b980d}{primeiro\-\_\-jogar} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} \hyperlink{baralhar_8c_af8adad96525d60314abc47ab0a35309d}{baralhar} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{baralhar_8c_af8adad96525d60314abc47ab0a35309d}{\index{baralhar.\-c@{baralhar.\-c}!baralhar@{baralhar}}
+\index{baralhar@{baralhar}!baralhar.c@{baralhar.\-c}}
+\subsubsection[{baralhar}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\-S\-T\-A\-D\-O} baralhar (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{baralhar_8c_af8adad96525d60314abc47ab0a35309d}
+Função que distribui as cartas por todas as mãos, de igual modo (13 para cada). Através da função \char`\"{}rand\char`\"{}, as cartas são distribuidas aleatoriamente. Aqui, são feitas outras tarefas\-: O actual\-\_\-jogador vai tomar o valor da função primeiro\-\_\-jogador, previamente definida, que indica o jogador que começa o jogo, da-\/mos a e.\-cartas\-\_\-bots\mbox{[}e.\-actual\-\_\-jogador\mbox{]} o valor 1, de maneira que se um bot começar o jogo, este vai apresentar o 3 de ouros no tabuleiro, e a ultimo\-\_\-jogador toma o valor do actual\-\_\-jogador, guardando assim o ultimo jogador que jogou corretamente. \begin{DoxyReturn}{Returns}
+O novo estado. 
+\end{DoxyReturn}
+\hypertarget{baralhar_8c_a1080526906350feff526a843c90b980d}{\index{baralhar.\-c@{baralhar.\-c}!primeiro\-\_\-jogar@{primeiro\-\_\-jogar}}
+\index{primeiro\-\_\-jogar@{primeiro\-\_\-jogar}!baralhar.c@{baralhar.\-c}}
+\subsubsection[{primeiro\-\_\-jogar}]{\setlength{\rightskip}{0pt plus 5cm}int primeiro\-\_\-jogar (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{baralhar_8c_a1080526906350feff526a843c90b980d}
+Conforme as regras do jogo, a primeiro jogador a jogar é aquele que tem o 3 de ouros na sua mão. Esta função procura nas mãos de cada jogador o valor e o naipe correspondentes ao 3 de ouros. O jogador que tiver essa carta, passará a ser o actual\-\_\-jogador, dando então prosseguimento. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro correspondente ao jogador que vai executar primeiro a jogada. 
+\end{DoxyReturn}

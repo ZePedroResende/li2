@@ -1,0 +1,37 @@
+\hypertarget{main_8c}{\section{main.\-c File Reference}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+}
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$time.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}big2.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{main_8c_af22742568b531d69c62aacf16b7c301e}{parse} (char $\ast$query)
+\item 
+int \hyperlink{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}
+brief Função principal Função principal do programa que imprime os cabeçalhos necessários e depois disso invoca a função que vai imprimir o código html para desenhar as cartas \hypertarget{main_8c_af22742568b531d69c62aacf16b7c301e}{\index{main.\-c@{main.\-c}!parse@{parse}}
+\index{parse@{parse}!main.c@{main.\-c}}
+\subsubsection[{parse}]{\setlength{\rightskip}{0pt plus 5cm}void parse (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{query}
+\end{DoxyParamCaption}
+)}}\label{main_8c_af22742568b531d69c62aacf16b7c301e}
+brief Trata os argumentos da C\-G\-I Esta função recebe a query que é passada à cgi-\/bin e trata-\/a. Neste momento, a query contém o estado que é um inteiro que representa um conjunto de cartas. Cada carta corresponde a um bit que está a 1 se essa carta está no conjunto e a 0 caso contrário. Caso não seja passado nada à cgi-\/bin, ela assume que todas as cartas estão presentes. 
+\begin{DoxyParams}{Parameters}
+{\em query} & A query que é passada à cgi-\/bin \\
+\hline
+\end{DoxyParams}

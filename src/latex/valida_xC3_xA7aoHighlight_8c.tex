@@ -1,0 +1,229 @@
+\hypertarget{valida_xC3_xA7aoHighlight_8c}{\section{validaçao\-Highlight.\-c File Reference}
+\label{valida_xC3_xA7aoHighlight_8c}\index{validaçao\-Highlight.\-c@{validaçao\-Highlight.\-c}}
+}
+{\ttfamily \#include \char`\"{}big2.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{valida_xC3_xA7aoHighlight_8c_aa8da549442aa424543846ebd1fcbedf8}{numero\-\_\-de\-\_\-cartas} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{valida_xC3_xA7aoHighlight_8c_a33ca16791f14e4f7e0e032b16293cf64}{combinacao\-\_\-valida} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{valida_xC3_xA7aoHighlight_8c_a52e0cec04592b1ea937ee9736f71a647}{compara\-\_\-tamanho} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m1, \hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m2)
+\item 
+int \hyperlink{valida_xC3_xA7aoHighlight_8c_a6f90d5d665f82828b55fe54376c3d61d}{da\-\_\-valor} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{valida_xC3_xA7aoHighlight_8c_a6672f66ae6c78f4e7b155e6d6f0c0e29}{da\-\_\-maior\-\_\-naipe} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m)
+\item 
+int \hyperlink{valida_xC3_xA7aoHighlight_8c_a0f5cbf193371d902e0f5bf5dd51d0c2d}{combinacao\-\_\-maior} (\hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m1, \hyperlink{big2_8h_a525a5fe381e0742a211c7dbcfd4e2419}{M\-A\-O} m2)
+\item 
+int \hyperlink{valida_xC3_xA7aoHighlight_8c_a0552dd7296dde9eb8258ffd0b259ce48}{utilizador\-\_\-joga\-\_\-straight} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+int \hyperlink{valida_xC3_xA7aoHighlight_8c_aed3e4f10036406917083d9dcf6ea538a}{utilizador\-\_\-joga\-\_\-flush} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+int \hyperlink{valida_xC3_xA7aoHighlight_8c_a65b4d7f20b9bd29ca14a1b8ef4a906fe}{utilizador\-\_\-joga\-\_\-fullhouse} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+int \hyperlink{valida_xC3_xA7aoHighlight_8c_a423a895ae587a3be3566566de70e61cd}{utilizador\-\_\-joga\-\_\-fourkind} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+int \hyperlink{valida_xC3_xA7aoHighlight_8c_a531e97562bd990e2ef3a8c45d1a1a9fe}{utilizador\-\_\-joga\-\_\-straightflush} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+int \hyperlink{valida_xC3_xA7aoHighlight_8c_a5c37545fd271196418bc51fa690f9a36}{utilizador\-\_\-joga\-\_\-singles\-\_\-pares\-\_\-triplos} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\item 
+int \hyperlink{valida_xC3_xA7aoHighlight_8c_a9ba4ed2cba7051262789b744299bc4df}{posso\-\_\-jogar} (\hyperlink{big2_8h_a857f2529d823a22e6f4a81cf21fb810f}{E\-S\-T\-A\-D\-O} e)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{valida_xC3_xA7aoHighlight_8c_a0f5cbf193371d902e0f5bf5dd51d0c2d}{\index{validaçao\-Highlight.\-c@{validaçao\-Highlight.\-c}!combinacao\-\_\-maior@{combinacao\-\_\-maior}}
+\index{combinacao\-\_\-maior@{combinacao\-\_\-maior}!validaçaoHighlight.c@{validaçao\-Highlight.\-c}}
+\subsubsection[{combinacao\-\_\-maior}]{\setlength{\rightskip}{0pt plus 5cm}int combinacao\-\_\-maior (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m1, }
+\item[{{\bf M\-A\-O}}]{m2}
+\end{DoxyParamCaption}
+)}}\label{valida_xC3_xA7aoHighlight_8c_a0f5cbf193371d902e0f5bf5dd51d0c2d}
+Aqui, é verificado se a jogada actual é maior que a jogada anterior. Conforme o retorno da função dá valor, a jogada actual é possível ser realizada ou não. Ao comparar, de os retornos das duas funções forem iguais, ou seja, se os maiores valores de cada mão forem iguais, comparamos o naipe, assim identificando qual a maior jogada. 
+\begin{DoxyParams}{Parameters}
+{\em m1} & A mão de um jogador. \\
+\hline
+{\em m2} & A mão de outro jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 1 caso seja possível jogar, 0 caso contrário. 
+\end{DoxyReturn}
+\hypertarget{valida_xC3_xA7aoHighlight_8c_a33ca16791f14e4f7e0e032b16293cf64}{\index{validaçao\-Highlight.\-c@{validaçao\-Highlight.\-c}!combinacao\-\_\-valida@{combinacao\-\_\-valida}}
+\index{combinacao\-\_\-valida@{combinacao\-\_\-valida}!validaçaoHighlight.c@{validaçao\-Highlight.\-c}}
+\subsubsection[{combinacao\-\_\-valida}]{\setlength{\rightskip}{0pt plus 5cm}int combinacao\-\_\-valida (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{valida_xC3_xA7aoHighlight_8c_a33ca16791f14e4f7e0e032b16293cf64}
+Confirma se a mão que é recebida (o highlight), tem uma, duas ou três cartas. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 0 se tiver mais de três cartas, caso contrário retorna 1. 
+\end{DoxyReturn}
+\hypertarget{valida_xC3_xA7aoHighlight_8c_a52e0cec04592b1ea937ee9736f71a647}{\index{validaçao\-Highlight.\-c@{validaçao\-Highlight.\-c}!compara\-\_\-tamanho@{compara\-\_\-tamanho}}
+\index{compara\-\_\-tamanho@{compara\-\_\-tamanho}!validaçaoHighlight.c@{validaçao\-Highlight.\-c}}
+\subsubsection[{compara\-\_\-tamanho}]{\setlength{\rightskip}{0pt plus 5cm}int compara\-\_\-tamanho (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m1, }
+\item[{{\bf M\-A\-O}}]{m2}
+\end{DoxyParamCaption}
+)}}\label{valida_xC3_xA7aoHighlight_8c_a52e0cec04592b1ea937ee9736f71a647}
+Compara o tamanha entre duas mãos, ou seja, ve o tamanho da ultima jogada, e compara o tamanho com a jogada actual, e vê se a combinação tem o mesmo tamanho. 
+\begin{DoxyParams}{Parameters}
+{\em m1} & A mão de um jogador. \\
+\hline
+{\em m2} & A mão de outro jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 1 se as mãos tiverem o mesmo tamanha, 0 caso contrário. 
+\end{DoxyReturn}
+\hypertarget{valida_xC3_xA7aoHighlight_8c_a6672f66ae6c78f4e7b155e6d6f0c0e29}{\index{validaçao\-Highlight.\-c@{validaçao\-Highlight.\-c}!da\-\_\-maior\-\_\-naipe@{da\-\_\-maior\-\_\-naipe}}
+\index{da\-\_\-maior\-\_\-naipe@{da\-\_\-maior\-\_\-naipe}!validaçaoHighlight.c@{validaçao\-Highlight.\-c}}
+\subsubsection[{da\-\_\-maior\-\_\-naipe}]{\setlength{\rightskip}{0pt plus 5cm}int da\-\_\-maior\-\_\-naipe (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{valida_xC3_xA7aoHighlight_8c_a6672f66ae6c78f4e7b155e6d6f0c0e29}
+Esta função obtém o maior naipe dentro de uma mão, de forma a ser usado para avaliar a maior jogada. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O naipe de uma carta. 
+\end{DoxyReturn}
+\hypertarget{valida_xC3_xA7aoHighlight_8c_a6f90d5d665f82828b55fe54376c3d61d}{\index{validaçao\-Highlight.\-c@{validaçao\-Highlight.\-c}!da\-\_\-valor@{da\-\_\-valor}}
+\index{da\-\_\-valor@{da\-\_\-valor}!validaçaoHighlight.c@{validaçao\-Highlight.\-c}}
+\subsubsection[{da\-\_\-valor}]{\setlength{\rightskip}{0pt plus 5cm}int da\-\_\-valor (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{valida_xC3_xA7aoHighlight_8c_a6f90d5d665f82828b55fe54376c3d61d}
+\hypertarget{valida_xC3_xA7aoHighlight_8c_aa8da549442aa424543846ebd1fcbedf8}{\index{validaçao\-Highlight.\-c@{validaçao\-Highlight.\-c}!numero\-\_\-de\-\_\-cartas@{numero\-\_\-de\-\_\-cartas}}
+\index{numero\-\_\-de\-\_\-cartas@{numero\-\_\-de\-\_\-cartas}!validaçaoHighlight.c@{validaçao\-Highlight.\-c}}
+\subsubsection[{numero\-\_\-de\-\_\-cartas}]{\setlength{\rightskip}{0pt plus 5cm}int numero\-\_\-de\-\_\-cartas (
+\begin{DoxyParamCaption}
+\item[{{\bf M\-A\-O}}]{m}
+\end{DoxyParamCaption}
+)}}\label{valida_xC3_xA7aoHighlight_8c_aa8da549442aa424543846ebd1fcbedf8}
+Conta o número de cartas que se encontra numa mao numa dada altura. 
+\begin{DoxyParams}{Parameters}
+{\em m} & A mão de um jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O número de cartas. 
+\end{DoxyReturn}
+\hypertarget{valida_xC3_xA7aoHighlight_8c_a9ba4ed2cba7051262789b744299bc4df}{\index{validaçao\-Highlight.\-c@{validaçao\-Highlight.\-c}!posso\-\_\-jogar@{posso\-\_\-jogar}}
+\index{posso\-\_\-jogar@{posso\-\_\-jogar}!validaçaoHighlight.c@{validaçao\-Highlight.\-c}}
+\subsubsection[{posso\-\_\-jogar}]{\setlength{\rightskip}{0pt plus 5cm}int posso\-\_\-jogar (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{valida_xC3_xA7aoHighlight_8c_a9ba4ed2cba7051262789b744299bc4df}
+É nesta função que a jogada do utilizador é verificada. Se esta for possível, é permitido ao utilizador colocar as cartas no meio do tabuleiro, registando assim a sua jogada. Caso contrário, ou o utilizador passa, ou tenta arranjar outro tipo de combinação. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 1 se for possível jogar, caso contrário retorna 0. 
+\end{DoxyReturn}
+\hypertarget{valida_xC3_xA7aoHighlight_8c_aed3e4f10036406917083d9dcf6ea538a}{\index{validaçao\-Highlight.\-c@{validaçao\-Highlight.\-c}!utilizador\-\_\-joga\-\_\-flush@{utilizador\-\_\-joga\-\_\-flush}}
+\index{utilizador\-\_\-joga\-\_\-flush@{utilizador\-\_\-joga\-\_\-flush}!validaçaoHighlight.c@{validaçao\-Highlight.\-c}}
+\subsubsection[{utilizador\-\_\-joga\-\_\-flush}]{\setlength{\rightskip}{0pt plus 5cm}int utilizador\-\_\-joga\-\_\-flush (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{valida_xC3_xA7aoHighlight_8c_aed3e4f10036406917083d9dcf6ea538a}
+Função que valida o highlight do jogador, consoante a ultima jogada. Neste caso, como a ultima jogada foi um flush, a função valida se as 5 cartas (flush) escolhidas pelo utilizador são válidas de ser jogadas. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 1 se for possível jogar, caso contrário retorna 0. 
+\end{DoxyReturn}
+\hypertarget{valida_xC3_xA7aoHighlight_8c_a423a895ae587a3be3566566de70e61cd}{\index{validaçao\-Highlight.\-c@{validaçao\-Highlight.\-c}!utilizador\-\_\-joga\-\_\-fourkind@{utilizador\-\_\-joga\-\_\-fourkind}}
+\index{utilizador\-\_\-joga\-\_\-fourkind@{utilizador\-\_\-joga\-\_\-fourkind}!validaçaoHighlight.c@{validaçao\-Highlight.\-c}}
+\subsubsection[{utilizador\-\_\-joga\-\_\-fourkind}]{\setlength{\rightskip}{0pt plus 5cm}int utilizador\-\_\-joga\-\_\-fourkind (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{valida_xC3_xA7aoHighlight_8c_a423a895ae587a3be3566566de70e61cd}
+Função que valida o highlight do jogador, consoante a ultima jogada. Neste caso, como a ultima jogada foi um four of a kind, a função valida se as 5 cartas (four of a kind) escolhidas pelo utilizador são válidas de ser jogadas. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 1 se for possível jogar, caso contrário retorna 0. 
+\end{DoxyReturn}
+\hypertarget{valida_xC3_xA7aoHighlight_8c_a65b4d7f20b9bd29ca14a1b8ef4a906fe}{\index{validaçao\-Highlight.\-c@{validaçao\-Highlight.\-c}!utilizador\-\_\-joga\-\_\-fullhouse@{utilizador\-\_\-joga\-\_\-fullhouse}}
+\index{utilizador\-\_\-joga\-\_\-fullhouse@{utilizador\-\_\-joga\-\_\-fullhouse}!validaçaoHighlight.c@{validaçao\-Highlight.\-c}}
+\subsubsection[{utilizador\-\_\-joga\-\_\-fullhouse}]{\setlength{\rightskip}{0pt plus 5cm}int utilizador\-\_\-joga\-\_\-fullhouse (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{valida_xC3_xA7aoHighlight_8c_a65b4d7f20b9bd29ca14a1b8ef4a906fe}
+Função que valida o highlight do jogador, consoante a ultima jogada. Neste caso, como a ultima jogada foi um full house, a função valida se as 5 cartas (full house) escolhidas pelo utilizador são válidas de ser jogadas. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 1 se for possível jogar, caso contrário retorna 0. 
+\end{DoxyReturn}
+\hypertarget{valida_xC3_xA7aoHighlight_8c_a5c37545fd271196418bc51fa690f9a36}{\index{validaçao\-Highlight.\-c@{validaçao\-Highlight.\-c}!utilizador\-\_\-joga\-\_\-singles\-\_\-pares\-\_\-triplos@{utilizador\-\_\-joga\-\_\-singles\-\_\-pares\-\_\-triplos}}
+\index{utilizador\-\_\-joga\-\_\-singles\-\_\-pares\-\_\-triplos@{utilizador\-\_\-joga\-\_\-singles\-\_\-pares\-\_\-triplos}!validaçaoHighlight.c@{validaçao\-Highlight.\-c}}
+\subsubsection[{utilizador\-\_\-joga\-\_\-singles\-\_\-pares\-\_\-triplos}]{\setlength{\rightskip}{0pt plus 5cm}int utilizador\-\_\-joga\-\_\-singles\-\_\-pares\-\_\-triplos (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{valida_xC3_xA7aoHighlight_8c_a5c37545fd271196418bc51fa690f9a36}
+Função que valida o highlight do jogador, para 1, 2 ou 3 cartas. Aqui, é permitido ao utilizador jogar uma das 3 combinações. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 1 se for possível jogar, caso contrário retorna 0. 
+\end{DoxyReturn}
+\hypertarget{valida_xC3_xA7aoHighlight_8c_a0552dd7296dde9eb8258ffd0b259ce48}{\index{validaçao\-Highlight.\-c@{validaçao\-Highlight.\-c}!utilizador\-\_\-joga\-\_\-straight@{utilizador\-\_\-joga\-\_\-straight}}
+\index{utilizador\-\_\-joga\-\_\-straight@{utilizador\-\_\-joga\-\_\-straight}!validaçaoHighlight.c@{validaçao\-Highlight.\-c}}
+\subsubsection[{utilizador\-\_\-joga\-\_\-straight}]{\setlength{\rightskip}{0pt plus 5cm}int utilizador\-\_\-joga\-\_\-straight (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{valida_xC3_xA7aoHighlight_8c_a0552dd7296dde9eb8258ffd0b259ce48}
+Função que valida o highlight do jogador, consoante a ultima jogada. Neste caso, como a ultima jogada foi um straight, a função valida se as 5 cartas (straight) escolhidas pelo utilizador são válidas de ser jogadas. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 1 se for possível jogar, caso contrário retorna 0. 
+\end{DoxyReturn}
+\hypertarget{valida_xC3_xA7aoHighlight_8c_a531e97562bd990e2ef3a8c45d1a1a9fe}{\index{validaçao\-Highlight.\-c@{validaçao\-Highlight.\-c}!utilizador\-\_\-joga\-\_\-straightflush@{utilizador\-\_\-joga\-\_\-straightflush}}
+\index{utilizador\-\_\-joga\-\_\-straightflush@{utilizador\-\_\-joga\-\_\-straightflush}!validaçaoHighlight.c@{validaçao\-Highlight.\-c}}
+\subsubsection[{utilizador\-\_\-joga\-\_\-straightflush}]{\setlength{\rightskip}{0pt plus 5cm}int utilizador\-\_\-joga\-\_\-straightflush (
+\begin{DoxyParamCaption}
+\item[{{\bf E\-S\-T\-A\-D\-O}}]{e}
+\end{DoxyParamCaption}
+)}}\label{valida_xC3_xA7aoHighlight_8c_a531e97562bd990e2ef3a8c45d1a1a9fe}
+Função que valida o highlight do jogador, consoante a ultima jogada. Neste caso, como a ultima jogada foi um straight flush, a função valida se as 5 cartas (straight flush) escolhidas pelo utilizador são válidas de ser jogadas. 
+\begin{DoxyParams}{Parameters}
+{\em e} & O estado actual. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um inteiro 1 se for possível jogar, caso contrário retorna 0. 
+\end{DoxyReturn}

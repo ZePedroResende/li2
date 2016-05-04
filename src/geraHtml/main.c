@@ -4,6 +4,8 @@
 #include <time.h>
 #include "big2.h"
 
+
+
 /** brief Trata os argumentos da CGI
 Esta função recebe a query que é passada à cgi-bin e trata-a.
 Neste momento, a query contém o estado que é um inteiro que representa um conjunto de cartas.

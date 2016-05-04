@@ -1,28 +1,33 @@
 #include "big2.h"
 
-
-
-
-/*
-
+/**
+Neste estado é avaliada a próxima jogada de 5 cartas do bot. Neste caso, a ultima jogada foi um straight.
+Consoante essa informação, se o bot tiver um straight maior que o anterior, joga-o. Senão, procura na sua mão a menor combinação possível a ser jogada.
+Se não tiver o que jogar, o bot passará a jogada.
+@param e O estado do jogo.
+@returns O novo estado.
 */
 ESTADO fazjogada_straight (ESTADO e) {
+    printf("1\n");
     if (maior_carta_straight_bots(e.mao[e.actual_jogador]) > maior_carta_straight_bots(e.ultima_jogada)) {
         e = joga_straight(e);
         return e;
     }
     else {
         if ((maior_carta_straight_bots(e.mao[e.actual_jogador])) == (maior_carta_straight_bots(e.ultima_jogada)) && ((maior_naipe_straight_bots(e.mao[e.actual_jogador], (maior_carta_straight_bots(e.mao[e.actual_jogador])))) > (maior_naipe_straight(e.ultima_jogada, (maior_carta_straight_bots(e.ultima_jogada)))))) {
+            printf("2\n");
             e = joga_straight(e);
             return e;
         }
         else{
             if (valida_flush(e.mao[e.actual_jogador]) != -1){
                 e = joga_flush(e);
+                printf("3\n");
                 return e;
             }
             else {
                 if (valida_fullhouse(e.mao[e.actual_jogador]) != -1) {
+                    printf("4\n");
                     e = joga_fullhouse(e);
                     return e;
                 }
@@ -49,8 +54,13 @@ ESTADO fazjogada_straight (ESTADO e) {
     return e;
 }
 
-/*
-
+/**
+Neste estado é avaliada a próxima jogada de 5 cartas do bot. Neste caso, a ultima jogada foi um flush.
+Consoante essa informação, se o bot tiver um flush maior que o anterior, joga-o. Senão, procura na sua mão a menor combinação possível a ser jogada.
+Se não tiver o que jogar, o bot passará a jogada.
+A função retorna sempre o estado do jogo atual.
+@param e O estado actual.
+@returns O novo estado.
 */
 ESTADO fazjogada_flush (ESTADO e) {
 
@@ -92,8 +102,13 @@ ESTADO fazjogada_flush (ESTADO e) {
     return e;
 }
 
-/*
-
+/**
+Neste estado é avaliada a próxima jogada de 5 cartas do bot. Neste caso, a ultima jogada foi um full house.
+Consoante essa informação, se o bot tiver um full house maior que o anterior, joga-o. Senão, procura na sua mão a menor combinação possível a ser jogada.
+Se não tiver o que jogar, o bot passará a jogada.
+A função retorna sempre o estado do jogo atual.
+@param e O estado actual.
+@returns O novo estado.
 */
 ESTADO fazjogada_fullhouse (ESTADO e) {
     if (valida_fullhouse(e.mao[e.actual_jogador]) > valida_fullhouse(e.ultima_jogada) && (valida_fullhouse(e.mao[e.actual_jogador] != -1))) {
@@ -120,8 +135,13 @@ ESTADO fazjogada_fullhouse (ESTADO e) {
     return e;
 }
 
-/*
-
+/**
+Neste estado é avaliada a próxima jogada de 5 cartas do bot. Neste caso, a ultima jogada foi um four of a kind.
+Consoante essa informação, se o bot tiver um four of a kind maior que o anterior, joga-o. Senão, procura na sua mão a menor combinação possível a ser jogada.
+Se não tiver o que jogar, o bot passará a jogada.
+A função retorna sempre o estado do jogo atual.
+@param e O estado actual.
+@returns O novo estado.
 */
 ESTADO fazjogada_fourkind (ESTADO e) {
     if ((maior_carta_fourkind(e.mao[e.actual_jogador])) > (maior_carta_fourkind(e.ultima_jogada)) && (maior_carta_fourkind(e.mao[e.actual_jogador]) != -1)) {
@@ -142,8 +162,13 @@ ESTADO fazjogada_fourkind (ESTADO e) {
     return e;
 }
 
-/*
-
+/**
+Neste estado é avaliada a próxima jogada de 5 cartas do bot. Neste caso, a ultima jogada foi um straight flush.
+Consoante essa informação, se o bot tiver um straight flush maior que o anterior, joga-o. 
+Caso contrário, e como o straight flush é a maior combinação, o bot passará a jogada.
+A função retorna sempre o estado do jogo atual.
+@param e O estado actual.
+@returns O novo estado.
 */
 ESTADO fazjogada_straightflush (ESTADO e) {
     if((maior_carta_straightflush_bots(e.mao[e.actual_jogador]) == -1)) {
@@ -167,7 +192,7 @@ ESTADO fazjogada_straightflush (ESTADO e) {
 }
 
 
-/*
+/**
 O estado fazjogada é aquele que verifica se o bot pode jogar uma combinação de 5 cartas.
 Através de todas as validações das diferentes combinações, e comparando sempre com a última jogada, o bot vê qual a próxima combinação que vai jogar (a menor possível).
 Se não tiver nada válido para jogar, o bot passa a jogada.
@@ -177,6 +202,9 @@ Exemplo:
 -> v = 2: Flush;
 -> etc....
 É retornado um novo estado, estado esse que contém todas as altereções feitas na ronda (cartas jogadas, passagem de ronda).
+@param e O estado actual.
+@param v O valor correspondente a uma sequência.
+@returns O novo estado.
 */
 ESTADO fazjogada (ESTADO e, int v) {
     if (v == 1) {
@@ -208,26 +236,17 @@ ESTADO fazjogada (ESTADO e, int v) {
     return e;
 }
 
-/*
-O estado pbot executa a função validao_5cartas, de forma a verificar qual a combinação da ultima jogada, de forma a avaliar com a combinação que vai ser jogada.
-Posto isto, é chamado o esatdo fazjogada, para verificar se, e comparando com a jogada anterior, o bot tem uma combinação válida para ser jogada.
-É retornado o estado do jogo actual.
-*/
-ESTADO pbot(ESTADO e){
-    int v;
-    v = 0;
-    v = validacao_5cartas(e.ultima_jogada);
-    e = (fazjogada (e, v));
-    return e;
-}
 
 
 
 
-/*
+
+/**
 Nas cartas selecionadas pelo utilizador (neste caso um straight flush), determina o valor da maior carta desse, para mais tarde comparar, se necessário, com as ultimas jogadas, de forma a avaliar a jogada.
 Esta função foi usada para avaliar a mão do utilizador, pois seguia o mesmo precedimento.
 A função retorna então o valor da maior carta de um straight se existir um straight, e -1 se não existir.
+@param m A mão de um jogador.
+@returns O valor de uma carta.
 */
 int maior_carta_straight_bots(MAO m){
     /* USAMOS MAIOR_CARTA_STRAIGHT_BOTS PARA AVALIAR A MAIOR CARTA DE UM STRAIGHT FLUSH, POIS ERA O MESMO PROCEDIMENTO */
@@ -284,9 +303,12 @@ int maior_carta_straight_bots(MAO m){
 }
 
 
-/*
+/**
 Depois de ser validada um straight na mão de um dos bots, esta função determina o naipe da maior carta nesse straight, para se for necessário comparar com valores iguais.
 A função retorna o valor correspondente ao naipe da maior carta do straight existente.
+@param m A mão de um jogador.
+@param maiorCarta A maior carta de um straight.
+@returns O naipe da maior carta de um straight.
 */
 int maior_naipe_straight_bots (MAO m, int maiorCarta) {
     int i,n;
@@ -298,9 +320,12 @@ int maior_naipe_straight_bots (MAO m, int maiorCarta) {
 }
 
 
-/*
+/**
 Depois de ser validada um flush na mão de um dos bots, esta função determina o valor da maior carta nesse flush, para se for necessário comparar com valores iguais.
 A função retorna o valor da maior carta do flush.
+@param m A mão de um jogador.
+@param n1 Naipe correspondente ao flush.
+@returns O valor da maior carta do flush.
 */
 int maior_carta_flush_bots (MAO m, int n1) {
     int i,v,flag;
@@ -316,10 +341,12 @@ int maior_carta_flush_bots (MAO m, int n1) {
 }
 
 
-/*
+/**
 Para a formação de um four of a kind, é necessário quatro cartas com o mesmo valor mais uma carta qualquer existente na mão.
 Esta função escolhe essa carta, verificando primeiro se existe na mão. A primeira que for encontrada, é adicionada ao four of a kind.
 A função retorna o valor da primeira carta que encontra para juntar ao four of a kind.
+@param m A mão de um jogador.
+@returns O valor de uma carta.
 */
 int da_carta_fourkind (MAO m) {
     
@@ -353,15 +380,17 @@ int da_carta_fourkind (MAO m) {
 
 
 
-/*
+/**
 Esta função procura na mão um par válido para ser usado num full house. Se existir um par, é retornado o valor desse.
+@param m A mão de um jogador.
+@returns Valor de um par para full house.
 */
 int maior_carta_par_fullhouse (MAO m) {
     
     int v,i,n,j,var,flag;
-    
     int contaValores[13];
-    
+    var = 0;
+
     for (i = 0; i < 13; i++) {
         contaValores[i] = 0;
     }
@@ -377,8 +406,8 @@ int maior_carta_par_fullhouse (MAO m) {
     }
     
     flag = 0;
-    for (j = 0; (j < 14) && (flag != 1); j++) {
-        if (contaValores[j] == 2) {
+    for (j = 0; (j < 13) && (flag != 1); j++) {
+        if (contaValores[j] >= 2) {
             var = j;
             flag = 1;
         }
@@ -388,12 +417,11 @@ int maior_carta_par_fullhouse (MAO m) {
 }
 
 
-
-
-
-/*
+/**
 Função para determinar a maior carta de um straight flush na mão de um bot, de forma a validar para ser jogado. Esta função retorna a maior carta desse straight flush para usarmos na validação e comparação com as outras jogadas.
 Esta função foi também usada para o highlight do utilizado, visto que funciona para os dois casos.
+@param m A mão de um jogador.
+@returns O valor da maior carta.
 */
 int maior_carta_straightflush_bots (MAO m) {
     
@@ -467,10 +495,12 @@ int maior_carta_straightflush_bots (MAO m) {
 }
 
 
-/*
+/**
 Função para determinar o naipe da maior carta de um straight flush na mão de um bot. Esta função tem o intuito de se na ultima jogada for jogado um straight flush com o mesmo valor
 do que o que vai ser jogado agora, temos de analisar o naipe para ver se a jogada é válida.
 Aqui é retornado o valor correspondente ao naipe da maior carta de um straight flush. Senão, é retornado -1.
+@param m A mão de um jogador.
+@returns O naipe correspondente à maior carta.
 */
 int maior_naipeCarta_straightflush_bots (MAO m) {
     
