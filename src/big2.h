@@ -78,6 +78,7 @@ int seleciona_par_fullhouse (MAO m);
 int seleciona_trio_fullhouse (MAO m);
 int seleciona_maior_carta_straight_bots (MAO m);
 int seleciona_maior_naipeCarta_straight_bots(MAO m, int maiorCarta);
+int seleciona_maior_carta_straightflush_bots (MAO m);
 ESTADO joga_straight_bot3ouros (ESTADO e);
 ESTADO joga_flush_bot3ouros (ESTADO e);
 ESTADO joga_fullhouse_bot3ourosPar (ESTADO e);
