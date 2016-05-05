@@ -312,16 +312,16 @@ int valida_flush (MAO m) {
     }
     
     
-    if (contaNaipes[0] >= 5) return 0;
+    if (contaNaipes[3] >= 5) return 3;
     
     else {
-        if (contaNaipes[1] >= 5) return 1;
+        if (contaNaipes[2] >= 5) return 2;
         
         else {
-            if (contaNaipes[2] >= 5) return 2;
+            if (contaNaipes[1] >= 5) return 1;
             
             else {
-                if (contaNaipes[3] >= 5) return 3;
+                if (contaNaipes[0] >= 5) return 0;
                 else return -1;
             }
         }
@@ -581,12 +581,12 @@ Neste caso, como a ultima jogada foi um straight, a função valida se as 5 cart
 */
 int utilizador_joga_straight (ESTADO e) {
     /*VAI BUSCAR A MAIOR CARTA DAS DUAS*/
-    if ((maior_carta_straight(e.highlight)) > (maior_carta_straight(e.ultima_jogada))) {
+    if ((maior_carta_straight_bots(e.highlight)) > (maior_carta_straight_bots(e.ultima_jogada))) {
         return 1;
     }
     else {
-        if ((maior_carta_straight(e.highlight)) == (maior_carta_straight(e.ultima_jogada))) {
-            if ((maior_naipe_straight(e.highlight, (maior_carta_straight(e.highlight)))) > (maior_naipe_straight(e.ultima_jogada, (maior_carta_straight(e.ultima_jogada))))) {
+        if ((maior_carta_straight_bots(e.highlight)) == (maior_carta_straight_bots(e.ultima_jogada))) {
+            if ((maior_naipe_straight_bots(e.highlight, (maior_carta_straight_bots(e.highlight)))) > (maior_naipe_straight_bots(e.ultima_jogada, (maior_carta_straight_bots(e.ultima_jogada))))) {
                 return 1;
             }
             else {
@@ -890,6 +890,76 @@ int posso_jogar (ESTADO e) {
     }
 }
 
+int seleciona_maior_carta_straightflush_bots (MAO m) {
+    
+    int x,v,i,n,j,p0,p1,p2,p3,p4;
+    
+    int contaValores1[14];
+    int contaNaipes1[4];
+    int maioresCartasStraightsPossiveis1[3];
+
+    x = p0 = p1 = p2 = p3 = p4 = 0;
+    
+    for (i = 0; i < 14; i++) {
+        contaValores1[i] = 0;
+    }
+    
+    for (i = 0; i < 4; i++) {
+        contaNaipes1[i] = 0;
+    }
+    
+    for (i = 0; i < 3; i++) {
+        maioresCartasStraightsPossiveis1[i] = -1;
+    }
+
+    i = 2;
+    for (v = 0; v < 14; v++) {
+        for(n = 0; n < 4; n++) {
+            switch (v) {
+                case 11: if (carta_existe(m,n,v)) { contaValores1[0]++; contaValores1[13]++; } break;
+                case 12: if (carta_existe(m,n,v)) { contaValores1[1]++; } break;
+                default: if (carta_existe(m,n,v)) { contaValores1[i]++; } break;
+            }
+        }
+        i++;
+    }
+    
+    for (v = 0; v < 14; v++) {
+        for(n = 0; n < 4; n++) {
+            switch(n) {
+                case 0: if (carta_existe(m,n,v)) { contaNaipes1[0]++; } break;
+                case 1: if (carta_existe(m,n,v)) { contaNaipes1[1]++; } break;
+                case 2: if (carta_existe(m,n,v)) { contaNaipes1[2]++; } break;
+                case 3: if (carta_existe(m,n,v)) { contaNaipes1[3]++; } break;
+            }
+        }
+    }
+    
+    for (i = 6, j = 0; (i - 4) >= 0; --i) {
+        if ((contaValores1[i] != 0) && (contaValores1[i-1] != 0) && (contaValores1[i-2] != 0) && (contaValores1[i-3] != 0) && (contaValores1[i-4] != 0)) {
+            maioresCartasStraightsPossiveis1[j] = i;
+            j++;
+        }
+    }
+    
+    for (i = 0; i < 3; i++) {
+        if (maioresCartasStraightsPossiveis1[i] != -1) {
+            x = maioresCartasStraightsPossiveis1[i];
+            p0 = descodifica_straight(x);
+            p1 = descodifica_straight(x-1);
+            p2 = descodifica_straight(x-2);
+            p3 = descodifica_straight(x-3);
+            p4 = descodifica_straight(x-4);
+            
+            n = 0;
+            if ((carta_existe(m,n,p0)) && (carta_existe(m,n,p1)) && (carta_existe(m,n,p2)) && (carta_existe(m,n,p3)) && (carta_existe(m,n,p4))) {
+                return p0;
+            }
+        }
+    }
+    return -1;
+}
+
 int seleciona_par_fullhouse (MAO m) {
     int n,v,i;
     int contaValoresFullHouse[13];
@@ -1016,35 +1086,19 @@ int maior_carta_straight_bots(MAO m){
         i++;
     }
     
-    if (contaValores[1] != 0) {
-        j = 12;
-        while ((j-4) >= 0) {
-            if ((contaValores[j] != 0) && (contaValores[j-1] != 0) && (contaValores[j-2] != 0) && (contaValores[j-3] != 0) && (contaValores[j-4] != 0)) {
-                switch (j) {
-                    case 0: { j = 11; } break;
-                    case 1: { j = 12; } break;
-                    default: { j -= 2; } break;
-                }
-                return j;
+    j = 13;
+    while ((j-4) >= 0) {
+        if ((contaValores[j] != 0) && (contaValores[j-1] != 0) && (contaValores[j-2] != 0) && (contaValores[j-3] != 0) && (contaValores[j-4] != 0)) {
+            switch (j) {
+                case 0: { j = 11; } break;
+                case 1: { j = 12; } break;
+                default: { j -= 2; } break;
             }
-            j--;
+            return j;
         }
+        j--;
     }
-    else {
-        j = 13;
-        while ((j-4) >= 1) {
-            if ((contaValores[j] != 0) && (contaValores[j-1] != 0) && (contaValores[j-2] != 0) && (contaValores[j-3] != 0) && (contaValores[j-4] != 0)) {
-                switch (j) {
-                    case 0: { j = 11; } break;
-                    case 1: { j = 12; } break;
-                    default: { j -= 2; } break;
-                }
-                return j;
-            }
-            j--;
-        }
-    }
-    
+
     return -1;
 }
 
@@ -1331,7 +1385,7 @@ ESTADO fazjogada_straight (ESTADO e) {
         return e;
     }
     else {
-        if ((maior_carta_straight_bots(e.mao[e.actual_jogador])) == (maior_carta_straight_bots(e.ultima_jogada)) && ((maior_naipe_straight_bots(e.mao[e.actual_jogador], (maior_carta_straight_bots(e.mao[e.actual_jogador])))) > (maior_naipe_straight(e.ultima_jogada, (maior_carta_straight_bots(e.ultima_jogada)))))) {
+        if ((maior_carta_straight_bots(e.mao[e.actual_jogador])) == (maior_carta_straight_bots(e.ultima_jogada)) && ((maior_naipe_straight_bots(e.mao[e.actual_jogador], (maior_carta_straight_bots(e.mao[e.actual_jogador])))) > (maior_naipe_straight_bots(e.ultima_jogada, (maior_carta_straight_bots(e.ultima_jogada)))))) {
             e = joga_straight(e);
             return e;
         }
@@ -1380,6 +1434,7 @@ ESTADO fazjogada_flush (ESTADO e) {
 
     if ((valida_flush(e.mao[e.actual_jogador])) > (valida_flush(e.ultima_jogada))) {
         e = joga_flush(e);
+        
         return e;
     }
     else {
@@ -1407,6 +1462,7 @@ ESTADO fazjogada_flush (ESTADO e) {
                     else {
                         e.cartas_bots[e.actual_jogador] = 0;
                         e.actual_jogador = incrementa_jogador(e);
+                       
                         return e;
                     }
                 }

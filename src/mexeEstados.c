@@ -171,13 +171,13 @@ ESTADO joga_straight_bot3ouros (ESTADO e) {
 
 ESTADO joga_flush_bot3ouros (ESTADO e) {
     long long int m=0, n=0;
-    int flag1,flag2,flag3,v1=0,v2=0,v3=0,v4=0,p1=0,p2=0,p3=0,p4=0,p5=0,n1=0;
+    int flag1,flag2,flag3,flag4,v1=0,v2=0,v3=0,v4=0,v5=0,p1=0,p2=0,p3=0,p4=0,p5=0,n1=0;
 
     n1 = 0; /* Naipe do três de ouros */
 
     flag1 = 0;
     p1 = v1;
-    for(v2 = (v1 - 1); v2 > 0 && flag1 != 1; --v2) {
+    for(v2 = (v1 + 1); v2 < 13 && flag1 != 1; v2++) {
         if (carta_existe(e.mao[e.actual_jogador],n1,v2)) {
             p2 = v2;
             flag1 = 1;
@@ -185,7 +185,7 @@ ESTADO joga_flush_bot3ouros (ESTADO e) {
     }
 
     flag2 = 0;
-    for (v3 = v2; v3 > 0 && flag2 != 1; --v3) {
+    for (v3 = v2; v3 < 13 && flag2 != 1; v3++) {
         if (carta_existe(e.mao[e.actual_jogador],n1,v3)) {
             p3 = v3;
             flag2 = 1;
@@ -193,14 +193,20 @@ ESTADO joga_flush_bot3ouros (ESTADO e) {
     }
 
     flag3 = 0;
-    for (v4 = v3; v4 > 0 && flag3 != 1; --v4) {
+    for (v4 = v3; v4 < 13 && flag3 != 1; v4++) {
         if (carta_existe(e.mao[e.actual_jogador],n1,v4)) {
             p4 = v4;
             flag3 = 1;
         }
     }
 
-    p5 = 0; /* Valor do três de ouros */
+    flag4 = 0;
+    for (v5 = v4; v5 < 13 && flag4 != 1; v5++) {
+        if (carta_existe(e.mao[e.actual_jogador],n1,v5)) {
+            p5 = v5;
+            flag4 = 1;
+        }
+    }
 
     m = add_carta(0,n1,p1);
     m = add_carta(m,n1,p2);
@@ -388,6 +394,48 @@ ESTADO joga_fourkind_bot3ouros (ESTADO e) {
     return e;
 }
 
+
+ESTADO joga_straightflush_bot3ouros(ESTADO e) {
+    
+    long long int m=0, n=0;
+    
+    int v1,v2,v3,v4,v5,p2,p3,p4,p5;
+    
+    v1 = seleciona_maior_carta_straightflush_bots(e.mao[e.actual_jogador]);
+    p2 = codifica ((seleciona_maior_carta_straightflush_bots(e.mao[e.actual_jogador]))-1);
+    p3 = codifica ((seleciona_maior_carta_straightflush_bots(e.mao[e.actual_jogador]))-2);
+    p4 = codifica ((seleciona_maior_carta_straightflush_bots(e.mao[e.actual_jogador]))-3);
+    p5 = codifica ((seleciona_maior_carta_straightflush_bots(e.mao[e.actual_jogador]))-4);
+    
+    v2 = descodifica_straight(p2);
+    v3 = descodifica_straight(p3);
+    v4 = descodifica_straight(p4);
+    v5 = descodifica_straight(p5);
+    /* os ns sao todos iguais */
+    
+    m = add_carta(0,0,v1);
+    m = add_carta(m,0,v2);
+    m = add_carta(m,0,v3);
+    m = add_carta(m,0,v4);
+    m = add_carta(m,0,v5);
+    
+    n = rem_carta((e.mao[e.actual_jogador]),0,v1);
+    n = rem_carta(n,0,v2);
+    n = rem_carta(n,0,v3);
+    n = rem_carta(n,0,v4);
+    n = rem_carta(n,0,v5);
+    
+    e.cartas[e.actual_jogador] = (e.cartas[e.actual_jogador]) - 5;
+    e.ultima_jogada = m;
+    e.cartas_bots[e.actual_jogador] = m;
+    e.mao[e.actual_jogador] = n;
+    e.ultimo_jogador = e.actual_jogador;
+    e.actual_jogador = incrementa_jogador(e);
+    e.card = 0;
+    return e;
+}
+
+
 ESTADO joga_trio_bot3ouros (ESTADO e) {
     int flag,flag1,flag2,n=0,n1=0,n2=0,n3=0,p1=0,p2=0;
     long long int x=0,m=0;
@@ -514,8 +562,24 @@ ESTADO bots1(ESTADO e){
             i++;
         }
 
-        if (seleciona_maior_carta_straight_bots(e.mao[e.actual_jogador]) != -1) {
-            e = joga_straight_bot3ouros(e);
+        if (seleciona_maior_carta_straightflush_bots(e.mao[e.actual_jogador]) != -1) {
+            e = joga_straightflush_bot3ouros(e);
+            return e;
+        }
+
+        /* FOUR KIND COM 3 DE OUROS */
+        if (contaValores[0] == 4) {
+            e = joga_fourkind_bot3ouros(e);
+            return e;
+        }
+
+        if (contaValores[0] >= 2 && (seleciona_trio_fullhouse(e.mao[e.actual_jogador]) != -1)) {
+            e = joga_fullhouse_bot3ourosTrio(e);
+            return e;
+        }
+
+        if (contaValores[0] >= 3 && (seleciona_par_fullhouse(e.mao[e.actual_jogador]) != -1)) {
+            e = joga_fullhouse_bot3ourosPar(e);
             return e;
         }
 
@@ -525,19 +589,8 @@ ESTADO bots1(ESTADO e){
             return e;
         }
 
-        if (contaValores[0] >= 3 && (seleciona_par_fullhouse(e.mao[e.actual_jogador]) != -1)) {
-            e = joga_fullhouse_bot3ourosPar(e);
-            return e;
-        }
-
-        if (contaValores[0] >= 2 && (seleciona_trio_fullhouse(e.mao[e.actual_jogador]) != -1)) {
-            e = joga_fullhouse_bot3ourosTrio(e);
-            return e;
-        }
-
-        /* FOUR KIND COM 3 DE OUROS */
-        if (contaValores[0] == 4) {
-            e = joga_fourkind_bot3ouros(e);
+        if (seleciona_maior_carta_straight_bots(e.mao[e.actual_jogador]) != -1) {
+            e = joga_straight_bot3ouros(e);
             return e;
         }
 
@@ -774,31 +827,29 @@ ESTADO bot_comeca_jogada (ESTADO e) {
 
     if (maior_carta_straight_bots(e.mao[e.actual_jogador]) != -1) {
         e = joga_straight(e);
-        e.actual_jogador = 0;
+      
         return e;
     }
     else {
         if (valida_flush(e.mao[e.actual_jogador]) != -1) {
             e = joga_flush(e);
-            e.actual_jogador = incrementa_jogador(e);
+            
             return e;
         }   
         else {
             if (valida_fullhouse(e.mao[e.actual_jogador]) != -1) {
                 e = joga_fullhouse(e);
-                e.actual_jogador = incrementa_jogador(e);
                 return e;
             }       
             else {
                 if (maior_carta_fourkind(e.mao[e.actual_jogador]) != -1) {
                     e = joga_fourkind(e);
-                    e.actual_jogador = incrementa_jogador(e);
                     return e;
                 }
                 else {
                     if (maior_carta_straightflush_bots(e.mao[e.actual_jogador]) != -1) {
                         e = joga_straightflush(e);
-                        e.actual_jogador = incrementa_jogador(e);
+                       
                         return e;
                     }
                     else {
@@ -962,6 +1013,7 @@ ESTADO pbot(ESTADO e){
     v = 0;
     v = validacao_5cartas(e.ultima_jogada);
     e = (fazjogada (e, v));
+  
     return e;
 }
 
@@ -1084,7 +1136,9 @@ ESTADO joga_flush(ESTADO e) {
     e.cartas_bots[e.actual_jogador] = m;
     e.mao[e.actual_jogador] = n;
     e.ultimo_jogador = e.actual_jogador;
+    
     e.actual_jogador = incrementa_jogador(e);
+       
     e.card = 0;
     return e;
 }
@@ -1315,6 +1369,7 @@ ESTADO bots2(ESTADO e){
 
         if (ncartas == 5) {
             e = pbot(e);
+          
             return e;
         }
     }
@@ -1332,8 +1387,9 @@ Como estes variam entre 0 e 3 (4 jogadores), enquanto ele for diferente de 3, va
 @returns Um inteiro correspondente ao número de um novo jogador.
 */
 int incrementa_jogador (ESTADO e){
+    int i=0;
     if (e.actual_jogador != 3) return (e.actual_jogador += 1);
-    else return 0;
+    else return i;
 }
 
 
@@ -1395,13 +1451,15 @@ Esta função também convoca as funções dos bots que executam as suas jogadas
 */
 ESTADO passar (ESTADO e) {
     
-    e.pass = 0;
+   e.pass = 0;
+               
     e = bots2(e);
-    
-    while(e.actual_jogador != 0 && e.cartas[0] != 0 && e.cartas[1] != 0 && e.cartas[2] != 0 && e.cartas[3] != 0){
+ 
+    while(e.actual_jogador != 0 && e.cartas[0] != 0 && e.cartas[1] != 0 && e.cartas[2] != 0 && e.cartas[3] != 0){     
         e = bots2(e);
     }
-
+ 
+    e.actual_jogador = 0;
     e.highlight = 0;
     return e;
 }

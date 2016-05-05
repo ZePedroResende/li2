@@ -220,9 +220,10 @@ void imprime_botao_sugestao(ESTADO e) {
    
     e = sugestao(e);
  
-    if (e.highlight == 0) 
+    if (e.highlight == 0){ 
         e = passar(e);
-   
+
+}   
     sprintf(script, "%s?%s", SCRIPT, estado2str(e));
     printf("<a xlink:href = \"%s\"><image x = \"40\" y = \"710\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/sugestaostallman.gif\" /></a>\n", script);
 }
@@ -315,6 +316,36 @@ void imprime_botao_layout(ESTADO e) {
     printf("<a xlink:href = \"%s\"><image x = \"1140\" y = \"710\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/Reset.png\" /></a>\n", script);
 }
 
+void imprime_botao_teste(ESTADO e){
+
+    char script[10240];
+    ESTADO novo = {{0},0,{0},0,0,0,0,-1,0,{0},0,1};
+
+    novo.mao[0] = 537919511;
+    novo.mao[1] = 6047590907904;
+    novo.mao[2] = 281476251877376;
+    novo.mao[3] = 10995116302344;
+    novo.start = 0;
+    novo.actual_jogador = primeiro_jogar(novo);
+    novo.cartas_bots[novo.actual_jogador] = 1;
+    novo.ultimo_jogador = novo.actual_jogador;
+    novo.layout = 0;
+    novo.cartas[0] = numero_de_cartas(novo.mao[0]);
+    novo.cartas[1] = numero_de_cartas(novo.mao[1]);
+    novo.cartas[2] = numero_de_cartas(novo.mao[2]);
+    novo.cartas[3] = numero_de_cartas(novo.mao[3]);
+  
+
+        e = bots1(novo);
+        
+        while(e.actual_jogador != 0){
+            e = bots2(e);
+        }
+
+    sprintf(script, "%s?%s", SCRIPT, estado2str(e));
+    printf("<a xlink:href = \"%s\"><image x = \"1050\" y = \"710\" height = \"80\" width = \"80\" xlink:href = \"http://localhost/cards/test.png\" /></a>\n", script);
+
+}
 
 /*
 A função imprime_botao_trofeu imprime uma imagem com um trofeu correspondente ao vencedor do jogo no final do mesmo.
@@ -385,21 +416,22 @@ void parse (char *query) {
     }
 
     else{
-        
+        /*
         if (e.cartas[0] == 0 || e.cartas[1] == 0 || e.cartas[2] == 0 || e.cartas[3] == 0) {
             imprime_botao_trofeu(e);
             imprime_botao_reset(e);
         }
 
-        else {
+        else {*/
             imprime(BARALHO, e);
             imprime_botao_jogar(e);
             imprime_botao_passar(e);
             imprime_botao_layout(e);
             imprime_botao_clear(e);
             imprime_botao_sugestao(e);
-            imprime_botao_exit(e); 
-        }
+            imprime_botao_exit(e);
+            imprime_botao_teste(e); 
+        /*}*/
     }
 }
 
