@@ -357,22 +357,22 @@ void imprime_botao_trofeu(ESTADO e) {
     
     if (e.cartas[0] == 0) {
         sprintf(script, "%s?%s", SCRIPT, estado2str(e));
-        printf("<a xlink:href = \"%s\"><image x = \"260\" y = \"50\" height = \"750\" width = \"750\" xlink:href = \"http://localhost/cards/trofeu.png\" /></a>\n", script);
+        printf("<a xlink:href = \"%s\"><image x = \"1200\" y = \"40\" height = \"750\" width = \"750\" xlink:href = \"http://localhost/cards/trofeu.png\" /></a>\n", script);
     }
     
     if (e.cartas[1] == 0) {
         sprintf(script, "%s?%s", SCRIPT, estado2str(e));
-        printf("<a xlink:href = \"%s\"><image x = \"260\" y = \"50\" height = \"750\" width = \"750\" xlink:href = \"http://localhost/cards/trofeu2.png\" /></a>\n", script);
+        printf("<a xlink:href = \"%s\"><image x = \"1200\" y = \"40\" height = \"750\" width = \"750\" xlink:href = \"http://localhost/cards/trofeu2.png\" /></a>\n", script);
     }
     
     if (e.cartas[2] == 0) {
         sprintf(script, "%s?%s", SCRIPT, estado2str(e));
-        printf("<a xlink:href = \"%s\"><image x = \"260\" y = \"50\" height = \"750\" width = \"750\" xlink:href = \"http://localhost/cards/trofeu3.png\" /></a>\n", script);
+        printf("<a xlink:href = \"%s\"><image x = \"1200\" y = \"40\" height = \"750\" width = \"750\" xlink:href = \"http://localhost/cards/trofeu3.png\" /></a>\n", script);
     }
     
     if (e.cartas[3] == 0){
         sprintf(script, "%s?%s", SCRIPT, estado2str(e));
-        printf("<a xlink:href = \"%s\"><image x = \"260\" y = \"50\" height = \"750\" width = \"750\" xlink:href = \"http://localhost/cards/trofeu4.png\" /></a>\n", script);
+        printf("<a xlink:href = \"%s\"><image x = \"1200\" y = \"40\" height = \"750\" width = \"750\" xlink:href = \"http://localhost/cards/trofeu4.png\" /></a>\n", script);
     } 
 }
 
@@ -419,6 +419,7 @@ void parse (char *query) {
         
         if (e.cartas[0] == 0 || e.cartas[1] == 0 || e.cartas[2] == 0 || e.cartas[3] == 0) {
             imprime_botao_trofeu(e);
+            imprime(BARALHO,e);
             imprime_botao_reset(e);
         }
 
@@ -451,7 +452,7 @@ int main() {
     printf("<header><title>Big2wo</title></header>\n");
     printf("<body>\n");
 /*  printf("<h1>Big2wo</h1>\n");*/
-    printf("<svg height = \"1000\" width = \"1280\">\n");
+    printf("<svg height = \"1500\" width = \"2000\">\n");
 /*  printf("<rect x = \"0\" y = \"0\" height = \"800\" width = \"800\" style = \"fill:#007700\"/>\n");*/
     printf("<image x = \"0\" y = \"0\" height = \"720\" width = \"1280\" xlink:href = \"http://localhost/cards/tabfinal.png\" /></a>\n");
     printf("<image x = \"0\" y = \"719\" height = \"80\" width = \"1280\" xlink:href = \"http://localhost/cards/barra.png\" /></a>\n");
