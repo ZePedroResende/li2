@@ -890,6 +890,12 @@ int posso_jogar (ESTADO e) {
     }
 }
 
+/**
+A função seleciona_maior_carta_straightflush_bots retorna o maior valor da carta de um straight flush
+Aqui temos em consideração só todos os straight flushes possíveis com a carta 3 de ouros.
+@param m A mão de um jogador.
+@returns Um inteiro correspondente à maior carta de um straight flush, -1 caso não exista.
+*/
 int seleciona_maior_carta_straightflush_bots (MAO m) {
     
     int x,v,i,n,j,p0,p1,p2,p3,p4;
@@ -960,6 +966,12 @@ int seleciona_maior_carta_straightflush_bots (MAO m) {
     return -1;
 }
 
+
+/**
+A função seleciona_par_fullhouse retorna o valor de um par para o full house, lembrando que o par é feito por cartas com valor 3 (incluíndo o 3 de ouros).
+@param m A mão de um jogador.
+@returns Um inteiro correspondente ao valor do par, -1 caso não exista.
+*/
 int seleciona_par_fullhouse (MAO m) {
     int n,v,i;
     int contaValoresFullHouse[13];
@@ -984,6 +996,11 @@ int seleciona_par_fullhouse (MAO m) {
     return -1;
 }
 
+/**
+A função seleciona_par_fullhouse retorna o valor de um trio para o full house, lembrando que o trio é feito por cartas com valor 3 (incluíndo o 3 de ouros).
+@param m A mão de um jogador.
+@returns Um inteiro correspondente ao valor do par, -1 caso não exista.
+*/
 int seleciona_trio_fullhouse (MAO m) {
 
     int n,v,i;
@@ -1009,6 +1026,12 @@ int seleciona_trio_fullhouse (MAO m) {
     return -1;
 }
 
+/**
+A função seleciona_maior_carta_straight_bots retorna o maior valor da carta de um straight.
+Aqui temos em consideração todos os straights possíveis com a carta 3 de ouros.
+@param m A mão de um jogador.
+@returns Um inteiro correspondente ao valor da maior carta de um straight, -1 caso não exista.
+*/
 int seleciona_maior_carta_straight_bots (MAO m) {
     
     int v,i,n,j;
@@ -1047,6 +1070,12 @@ int seleciona_maior_carta_straight_bots (MAO m) {
     return -1;
 }
 
+/**
+A função seleciona_maior_naipeCarta_straight_bots retorna o naipe da maior carta de um straight.
+@param m A mão de um jogador.
+@param maiorCarta Maior carta de um straight.
+@returns Um inteiro correspondente ao naipe da maior carta de um straight.
+*/
 int seleciona_maior_naipeCarta_straight_bots(MAO m, int maiorCarta) {
     int i,n;
     i = 0;
@@ -1056,6 +1085,7 @@ int seleciona_maior_naipeCarta_straight_bots(MAO m, int maiorCarta) {
     }
     return i;
 } 
+
 
 /**
 Nas cartas selecionadas pelo utilizador (neste caso um straight flush), determina o valor da maior carta desse, para mais tarde comparar, se necessário, com as ultimas jogadas, de forma a avaliar a jogada.

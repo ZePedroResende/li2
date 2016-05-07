@@ -124,6 +124,14 @@ int valida_bots_jogadas_normais (ESTADO e, MAO m) {
     return 1;
 }
 
+
+/**
+O estado joga_straight_bot3ouros é aquele que faz com que o bot jogue um straight contendo o 3 de ouros. 
+Após todas as validações da sua mão, ele adiciona cartas para jogar, removendo-as da sua mão.
+Posto isto, mostra as cartas no tabuleiro, e é a vez de outro jogador.
+@param e O estado actual.
+@returns O novo estado.
+*/
 ESTADO joga_straight_bot3ouros (ESTADO e) {
     long long int m=0, n=0;
 
@@ -169,6 +177,13 @@ ESTADO joga_straight_bot3ouros (ESTADO e) {
     return e;
 }
 
+/**
+O estado joga_flush_bot3ouros é aquele que faz com que o bot jogue um flush contendo o 3 de ouros. 
+Após todas as validações da sua mão, ele adiciona cartas para jogar, removendo-as da sua mão.
+Posto isto, mostra as cartas no tabuleiro, e é a vez de outro jogador.
+@param e O estado actual.
+@returns O novo estado.
+*/
 ESTADO joga_flush_bot3ouros (ESTADO e) {
     long long int m=0, n=0;
     int flag1,flag2,flag3,flag4,v1=0,v2=0,v3=0,v4=0,v5=0,p1=0,p2=0,p3=0,p4=0,p5=0,n1=0;
@@ -230,6 +245,14 @@ ESTADO joga_flush_bot3ouros (ESTADO e) {
     return e;
 }
 
+/**
+O estado joga_fullhouse_bot3ourosPar é aquele que faz com que o bot jogue um fullhouse contendo o 3 de ouros.
+Neste caso, o 3 de ouros faz parte do par correspondente ao fullhouse. 
+Após todas as validações da sua mão, ele adiciona cartas para jogar, removendo-as da sua mão.
+Posto isto, mostra as cartas no tabuleiro, e é a vez de outro jogador.
+@param e O estado actual.
+@returns O novo estado.
+*/
 ESTADO joga_fullhouse_bot3ourosPar (ESTADO e) {
     long long int m=0, f=0;
     int vPar=0,n=0,n3=0,n2=0,n1=0,p1=0,p3=0,np1=0,np2=0,flag,flag1,flag3,flag4;    
@@ -296,6 +319,14 @@ ESTADO joga_fullhouse_bot3ourosPar (ESTADO e) {
     return e;
 }
 
+/**
+O estado joga_fullhouse_bot3ourosTrio é aquele que faz com que o bot jogue um fullhouse contendo o 3 de ouros.
+Neste caso, o 3 de ouros faz parte do trio correspondente ao fullhouse. 
+Após todas as validações da sua mão, ele adiciona cartas para jogar, removendo-as da sua mão.
+Posto isto, mostra as cartas no tabuleiro, e é a vez de outro jogador.
+@param e O estado actual.
+@returns O novo estado.
+*/
 ESTADO joga_fullhouse_bot3ourosTrio (ESTADO e) {
     long long int m=0, f=0;
     int vTrio=0,n=0,n3=0,n2=0,n1=0,p1=0,p2=0,np1=0,np2=0,flag,flag1,flag2,flag3;
@@ -363,6 +394,14 @@ ESTADO joga_fullhouse_bot3ourosTrio (ESTADO e) {
     return e;
 }
 
+
+/**
+O estado joga_fourkind_bot3ouros é aquele que faz com que o bot jogue um four of a kind contendo o 3 de ouros. 
+Após todas as validações da sua mão, ele adiciona cartas para jogar, removendo-as da sua mão.
+Posto isto, mostra as cartas no tabuleiro, e é a vez de outro jogador.
+@param e O estado actual.
+@returns O novo estado.
+*/
 ESTADO joga_fourkind_bot3ouros (ESTADO e) {
     int flag=0,p=0,f=0;
     long long int m=0,x=0;
@@ -395,6 +434,13 @@ ESTADO joga_fourkind_bot3ouros (ESTADO e) {
 }
 
 
+/**
+O estado joga_straightflush_bot3ouros é aquele que faz com que o bot jogue um straight flush contendo o 3 de ouros. 
+Após todas as validações da sua mão, ele adiciona cartas para jogar, removendo-as da sua mão.
+Posto isto, mostra as cartas no tabuleiro, e é a vez de outro jogador.
+@param e O estado actual.
+@returns O novo estado.
+*/
 ESTADO joga_straightflush_bot3ouros(ESTADO e) {
     
     long long int m=0, n=0;
@@ -435,7 +481,13 @@ ESTADO joga_straightflush_bot3ouros(ESTADO e) {
     return e;
 }
 
-
+/**
+O estado joga_trio_bot3ouros é aquele que faz com que o bot jogue um trio contendo o 3 de ouros. 
+Após todas as validações da sua mão, ele adiciona cartas para jogar, removendo-as da sua mão.
+Posto isto, mostra as cartas no tabuleiro, e é a vez de outro jogador.
+@param e O estado actual.
+@returns O novo estado.
+*/
 ESTADO joga_trio_bot3ouros (ESTADO e) {
     int flag,flag1,flag2,n=0,n1=0,n2=0,n3=0,p1=0,p2=0;
     long long int x=0,m=0;
@@ -484,6 +536,13 @@ ESTADO joga_trio_bot3ouros (ESTADO e) {
     return e;
 }
 
+/**
+O estado joga_par_bot3ouros é aquele que faz com que o bot jogue um par contendo o 3 de ouros. 
+Após todas as validações da sua mão, ele adiciona cartas para jogar, removendo-as da sua mão.
+Posto isto, mostra as cartas no tabuleiro, e é a vez de outro jogador.
+@param e O estado actual.
+@returns O novo estado.
+*/
 ESTADO joga_par_bot3ouros (ESTADO e) {
     int flag,flag1,n=0,n1=0,n2=0,p1=0;
     long long int x=0,m=0;
@@ -523,7 +582,7 @@ ESTADO joga_par_bot3ouros (ESTADO e) {
 
 /**
 A função bots1 vai ser executada quando um bot começa a jogar(sendo que este tem o 3 de ouros na sua mão).
-E executada na modificação do baralhar na parse.
+E executada na modificação do baralhar na parse. É selecionada para ser jogada a maior combinação que o bot tem na mão contendo o 3 de ouros.
 @param e O estado actual.
 @returns O novo estado.
 */
