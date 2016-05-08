@@ -38,9 +38,9 @@ void imprime_carta(char *path, int x, int y, ESTADO e, int mao, int naipe, int v
     }
 
     else {
-        if (carta_existe(e.mao[1],naipe,valor) || carta_existe(e.mao[2],naipe,valor) || carta_existe(e.mao[3],naipe,valor))
+        /*if (carta_existe(e.mao[1],naipe,valor) || carta_existe(e.mao[2],naipe,valor) || carta_existe(e.mao[3],naipe,valor))
             printf("<image x = \"%d\" y = \"%d\" height = \"110\" width = \"80\" xlink:href = \"http://localhost/imagens/11C.png\" />\n", x, y);
-        else printf("<image x = \"%d\" y = \"%d\" height = \"110\" width = \"80\" xlink:href = \"%s/%c%c.svg\" />\n", x, y, path, rank[valor], suit[naipe]);
+        else*/ printf("<image x = \"%d\" y = \"%d\" height = \"110\" width = \"80\" xlink:href = \"%s/%c%c.svg\" />\n", x, y, path, rank[valor], suit[naipe]);
     }
 }
 
@@ -321,10 +321,10 @@ void imprime_botao_teste(ESTADO e){
     char script[10240];
     ESTADO novo = {{0},0,{0},0,0,0,0,-1,0,{0},0,1};
 
-    novo.mao[0] = 262175;
-    novo.mao[1] = 2147737600;
-    novo.mao[2] = 17594266419200;
-    novo.mao[3] = 17042430230560;
+    novo.mao[0] = (long long int)262175;
+    novo.mao[1] = (long long int)2147737600;
+    novo.mao[2] = (long long int)17594266419200;
+    novo.mao[3] = (long long int)17042430230560;
     novo.start = 0;
     novo.actual_jogador = primeiro_jogar(novo);
     novo.cartas_bots[novo.actual_jogador] = 1;

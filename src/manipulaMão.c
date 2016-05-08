@@ -301,16 +301,16 @@ int valida_flush (MAO m) {
         contaNaipes[i] = 0;
     }
     
-    for (v = 0; v < 13; v++)
-    for(n = 0; n < 4; n++) {
-        switch(n) {
-            case 0: if (carta_existe(m,n,v)) { contaNaipes[0]++; } break;
-            case 1: if (carta_existe(m,n,v)) { contaNaipes[1]++; } break;
-            case 2: if (carta_existe(m,n,v)) { contaNaipes[2]++; } break;
-            case 3: if (carta_existe(m,n,v)) { contaNaipes[3]++; } break;
+    for (v = 0; v < 13; v++) {
+        for(n = 0; n < 4; n++) {
+            switch(n) {
+                case 0: if (carta_existe(m,n,v)) { contaNaipes[0]++; } break;
+                case 1: if (carta_existe(m,n,v)) { contaNaipes[1]++; } break;
+                case 2: if (carta_existe(m,n,v)) { contaNaipes[2]++; } break;
+                case 3: if (carta_existe(m,n,v)) { contaNaipes[3]++; } break;
+            }
         }
     }
-    
     
     if (contaNaipes[3] >= 5) return 3;
     
@@ -322,10 +322,11 @@ int valida_flush (MAO m) {
             
             else {
                 if (contaNaipes[0] >= 5) return 0;
-                else return -1;
             }
         }
     }
+
+    return -1;
 }
 
 
@@ -1271,7 +1272,7 @@ int maior_carta_straightflush_bots (MAO m) {
         contaNaipes1[i] = 0;
     }
     
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < 8; i++) {
         maioresCartasStraightsPossiveis1[i] = -1;
     }
     
@@ -1349,7 +1350,7 @@ int maior_naipeCarta_straightflush_bots (MAO m) {
         contaNaipes[i] = 0;
     }
     
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < 8; i++) {
         maioresCartasStraightsPossiveis[i] = -1;
     }
     
@@ -1464,15 +1465,12 @@ ESTADO fazjogada_flush (ESTADO e) {
 
     if ((valida_flush(e.mao[e.actual_jogador])) > (valida_flush(e.ultima_jogada))) {
         e = joga_flush(e);
-        
         return e;
     }
     else {
-        if ((valida_flush(e.mao[e.actual_jogador])) == (valida_flush(e.ultima_jogada))) {
-            if ((maior_carta_flush_bots(e.mao[e.actual_jogador], (valida_flush(e.mao[e.actual_jogador])))) > (maior_carta_flush_bots(e.ultima_jogada, (valida_flush(e.ultima_jogada))))) {
-                e = joga_flush(e);
-                return e;
-            }
+        if ((valida_flush(e.mao[e.actual_jogador])) == (valida_flush(e.ultima_jogada)) && ((maior_carta_flush_bots(e.mao[e.actual_jogador], (valida_flush(e.mao[e.actual_jogador])))) > (maior_carta_flush_bots(e.ultima_jogada, (valida_flush(e.ultima_jogada)))))) {
+            e = joga_flush(e);
+            return e;
         }
         else {
             if (valida_fullhouse(e.mao[e.actual_jogador]) != -1) {
@@ -1492,7 +1490,6 @@ ESTADO fazjogada_flush (ESTADO e) {
                     else {
                         e.cartas_bots[e.actual_jogador] = 0;
                         e.actual_jogador = incrementa_jogador(e);
-                       
                         return e;
                     }
                 }

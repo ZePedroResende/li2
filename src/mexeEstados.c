@@ -1404,7 +1404,7 @@ Se não existir nenhuma combinação válida a ser jogada (comparando com a ulti
 ESTADO bots2(ESTADO e){
     
     int ncartas = numero_de_cartas(e.ultima_jogada);
-    
+
     if (e.ultimo_jogador == e.actual_jogador) {
         e = bot_comeca_jogada(e);
         return e;
