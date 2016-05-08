@@ -11,4 +11,5 @@ limpar:
 
 install: cartas
 		sudo cp -r cards /var/www/html
+		sudo cp -r imagens /var/www/html
 		sudo cp cartas /usr/lib/cgi-bin
