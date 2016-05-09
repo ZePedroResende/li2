@@ -38,9 +38,9 @@ void imprime_carta(char *path, int x, int y, ESTADO e, int mao, int naipe, int v
     }
 
     else {
-        /*if (carta_existe(e.mao[1],naipe,valor) || carta_existe(e.mao[2],naipe,valor) || carta_existe(e.mao[3],naipe,valor))
+        if (carta_existe(e.mao[1],naipe,valor) || carta_existe(e.mao[2],naipe,valor) || carta_existe(e.mao[3],naipe,valor))
             printf("<image x = \"%d\" y = \"%d\" height = \"110\" width = \"80\" xlink:href = \"http://localhost/imagens/11C.png\" />\n", x, y);
-        else*/ printf("<image x = \"%d\" y = \"%d\" height = \"110\" width = \"80\" xlink:href = \"%s/%c%c.svg\" />\n", x, y, path, rank[valor], suit[naipe]);
+        else printf("<image x = \"%d\" y = \"%d\" height = \"110\" width = \"80\" xlink:href = \"%s/%c%c.svg\" />\n", x, y, path, rank[valor], suit[naipe]);
     }
 }
 
